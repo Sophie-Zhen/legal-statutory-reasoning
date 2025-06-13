@@ -1,0 +1,375 @@
+id,question,question_type,expected,prolog_result,is_correct
+s151_a_neg,% Alice's total exemption for 2015 under section 151(a) is equal to $6000. Contradiction,logical,Contradiction,Contradiction,True
+s151_a_pos,% Alice's total exemption for 2015 under section 151(a) is equal to $4000. Entailment,logical,Entailment,Entailment,True
+s151_b_neg,% Alice can receive an exemption for Bob under section 151(b) for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s151_c_neg,% Alice can claim an exemption with Bob as the dependent for 2015 under section 151(c). Contradiction,logical,Contradiction,Contradiction,True
+s151_c_pos,% Alice can claim an exemption with Bob the dependent for 2015 under section 151(c). Entailment,logical,Entailment,Entailment,True
+s151_d_2_neg,"% Under section 151(d)(2), Bob's exemption amount for the year 2015 is equal to $2000. Contradiction",logical,Contradiction,Contradiction,True
+s151_d_2_pos,"% Under section 151(d)(2), Bob's exemption amount for the year 2015 is equal to $0. Entailment",logical,Entailment,Entailment,True
+s151_d_3_B_pos,"% Under section 151(d)(3)(B), the applicable percentage for Alice for 2015 is equal to 22. Entailment",logical,Entailment,Entailment,True
+s152_b_1_neg,% Section 152(b)(1) applies to Alice for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_b_1_pos,% Section 152(b)(1) applies to Bob for the year 2015. Entailment,logical,Entailment,Entailment,True
+s152_b_2_neg,% Section 152(b)(2) applies to Alice for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_b_2_pos,% Section 152(b)(2) applies to Alice for the year 2015. Entailment,logical,Entailment,Entailment,True
+s152_c_1_B_neg,% Section 152(c)(1)(B) applies to Bob with Alice as the taxpayer for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_c_1_B_pos,% Section 152(c)(1)(B) applies to Bob with Alice as the taxpayer for the year 2016. Entailment,logical,Entailment,Entailment,True
+s152_c_1_E_neg,% Section 152(c)(1)(E) applies to Bob for the year 2019. Contradiction,logical,Contradiction,Contradiction,True
+s152_c_1_E_pos,% Section 152(c)(1)(E) applies to Bob for the year 2019. Entailment,logical,Entailment,Entailment,True
+s152_c_1_neg,"% Under section 152(c)(1), Bob is a qualifying child of Alice for the year 2019. Contradiction",logical,Contradiction,Contradiction,True
+s152_c_1_pos,"% Under section 152(c)(1), Bob is a qualifying child of Alice for the year 2019. Entailment",logical,Entailment,Entailment,True
+s152_c_2_B_neg,% Bob bears a relationship to Alice under section 152(c)(2)(B). Contradiction,logical,Contradiction,Contradiction,True
+s152_c_2_B_pos,% Bob bears a relationship to Alice under section 152(c)(2)(B). Entailment,logical,Entailment,Entailment,True
+s152_c_2_neg,% Alice bears a relationship to Bob under section 152(c)(2). Contradiction,logical,Contradiction,Contradiction,True
+s152_c_2_pos,% Bob bears a relationship to Alice under section 152(c)(2). Entailment,logical,Entailment,Entailment,True
+s152_c_3_neg,% Bob satisfies section 152(c)(3) with Alice claiming Bob as a qualifying child for the year 2019. Contradiction,logical,Contradiction,Contradiction,True
+s152_c_3_pos,% Bob satisfies section 152(c)(3) with Alice claiming Bob as a qualifying child for the year 2019. Entailment,logical,Entailment,Entailment,True
+s152_d_1_B_neg,% Section 152(d)(1)(B) applies to Alice for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_d_1_B_pos,% Section 152(d)(1)(B) applies to Alice for the year 2015. Entailment,logical,Entailment,Entailment,True
+s152_d_2_B_neg,% Alice bears a relationship to Bob under section 152(d)(2)(B) for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_B_pos,% Alice bears a relationship to Bob under section 152(d)(2)(B) for the year 2015. Entailment,logical,Entailment,Entailment,True
+s152_d_2_D_neg,% Alice bears a relationship to Bob under section 152(d)(2)(D) for the year 2018. Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_D_pos,% Alice bears a relationship to Bob under section 152(d)(2)(D) for the year 2019. Entailment,logical,Entailment,Contradiction,False
+s152_d_2_E_neg,% Alice bears a relationship to Bob under section 152(d)(2)(E). Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_E_pos,% Alice bears a relationship to Bob under section 152(d)(2)(E). Entailment,logical,Entailment,Entailment,True
+s152_d_2_F_neg,% Alice bears a relationship to Bob under section 152(d)(2)(F). Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_F_pos,% Alice bears a relationship to Bob under section 152(d)(2)(F). Entailment,logical,Entailment,Entailment,True
+s1_a_1_i_neg,% Alice and her spouse have to pay $7208 in taxes for the year 2017 under section 1(a)(i). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_1_i_pos,% Alice and her spouse have to pay $2600 in taxes for the year 2017 under section 1(a)(i). Entailment,logical,Entailment,Entailment,True
+s1_a_1_ii_neg,% Alice and her spouse have to pay $24543 in taxes for the year 2017 under section 1(a)(ii). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_1_ii_pos,% Alice and her spouse have to pay $7208 in taxes for the year 2017 under section 1(a)(ii). Entailment,logical,Entailment,Entailment,True
+s1_a_1_iii_neg,% Alice and her spouse have to pay $44789 in taxes for the year 2017 under section 1(a)(iii). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_1_iii_pos,% Alice and her spouse have to pay $24543 in taxes for the year 2017 under section 1(a)(iii). Entailment,logical,Entailment,Entailment,True
+s1_a_1_iv_neg,% Alice and her spouse have to pay $247647 in taxes for the year 2017 under section 1(a)(iv). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_1_iv_pos,% Alice and her spouse have to pay $44789 in taxes for the year 2017 under section 1(a)(iv). Entailment,logical,Entailment,Entailment,True
+s1_a_1_neg,% Alice has to pay $24056 in taxes for the year 2017 under section 1(a). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_1_pos,% Alice and her husband have to pay $2600 in taxes for the year 2017 under section 1(a). Entailment,logical,Entailment,Entailment,True
+s1_a_1_v_neg,% Alice and her spouse have to pay $2600 in taxes for the year 2017 under section 1(a)(v). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_1_v_pos,% Alice and her spouse have to pay $247647 in taxes for the year 2017 under section 1(a)(v). Entailment,logical,Entailment,Entailment,True
+s1_a_2_i_neg,% Alice has to pay $14836 in taxes for the year 2017 under section 1(a)(i). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_2_i_pos,% Alice has to pay $3834 in taxes for the year 2017 under section 1(a)(i). Entailment,logical,Entailment,Entailment,True
+s1_a_2_ii_neg,% Alice has to pay $22018 in taxes for the year 2017 under section 1(a)(ii). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_2_ii_pos,% Alice has to pay $14836 in taxes for the year 2017 under section 1(a)(ii). Entailment,logical,Entailment,Entailment,True
+s1_a_2_iii_neg,% Alice has to pay $70640 in taxes for the year 2017 under section 1(a)(iii). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_2_iii_pos,% Alice has to pay $22018 in taxes for the year 2017 under section 1(a)(iii). Entailment,logical,Entailment,Entailment,True
+s1_b_ii_neg,% Alice has to pay $1434 in taxes for the year 2017 under section 1(b)(ii). Contradiction,logical,Contradiction,Contradiction,True
+s1_b_ii_pos,% Alice has to pay $11489 in taxes for the year 2017 under section 1(b)(ii). Entailment,logical,Entailment,Entailment,True
+s1_b_iii_neg,% Alice has to pay $11489 in taxes for the year 2017 under section 1(b)(iii). Contradiction,logical,Contradiction,Contradiction,True
+s1_b_iii_pos,% Alice has to pay $24056 in taxes for the year 2017 under section 1(b)(iii). Entailment,logical,Entailment,Entailment,True
+s1_b_iv_neg,% Alice has to pay $24056 in taxes for the year 2017 under section 1(b)(iv). Contradiction,logical,Contradiction,Contradiction,True
+s1_b_iv_pos,% Alice has to pay $57509 in taxes for the year 2017 under section 1(b)(iv). Entailment,logical,Entailment,Entailment,True
+s1_b_v_neg,% Alice has to pay $57509 in taxes for the year 2017 under section 1(b)(v). Contradiction,logical,Contradiction,Contradiction,True
+s1_b_v_pos,% Alice has to pay $442985 in taxes for the year 2017 under section 1(b)(v). Entailment,logical,Entailment,Entailment,True
+s1_c_i_neg,% Alice has to pay $265413 in taxes for the year 2017 under section 1(c)(i). Contradiction,logical,Contradiction,Contradiction,True
+s1_c_i_pos,% Alice has to pay $1162 in taxes for the year 2017 under section 1(c)(i). Entailment,logical,Entailment,Entailment,True
+s1_c_ii_neg,% Alice has to pay $1162 in taxes for the year 2017 under section 1(c)(ii). Contradiction,logical,Contradiction,Contradiction,True
+s1_c_ii_pos,% Alice has to pay $3538 in taxes for the year 2017 under section 1(c)(ii). Entailment,logical,Entailment,Entailment,True
+s1_c_iv_neg,% Alice has to pay $27225 in taxes for the year 2017 under section 1(c)(iv). Contradiction,logical,Contradiction,Contradiction,True
+s1_c_iv_pos,% Alice has to pay $65445 in taxes for the year 2017 under section 1(c)(iv). Entailment,logical,Entailment,Entailment,True
+s1_c_v_neg,% Alice has to pay $65445 in taxes for the year 2017 under section 1(c)(v). Contradiction,logical,Contradiction,Contradiction,True
+s1_c_v_pos,% Alice has to pay $265413 in taxes for the year 2017 under section 1(c)(v). Entailment,logical,Entailment,Entailment,True
+s1_d_iii_neg,% Alice has to pay $999 in taxes for the year 2017 under section 1(d)(iii). Contradiction,logical,Contradiction,Contradiction,True
+s1_d_iii_pos,% Alice has to pay $17123 in taxes for the year 2017 under section 1(d)(iii). Entailment,logical,Entailment,Entailment,True
+s1_d_iv_neg,% Alice has to pay $5683 in taxes for the year 2017 under section 1(d)(iv). Contradiction,logical,Contradiction,Contradiction,True
+s1_d_iv_pos,% Alice has to pay $33653 in taxes for the year 2017 under section 1(d)(iv). Entailment,logical,Entailment,Entailment,True
+s1_d_v_neg,% Alice has to pay $20772 in taxes for the year 2017 under section 1(d)(v). Contradiction,logical,Contradiction,Contradiction,True
+s1_d_v_pos,% Alice has to pay $207772 in taxes for the year 2017 under section 1(d)(v). Entailment,logical,Entailment,Entailment,True
+s2_a_1_A_neg,% Section 2(a)(1)(A) applies to Bob in 2014. Contradiction,logical,Contradiction,Contradiction,True
+s2_a_1_A_pos,% Section 2(a)(1)(A) applies to Bob in 2015. Entailment,logical,Entailment,Entailment,True
+s2_a_2_A_neg,% Section 2(a)(2)(A) applies to Bob in 2014. Contradiction,logical,Contradiction,Contradiction,True
+s2_a_2_A_pos,% Section 2(a)(2)(A) applies to Bob in 2015. Entailment,logical,Entailment,Entailment,True
+s2_a_2_B_neg,% Section 2(a)(2)(B) applies to Bob in 2014. Contradiction,logical,Contradiction,Contradiction,True
+s2_a_2_B_pos,% Section 2(a)(2)(B) applies to Bob in 2014. Entailment,logical,Entailment,Entailment,True
+s2_b_1_A_neg,% Section 2(b)(1)(A) applies to Bob in 2018. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_A_pos,% Section 2(b)(1)(A) applies to Bob in 2018. Entailment,logical,Entailment,Contradiction,False
+s2_b_1_B_neg,% Section 2(b)(1)(B) applies to Bob in 2018. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_B_pos,% Section 2(b)(1)(B) applies to Bob in 2018. Entailment,logical,Entailment,Contradiction,False
+s2_b_1_neg,% Section 2(b)(1) applies to Bob in 2016. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_pos,% Section 2(b)(1) applies to Bob in 2018. Entailment,logical,Entailment,Contradiction,False
+s2_b_2_A_neg,% Section 2(b)(2)(A) applies to Alice and Bob in 2010. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_2_A_pos,% Section 2(b)(2)(A) applies to Alice and Bob in 2018. Entailment,logical,Entailment,Entailment,True
+s2_b_2_B_neg,% Section 2(b)(2)(B) applies to Bob in 2015. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_2_B_pos,% Section 2(b)(2)(B) applies to Bob in 2013. Entailment,logical,Entailment,Entailment,True
+s2_b_2_C_neg,% Section 2(b)(2)(C) applies to Bob in 2014. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_2_C_pos,% Section 2(b)(2)(C) applies to Bob in 2014. Entailment,logical,Entailment,Entailment,True
+s2_b_3_B_neg,% Section 2(b)(3)(B) applies to Bob in 2018. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_3_B_pos,% Section 2(b)(3)(B) applies to Bob as the taxpayer and Charlie as the individual in 2018. Entailment,logical,Entailment,Contradiction,False
+s3306_a_1_A_neg,"% Under section 3306(a)(1)(A), Alice is an employer for the year 2019. Contradiction",logical,Contradiction,Contradiction,True
+s3306_a_1_A_pos,"% Under section 3306(a)(1)(A), Alice is an employer for the year 2017. Entailment",logical,Entailment,Entailment,True
+s3306_a_1_neg,% Alice is an employer under section 3306(a)(1) for the year 2018. Contradiction,logical,Contradiction,Contradiction,True
+s3306_a_1_pos,% Bob is an employer under section 3306(a)(1) for the year 2018. Entailment,logical,Entailment,Entailment,True
+s3306_a_2_A_neg,"% Under section 3306(a)(2)(A), Alice is an employer for the year 2017. Contradiction",logical,Contradiction,Contradiction,True
+s3306_a_2_A_pos,"% Under section 3306(a)(2)(A), Alice is an employer for the year 2017. Entailment",logical,Entailment,Entailment,True
+s3306_a_2_B_neg,% Section 3306(a)(2)(B) applies to Alice for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_a_2_B_pos,% Section 3306(a)(2)(B) applies to Alice for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_b_10_A_neg,% Section 3306(b)(10)(A) applies to the payment of $12980 that Alice made in 2019. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_10_A_pos,% Section 3306(b)(10)(A) applies to the payment of $12980 that Alice made in 2019. Entailment,logical,Entailment,Entailment,True
+s3306_b_10_B_neg,% Section 3306(b)(10)(B) applies to the payment of $12980 that Alice made in 2019. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_10_B_pos,% Section 3306(b)(10)(B) applies to the payment of $12980 that Alice made in 2019. Entailment,logical,Entailment,Entailment,True
+s3306_b_11_neg,% Section 3306(b)(11) applies to the payment that Alice made to Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_11_pos,% Section 3306(b)(11) applies to the payment that Alice made to Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_b_15_neg,% Section 3306(b)(15) applies to the payment that Alice made to Charlie in 2019. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_15_pos,% Section 3306(b)(15) applies to the payment that Alice made to Charlie in 2020. Entailment,logical,Entailment,Contradiction,False
+s3306_b_2_A_neg,% Section 3306(b)(2)(A) applies to the payment Alice made to Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_2_A_pos,% Section 3306(b)(2)(A) applies to the payment Alice made to the health insurance fund for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_b_7_neg,% Section 3306(b)(7) applies to the payment Alice made to Bob. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_7_pos,% Section 3306(b)(7) applies to the payment Alice made to Bob. Entailment,logical,Entailment,Entailment,True
+s3306_b_neg,% Section 3306(b) applies to the payment in hay made by Alice to Bob for the year 2018. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_pos,% Section 3306(b) applies to the money paid by Alice to Bob for the year 2018. Entailment,logical,Entailment,Entailment,True
+s3306_c_10_A_i_neg,% Section 3306(c)(10)(A)(i) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_10_A_i_pos,% Section 3306(c)(10)(A)(i) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Contradiction,False
+s3306_c_10_A_ii_neg,% Section 3306(c)(10)(A)(ii) applies to Bob's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_10_A_ii_pos,% Section 3306(c)(10)(A)(ii) applies to Bob's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_13_neg,% Section 3306(c)(13) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_13_pos,% Section 3306(c)(13) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_1_A_i_neg,% Section 3306(c)(1)(A)(i) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_1_A_i_pos,% Section 3306(c)(1)(A)(i) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_1_neg,% Section 3306(c)(1) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_1_pos,% Section 3306(c)(1) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_21_neg,% Section 3306(c)(21) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_21_pos,% Section 3306(c)(21) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_2_neg,% Section 3306(c)(2) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_2_pos,% Section 3306(c)(2) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_5_neg,% Section 3306(c)(5) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_5_pos,% Section 3306(c)(5) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_A_neg,% Section 3306(c)(A) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_A_pos,% Section 3306(c)(A) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s63_a_neg,"% Under section 63(a), Alice's taxable income in 2017 is equal to $31200. Contradiction",logical,Contradiction,Contradiction,True
+s63_a_pos,"% Under section 63(a), Alice's taxable income in 2017 is equal to $26948. Entailment",logical,Entailment,Entailment,True
+s63_c_1_neg,"% Under section 63(c)(1), Alice's standard deduction in 2017 is equal to $4000. Contradiction",logical,Contradiction,Contradiction,True
+s63_c_1_pos,"% Under section 63(c)(1), Alice's standard deduction in 2017 is equal to $5000. Entailment",logical,Entailment,Entailment,True
+s63_c_2_B_neg,"% Under section 63(c)(2)(B), Alice's basic standard deduction in 2017 is equal to $4400. Contradiction",logical,Contradiction,Contradiction,True
+s63_c_2_B_pos,"% Under section 63(c)(2)(B), Alice's basic standard deduction in 2017 is equal to $4400. Entailment",logical,Entailment,Entailment,True
+s63_c_2_C_neg,"% Under section 63(c)(2)(C), Alice's basic standard deduction in 2017 is equal to $4400. Contradiction",logical,Contradiction,Contradiction,True
+s63_c_2_C_pos,"% Under section 63(c)(2)(C), Alice's basic standard deduction in 2017 is equal to $3000. Entailment",logical,Entailment,Entailment,True
+s63_c_3_neg,"% Under section 63(c)(3), Alice's additional standard deduction in 2017 is equal to $300. Contradiction",logical,Contradiction,Contradiction,True
+s63_c_3_pos,"% Under section 63(c)(3), Alice's additional standard deduction in 2017 is equal to $1200. Entailment",logical,Entailment,Entailment,True
+s63_c_5_neg,% Section 63(c)(5) applies to Bob's basic standard deduction in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_c_5_pos,"% Under section 63(c)(5), Bob's basic standard deduction in 2017 is equal to at most $500. Entailment",logical,Entailment,Entailment,True
+s63_c_6_A_neg,% Section 63(c)(6)(A) applies to Alice for 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_c_6_A_pos,% Section 63(c)(6)(A) applies to Alice for 2017. Entailment,logical,Entailment,Entailment,True
+s63_c_7_ii_neg,"% Under section 63(c)(7)(ii), Alice's basic standard deduction in 2019 is equal to $3000. Contradiction",logical,Contradiction,Contradiction,True
+s63_c_7_ii_pos,"% Under section 63(c)(7)(ii), Alice's basic standard deduction in 2019 is equal to $12000. Entailment",logical,Entailment,Entailment,True
+s63_d_2_neg,% Alice's deduction for 2017 falls under section 63(d)(2). Contradiction,logical,Contradiction,Contradiction,True
+s63_d_2_pos,% Alice's deduction for 2017 falls under section 63(d)(2). Entailment,logical,Entailment,Entailment,True
+s63_d_neg,% Alice's deduction for 2017 falls under section 63(d). Contradiction,logical,Contradiction,Contradiction,True
+s63_d_pos,% Alice's deduction for 2017 falls under section 63(d). Entailment,logical,Entailment,Entailment,True
+s63_f_1_B_neg,% Section 63(f)(1)(B) applies to Alice with Bob as the spouse in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_f_1_B_pos,% Section 63(f)(1)(B) applies to Bob with Alice as the spouse in 2017. Entailment,logical,Entailment,Entailment,True
+s63_f_2_A_neg,% Section 63(f)(2)(A) applies to Bob in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_f_2_A_pos,% Section 63(f)(2)(A) applies to Alice in 2017. Entailment,logical,Entailment,Entailment,True
+s63_f_3_neg,"% Under section 63(f)(3), Alice's additional standard deduction in 2017 is equal to $600. Contradiction",logical,Contradiction,Contradiction,True
+s63_f_3_pos,"% Under section 63(f)(3), Alice's additional standard deduction in 2017 is equal to $750. Entailment",logical,Entailment,Entailment,True
+s68_a_1_neg,% Section 68(a)(1) prescribes a reduction of Alice's itemized deductions for the year 2016 by $306. Contradiction,logical,Contradiction,Contradiction,True
+s68_a_1_pos,% Section 68(a)(1) prescribes a reduction of Alice's itemized deductions for the year 2016 by $306. Entailment,logical,Entailment,Contradiction,False
+s68_b_1_A_neg,% Section 68(b)(1)(A) applies to Alice for 2016. Contradiction,logical,Contradiction,Contradiction,True
+s68_b_1_A_pos,"% Under section 68(b)(1)(A), Alice's applicable amount for 2016 is equal to $300000. Entailment",logical,Entailment,Entailment,True
+s68_b_1_D_neg,% Section 68(b)(1)(D) applies to Alice in 2016. Contradiction,logical,Contradiction,Contradiction,True
+s68_b_1_D_pos,"% Under section 68(b)(1)(D), Alice's applicable amount for 2016 is equal to $150000. Entailment",logical,Entailment,Entailment,True
+s68_f_neg,% Section 68(f) applies to Alice for the year 2014. Contradiction,logical,Contradiction,Contradiction,True
+s68_f_pos,% Section 68(f) applies to Alice for the year 2018. Entailment,logical,Entailment,Entailment,True
+s7703_a_2_neg,% Section 7703(a)(2) applies to Alice for the year 2012. Contradiction,logical,Contradiction,Contradiction,True
+s7703_a_2_pos,% Section 7703(a)(2) applies to Alice for the year 2018. Entailment,logical,Entailment,Entailment,True
+s7703_b_1_neg,% Section 7703(b)(1) applies to Alice for the year 2018. Contradiction,logical,Contradiction,Entailment,False
+s7703_b_1_pos,% Section 7703(b)(1) applies to Alice for the year 2018. Entailment,logical,Entailment,Entailment,True
+s7703_b_3_neg,% Section 7703(b)(3) applies to Alice maintaining her home for the year 2018. Contradiction,logical,Contradiction,Entailment,False
+s7703_b_3_pos,% Section 7703(b)(3) applies to Alice maintaining her home for the year 2018. Entailment,logical,Entailment,Entailment,True
+tax_case_1,% How much tax does Alice have to pay in 2019? $0,numerical,Contradiction,true,False
+tax_case_10,% How much tax does Alice have to pay in 2017? $68844,numerical,Contradiction,false,False
+tax_case_100,% How much tax does Bob have to pay in 2006? $66088,numerical,Contradiction,true,False
+tax_case_11,% How much tax does Alice have to pay in 2015? $0,numerical,Contradiction,true,False
+tax_case_12,% How much tax does Alice have to pay in 2020? $118227,numerical,Contradiction,true,False
+tax_case_13,% How much tax does Bob have to pay in 2017? $8710,numerical,Contradiction,error,False
+tax_case_14,% How much tax does Alice have to pay in 2017? $8582,numerical,Contradiction,true,False
+tax_case_15,% How much tax does Alice have to pay in 2017? $5460,numerical,Contradiction,true,False
+tax_case_16,% How much tax does Alice have to pay in 2017? $4938,numerical,Contradiction,true,False
+tax_case_17,% How much tax does Bob have to pay in 2015? $4509,numerical,Contradiction,error,False
+tax_case_18,% How much tax does Alice have to pay in 2015? $19801,numerical,Contradiction,true,False
+tax_case_19,% How much tax does Alice have to pay in 2017? $16664,numerical,Contradiction,true,False
+tax_case_2,% How much tax does Alice have to pay in 2013? $26567,numerical,Contradiction,error,False
+tax_case_20,% How much tax does Alice have to pay in 2017? $90683,numerical,Contradiction,true,False
+tax_case_21,% How much tax does Alice have to pay in 2018? $15777,numerical,Contradiction,error,False
+tax_case_22,% How much tax does Alice have to pay in 2017? $2174,numerical,Contradiction,true,False
+tax_case_23,% How much tax does Bob have to pay in 2014? $26549,numerical,Contradiction,true,False
+tax_case_24,% How much tax does Alice have to pay in 2017? $19039,numerical,Contradiction,true,False
+tax_case_25,% How much tax does Alice have to pay in 2018? $259487,numerical,Contradiction,true,False
+tax_case_26,% How much tax does Alice have to pay in 2019? $196056,numerical,Contradiction,true,False
+tax_case_27,% How much tax does Alice have to pay in 2017? $3720,numerical,Contradiction,true,False
+tax_case_29,% How much tax does Alice have to pay in 2016? $40741,numerical,Contradiction,true,False
+tax_case_3,% How much tax does Alice have to pay in 2017? $3390,numerical,Contradiction,true,False
+tax_case_32,% How much tax does Alice have to pay in 2019? $2242833,numerical,Contradiction,true,False
+tax_case_33,% How much tax does Alice have to pay in 2015? $27181,numerical,Contradiction,false,False
+tax_case_35,% How much tax does Alice have to pay in 2017? $2384,numerical,Contradiction,true,False
+tax_case_36,% How much tax does Alice have to pay in 2017? $10018,numerical,Contradiction,error,False
+tax_case_37,% How much tax does Alice have to pay in 2018? $32045,numerical,Contradiction,true,False
+tax_case_38,% How much tax does Alice have to pay in 2017? $243097,numerical,Contradiction,true,False
+tax_case_39,% How much tax does Bob have to pay in 2015? $6812,numerical,Contradiction,true,False
+tax_case_4,% How much tax does Alice have to pay in 2012? $192,numerical,Contradiction,true,False
+tax_case_40,% How much tax does Alice have to pay in 2017? $279126,numerical,Contradiction,true,False
+tax_case_41,% How much tax does Alice have to pay in 2013? $17783,numerical,Contradiction,true,False
+tax_case_42,% How much tax does Bob have to pay in 2015? $8312,numerical,Contradiction,true,False
+tax_case_44,% How much tax does Alice have to pay in 2017? $34233,numerical,Contradiction,true,False
+tax_case_45,% How much tax does Alice have to pay in 2017? $0,numerical,Contradiction,true,False
+tax_case_47,% How much tax does Alice have to pay in 2017? $45946,numerical,Contradiction,true,False
+tax_case_5,% How much tax does Alice have to pay in 2017? $116066,numerical,Contradiction,true,False
+tax_case_50,% How much tax does Alice have to pay in 2017? $4931,numerical,Contradiction,true,False
+tax_case_51,% How much tax does Alice have to pay in 2017? $55528,numerical,Contradiction,true,False
+tax_case_52,% How much tax does Alice have to pay in 2017? $72344,numerical,Contradiction,true,False
+tax_case_54,% How much tax does Alice have to pay in 2019? $62000,numerical,Contradiction,true,False
+tax_case_55,% How much tax does Alice have to pay in 2018? $187552,numerical,Contradiction,true,False
+tax_case_56,% How much tax does Alice have to pay in 2015? $130388,numerical,Contradiction,true,False
+tax_case_58,% How much tax does Alice have to pay in 2017? $21635,numerical,Contradiction,true,False
+tax_case_59,% How much tax does Alice have to pay in 2020? $15236,numerical,Contradiction,true,False
+tax_case_6,% How much tax does Alice have to pay in 2017? $180610,numerical,Contradiction,true,False
+tax_case_60,% How much tax does Alice have to pay in 2015? $4331,numerical,Contradiction,true,False
+tax_case_61,% How much tax does Alice have to pay in 2015? $25055,numerical,Contradiction,true,False
+tax_case_62,% How much tax does Alice have to pay in 2017? $1844,numerical,Contradiction,true,False
+tax_case_63,% How much tax does Bob have to pay in 2019? $20298,numerical,Contradiction,true,False
+tax_case_64,% How much tax does Alice have to pay in 2015? $81487,numerical,Contradiction,true,False
+tax_case_65,% How much tax does Alice have to pay in 2016? $14473,numerical,Contradiction,true,False
+tax_case_66,% How much tax does Bob have to pay in 2016? $16023,numerical,Contradiction,error,False
+tax_case_67,% How much tax does Alice have to pay in 2016? $207772,numerical,Contradiction,true,False
+tax_case_7,% How much tax does Bob have to pay in 2015? $245359,numerical,Contradiction,error,False
+tax_case_70,% How much tax does Alice have to pay in 2016? $178147,numerical,Contradiction,true,False
+tax_case_71,% How much tax does Alice have to pay in 356472? $356472,numerical,Contradiction,true,False
+tax_case_72,% How much tax does Alice have to pay in 2013? $7595,numerical,Contradiction,true,False
+tax_case_73,% How much tax does Alice have to pay in 2013? $15109,numerical,Contradiction,error,False
+tax_case_74,% How much tax does Alice have to pay in 2017? $4525,numerical,Contradiction,true,False
+tax_case_76,% How much tax does Alice have to pay in 1997? $46734,numerical,Contradiction,false,False
+tax_case_79,% How much tax does Bob have to pay in 2020? $17402,numerical,Contradiction,true,False
+tax_case_8,% How much tax does Alice have to pay in 2017? $12036,numerical,Contradiction,true,False
+tax_case_80,% How much tax does Alice have to pay in 2014? $21452,numerical,Contradiction,true,False
+tax_case_81,% How much tax does Alice have to pay in 2012? $10922,numerical,Contradiction,true,False
+tax_case_83,% How much tax does Alice have to pay in 2016? $206073,numerical,Contradiction,error,False
+tax_case_84,% How much tax does Alice have to pay in 2017? $2574,numerical,Contradiction,false,False
+tax_case_86,% How much tax does Alice have to pay in 2017? $0,numerical,Contradiction,true,False
+tax_case_87,% How much tax does Alice have to pay in 2018? $243103,numerical,Contradiction,true,False
+tax_case_88,% How much tax does Alice have to pay in 2011? $2334,numerical,Contradiction,true,False
+tax_case_89,% How much tax does Alice have to pay in 2018? $0,numerical,Contradiction,true,False
+tax_case_91,% How much tax does Alice have to pay in 2017? $247432,numerical,Contradiction,error,False
+tax_case_92,% How much tax does Alice have to pay in 2010? $3274,numerical,Contradiction,true,False
+tax_case_94,% How much tax does Alice have to pay in 2010? $63345,numerical,Contradiction,true,False
+tax_case_95,% How much tax does Alice have to pay in 2017? $174,numerical,Contradiction,true,False
+tax_case_96,% How much tax does Alice have to pay in 2003? $7611,numerical,Contradiction,true,False
+tax_case_97,% How much tax does Alice have to pay in 2005? $33069,numerical,Contradiction,true,False
+tax_case_98,% How much tax does Alice have to pay in 2015? $14296,numerical,Contradiction,true,False
+tax_case_99,% How much tax does Alice have to pay in 2017? $15037,numerical,Contradiction,true,False
+s151_d_1_neg,% Alice's exemption amount under section 151(d)(1) is equal to $0. Contradiction,logical,Contradiction,Contradiction,True
+s151_d_1_pos,% Alice's exemption amount under section 151(d)(1) is equal to $2000. Entailment,logical,Entailment,Entailment,True
+s151_d_3_A_neg,"% Under section 151(d)(3)(A), Alice's exemption amount is reduced to $1900. Contradiction",logical,Contradiction,Contradiction,True
+s151_d_3_A_pos,"% Under section 151(d)(3)(A), Alice's exemption amount is reduced to $1800. Entailment",logical,Entailment,Entailment,True
+s151_d_5_neg,% The exemption amount of Alice's exemption is equal to $2000 under section 151(d)(5). Contradiction,logical,Contradiction,Contradiction,True
+s151_d_5_pos,% The exemption amount of Alice's exemption is equal to $0 under section 151(d)(5). Entailment,logical,Entailment,Entailment,True
+s152_a_neg,"% Under section 152(a), Bob is a dependent of Alice for the year 2014. Contradiction",logical,Contradiction,Contradiction,True
+s152_a_pos,"% Under section 152(a), Bob is a dependent of Alice for the year 2015. Entailment",logical,Entailment,Entailment,True
+s152_c_2_A_neg,% Bob bears a relationship to Alice under section 152(c)(2)(A). Contradiction,logical,Contradiction,Contradiction,True
+s152_c_2_A_pos,% Bob bears a relationship to Alice under section 152(c)(2)(A). Entailment,logical,Entailment,Entailment,True
+s152_d_1_D_neg,% Section 152(d)(1)(D) applies to Bob for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_d_1_D_pos,% Section 152(d)(1)(D) applies to Bob for the year 2015. Entailment,logical,Entailment,Entailment,True
+s152_d_2_A_neg,% Alice bears a relationship to Bob under section 152(d)(2)(A). Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_A_pos,% Alice bears a relationship to Bob under section 152(d)(2)(A). Entailment,logical,Entailment,Entailment,True
+s152_d_2_C_neg,% Alice bears a relationship to Bob under section 152(d)(2)(C). Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_C_pos,% Alice bears a relationship to Bob under section 152(d)(2)(C). Entailment,logical,Entailment,Entailment,True
+s152_d_2_G_neg,% Alice bears a relationship to Bob under section 152(d)(2)(G) for the year 2018. Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_G_pos,% Alice bears a relationship to Charlie under section 152(d)(2)(G) for the year 2018. Entailment,logical,Entailment,Contradiction,False
+s152_d_2_H_neg,% Alice bears a relationship to Bob under section 152(d)(2)(H) for the year 2015. Contradiction,logical,Contradiction,Contradiction,True
+s152_d_2_H_pos,% Alice bears a relationship to Bob under section 152(d)(2)(H) for the year 2018. Entailment,logical,Entailment,Entailment,True
+s1_a_2_iv_neg,% Alice has to pay $220295 in taxes for the year 2017 under section 1(a)(iv). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_2_iv_pos,% Alice has to pay $70640 in taxes for the year 2017 under section 1(a)(iv). Entailment,logical,Entailment,Entailment,True
+s1_a_2_neg,% Alice has to pay $65445 in taxes for the year 2017 under section 1(a). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_2_pos,% Alice has to pay $14836 in taxes for the year 2017 under section 1(a). Entailment,logical,Entailment,Entailment,True
+s1_a_2_v_neg,% Alice has to pay $3834 in taxes for the year 2017 under section 1(a)(v). Contradiction,logical,Contradiction,Contradiction,True
+s1_a_2_v_pos,% Alice has to pay $220295 in taxes for the year 2017 under section 1(a)(v). Entailment,logical,Entailment,Entailment,True
+s1_b_i_neg,% Alice has to pay $442985 in taxes for the year 2017 under section 1(b)(i). Contradiction,logical,Contradiction,Contradiction,True
+s1_b_i_pos,% Alice has to pay $1434 in taxes for the year 2017 under section 1(b)(i). Entailment,logical,Entailment,Entailment,True
+s1_b_neg,% Alice has to pay $207772 in taxes for the year 2017 under section 1(b). Contradiction,logical,Contradiction,Contradiction,True
+s1_b_pos,% Alice has to pay $24056 in taxes for the year 2017 under section 1(b). Entailment,logical,Entailment,Entailment,True
+s1_c_iii_neg,% Alice has to pay $3538 in taxes for the year 2017 under section 1(c)(iii). Contradiction,logical,Contradiction,Contradiction,True
+s1_c_iii_pos,% Alice has to pay $27225 in taxes for the year 2017 under section 1(c)(iii). Entailment,logical,Entailment,Entailment,True
+s1_c_neg,% Alice and her spouse have to pay $2600 in taxes for the year 2017 under section 1(c). Contradiction,logical,Contradiction,Contradiction,True
+s1_c_pos,% Alice has to pay $65445 in taxes for the year 2017 under section 1(c). Entailment,logical,Entailment,Entailment,True
+s1_d_i_neg,% Alice has to pay $17123 in taxes for the year 2017 under section 1(d)(i). Contradiction,logical,Contradiction,Contradiction,True
+s1_d_i_pos,% Alice has to pay $999 in taxes for the year 2017 under section 1(d)(i). Entailment,logical,Entailment,Entailment,True
+s1_d_ii_neg,% Alice has to pay $33653 in taxes for the year 2017 under section 1(d)(ii). Contradiction,logical,Contradiction,Contradiction,True
+s1_d_ii_pos,% Alice has to pay $5683 in taxes for the year 2017 under section 1(d)(ii). Entailment,logical,Entailment,Entailment,True
+s1_d_neg,% Alice has to pay $14836 in taxes for the year 2017 under section 1(d). Contradiction,logical,Contradiction,Contradiction,True
+s1_d_pos,% Alice has to pay $207772 in taxes for the year 2017 under section 1(d). Entailment,logical,Entailment,Entailment,True
+s2_a_1_B_neg,% Section 2(a)(1)(B) applies to Bob in 2020. Contradiction,logical,Contradiction,Contradiction,True
+s2_a_1_B_pos,% Section 2(a)(1)(B) applies to Bob in 2016. Entailment,logical,Entailment,Contradiction,False
+s2_b_1_A_i_II_neg,% Section 2(b)(1)(A)(i)(II) applies to Bob with Charlie as the qualifying child in 2018. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_A_i_II_pos,% Section 2(b)(1)(A)(i)(II) applies to Bob with Charlie as the qualifying child in 2018. Entailment,logical,Entailment,Entailment,True
+s2_b_1_A_i_I_neg,% Section 2(b)(1)(A)(i)(I) applies to Charlie in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_A_i_I_pos,% Section 2(b)(1)(A)(i)(I) applies to Charlie in 2017. Entailment,logical,Entailment,Contradiction,False
+s2_b_1_A_i_neg,% Section 2(b)(1)(A)(i) applies to Bob in 2018. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_A_i_pos,% Section 2(b)(1)(A)(i) applies to Charlie in 2018. Entailment,logical,Entailment,Contradiction,False
+s2_b_1_A_ii_neg,% Section 2(b)(1)(A)(ii) applies to Charlie as the dependent in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_1_A_ii_pos,% Section 2(b)(1)(A)(ii) applies to Charlie as the dependent in 2017. Entailment,logical,Entailment,Contradiction,False
+s2_b_3_A_neg,% Section 2(b)(3)(A) applies to Bob in 2019. Contradiction,logical,Contradiction,Contradiction,True
+s2_b_3_A_pos,% Section 2(b)(3)(A) applies to Bob in 2018. Entailment,logical,Entailment,Entailment,True
+s3301_neg,% Alice has to pay $26362 in excise tax for the year 2016 under section 3301. Contradiction,logical,Contradiction,Contradiction,True
+s3301_pos,% Alice has to pay $27181 in excise tax for the year 2015 under section 3301. Entailment,logical,Entailment,Entailment,True
+s3306_a_1_B_neg,% Section 3306(a)(1)(B) applies to Alice for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_a_1_B_pos,% Section 3306(a)(1)(B) applies to Alice for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_a_3_neg,% Section 3306(a)(3) applies to Alice for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_a_3_pos,% Section 3306(a)(3) applies to Bob for the year 2018. Entailment,logical,Entailment,Entailment,True
+s3306_b_2_C_neg,% Section 3306(b)(2)(C) applies to the payment Alice made to the retirement fund for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_b_2_C_pos,% Section 3306(b)(2)(C) applies to the payment Alice made to the life insurance fund for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_10_B_neg,% Section 3306(c)(10)(B) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_10_B_pos,% Section 3306(c)(10)(B) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_11_neg,% Section 3306(c)(11) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_11_pos,% Section 3306(c)(11) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_16_neg,% Section 3306(c)(16) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_16_pos,% Section 3306(c)(16) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_1_B_neg,% Section 3306(c)(1)(B) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_1_B_pos,% Section 3306(c)(1)(B) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_6_neg,% Section 3306(c)(6) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_6_pos,% Section 3306(c)(6) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_7_neg,% Section 3306(c)(7) applies to Alice's employment situation in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_7_pos,% Section 3306(c)(7) applies to Alice's employment situation in 2017. Entailment,logical,Entailment,Entailment,True
+s3306_c_B_neg,% Section 3306(c)(B) applies to Alice employing Bob for the year 2017. Contradiction,logical,Contradiction,Contradiction,True
+s3306_c_B_pos,% Section 3306(c)(B) applies to Alice employing Bob for the year 2017. Entailment,logical,Entailment,Entailment,True
+s63_b_neg,"% Under section 63(b), Alice's taxable income in 2017 is equal to $31400. Contradiction",logical,Contradiction,Contradiction,True
+s63_b_pos,"% Under section 63(b), Alice's taxable income in 2017 is equal to $31200. Entailment",logical,Entailment,Entailment,True
+s63_c_2_A_i_neg,% Section 63(c)(2)(A)(i) applies to Alice in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_c_2_A_i_pos,% Section 63(c)(2)(A)(i) applies to Alice in 2017. Entailment,logical,Entailment,Entailment,True
+s63_c_2_A_ii_neg,% Section 63(c)(2)(A)(ii) applies to Alice in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_c_2_A_ii_pos,% Section 63(c)(2)(A)(ii) applies to Alice in 2017. Entailment,logical,Entailment,Entailment,True
+s63_c_6_B_neg,% Section 63(c)(6)(B) applies to Alice for 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_c_6_B_pos,% Section 63(c)(6)(B) applies to Alice for 2017. Entailment,logical,Entailment,Entailment,True
+s63_c_6_D_neg,% Section 63(c)(6)(D) applies to the Walter Brown Family Trust II for 2021. Contradiction,logical,Contradiction,Contradiction,True
+s63_c_6_D_pos,% Section 63(c)(6)(D) applies to the Walter Brown Family Trust II for 1999. Entailment,logical,Entailment,Entailment,True
+s63_c_7_i_neg,"% Under section 63(c)(7)(i), Alice's basic standard deduction in 2019 is equal to $4400. Contradiction",logical,Contradiction,Contradiction,True
+s63_c_7_i_pos,"% Under section 63(c)(7)(i), Alice's basic standard deduction in 2019 is equal to $18000. Entailment",logical,Entailment,Entailment,True
+s63_f_1_A_neg,% Section 63(f)(1)(A) applies to Bob in 2017. Contradiction,logical,Contradiction,Contradiction,True
+s63_f_1_A_pos,% Section 63(f)(1)(A) applies to Alice in 2017. Entailment,logical,Entailment,Entailment,True
+s63_f_2_B_neg,% Section 63(f)(2)(B) applies to Alice in 2017 with Bob as the spouse. Contradiction,logical,Contradiction,Contradiction,True
+s63_f_2_B_pos,% Section 63(f)(2)(B) applies to Bob in 2017 with Alice as the spouse. Entailment,logical,Entailment,Entailment,True
+s68_a_2_neg,% Section 68(a)(2) prescribes a reduction of Alice's itemized deductions for the year 2016 by $47000. Contradiction,logical,Contradiction,Contradiction,True
+s68_a_2_pos,% Section 68(a)(2) prescribes a reduction of Alice's itemized deductions for the year 2016 by $48000. Entailment,logical,Entailment,Entailment,True
+s68_b_1_B_neg,"% Under section 68(b)(1)(B), Alice's applicable amount for 2016 is equal to $275000. Contradiction",logical,Contradiction,Contradiction,True
+s68_b_1_B_pos,"% Under section 68(b)(1)(B), Alice's applicable amount for 2016 is equal to $275000. Entailment",logical,Entailment,Entailment,True
+s68_b_1_C_neg,% Section 68(b)(1)(C) applies to Alice in 2016. Contradiction,logical,Contradiction,Contradiction,True
+s68_b_1_C_pos,% Section 68(b)(1)(C) applies to Alice in 2016 with the applicable amount equal to $250000. Entailment,logical,Entailment,Entailment,True
+s7703_a_1_neg,% Section 7703(a)(1) applies to Alice for the year 2018. Contradiction,logical,Contradiction,Contradiction,True
+s7703_a_1_pos,% Section 7703(a)(1) applies to Alice for the year 2012. Entailment,logical,Entailment,Entailment,True
+s7703_b_2_neg,% Section 7703(b)(2) applies to Alice maintaining her home for the year 2018. Contradiction,logical,Contradiction,Contradiction,True
+s7703_b_2_pos,% Section 7703(b)(2) applies to Alice maintaining her home for the year 2018. Entailment,logical,Entailment,Entailment,True
+tax_case_28,% How much tax does Alice have to pay in 2017? $344848,numerical,Contradiction,true,False
+tax_case_30,% How much tax does Alice have to pay in 2017? $249,numerical,Contradiction,false,False
+tax_case_31,% How much tax does Alice have to pay in 2017? $6621,numerical,Contradiction,true,False
+tax_case_34,% How much tax does Alice have to pay in 2017? $2684,numerical,Contradiction,true,False
+tax_case_43,% How much tax does Alice have to pay in 2017? $8439,numerical,Contradiction,true,False
+tax_case_46,% How much tax does Alice have to pay in 2020? $17399,numerical,Contradiction,true,False
+tax_case_48,% How much tax does Bob have to pay in 2018? $33068,numerical,Contradiction,error,False
+tax_case_49,% How much tax does Alice have to pay in 2015? $82819,numerical,Contradiction,true,False
+tax_case_53,% How much tax does Alice have to pay in 2020? $206332,numerical,Contradiction,true,False
+tax_case_57,% How much tax does Alice have to pay in 2017? $4073,numerical,Contradiction,true,False
+tax_case_68,% How much tax does Alice have to pay in 2018? $28292,numerical,Contradiction,true,False
+tax_case_69,% How much tax does Alice have to pay in 2014? $264225,numerical,Contradiction,true,False
+tax_case_75,% How much tax does Alice have to pay in 2012? $8883,numerical,Contradiction,false,False
+tax_case_77,% How much tax does Alice have to pay in 2023? $6449,numerical,Contradiction,true,False
+tax_case_78,% How much tax does Alice have to pay in 2019? $14470,numerical,Contradiction,true,False
+tax_case_82,% How much tax does Bob have to pay in 2012? $986,numerical,Contradiction,true,False
+tax_case_85,% How much tax does Alice have to pay in 2019? $2477,numerical,Contradiction,true,False
+tax_case_9,% How much tax does Alice have to pay in 2018? $10598,numerical,Contradiction,error,False
+tax_case_90,% How much tax does Bob have to pay in 2018? $96641,numerical,Contradiction,error,False
+tax_case_93,% How much tax does Alice have to pay in 2015? $102150,numerical,Contradiction,true,False
