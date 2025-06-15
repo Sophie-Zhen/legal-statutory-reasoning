@@ -1,0 +1,22 @@
+[project]
+name = "sara_hybrid"
+version = "0.0.1"
+description = "Hybrid neuro-symbolic statutory reasoning on the SARA benchmark"
+authors = [{name="Songhui Zhen"}, {name="Saw Pu"}]
+requires-python = ">=3.10"
+dependencies = [
+  "openai>=1.14.0",
+  "python-dotenv>=1.0",
+  "pandas>=2.2",
+  "datasets>=2.19",
+  "transformers>=4.40",
+  "tqdm>=4.66",
+  "pyswip>=0.2.13",
+  "pytest>=8.1"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}  
+
+[tool.setuptools.packages.find]
+where = ["src"]

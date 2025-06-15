@@ -1,0 +1,5 @@
+{
+  "code":404,
+  "location":"/download/stable/bin/swipl-9.2.1-1.x86_64.pkg",
+  "message":"Path not found: /download/stable/bin/swipl-9.2.1-1.x86_64.pkg"
+}
