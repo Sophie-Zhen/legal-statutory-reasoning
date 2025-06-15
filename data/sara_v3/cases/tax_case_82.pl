@@ -31,4 +31,3 @@ patient_(span("citizen",218,224),span("American",209,216)).
 
 % Test
 :- tax("Bob",2012,986).
-:- halt.

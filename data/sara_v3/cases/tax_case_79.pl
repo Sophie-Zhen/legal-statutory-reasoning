@@ -25,4 +25,3 @@ start_(span("earned",161,166),span(20200101,175,178)).
 
 % Test
 :- tax("Bob",2020,17402).
-:- halt.

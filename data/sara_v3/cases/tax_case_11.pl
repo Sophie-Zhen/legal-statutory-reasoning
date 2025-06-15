@@ -32,4 +32,3 @@ start_(span("sister",116,121),span(19921012,129,146)).
 
 % Test
 :- tax("Alice",2015,0).
-:- halt.

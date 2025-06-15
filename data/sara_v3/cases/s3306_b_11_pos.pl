@@ -22,4 +22,3 @@ end_(span("labor",45,49),span(20170902,78,90)).
 
 % Test
 :- s3306_b_11(span("paid",10,13),_,_).
-:- halt.

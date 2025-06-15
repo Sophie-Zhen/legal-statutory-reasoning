@@ -24,4 +24,3 @@ end_(span("service",49,55),span(20170902,99,111)).
 
 % Test
 :- s3306_c_2(span("service",49,55),_,2017).
-:- halt.

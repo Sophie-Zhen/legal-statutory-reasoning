@@ -39,4 +39,3 @@ location_(span("service",150,156),span("home",206,209)).
 
 % Test
 :- \+ s3306_a_3("Alice",_,_,2017).
-:- halt.

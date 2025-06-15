@@ -17,4 +17,3 @@ start_(span("father",19,24),span(20140415,32,47)).
 
 % Test
 :- s152_d_2_E("Alice","Bob",_,_,_).
-:- halt.

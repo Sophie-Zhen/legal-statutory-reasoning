@@ -22,4 +22,3 @@ amount_(span("income",156,161),span(504598,176,181)).
 
 % Test
 :- s152_b_1("Bob",_,2015).
-:- halt.

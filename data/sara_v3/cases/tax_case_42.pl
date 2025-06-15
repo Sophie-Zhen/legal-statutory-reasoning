@@ -34,4 +34,3 @@ agent_(span("nonresident alien",56,72),span("Alice",44,48)).
 
 % Test
 :- tax("Bob",2015,8312).
-:- halt.

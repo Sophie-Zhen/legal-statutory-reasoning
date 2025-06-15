@@ -34,4 +34,3 @@ s3306_c(span("employed",10,17),"Alice","Bob",20171202,_).
 
 % Test
 :- s3306_a_1_B("Alice",_,_,2017).
-:- halt.

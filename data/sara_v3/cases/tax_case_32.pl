@@ -34,4 +34,3 @@ end_(span("employed",53,60),span(20191010,136,147)).
 
 % Test
 :- tax("Alice",2019,2242833).
-:- halt.

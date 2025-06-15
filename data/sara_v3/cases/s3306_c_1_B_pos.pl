@@ -5,7 +5,7 @@
 % Section 3306(c)(1)(B) applies to Alice employing Bob for the year 2017. Entailment
 
 % Facts
-:- [statutes/prolog/init.pl].
+:- [statutes/prolog/init].
 payment_(span("paid",10,13)).
 service_(span("labor",45,49)).
 citizenship_(span("citizen",135,141)).
@@ -28,4 +28,3 @@ country_(span("Caracas, Venezuela",96,113),span("Venezuela",105,113)).
 
 % Test
 :- s3306_c_1_B(span("labor",45,49),"Bob").
-:- halt.

@@ -33,4 +33,3 @@ patient_(span("services",33,40),span("Johns Hopkins University",56,79)).
 % Test
 goal :- s3306_c_10_A(span("services",33,40),_,"Alice",20170101), s3306_c_10_A_i("Alice",_,20170101).
 :- goal.
-:- halt.

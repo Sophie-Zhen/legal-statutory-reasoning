@@ -19,4 +19,3 @@ start_(span("adopted",74,80),span(20180304,89,103)).
 
 % Test
 :- s152_c_3("Bob","Alice",2019).
-:- halt.

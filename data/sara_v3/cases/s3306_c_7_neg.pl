@@ -23,4 +23,3 @@ location_(span("employee",36,43),span("USA",89,91)).
 
 % Test
 :- \+ s3306_c_7(span("employee",36,43),_).
-:- halt.

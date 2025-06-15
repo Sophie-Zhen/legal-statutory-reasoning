@@ -13,4 +13,3 @@ amount_(span("income",17,22),span(567192,29,34)).
 
 % Test
 :- s68_b_1_C("Alice",250000,2016).
-:- halt.

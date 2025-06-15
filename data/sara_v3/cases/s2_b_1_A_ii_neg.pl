@@ -52,4 +52,3 @@ start_(span("born",72,75),span(20001009,77,93)).
 
 % Test
 :- \+ s2_b_1_A_ii(_,"Charlie",2017).
-:- halt.

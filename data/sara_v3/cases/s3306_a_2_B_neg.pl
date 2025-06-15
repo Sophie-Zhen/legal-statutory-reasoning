@@ -80,4 +80,3 @@ purpose_(span("labor",78,82),span("agricultural labor",65,82)).
 
 % Test
 :- \+ s3306_a_2_B("Alice",_,_,_,_,2017).
-:- halt.

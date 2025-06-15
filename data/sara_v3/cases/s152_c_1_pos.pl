@@ -26,4 +26,3 @@ agent_(span("son",12,14),span("Bob",17,19)).
 
 % Test
 :- s152_c_1("Bob","Alice",2019).
-:- halt.

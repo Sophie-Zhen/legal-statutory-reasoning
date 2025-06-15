@@ -18,4 +18,3 @@ goal :- s68_b("Alice",Applicable_amount,2016),
     gross_income("Alice",2016,Gross_income),
     s68_a_1(Gross_income,Applicable_amount,306).
 :- goal.
-:- halt.

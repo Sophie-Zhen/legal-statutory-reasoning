@@ -22,4 +22,3 @@ purpose_(span("labor",72,76),span("agricultural labor",59,76)).
 
 % Test
 :- \+ s3306_b(_,span("paid",30,33),_,"Alice","Bob","Alice","Bob",_).
-:- halt.

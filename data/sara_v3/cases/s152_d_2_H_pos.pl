@@ -14,4 +14,3 @@ start_(span("living",22,27),span(20140415,41,56)).
 
 % Test
 :- s152_d_2_H("Alice","Bob",2018,_,_,_).
-:- halt.

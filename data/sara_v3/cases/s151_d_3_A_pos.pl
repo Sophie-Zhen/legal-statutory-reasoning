@@ -15,4 +15,3 @@ amount_(span("income",8,13),span(260932,28,33)).
 
 % Test
 :- s151_d_3_A("Alice",_,_,_,2000,1800,2015).
-:- halt.

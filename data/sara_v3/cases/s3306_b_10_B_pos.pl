@@ -35,4 +35,3 @@ agent_(span("terminate",159,167),span("Alice",118,122)).
 
 % Test
 :- s3306_b_10_B("Alice",span("paid",124,127),_).
-:- halt.

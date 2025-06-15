@@ -34,4 +34,3 @@ country_(span("Baltimore, Maryland, USA",94,117),span("USA",115,117)).
 
 % Test
 :- tax("Alice",2012,192).
-:- halt.

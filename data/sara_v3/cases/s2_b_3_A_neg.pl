@@ -41,4 +41,3 @@ agent_(span("father",158,163),span("Charlie",165,171)).
 
 % Test
 :- \+ s2_b_3_A("Bob",2019,_).
-:- halt.

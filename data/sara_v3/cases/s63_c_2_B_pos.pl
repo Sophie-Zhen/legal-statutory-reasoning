@@ -15,4 +15,3 @@ start_(span("paid",19,22),span(20170101,3,6)).
 
 % Test
 :- s63_c_2_B("Alice",2017,4400).
-:- halt.

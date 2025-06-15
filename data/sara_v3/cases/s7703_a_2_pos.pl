@@ -17,4 +17,3 @@ start_(span("married",18,24),span(20120405,29,43)).
 
 % Test
 :- s7703_a_2("Alice",_,_,_,2018).
-:- halt.

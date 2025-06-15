@@ -74,4 +74,3 @@ patient_(span("services",65,72),span("Johns Hopkins University",88,111)).
 
 % Test
 :- tax("Bob",2017,8710).
-:- halt.

@@ -30,4 +30,3 @@ agent_(span("son",25,27),span("Bob",30,32)).
 
 % Test
 :- tax("Alice",2018,243103).
-:- halt.

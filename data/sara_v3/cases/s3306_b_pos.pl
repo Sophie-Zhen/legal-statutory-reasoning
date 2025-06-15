@@ -22,4 +22,3 @@ purpose_(span("walking",60,66),span("walking",60,66)).
 
 % Test
 :- s3306_b(_,span("paid",30,33),_,"Alice","Bob","Alice","Bob",_).
-:- halt.

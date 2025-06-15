@@ -15,4 +15,3 @@ start_(span("income",17,22),span(20150101,3,6)).
 
 % Test
 :- \+ s152_d_1_B("Alice",2015).
-:- halt.

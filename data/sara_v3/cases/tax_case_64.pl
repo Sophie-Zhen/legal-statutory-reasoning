@@ -26,4 +26,3 @@ start_(span("lived",105,109),span(20150101,131,134)).
 
 % Test
 :- tax("Alice",2015,81487).
-:- halt.

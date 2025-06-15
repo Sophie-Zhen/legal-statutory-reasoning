@@ -28,4 +28,3 @@ start_(span("married",18,24),span(19920203,29,41)).
 
 % Test
 :- tax("Bob",2014,26549).
-:- halt.

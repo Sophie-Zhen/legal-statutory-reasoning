@@ -25,4 +25,3 @@ country_(span("Caracas, Venezuela",94,111),span("Venezuela",103,111)).
 
 % Test
 :- \+ s3306_c_1(span("service",41,47),2017).
-:- halt.

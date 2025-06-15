@@ -24,4 +24,3 @@ type_(span("painting",173,180),span("painting",173,180)).
 
 % Test
 :- \+ s3306_b_7(span("paid",147,150),_,"Alice","Bob",_,_).
-:- halt.

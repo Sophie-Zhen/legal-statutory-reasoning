@@ -24,4 +24,3 @@ patient_(span("painting",207,214),span("Alice",216,220)).
 
 % Test
 :- s3306_b_7(span("given",147,151),_,"Alice","Bob",_,_).
-:- halt.

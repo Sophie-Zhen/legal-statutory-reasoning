@@ -27,4 +27,3 @@ end_(span("nonresident alien",56,72),span(20140709,80,93)).
 
 % Test
 :- tax("Alice",2013,17783).
-:- halt.

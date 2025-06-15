@@ -32,4 +32,3 @@ patient_(span("services",33,40),span("Johns Hopkins School of Nursing",56,86)).
 
 % Test
 :- s3306_c_13(span("services",33,40),_,"Alice",20170101).
-:- halt.

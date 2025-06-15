@@ -15,4 +15,3 @@ total_wages_employer("Alice",443870,_,_,20160101,20161231).
 
 % Test
 :- s3301("Alice",2015,_,_,_,27181).
-:- halt.

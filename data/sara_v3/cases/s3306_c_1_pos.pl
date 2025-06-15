@@ -25,4 +25,3 @@ country_(span("Caracas, Venezuela",96,113),span("Venezuela",105,113)).
 
 % Test
 :- s3306_c_1(span("labor",45,49),2017).
-:- halt.

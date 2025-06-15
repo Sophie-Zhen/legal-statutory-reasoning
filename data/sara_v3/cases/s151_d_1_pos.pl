@@ -11,4 +11,3 @@ s151_b_applies("Alice",2015).
 
 % Test
 :- s151_d_1(2000).
-:- halt.

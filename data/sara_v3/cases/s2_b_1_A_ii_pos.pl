@@ -46,4 +46,3 @@ end_(span("lived",214,218),span(20191231,139,142)).
 
 % Test
 :- s2_b_1_A_ii(_,"Charlie",2017).
-:- halt.

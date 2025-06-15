@@ -17,4 +17,3 @@ start_(span("married",54,60),span(19921012,73,90)).
 
 % Test
 :- \+ s152_d_2_F("Alice","Bob",_,_,_).
-:- halt.

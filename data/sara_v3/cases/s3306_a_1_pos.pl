@@ -35,4 +35,3 @@ agent_(span("work",150,153),span("Alice",140,144)).
 
 % Test
 :- s3306_a_1("Bob",2018).
-:- halt.

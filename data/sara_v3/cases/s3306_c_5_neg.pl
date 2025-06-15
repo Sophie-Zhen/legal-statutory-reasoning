@@ -26,4 +26,3 @@ agent_(span("brother",28,34),span("Bob",36,38)).
 
 % Test
 :- \+ s3306_c_5(span("work",44,47),"Alice","Bob",20170201).
-:- halt.

@@ -57,4 +57,3 @@ agent_(span("file jointly",375,386),span("Bob",371,373)).
 
 % Test
 :- tax("Alice",2017,45946).
-:- halt.

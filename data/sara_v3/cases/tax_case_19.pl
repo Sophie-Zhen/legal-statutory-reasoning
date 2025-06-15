@@ -23,4 +23,3 @@ location_(span("employee",36,43),span("USA",94,96)).
 
 % Test
 :- tax("Alice",2017,16664).
-:- halt.

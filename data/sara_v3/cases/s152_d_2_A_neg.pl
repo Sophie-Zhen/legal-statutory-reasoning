@@ -13,4 +13,3 @@ start_(span("brother",15,21),span(20140415,29,44)).
 
 % Test
 :- \+ s152_d_2_A("Alice","Bob",_,_).
-:- halt.

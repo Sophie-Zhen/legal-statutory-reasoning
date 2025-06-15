@@ -11,4 +11,3 @@ s151_c_applies("Alice","Bob",2015).
 
 % Test
 :- s151_d_2("Bob",_,0,2015).
-:- halt.

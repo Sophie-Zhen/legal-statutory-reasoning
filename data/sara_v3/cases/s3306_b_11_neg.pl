@@ -21,4 +21,3 @@ end_(span("repairing",32,40),span(20170902,73,85)).
 
 % Test
 :- \+ s3306_b_11(span("paid",10,13),_,_).
-:- halt.

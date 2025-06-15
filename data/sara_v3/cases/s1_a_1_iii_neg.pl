@@ -17,4 +17,3 @@ start_(span("joint return",69,80),span(20170101,102,105)).
 
 % Test
 :- \+ s1_a_iii(164612,44789).
-:- halt.

@@ -19,4 +19,3 @@ start_(span("nonresident alien",86,102),span(19900304,110,124)).
 
 % Test
 :- \+ s2_a_2_B("Bob",_,2014).
-:- halt.

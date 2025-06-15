@@ -18,4 +18,3 @@ agent_(span("nonresident alien",56,72),span("Alice",44,48)).
 
 % Test
 :- \+ s2_b_2_C("Bob",_,_,2014).
-:- halt.

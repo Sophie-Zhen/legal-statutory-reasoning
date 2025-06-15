@@ -22,4 +22,3 @@ country_(span("Baltimore, Maryland, USA",82,105),span("USA",103,105)).
 
 % Test
 :- s3306_c_A(span("work",32,35),"Alice","Bob").
-:- halt.

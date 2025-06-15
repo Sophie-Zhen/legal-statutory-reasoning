@@ -25,4 +25,3 @@ amount_(span("paid",19,22),span(117192,25,30)).
 
 % Test
 :- tax("Alice",2017,34233).
-:- halt.

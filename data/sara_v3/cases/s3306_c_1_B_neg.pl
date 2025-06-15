@@ -33,4 +33,3 @@ country_(span("Stanley, Wisconsin, USA",96,118),span("USA",116,118)).
 
 % Test
 :- \+ s3306_c_1_B(span("labor",45,49),"Bob").
-:- halt.

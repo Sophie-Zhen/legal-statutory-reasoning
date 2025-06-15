@@ -14,4 +14,3 @@ patient_(span("brother",12,18), span("Alice",0,4)).
 
 % Test
 :- \+ s152_a("Bob","Alice",2014,_,_).
-:- halt.

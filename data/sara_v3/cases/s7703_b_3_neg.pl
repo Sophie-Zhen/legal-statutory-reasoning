@@ -53,4 +53,3 @@ start_(span("born",89,92),span(20170916,97,116)).
 
 % Test
 :- \+ s7703_b_3("Alice",_,"home",2018).
-:- halt.

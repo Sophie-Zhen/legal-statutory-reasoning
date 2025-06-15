@@ -38,4 +38,3 @@ agent_(span("son",158,160),span("Charlie",162,168)).
 
 % Test
 :- \+ s2_b_1("Bob",_,_,2016).
-:- halt.

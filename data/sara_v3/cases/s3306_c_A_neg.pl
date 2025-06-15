@@ -22,4 +22,3 @@ country_(span("Toronto, Ontario, Canada",82,105),span("Canada",100,105)).
 
 % Test
 :- \+ s3306_c_A(span("work",32,35),"Alice","Bob").
-:- halt.

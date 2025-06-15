@@ -27,4 +27,3 @@ location_(span("service",50,56),span("USA",136,138)).
 
 % Test
 :- \+ s3306_c_2(span("service",50,56),_,2017).
-:- halt.

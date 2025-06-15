@@ -25,4 +25,3 @@ end_(span("service",51,57),span(20170902,86,98)).
 
 % Test
 :- tax("Alice",2017,344848).
-:- halt.

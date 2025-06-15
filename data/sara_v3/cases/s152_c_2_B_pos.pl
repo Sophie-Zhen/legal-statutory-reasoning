@@ -16,4 +16,3 @@ start_(span("born",34,37),span(20140131,39,56)).
 
 % Test
 :- s152_c_2_B("Bob","Alice",_,_,_).
-:- halt.

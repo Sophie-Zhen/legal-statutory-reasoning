@@ -16,4 +16,3 @@ start_(span("married",18,24),span(19920203,29,41)).
 
 % Test
 :- \+ s2_a_1_A("Bob",_,_,_,2014).
-:- halt.

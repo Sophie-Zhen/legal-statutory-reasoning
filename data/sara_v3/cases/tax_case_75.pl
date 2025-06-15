@@ -44,4 +44,3 @@ start_(span("house",15,19),span(20070101,47,50)).
 
 % Test
 :- tax("Alice",2012,8883).
-:- halt.

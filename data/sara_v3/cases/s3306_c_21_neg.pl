@@ -27,4 +27,3 @@ patient_(span("services",32,39),span("hospital",56,63)).
 
 % Test
 :- \+ s3306_c_21(span("services",32,39),"Alice",_,20170101).
-:- halt.

@@ -17,4 +17,3 @@ start_(span("sister",67,72),span(19921012,80,97)).
 
 % Test
 :- s152_d_2_F("Alice","Bob",_,_,_).
-:- halt.

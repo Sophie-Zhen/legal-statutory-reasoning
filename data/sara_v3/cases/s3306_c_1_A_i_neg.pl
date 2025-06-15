@@ -27,4 +27,3 @@ patient_(span("citizens",148,155),span("American",139,146)).
 
 % Test
 :- \+ s3306_c_1_A_i("Alice",_,["Bob"],_,2017).
-:- halt.

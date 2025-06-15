@@ -42,4 +42,3 @@ start_(span("work",33,36),span(20170101,55,58)).
 
 % Test
 :- \+ s3306_b_2_A(span("paid",10,13)).
-:- halt.

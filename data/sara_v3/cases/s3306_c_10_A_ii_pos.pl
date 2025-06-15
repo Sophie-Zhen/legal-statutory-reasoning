@@ -35,4 +35,3 @@ patient_(span("services",49,56),span("Johns Hopkins University",72,95)).
 
 % Test
 :- s3306_c_10_A_ii("Alice","Bob",20170101).
-:- halt.

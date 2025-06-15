@@ -27,4 +27,3 @@ start_(span("services",38,45),span(20170301,86,95)).
 
 % Test
 :- s3306_c_10_B(span("services",38,45),_,"Alice",20170315).
-:- halt.

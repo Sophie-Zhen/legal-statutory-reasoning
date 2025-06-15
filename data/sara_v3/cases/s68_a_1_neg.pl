@@ -20,4 +20,3 @@ goal :- \+ (
     s68_a_1(Gross_income,Applicable_amount,306)
     ).
 :- goal.
-:- halt.

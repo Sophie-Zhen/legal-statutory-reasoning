@@ -25,4 +25,3 @@ agent_(span("married",10,16),span("husband",149,155)).
 
 % Test
 :- tax("Alice",2016,207772).
-:- halt.

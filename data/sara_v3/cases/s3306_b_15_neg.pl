@@ -30,4 +30,3 @@ amount_(span("paid",163,166),span(1200,229,232)).
 
 % Test
 :- \+ s3306_b_15(span("paid",163,166),"Alice","Charlie",_,_).
-:- halt.

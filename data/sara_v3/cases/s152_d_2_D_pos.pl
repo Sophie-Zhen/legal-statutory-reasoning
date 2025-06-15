@@ -24,4 +24,3 @@ goal :- s152_d_2_D("Alice","Bob",Start_relationship,End_relationship),
     var(End_relationship),
     first_day_year(2019,First_day), is_before(Start_relationship,First_day).
 :- goal.
-:- halt.

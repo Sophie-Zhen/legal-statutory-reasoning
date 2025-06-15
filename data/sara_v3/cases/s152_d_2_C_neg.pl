@@ -21,4 +21,3 @@ patient_(span("mother",65,70),span("Bob",59,61)).
 
 % Test
 :- \+ s152_d_2_C("Alice","Bob",_,_).
-:- halt.

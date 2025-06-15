@@ -21,4 +21,3 @@ amount_(span("paid",19,22),span(33200,25,29)).
 
 % Test
 :- \+ s63_c_6_B("Alice",2017).
-:- halt.

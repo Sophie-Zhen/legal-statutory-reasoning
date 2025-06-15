@@ -27,4 +27,3 @@ agent_(span("retirement",141,150),span("Alice",114,118)).
 
 % Test
 :- \+ s3306_b_10_A(span("paid",120,123),_,_,"Alice",_,_).
-:- halt.

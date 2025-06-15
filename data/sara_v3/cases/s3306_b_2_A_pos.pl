@@ -36,4 +36,3 @@ end_(span("work",33,36),span(20171231,55,58)).
 
 % Test
 :- s3306_b_2_A(span("health insurance",148,163)).
-:- halt.

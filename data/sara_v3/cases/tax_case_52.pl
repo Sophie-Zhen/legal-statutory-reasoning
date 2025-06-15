@@ -40,4 +40,3 @@ purpose_(span("health insurance",148,163),span("make provisions for employees in
 
 % Test
 :- tax("Alice",2017,72344).
-:- halt.

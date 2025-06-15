@@ -47,4 +47,3 @@ patient_(span("son",43,45),span("Bob",14,16)).
 
 % Test
 :- tax("Alice",2017,180610).
-:- halt.

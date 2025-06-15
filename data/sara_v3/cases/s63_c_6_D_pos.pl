@@ -13,4 +13,3 @@ agent_(span("business trust",75,88),span("Walter Brown Family Trust II",23,50)).
 
 % Test
 :- s63_c_6_D("Walter Brown Family Trust II",1999).
-:- halt.
