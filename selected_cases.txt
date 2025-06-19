@@ -1,0 +1,123 @@
+Randomly Selected 20 Cases
+==================================================
+
+Case 1:
+Case ID: tax_case_99
+Text: % In 2017, Alice was paid $75845. Alice has a son, Bob. From September 1st, 2015 to November 3rd, 2019, Alice and Bob lived in the same home, which Alice maintained. In 2017, Alice takes the standard deduction.
+Question: % How much tax does Alice have to pay in 2017? $15037
+--------------------------------------------------
+
+Case 2:
+Case ID: s152_c_3_neg
+Text: % Alice was born January 10th, 1992. Bob was born January 31st, 1984. Alice adopted Bob on March 4th, 2018.
+Question: % Bob satisfies section 152(c)(3) with Alice claiming Bob as a qualifying child for the year 2019. Contradiction
+--------------------------------------------------
+
+Case 3:
+Case ID: s3301_neg
+Text: % Alice is an employer under section 3306(a) for the year 2015 and 2016, and she has paid $453009 in total wages in 2015, and $443870 in 2016.
+Question: % Alice has to pay $26362 in excise tax for the year 2016 under section 3301. Contradiction
+--------------------------------------------------
+
+Case 4:
+Case ID: s63_f_2_A_neg
+Text: % In 2017, Alice was paid $33200. Alice and Bob have been married since Feb 3rd, 2017. Alice and Bob file separate returns in 2017. Alice has been blind since April 19, 2015.
+Question: % Section 63(f)(2)(A) applies to Bob in 2017. Contradiction
+--------------------------------------------------
+
+Case 5:
+Case ID: s63_c_7_i_pos
+Text: % In 2019, Alice was paid $33200. Alice is a head of household for 2019.
+Question: % Under section 63(c)(7)(i), Alice's basic standard deduction in 2019 is equal to $18000. Entailment
+--------------------------------------------------
+
+Case 6:
+Case ID: s3306_b_2_C_pos
+Text: % Alice has paid $45252 to Bob for work done in the year 2017. In 2017, Alice has also paid $9832 into a retirement fund for Bob, and paid $5322 into life insurance for Bob.
+Question: % Section 3306(b)(2)(C) applies to the payment Alice made to the life insurance fund for the year 2017. Entailment
+--------------------------------------------------
+
+Case 7:
+Case ID: tax_case_59
+Text: % Bob is Charlie and Dorothy's son, born April 15th, 2015. Alice married Charlie on August 8th, 2018. Alice was paid $73200 in 2020 as an employee of the United States Government in Arlington, Virginia, USA. Alice files a separate return and takes the standard deduction. Since 2019, Alice, Bob and Charlie live in a house maintained by Alice and Charlie.
+Question: % How much tax does Alice have to pay in 2020? $15236
+--------------------------------------------------
+
+Case 8:
+Case ID: s1_a_2_neg
+Text: % Alice's taxable income for the year 2017 is $210204. Alice is not married, is not a surviving spouse, and is not a head of household in 2017.
+Question: % Alice has to pay $65445 in taxes for the year 2017 under section 1(a). Contradiction
+--------------------------------------------------
+
+Case 9:
+Case ID: s7703_a_1_pos
+Text: % Alice and Bob got married on April 5th, 2012. Bob died September 16th, 2017.
+Question: % Section 7703(a)(1) applies to Alice for the year 2012. Entailment
+--------------------------------------------------
+
+Case 10:
+Case ID: s152_c_2_A_pos
+Text: % Alice has a son, Bob, who was born January 31st, 2014.
+Question: % Bob bears a relationship to Alice under section 152(c)(2)(A). Entailment
+--------------------------------------------------
+
+Case 11:
+Case ID: s152_b_2_neg
+Text: % Alice and Bob got married on Jan 1st, 2015. Alice and Bob file separately in 2015.
+Question: % Section 152(b)(2) applies to Alice for the year 2015. Contradiction
+--------------------------------------------------
+
+Case 12:
+Case ID: tax_case_69
+Text: % Alice and Bob were married from Feb 3rd, 1997 to Oct 30th, 2001. Alice's gross income for the year 2014 is $718791 and she takes the standard deduction.
+Question: % How much tax does Alice have to pay in 2014? $264225
+--------------------------------------------------
+
+Case 13:
+Case ID: s3306_c_6_neg
+Text: % Alice was paid $73200 in 2017 as an employee of Nando's Chicken in Arlington, Virginia, USA.
+Question: % Section 3306(c)(6) applies to Alice's employment situation in 2017. Contradiction
+--------------------------------------------------
+
+Case 14:
+Case ID: s1_a_1_iv_neg
+Text: % Alice is married under section 7703 for the year 2017. Alice files a joint return with her spouse for 2017. Alice's and her spouse's taxable income for the year 2017 is $684642.
+Question: % Alice and her spouse have to pay $247647 in taxes for the year 2017 under section 1(a)(iv). Contradiction
+--------------------------------------------------
+
+Case 15:
+Case ID: s151_d_3_B_pos
+Text: % Alice's income in 2015 is $276932. Alice is not married. The applicable amount according to section 68(b) is $250000.
+Question: % Under section 151(d)(3)(B), the applicable percentage for Alice for 2015 is equal to 22. Entailment
+--------------------------------------------------
+
+Case 16:
+Case ID: s1_c_i_neg
+Text: % Alice's taxable income for the year 2017 is $718791. In 2017, Alice is not married, is not a surviving spouse, and is not a head of household.
+Question: % Alice has to pay $265413 in taxes for the year 2017 under section 1(c)(i). Contradiction
+--------------------------------------------------
+
+Case 17:
+Case ID: s1_b_v_neg
+Text: % Alice is a head of household for the year 2017. Alice's taxable income for the year 2017 is $194512.
+Question: % Alice has to pay $57509 in taxes for the year 2017 under section 1(b)(v). Contradiction
+--------------------------------------------------
+
+Case 18:
+Case ID: s1_b_iii_neg
+Text: % Alice is a head of household for the year 2017. Alice's taxable income for the year 2017 is $54775.
+Question: % Alice has to pay $11489 in taxes for the year 2017 under section 1(b)(iii). Contradiction
+--------------------------------------------------
+
+Case 19:
+Case ID: s63_f_3_pos
+Text: % In 2017, Alice was paid $33200. Alice was born March 2nd, 1950 and Bob was born March 3rd, 1955.
+Question: % Under section 63(f)(3), Alice's additional standard deduction in 2017 is equal to $750. Entailment
+--------------------------------------------------
+
+Case 20:
+Case ID: tax_case_25
+Text: % Bob is Charlie and Dorothy's son, born on April 15th, 2015. Alice married Charlie on August 8th, 2018. Alice's and Charlie's gross incomes in 2018 were $324311 and $414231 respectively. Alice, Bob and Charlie have the same principal place of abode in 2018. Alice and Charlie file jointly in 2018, and take the standard deduction.
+Question: % How much tax does Alice have to pay in 2018? $259487
+--------------------------------------------------
+
