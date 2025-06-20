@@ -8,7 +8,7 @@ def extract_true_cases(run_content):
     for i, line in enumerate(lines):
         m = re.match(r'Case ([^:]+): Result = true', line)
         if m:
-            case_id = m.group(1)
+            case_id = m.group(1).strip()
             # Check if next line is PASSED for the same case
             if i+1 < len(lines):
                 next_line = lines[i+1]
@@ -17,40 +17,38 @@ def extract_true_cases(run_content):
     return true_cases
 
 def analyze_log_file(file_path):
-    """Analyze the log file and count/list true cases for each run."""
+    """Analyze the log file and count unique passed/tested cases for each run."""
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
-    # Use regex to split on the full separator lines
-    runs = re.split(r'^=+\s*First Run\s*=+$|^=+\s*Second Run\s*=+$', content, flags=re.MULTILINE)
-    # The runs list will have: [before, first_run, second_run, after]
-    if len(runs) >= 3:
-        first_run = runs[1]
-        second_run = runs[2]
-        first_true_cases = extract_true_cases(first_run)
-        second_true_cases = extract_true_cases(second_run)
-        first_run_cases = len(re.findall(r'testing\(', first_run))
-        second_run_cases = len(re.findall(r'testing\(', second_run))
-        print("Analysis of log_gemini.txt:")
-        print("=" * 40)
-        print(f"First Run - Unique PASSED cases: {len(first_true_cases)}")
-        print(f"Case IDs: {first_true_cases}")
-        print(f"Second Run - Unique PASSED cases: {len(second_true_cases)}")
-        print(f"Case IDs: {second_true_cases}")
-        print(f"\nFirst Run - Total cases tested: {first_run_cases}")
-        print(f"Second Run - Total cases tested: {second_run_cases}")
-        if first_run_cases > 0:
-            print(f"First Run - Success rate: {len(first_true_cases)}/{first_run_cases} ({len(first_true_cases)/first_run_cases*100:.1f}%)")
+    # Split by the full separator lines for the runs
+    runs = re.split(r'^=+\s*(?:First|Second|Third) Run\s*=+$', content, flags=re.MULTILINE)
+    
+    run_names = ['First Run', 'Second Run', 'Third Run']
+    # Start at index 1 because split will have an empty string at the beginning
+    for idx, run_content in enumerate(runs[1:], 1):
+        if idx > len(run_names): break
+        run_name = run_names[idx-1]
+        
+        # Find all unique tested cases
+        tested_cases_list = re.findall(r'testing\(([^)]+)\)', run_content)
+        unique_tested_cases = set(tested_cases_list)
+        
+        # Find all unique passed cases
+        passed_cases_list = extract_true_cases(run_content)
+        unique_passed_cases = set(passed_cases_list)
+        
+        print(f"--- {run_name} ---")
+        print(f"Unique PASSED cases: {len(unique_passed_cases)}")
+        print(f"Case IDs: {sorted(list(unique_passed_cases))}")
+        print(f"Unique cases tested: {len(unique_tested_cases)}")
+        
+        if len(unique_tested_cases) > 0:
+            success_rate = (len(unique_passed_cases) / len(unique_tested_cases)) * 100
+            print(f"Success rate: {len(unique_passed_cases)}/{len(unique_tested_cases)} ({success_rate:.1f}%)\n")
         else:
-            print("First Run - Success rate: N/A (no cases tested)")
-        if second_run_cases > 0:
-            print(f"Second Run - Success rate: {len(second_true_cases)}/{second_run_cases} ({len(second_true_cases)/second_run_cases*100:.1f}%)")
-        else:
-            print("Second Run - Success rate: N/A (no cases tested)")
-        return first_true_cases, second_true_cases
-    else:
-        print("Could not identify separate runs in the log file.")
-        return [], []
+            print("Success rate: N/A (no cases tested)\n")
 
 if __name__ == "__main__":
+    # Assumes the script is run from the project root
     log_file = "src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/log_gemini.txt"
     analyze_log_file(log_file) 

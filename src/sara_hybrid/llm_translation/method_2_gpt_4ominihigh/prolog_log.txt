@@ -163,3 +163,4 @@ ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Cont
 
 ?- answer(tax_case_25, R). 
 R = false 
+

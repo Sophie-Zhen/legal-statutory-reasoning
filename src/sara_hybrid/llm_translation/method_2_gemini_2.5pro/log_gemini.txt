@@ -123,3 +123,89 @@ First Run - Total cases tested: 20
 Second Run - Total cases tested: 21
 First Run - Success rate: 7/20 (35.0%)
 Second Run - Success rate: 8/21 (38.1%)
+
+======================= Third Run ==========================
+?- run_all_tests.
+testing(tax_case_99)
+Case tax_case_99: ERROR - answer/2 failed or threw exception
+Case tax_case_99: FAILED (Question assertion does not hold)
+
+testing(s152_c_3_neg)
+Case s152_c_3_neg: Result = true
+Case s152_c_3_neg: PASSED (Question assertion holds)
+
+testing(s3301_neg)
+Case s3301_neg: Result = true
+Case s3301_neg: PASSED (Question assertion holds)
+
+testing(s63_f_2_A_neg)
+Case s63_f_2_A_neg: Result = true
+Case s63_f_2_A_neg: PASSED (Question assertion holds)
+
+testing(s63_c_7_i_pos)
+Case s63_c_7_i_pos: ERROR - answer/2 failed or threw exception
+Case s63_c_7_i_pos: FAILED (Question assertion does not hold)
+
+testing(s3306_b_2_C_pos)
+Case s3306_b_2_C_pos: EXCEPTION error(existence_error(procedure,tests:s3306_b_2_C_payment_for_death_excluded/6),context(tests:answer/2,_284))
+
+testing(s3306_b_2_C_pos)
+Case s3306_b_2_C_pos: EXCEPTION error(existence_error(procedure,tests:s3306_b_2_C_payment_for_death_excluded/6),context(tests:answer/2,_466))
+
+testing(s3306_b_2_C_pos)
+Case s3306_b_2_C_pos: EXCEPTION error(existence_error(procedure,tests:s3306_b_2_C_payment_for_death_excluded/6),context(tests:answer/2,_646))
+
+testing(tax_case_59)
+Case tax_case_59: ERROR - answer/2 failed or threw exception
+Case tax_case_59: FAILED (Question assertion does not hold)
+
+testing(s1_a_2_neg)
+Case s1_a_2_neg: Result = true
+Case s1_a_2_neg: PASSED (Question assertion holds)
+
+testing(s7703_a_1_pos)
+Case s7703_a_1_pos: Result = true
+Case s7703_a_1_pos: PASSED (Question assertion holds)
+
+testing(s152_c_2_A_pos)
+Case s152_c_2_A_pos: Result = false
+Case s152_c_2_A_pos: FAILED (Question assertion does not hold)
+
+testing(s152_b_2_neg)
+Case s152_b_2_neg: Result = true
+Case s152_b_2_neg: PASSED (Question assertion holds)
+
+testing(tax_case_69)
+Case tax_case_69: ERROR - answer/2 failed or threw exception
+Case tax_case_69: FAILED (Question assertion does not hold)
+
+testing(s3306_c_6_neg)
+Case s3306_c_6_neg: Result = true
+Case s3306_c_6_neg: PASSED (Question assertion holds)
+
+testing(s1_a_1_iv_neg)
+Case s1_a_1_iv_neg: Result = true
+Case s1_a_1_iv_neg: PASSED (Question assertion holds)
+
+testing(s151_d_3_B_pos)
+Case s151_d_3_B_pos: Result = true
+Case s151_d_3_B_pos: PASSED (Question assertion holds)
+
+testing(s1_c_i_neg)
+Case s1_c_i_neg: Result = true
+Case s1_c_i_neg: PASSED (Question assertion holds)
+
+testing(s1_b_v_neg)
+Case s1_b_v_neg: Result = true
+Case s1_b_v_neg: PASSED (Question assertion holds)
+
+testing(s1_b_iii_neg)
+Case s1_b_iii_neg: Result = true
+Case s1_b_iii_neg: PASSED (Question assertion holds)
+
+testing(s63_f_3_pos)
+Case s63_f_3_pos: EXCEPTION error(instantiation_error,context(system:(is)/2,_818))
+
+testing(tax_case_25)
+Case tax_case_25: ERROR - answer/2 failed or threw exception
+Case tax_case_25: FAILED (Question assertion does not hold)

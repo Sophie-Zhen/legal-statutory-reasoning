@@ -1,47 +1,43 @@
 :- module(section68,
-          [
-            s68_apply_limitation/6, % s68_apply_limitation(CaseID, TaxpayerID, TaxYear, AGI, GrossItemized, LimitedItemized)
-            s68_b_applicable_amount/4 % s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, ApplicableAmount)
+          [ s68_limitation_on_itemized_deductions/5, % s68_limitation_on_itemized_deductions(CaseID, TPID, TaxYear, AGI, GrossItemized, LimitedItemized)
+            s68_b_applicable_amount/4                 % s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, ApplicableAmount)
           ]).
 
-:- use_module(section2, [s2_a_is_surviving_spouse/3, s2_b_is_head_of_household/3]).
-:- use_module(section7703, [s7703_is_married_gen_rule/3]). % For marital status
-:- use_module(helpers, [tcja_active/1]).
+:- use_module(helpers, [tcja_s68_limitation_inactive/1]).
+:- use_module(section2, [s2_a_is_surviving_spouse/4, s2_b_is_head_of_household/4]).
+:- use_module(section7703, [s7703_is_married/4]).
 
+:- dynamic fact/2.
 
-% (f) Section not to apply for 2018-2025
-s68_apply_limitation(_CaseID, _TaxpayerID, TaxYear, _AGI, GrossItemized, GrossItemized) :-
-    tcja_active(TaxYear).
+% §68(f) Section not to apply
+s68_limitation_on_itemized_deductions(_CaseID, _TPID, TaxYear, _AGI, GrossItemized, GrossItemized) :-
+    tcja_s68_limitation_inactive(TaxYear).
 
-% (a) General rule for limitation (pre-2018, post-2025)
-s68_apply_limitation(CaseID, TaxpayerID, TaxYear, AGI, GrossItemized, LimitedItemized) :-
-    \+ tcja_active(TaxYear),
-    s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, ApplicableAmount),
+% §68(a) General rule
+s68_limitation_on_itemized_deductions(CaseID, TPID, TaxYear, AGI, GrossItemized, LimitedItemized) :-
+    \+ tcja_s68_limitation_inactive(TaxYear),
+    s68_b_applicable_amount(CaseID, TPID, TaxYear, ApplicableAmount),
     ( AGI =< ApplicableAmount ->
-        LimitedItemized = GrossItemized % No limitation if AGI not over applicable amount
+        LimitedItemized = GrossItemized
     ;
         ExcessAGI is AGI - ApplicableAmount,
         Reduction1 is 0.03 * ExcessAGI,
         Reduction2 is 0.80 * GrossItemized,
-        ReductionAmount is min(Reduction1, Reduction2),
-        LimitedItemized is GrossItemized - ReductionAmount
+        Reduction is min(Reduction1, Reduction2),
+        LimitedItemized is GrossItemized - Reduction,
+        (LimitedItemized < 0 -> LimitedItemized = 0 ; true) % Ensure not negative
     ).
 
-% (b) Applicable amount
-s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, Amount) :-
-    fact(CaseID, filing_status(TaxpayerID, TaxYear, married_filing_jointly)),
-    Amount = 300000. % (A)
-s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, Amount) :-
-    s2_a_is_surviving_spouse(CaseID, TaxpayerID, TaxYear), % Check if surviving spouse
-    Amount = 300000. % (A)
-s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, Amount) :-
-    s2_b_is_head_of_household(CaseID, TaxpayerID, TaxYear), % Check if head of household
-    Amount = 275000. % (B)
-s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, Amount) :-
-    \+ s7703_is_married_gen_rule(CaseID, TaxpayerID, TaxYear), % Not married
-    \+ s2_a_is_surviving_spouse(CaseID, TaxpayerID, TaxYear), % Not SS
-    \+ s2_b_is_head_of_household(CaseID, TaxpayerID, TaxYear), % Not HoH
-    Amount = 250000. % (C) Single
-s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, Amount) :-
-    fact(CaseID, filing_status(TaxpayerID, TaxYear, married_filing_separately)),
-    Amount is 300000 / 2. % (D) 1/2 of (A)
+% §68(b) Applicable amount
+s68_b_applicable_amount(CaseID, TPID, TaxYear, 300000) :- % (A)
+    ( fact(CaseID, filing_status(TPID, TaxYear, married_filing_jointly))
+    ; s2_a_is_surviving_spouse(CaseID, TPID, TaxYear, true)
+    ).
+s68_b_applicable_amount(CaseID, TPID, TaxYear, 275000) :- % (B)
+    s2_b_is_head_of_household(CaseID, TPID, TaxYear, true).
+s68_b_applicable_amount(CaseID, TPID, TaxYear, 250000) :- % (C)
+    s7703_is_married(CaseID, TPID, TaxYear, false),
+    s2_a_is_surviving_spouse(CaseID, TPID, TaxYear, false),
+    s2_b_is_head_of_household(CaseID, TPID, TaxYear, false).
+s68_b_applicable_amount(CaseID, TPID, TaxYear, 150000) :- % (D) MFS = 1/2 of (A)
+    fact(CaseID, filing_status(TPID, TaxYear, married_filing_separately)).
