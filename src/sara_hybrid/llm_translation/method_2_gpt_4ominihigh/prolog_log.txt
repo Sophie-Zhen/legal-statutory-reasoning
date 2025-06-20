@@ -1,0 +1,165 @@
+?- answer(tax_case_99, R). 
+R = false .
+
+?- answer(s152_c_3_neg, R). 
+ERROR: Unknown procedure: section152:child_of/2
+ERROR: In:
+ERROR:   [14] section152:child_of(alice,bob)
+ERROR:   [13] section152:qualifying_child(bob,alice,2019) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/section152.pl:8
+ERROR:   [12] tests:answer(s152_c_3_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (14) section152:child_of(alice, bob) ? creep
+   Exception: (12) tests:answer(s152_c_3_neg, _32324) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s3301_neg, R). 
+R = false.
+
+?- answer(s63_f_2_A_neg, R).
+ERROR: Unknown procedure: tests:applies_section63_f2A/2
+ERROR: In:
+ERROR:   [13] tests:applies_section63_f2A(bob,2017)
+ERROR:   [12] tests:answer(s63_f_2_A_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:applies_section63_f2A(bob, 2017) ? creep
+   Exception: (12) tests:answer(s63_f_2_A_neg, _5336) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s63_c_7_i_pos, R). 
+ERROR: Unknown procedure: tests:basic_standard/2
+ERROR: In:
+ERROR:   [13] tests:basic_standard(head_of_household,18000)
+ERROR:   [12] tests:answer(s63_c_7_i_pos,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:basic_standard(head_of_household, 18000) ? creep
+   Exception: (12) tests:answer(s63_c_7_i_pos, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+
+ERROR: Unknown procedure: tests:wages_excluded_3306b2C/2
+ERROR: In:
+ERROR:   [13] tests:wages_excluded_3306b2C(alice,2017)
+ERROR:   [12] tests:answer(s3306_b_2_C_pos,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:wages_excluded_3306b2C(alice, 2017) ? creep
+   Exception: (12) tests:answer(s3306_b_2_C_pos, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(tax_case_59, R). 
+R = true .
+
+?- answer(s1_a_2_neg, R). 
+ERROR: Unknown procedure: tests:tax_section1a/3
+ERROR: In:
+ERROR:   [13] tests:tax_section1a(single,210204,65445)
+ERROR:   [12] tests:answer(s1_a_2_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:tax_section1a(single, 210204, 65445) ? creep
+   Exception: (12) tests:answer(s1_a_2_neg, _3626) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s7703_a_1_pos, R). 
+ERROR: Unknown procedure: tests:marital_status/3
+ERROR: In:
+ERROR:   [13] tests:marital_status(alice,2012,married)
+ERROR:   [12] tests:answer(s7703_a_1_pos,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:marital_status(alice, 2012, married) ? creep
+   Exception: (12) tests:answer(s7703_a_1_pos, _992) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s152_c_2_A_pos, R). 
+ERROR: Unknown procedure: tests:relationship_descendant/2
+ERROR: In:
+ERROR:   [13] tests:relationship_descendant(alice,bob)
+ERROR:   [12] tests:answer(s152_c_2_A_pos,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:relationship_descendant(alice, bob) ? creep
+   Exception: (12) tests:answer(s152_c_2_A_pos, _992) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s152_b_2_neg, R). 
+ERROR: Unknown procedure: tests:section152b2_applies/2
+ERROR: In:
+ERROR:   [13] tests:section152b2_applies(alice,2015)
+ERROR:   [12] tests:answer(s152_b_2_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:section152b2_applies(alice, 2015) ? creep
+   Exception: (12) tests:answer(s152_b_2_neg, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(tax_case_69, R). 
+R = false .
+
+?- answer(s3306_c_6_neg, R). 
+ERROR: Unknown procedure: tests:section3306_c6_applies/2
+ERROR: In:
+ERROR:   [13] tests:section3306_c6_applies(alice,2017)
+ERROR:   [12] tests:answer(s3306_c_6_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:section3306_c6_applies(alice, 2017) ? creep
+   Exception: (12) tests:answer(s3306_c_6_neg, _3620) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s1_a_1_iv_neg, R). 
+ERROR: Unknown procedure: tests:tax_bracket_iv/2
+ERROR: In:
+ERROR:   [13] tests:tax_bracket_iv(joint,684642)
+ERROR:   [12] tests:answer(s1_a_1_iv_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:tax_bracket_iv(joint, 684642) ? creep
+   Exception: (12) tests:answer(s1_a_1_iv_neg, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s151_d_3_B_pos, R). 
+ERROR: Unknown procedure: tests:applicable_percentage/3
+ERROR: In:
+ERROR:   [13] tests:applicable_percentage(276932,250000,22)
+ERROR:   [12] tests:answer(s151_d_3_B_pos,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:applicable_percentage(276932, 250000, 22) ? creep
+   Exception: (12) tests:answer(s151_d_3_B_pos, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s1_c_i_neg, R). 
+ERROR: Unknown procedure: tests:tax_bracket_c_i/2
+ERROR: In:
+ERROR:   [13] tests:tax_bracket_c_i(single,718791)
+ERROR:   [12] tests:answer(s1_c_i_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:tax_bracket_c_i(single, 718791) ? creep
+   Exception: (12) tests:answer(s1_c_i_neg, _992) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s1_b_v_neg, R). 
+ERROR: Unknown procedure: tests:tax_bracket_b_v/2
+ERROR: In:
+ERROR:   [13] tests:tax_bracket_b_v(head_of_household,194512)
+ERROR:   [12] tests:answer(s1_b_v_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:tax_bracket_b_v(head_of_household, 194512) ? creep
+   Exception: (12) tests:answer(s1_b_v_neg, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s1_b_iii_neg, R). 
+ERROR: Unknown procedure: tests:tax_bracket_b_iii/2
+ERROR: In:
+ERROR:   [13] tests:tax_bracket_b_iii(head_of_household,54775)
+ERROR:   [12] tests:answer(s1_b_iii_neg,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:tax_bracket_b_iii(head_of_household, 54775) ? creep
+   Exception: (12) tests:answer(s1_b_iii_neg, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(s63_f_3_pos, R). 
+ERROR: Unknown procedure: tests:additional_standard_unmarried_amount/3
+ERROR: In:
+ERROR:   [13] tests:additional_standard_unmarried_amount(alice,2017,750)
+ERROR:   [12] tests:answer(s63_f_3_pos,true) at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2/tests.pl:27
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+   Exception: (13) tests:additional_standard_unmarried_amount(alice, 2017, 750) ? creep
+   Exception: (12) tests:answer(s63_f_3_pos, _990) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+
+?- answer(tax_case_25, R). 
+R = false 

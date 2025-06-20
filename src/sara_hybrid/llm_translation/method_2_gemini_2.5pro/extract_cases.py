@@ -22,7 +22,7 @@ def extract_case_info(file_path):
     return case_id, text, question
 
 def main():
-    cases_dir = "data/sara_v3/cases"
+    cases_dir = "/Users/sophie/code/2025-mcm-llms-applied-in-law_context/data/sara_v3/cases"
     
     # Get all .pl files in the cases directory
     case_files = [f for f in os.listdir(cases_dir) if f.endswith('.pl')]
