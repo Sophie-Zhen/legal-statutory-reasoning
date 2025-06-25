@@ -1,0 +1,92 @@
+I’m an expert in Prolog and U.S. federal tax law.
+Inputs:
+Statutes: Nine sections of the Internal Revenue Code, each in plain English.
+Cases: Twenty case-facts, each labeled with a CaseID, a free-text narrative of facts, and a yes-or-no question about whether a particular tax statement is true under those statutes.
+Task:
+Section & Slot Identification (Pre-computation):
+For each statute section (and its individual subsections or distinct logical rules), meticulously identify all key "slots" (data entities or values) it operates on or requires from its context. Examples: TaxpayerID, SpouseID, DependentID, TaxYear, relevant IncomeAmounts (AGI, Gross, Taxable), FilingStatus, specific monetary thresholds, dates, household identifiers, specific conditions (e.g., 'is_blind', 'is_aged').
+For each case, determine which statute sections (and their specific subsections/rules) are relevant to answering its question and what data from the case narrative fills the identified slots for those rules.
+Prolog Encoding (Guided by SARA Principles & Best Practices):
+Generate Prolog code that:
+Statute Modules: Encodes each of the nine statute sections as Prolog predicates in its own module (e.g., section1.pl, section7703.pl).
+Predicate per Logical Unit: Each distinct subsection or logical rule within a statute section must map to its own Prolog predicate. Name predicates clearly, e.g., s152_c_3_age_requirement_met/5.
+Slots as Arguments (Explicit Data Flow): The identified "slots" for a subsection/rule must become the arguments for its corresponding Prolog predicate. This ensures data is explicitly passed. If a predicate needs to output a result (e.g., a calculated amount, a boolean success/failure), include an argument for this output.
+Example: s63_c_2_B_bsd_hoh(CaseID, TaxpayerID, TaxYear, BSDAmount) where BSDAmount is the calculated result.
+Boolean Example: s152_c_3_age_requirement_met(CaseID, TaxpayerID, ChildID, TaxYear, IsMetBool) where IsMetBool becomes true or false.
+No Unnecessary Global State: Rely on argument passing, not implicit state.
+Singleton Variable Handling:
+If an argument is passed to a predicate but a specific clause of that predicate does not use that argument, mark it as a singleton in that clause (e.g., _TaxYear).
+Avoid "singleton-marked variable appears more than once": if _VarName needs to be used multiple times within a clause, it must be VarName.
+Case Fact Encoding (fact/2): Encodes the facts of each case as Prolog facts of the form fact(CaseID, FactAtom).
+FactAtom must be a consistent and semantically clear Prolog term representing a single piece of information. Examples:
+person_is_taxpayer(alice)
+person_dob(alice, date(1980,1,1))
+adjusted_gross_income(alice, 2017, 75845)
+filing_status(alice, 2017, head_of_household)
+relationship_child_of(bob, alice)
+spouse_of(alice, charlie)
+is_blind(alice, 2017)
+files_joint_return(alice, charlie, 2015) (This example shows a ternary atom within the fact).
+The exact structure of FactAtom should be driven by what the statute rule predicates need to consume.
+Uniform Query Predicate (answer/2): Defines a uniform query predicate answer(CaseID, Result) in a test harness module, where Result is true or false.
+Result should be true if the case question's assertion holds (true for "Entailment", false for "Contradiction").
+answer/2 clauses must call the relevant statute predicates, populating their arguments by retrieving values from the fact(CaseID, ...) database for the given CaseID.
+Handle arithmetic carefully: ensure all variables in expressions passed to is/2 are instantiated. Use helper predicates for complex calculations if needed.
+Helper Module (helpers.pl):
+Create a helpers.pl module for common, non-statute-specific logic, such as date calculations (e.g., get_age_at_year_end/4), financial rounding (round_to_dollars/2), or boolean checks for tax year ranges (e.g., tcja_active/1).
+These helpers should also take necessary "slots" (like CaseID, PersonID, TaxYear) as arguments.
+Modular Output & Declarations:
+Split output into .pl files: one per statute module, helpers.pl, and one tests.pl (test harness).
+Module Declarations (:- module/2): Each module file must begin with :- module(ModuleName, [ExportList]).
+ExportList must accurately list all predicates (name/arity) defined in that module that are intended to be called by other modules.
+Import Declarations (:- use_module/1 or use_module/2): Each module must explicitly import the modules it depends on. If only specific predicates are needed, use :- use_module(foreign_module, [pred1/arity1, pred2/arity2]).
+Dynamic Facts: Declare :- dynamic fact/2. at the top of any module that will assert or query these case facts (typically tests.pl and potentially the statute modules if they need to directly query global facts, though passing via arguments is preferred).
+Output:
+A set of Prolog source files ready for SWI-Prolog, adhering to the above.
+A test harness (tests.pl) that can be loaded and allows running ?- answer(CaseID, Result). for each case.
+Example (Illustrative - refine based on actual statute structure):
+Generated prolog
+% In section63.pl
+:- module(section63,
+          [
+            s63_c_basic_standard_deduction/4, % s63_c_basic_standard_deduction(CaseID, TaxpayerID, TaxYear, BSDAmount)
+            s63_c_2_B_bsd_hoh/4               % s63_c_2_B_bsd_hoh(CaseID, TaxpayerID, TaxYear, BSDAmount)
+            % ... other exported predicates for S63 subsections
+          ]).
+
+:- use_module(library(helpers), [tcja_standard_deduction_rules_active/1]). % Assuming helpers is a library path or local
+:- dynamic fact/2. % If this module directly queries facts
+
+% Predicate representing S63(c)(2)(B) - Basic Standard Deduction for Head of Household
+s63_c_2_B_bsd_hoh(_CaseID, _TaxpayerID, TaxYear, BSDAmount) :- % CaseID, TaxpayerID not used if filing_status is checked by caller
+    tcja_standard_deduction_rules_active(TaxYear), !,
+    BSDAmount = 18000.
+s63_c_2_B_bsd_hoh(_CaseID, _TaxpayerID, _TaxYear, BSDAmount) :-
+    BSDAmount = 4400.
+
+% Overall BSD might call specific rules like the one above
+s63_c_basic_standard_deduction(CaseID, TaxpayerID, TaxYear, BSDAmount) :-
+    fact(CaseID, filing_status(TaxpayerID, TaxYear, head_of_household)), !,
+    s63_c_2_B_bsd_hoh(CaseID, TaxpayerID, TaxYear, BSDAmount).
+s63_c_basic_standard_deduction(CaseID, TaxpayerID, TaxYear, BSDAmount) :-
+    fact(CaseID, filing_status(TaxpayerID, TaxYear, single)), !,
+    s63_c_2_C_bsd_single_mfs(CaseID, TaxpayerID, TaxYear, BSDAmount). % Assuming another predicate for this
+% ... etc. for other filing statuses
+
+% In tests.pl
+:- use_module(section63).
+:- use_module(helpers). % Assuming tcja_active/1 is in helpers.pl
+:- dynamic fact/2.
+
+% Case facts
+fact(case5_hoh_2019, person_is_taxpayer(alice)).
+fact(case5_hoh_2019, filing_status(alice, 2019, head_of_household)).
+fact(case5_hoh_2019, person_dob(alice, date(1980,1,1))). % Needed if age is a factor for HoH or other deductions
+
+answer(case5_hoh_2019, Result) :-
+    % Question: Alice's BSD in 2019 is $18000. Entailment.
+    s63_c_basic_standard_deduction(case5_hoh_2019, alice, 2019, ComputedBSD),
+    ( ComputedBSD =:= 18000 -> Result = true ; Result = false ).
+Use code with caution.
+Prolog
+Generate the nine statutory modules and accompanying test harness as .pl files according to these guidelines, ensuring a correct, high-quality Prolog codebase that’s easily extensible to other use cases.

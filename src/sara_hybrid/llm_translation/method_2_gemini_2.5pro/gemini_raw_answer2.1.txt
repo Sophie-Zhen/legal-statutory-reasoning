@@ -1,0 +1,773 @@
+:- module(section152,
+          [
+            s152_is_dependent/5, % s152_is_dependent(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsDependentBool)
+            s152_a_1_is_qualifying_child/5, % s152_a_1_is_qualifying_child(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQCBool)
+            s152_a_2_is_qualifying_relative/5, % s152_a_2_is_qualifying_relative(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQRBool)
+            s152_c_qualifying_child/5, % s152_c_qualifying_child(CaseID, TaxpayerID, ChildID, TaxYear, IsQCBool)
+            s152_d_qualifying_relative/5, % s152_d_qualifying_relative(CaseID, TaxpayerID, RelativeID, TaxYear, IsQRBool)
+            s152_d_2_relationship_qr_met/4 % s152_d_2_relationship_qr_met(CaseID, TaxpayerID, IndividualID, TaxYear, MetBool) - For s2_b_3_B
+          ]).
+
+:- use_module(library(helpers), [get_age_at_year_end/4]).
+:- use_module(tests, [fact/2]). % Or pass facts as arguments
+
+% s152_is_dependent(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsDependentBool)
+s152_is_dependent(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsDependentBool) :-
+    % Exceptions under (b) first
+    ( s152_b_1_dependent_ineligible(CaseID, PotentialDependentID, TaxYear, true) ->
+        IsDependentBool = false
+    ; s152_b_2_married_dependent_joint_return(CaseID, PotentialDependentID, TaxYear, true) ->
+        IsDependentBool = false
+    ; % Check if qualifying child or qualifying relative
+      ( s152_a_1_is_qualifying_child(CaseID, TaxpayerID, PotentialDependentID, TaxYear, true) ->
+            IsDependentBool = true
+      ; s152_a_2_is_qualifying_relative(CaseID, TaxpayerID, PotentialDependentID, TaxYear, true) ->
+            IsDependentBool = true
+      ; IsDependentBool = false
+      )
+    ).
+
+% s152_a_1_is_qualifying_child(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQCBool)
+s152_a_1_is_qualifying_child(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQCBool) :-
+    s152_c_qualifying_child(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQCBool).
+
+% s152_a_2_is_qualifying_relative(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQRBool)
+s152_a_2_is_qualifying_relative(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQRBool) :-
+    s152_d_qualifying_relative(CaseID, TaxpayerID, PotentialDependentID, TaxYear, IsQRBool).
+
+% s152_b_1_dependent_ineligible(CaseID, IndividualID, TaxYear, IsIneligibleBool)
+% If an individual is a dependent of a taxpayer, such individual shall be treated as having no dependents.
+s152_b_1_dependent_ineligible(CaseID, IndividualID, TaxYear, true) :-
+    fact(CaseID, is_dependent_of(IndividualID, _AnotherTaxpayerID, TaxYear)), % IndividualID is claimed by someone else
+    fact(CaseID, claims_dependent(IndividualID, _SomeonesDependentID, TaxYear)), % And IndividualID is trying to claim their own dependent
+    !.
+s152_b_1_dependent_ineligible(_, _, _, false). % This rule is about whether IndividualID can HAVE dependents.
+                                                % When checking if X is Y's dependent, this rule applies to X.
+                                                % So, if IndividualID (the potential dependent) *has* dependents, they are ineligible?
+                                                % "such individual shall be treated as having no dependents" - this means if A is B's dependent, A cannot claim C as A's dependent.
+                                                % This rule doesn't make *IndividualID* ineligible to *be* a dependent.
+                                                % It restricts who IndividualID can claim.
+                                                % Re-evaluating: This means if PotentialDependentID is *themselves* a dependent of *another* taxpayer,
+                                                % then PotentialDependentID cannot claim their *own* dependents.
+                                                % It does NOT mean PotentialDependentID cannot BE a dependent.
+                                                % The rule is "Dependents ineligible [to claim other dependents]".
+                                                % So this rule is not for s152_is_dependent check directly.
+                                                % Let's assume it's correctly interpreted as not directly blocking someone from *being* a dependent.
+                                                % However, tax law often has tie-breaker rules. This might be misinterp.
+                                                % The common interpretation is that if you *can be claimed* as a dependent, you can't claim dependents.
+                                                % This section seems to be about whether the *potential dependent* can *have* their own dependents.
+                                                % For the purpose of "is X a dependent of Y?", this rule is not directly applicable to X's eligibility.
+                                                % It's more about X's ability to claim Z.
+                                                % Let's assume this is not a blocker for *being* a dependent for now.
+                                                % Okay, the prompt's `s151_d_2_disallowed_for_dependent` is "exemption amount applicable to such individual for such individual's taxable year shall be zero".
+                                                % This is different.
+                                                % Let's assume s152(b)(1) is not a blocker for being a dependent based on its phrasing "treated as having no dependents".
+
+% s152_b_2_married_dependent_joint_return(CaseID, PotentialDependentID, TaxYear, FiledJointReturnBool)
+% An individual shall not be treated as a dependent ... if such individual has made a joint return.
+s152_b_2_married_dependent_joint_return(CaseID, PotentialDependentID, TaxYear, true) :-
+    fact(CaseID, spouse_of(PotentialDependentID, SpouseOfPotentialDependent)),
+    fact(CaseID, files_joint_return(PotentialDependentID, SpouseOfPotentialDependent, TaxYear)),
+    % Add exception: "other than only for a claim of refund" - this is complex to model without more data.
+    % Assuming any joint return mentioned is not solely for refund unless specified.
+    !.
+s152_b_2_married_dependent_joint_return(_, _, _, false).
+
+% s152_c_qualifying_child(CaseID, TaxpayerID, ChildID, TaxYear, IsQCBool)
+s152_c_qualifying_child(CaseID, TaxpayerID, ChildID, TaxYear, true) :-
+    s152_c_1_A_relationship_qc(CaseID, TaxpayerID, ChildID, TaxYear, true),
+    s152_c_1_B_abode_qc(CaseID, TaxpayerID, ChildID, TaxYear, true),
+    s152_c_1_C_age_qc(CaseID, TaxpayerID, ChildID, TaxYear, true),
+    % (D) is missing in provided text (Support test usually) - assume not applicable or covered by facts implicitly
+    s152_c_1_E_no_joint_return_qc(CaseID, ChildID, TaxYear, true),
+    !.
+s152_c_qualifying_child(_, _, _, _, false).
+
+% s152_c_1_A_relationship_qc(CaseID, TaxpayerID, ChildID, TaxYear, RelationshipMetBool)
+s152_c_1_A_relationship_qc(CaseID, TaxpayerID, ChildID, _TaxYear, RelationshipMetBool) :-
+    s152_c_2_relationship_definition_qc(CaseID, TaxpayerID, ChildID, RelationshipMetBool).
+
+% s152_c_1_B_abode_qc(CaseID, TaxpayerID, ChildID, TaxYear, AbodeMetBool)
+s152_c_1_B_abode_qc(CaseID, TaxpayerID, ChildID, TaxYear, true) :-
+    fact(CaseID, principal_place_of_abode_gt_half_year(ChildID, TaxpayerID, TaxYear)),
+    !.
+s152_c_1_B_abode_qc(_, _, _, _, false).
+
+% s152_c_1_C_age_qc(CaseID, TaxpayerID, ChildID, TaxYear, AgeMetBool)
+s152_c_1_C_age_qc(CaseID, TaxpayerID, ChildID, TaxYear, AgeMetBool) :-
+    s152_c_3_age_requirements_definition_qc(CaseID, TaxpayerID, ChildID, TaxYear, AgeMetBool).
+
+% s152_c_1_E_no_joint_return_qc(CaseID, ChildID, TaxYear, NoJointReturnMetBool)
+% Same as s152_b_2 effectively, but for QC context.
+s152_c_1_E_no_joint_return_qc(CaseID, ChildID, TaxYear, true) :-
+    \+ ( fact(CaseID, spouse_of(ChildID, SpouseOfChild)),
+         fact(CaseID, files_joint_return(ChildID, SpouseOfChild, TaxYear))
+         % Add "other than only for claim of refund" if data available
+       ),
+    !.
+s152_c_1_E_no_joint_return_qc(_, _, _, false).
+
+
+% s152_c_2_relationship_definition_qc(CaseID, TaxpayerID, IndividualID, RelationshipMetBool)
+s152_c_2_relationship_definition_qc(CaseID, TaxpayerID, IndividualID, true) :-
+    % (A) child of taxpayer or descendant of such child
+    ( fact(CaseID, relationship_child_of(IndividualID, TaxpayerID))
+    ; fact(CaseID, relationship_descendant_of_child(IndividualID, TaxpayerID)) % e.g. grandchild
+    ), !.
+s152_c_2_relationship_definition_qc(CaseID, TaxpayerID, IndividualID, true) :-
+    % (B) brother, sister, stepbrother, stepsister of taxpayer or descendant of any such relative
+    ( fact(CaseID, relationship_sibling_of(IndividualID, TaxpayerID))
+    ; fact(CaseID, relationship_step_sibling_of(IndividualID, TaxpayerID))
+    ; fact(CaseID, relationship_descendant_of_sibling(IndividualID, TaxpayerID)) % nephew/niece
+    ; fact(CaseID, relationship_descendant_of_step_sibling(IndividualID, TaxpayerID))
+    ), !.
+s152_c_2_relationship_definition_qc(_, _, _, false).
+
+% s152_c_3_age_requirements_definition_qc(CaseID, TaxpayerID, ChildID, TaxYear, AgeMetBool)
+% Individual is younger than taxpayer AND less than 25 at end of year.
+% Note: Original text is "less than 19" or "student less than 24" or "permanently and totally disabled".
+% The provided text "less than 25 years old at the end of the taxable year" is simpler.
+s152_c_3_age_requirements_definition_qc(CaseID, TaxpayerID, ChildID, TaxYear, true) :-
+    get_age_at_year_end(CaseID, ChildID, TaxYear, ChildAge),
+    get_age_at_year_end(CaseID, TaxpayerID, TaxYear, TaxpayerAge),
+    ChildAge < TaxpayerAge,
+    ChildAge < 25,
+    !.
+s152_c_3_age_requirements_definition_qc(_, _, _, _, false).
+
+% s152_d_qualifying_relative(CaseID, TaxpayerID, RelativeID, TaxYear, IsQRBool)
+s152_d_qualifying_relative(CaseID, TaxpayerID, RelativeID, TaxYear, true) :-
+    s152_d_1_A_relationship_qr(CaseID, TaxpayerID, RelativeID, TaxYear, true),
+    s152_d_1_B_gross_income_qr(CaseID, RelativeID, TaxYear, true),
+    % (C) Support test - missing in provided text, assume met or covered by facts
+    s152_d_1_D_not_qualifying_child_qr(CaseID, TaxpayerID, RelativeID, TaxYear, true),
+    !.
+s152_d_qualifying_relative(_, _, _, _, false).
+
+% s152_d_1_A_relationship_qr(CaseID, TaxpayerID, RelativeID, TaxYear, RelationshipMetBool)
+s152_d_1_A_relationship_qr(CaseID, TaxpayerID, RelativeID, TaxYear, RelationshipMetBool) :-
+    s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, RelativeID, TaxYear, RelationshipMetBool).
+
+% s152_d_1_B_gross_income_qr(CaseID, RelativeID, TaxYear, GrossIncomeMetBool)
+% "who has no income for the calendar year" - very strict.
+% Usually this is "gross income less than exemption amount". Sticking to text.
+s152_d_1_B_gross_income_qr(CaseID, RelativeID, TaxYear, true) :-
+    fact(CaseID, gross_income(RelativeID, TaxYear, IncomeAmount)),
+    IncomeAmount =:= 0,
+    !.
+s152_d_1_B_gross_income_qr(CaseID, RelativeID, TaxYear, true) :- % If no income fact, assume 0
+    \+ fact(CaseID, gross_income(RelativeID, TaxYear, _)),
+    !.
+s152_d_1_B_gross_income_qr(_, _, _, false).
+
+% s152_d_1_D_not_qualifying_child_qr(CaseID, TaxpayerID, RelativeID, TaxYear, NotQC άλλοιBool)
+% RelativeID is not a QC of TaxpayerID AND RelativeID is not a QC of any other taxpayer.
+s152_d_1_D_not_qualifying_child_qr(CaseID, TaxpayerID, RelativeID, TaxYear, true) :-
+    s152_c_qualifying_child(CaseID, TaxpayerID, RelativeID, TaxYear, false), % Not QC of this taxpayer
+    \+ ( fact(CaseID, person_is_taxpayer(OtherTaxpayerID)), % Check all other potential taxpayers
+         OtherTaxpayerID \== TaxpayerID,
+         s152_c_qualifying_child(CaseID, OtherTaxpayerID, RelativeID, TaxYear, true) % Is QC of other taxpayer
+       ),
+    !.
+s152_d_1_D_not_qualifying_child_qr(_, _, _, _, false).
+
+% s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, TaxYear, RelationshipMetBool)
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (A) Child or descendant of a child
+      fact(CaseID, relationship_child_of(IndividualID, TaxpayerID))
+    ; fact(CaseID, relationship_descendant_of_child(IndividualID, TaxpayerID)) % e.g. grandchild
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (B) Brother, sister, stepbrother, or stepsister
+      fact(CaseID, relationship_sibling_of(IndividualID, TaxpayerID))
+    ; fact(CaseID, relationship_step_sibling_of(IndividualID, TaxpayerID))
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (C) Father or mother, or an ancestor of either
+      fact(CaseID, relationship_parent_of(IndividualID, TaxpayerID)) % Individual is parent of Taxpayer
+    ; fact(CaseID, relationship_ancestor_of_parent(IndividualID, TaxpayerID)) % e.g. grandparent
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (D) Stepfather or stepmother
+      fact(CaseID, relationship_step_parent_of(IndividualID, TaxpayerID)) % Individual is stepparent of Taxpayer
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (E) Son or daughter of a brother or sister of the taxpayer (Nephew/Niece)
+      fact(CaseID, relationship_child_of_sibling(IndividualID, TaxpayerID))
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (F) Brother or sister of the father or mother of the taxpayer (Aunt/Uncle)
+      fact(CaseID, relationship_sibling_of_parent(IndividualID, TaxpayerID))
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, _TaxYear, true) :-
+    ( % (G) Son-in-law, daughter-in-law, father-in-law, mother-in-law, brother-in-law, or sister-in-law
+      fact(CaseID, relationship_in_law(IndividualID, TaxpayerID, _InLawType)) % InLawType e.g. son_in_law
+    ), !.
+s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, TaxYear, true) :-
+    % (H) Member of household / principal place of abode
+    s152_d_2_H_member_of_household(CaseID, TaxpayerID, IndividualID, TaxYear, true),
+    !.
+s152_d_2_relationship_definition_qr(_, _, _, _, false).
+
+% s152_d_2_H_member_of_household(CaseID, TaxpayerID, IndividualID, TaxYear, MetBool)
+% (H) An individual (other than an individual who at any time during the taxable year was the spouse ...)
+% who, for the taxable year of the taxpayer, has the same principal place of abode as the taxpayer
+% and is a member of the taxpayer's household.
+s152_d_2_H_member_of_household(CaseID, TaxpayerID, IndividualID, TaxYear, true) :-
+    \+ fact(CaseID, was_spouse_during_year(IndividualID, TaxpayerID, TaxYear)), % Not spouse at any time
+    fact(CaseID, principal_place_of_abode_entire_year(IndividualID, TaxpayerID, TaxYear)), % "for the taxable year" implies full year
+    fact(CaseID, member_of_household_entire_year(IndividualID, TaxpayerID, TaxYear)),
+    !.
+s152_d_2_H_member_of_household(_, _, _, _, false).
+
+% Exported for s2_b_3_B check
+s152_d_2_relationship_qr_met(CaseID, TaxpayerID, IndividualID, TaxYear, MetBool) :-
+    s152_d_2_relationship_definition_qr(CaseID, TaxpayerID, IndividualID, TaxYear, MetBool).
+
+:- module(section68,
+          [
+            s68_calculate_allowable_itemized_deductions/5, % s68_calculate_allowable_itemized_deductions(CaseID, TaxpayerID, TaxYear, OtherwiseAllowableDeductions, FinalDeductions)
+            s68_b_applicable_amount/4 % s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, ApplicableAmount) - Exported for Sec 151
+          ]).
+
+:- use_module(section2, [s2_a_is_surviving_spouse/4, s2_b_is_head_of_household/4]).
+:- use_module(section7703, [s7703_determination_of_marital_status/4]).
+:- use_module(library(helpers), [tcja_active_general/1]).
+:- use_module(tests, [fact/2]). % Or pass facts
+
+% s68_calculate_allowable_itemized_deductions(CaseID, TaxpayerID, TaxYear, OtherwiseAllowableDeductions, FinalDeductions)
+s68_calculate_allowable_itemized_deductions(_CaseID, _TaxpayerID, TaxYear, OtherwiseAllowableDeductions, OtherwiseAllowableDeductions) :-
+    s68_f_section_not_to_apply(TaxYear, true), % TCJA suspends Sec 68
+    !.
+s68_calculate_allowable_itemized_deductions(CaseID, TaxpayerID, TaxYear, OtherwiseAllowableDeductions, FinalDeductions) :-
+    fact(CaseID, adjusted_gross_income(TaxpayerID, TaxYear, AGI)),
+    s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, ApplicableAmount),
+    ( AGI =< ApplicableAmount ->
+        FinalDeductions = OtherwiseAllowableDeductions % No reduction if AGI below threshold
+    ; % AGI exceeds threshold, calculate reduction
+        s68_a_calculate_reduction(AGI, ApplicableAmount, OtherwiseAllowableDeductions, ReductionAmount),
+        CalcFinalDeductions is OtherwiseAllowableDeductions - ReductionAmount,
+        ( CalcFinalDeductions < 0 -> FinalDeductions = 0 ; FinalDeductions = CalcFinalDeductions )
+    ).
+
+% s68_a_calculate_reduction(AGI, ApplicableAmount, OtherwiseAllowableDeductions, ReductionAmount)
+s68_a_calculate_reduction(AGI, ApplicableAmount, OtherwiseAllowableDeductions, ReductionAmount) :-
+    ExcessAGI is AGI - ApplicableAmount,
+    Reduction1 is 0.03 * ExcessAGI, % 3 percent of excess AGI
+    Reduction2 is 0.80 * OtherwiseAllowableDeductions, % 80 percent of itemized deductions
+    ReductionAmount is min(Reduction1, Reduction2). % Lesser of the two
+
+% s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, ApplicableAmount)
+s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, 300000) :- % (A) Joint return or surviving spouse
+    ( fact(CaseID, files_joint_return(TaxpayerID, _SpouseID, TaxYear))
+    ; s2_a_is_surviving_spouse(CaseID, TaxpayerID, TaxYear, true)
+    ), !.
+s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, 275000) :- % (B) Head of household
+    s2_b_is_head_of_household(CaseID, TaxpayerID, TaxYear, true), % Check HoH status
+    !.
+s68_b_applicable_amount(CaseID, TaxpayerID, TaxYear, 150000) :- % (D) Married filing separately (1/2 of A)
+    s7703_determination_of_marital_status(CaseID, TaxpayerID, TaxYear, MaritalStatus),
+    MaritalStatus == married, % Must be married
+    fact(CaseID, files_separate_return(TaxpayerID, TaxYear)), % And files separate
+    !.
+s68_b_applicable_amount(_CaseID, _TaxpayerID, _TaxYear, 250000). % (C) Default: single, or other non-married not HoH/SS.
+    % This is for individual not married AND not SS AND not HoH.
+    % If s7703_determination_of_marital_status says 'not_married', and they are not SS or HoH.
+
+% s68_f_section_not_to_apply(TaxYear, NotApplicableBool)
+% This section shall not apply to any taxable year beginning after Dec 31, 2017, and before Jan 1, 2026.
+s68_f_section_not_to_apply(TaxYear, true) :-
+    tcja_active_general(TaxYear),
+    !.
+s68_f_section_not_to_apply(_, false).
+
+:- module(section1,
+          [
+            s1_tax_imposed/4 % s1_tax_imposed(CaseID, TaxpayerID, TaxYear, TaxAmount)
+          ]).
+
+:- use_module(section2, [s2_a_is_surviving_spouse/4, s2_b_is_head_of_household/4]).
+:- use_module(section7703, [s7703_determination_of_marital_status/4]). % s7703_is_married/4 if more specific needed
+:- use_module(library(helpers), [calculate_tax_from_brackets/3, round_to_nearest_dollar/2]).
+:- use_module(tests, [fact/2]).
+
+% s1_tax_imposed(CaseID, TaxpayerID, TaxYear, TaxAmount)
+s1_tax_imposed(CaseID, TaxpayerID, TaxYear, TaxAmountRounded) :-
+    fact(CaseID, taxable_income_for_s1(TaxpayerID, TaxYear, TaxableIncome)), % Assume TI is pre-calculated and available
+    fact(CaseID, filing_status(TaxpayerID, TaxYear, FilingStatus)), % Actual filing status used
+    s1_get_tax_brackets_for_status_year(CaseID, TaxpayerID, TaxYear, FilingStatus, TaxableIncome, Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, RawTaxAmount),
+    round_to_nearest_dollar(RawTaxAmount, TaxAmountRounded).
+
+% s1_get_tax_brackets_for_status_year(CaseID, TaxpayerID, TaxYear, FilingStatus, TaxableIncome, Brackets)
+% Determines which set of tax brackets to use based on filing status and year.
+% For this exercise, only one set of rates (pre-TCJA like) is given for Sec 1. Assume these are for a specific year (e.g., 2017 or a generic pre-TCJA year).
+% If year was a variable affecting rates, more clauses would be needed.
+s1_get_tax_brackets_for_status_year(CaseID, TaxpayerID, TaxYear, FilingStatus, _TaxableIncome, Brackets) :-
+    % (a) Married individuals filing joint returns and surviving spouses
+    ( FilingStatus == joint_return ;
+      ( FilingStatus == surviving_spouse_status_for_s1, % A specific status fact indicating SS for s1 rates
+        s2_a_is_surviving_spouse(CaseID, TaxpayerID, TaxYear, true)
+      )
+    ), !,
+    s1_a_brackets(Brackets).
+s1_get_tax_brackets_for_status_year(CaseID, TaxpayerID, TaxYear, FilingStatus, _TaxableIncome, Brackets) :-
+    % (b) Heads of households
+    FilingStatus == head_of_household,
+    s2_b_is_head_of_household(CaseID, TaxpayerID, TaxYear, true), !, % Verify they actually qualify as HoH
+    s1_b_brackets(Brackets).
+s1_get_tax_brackets_for_status_year(CaseID, TaxpayerID, TaxYear, FilingStatus, _TaxableIncome, Brackets) :-
+    % (d) Married individuals filing separate returns
+    FilingStatus == married_filing_separately,
+    s7703_determination_of_marital_status(CaseID, TaxpayerID, TaxYear, married), % Must be married per 7703
+     % No joint return made is implicit in MFS status.
+    !,
+    s1_d_brackets(Brackets).
+s1_get_tax_brackets_for_status_year(CaseID, TaxpayerID, TaxYear, FilingStatus, _TaxableIncome, Brackets) :-
+    % (c) Unmarried individuals (other than surviving spouses and heads of households) - e.g. Single
+    ( FilingStatus == single ; FilingStatus == default_unmarried ), % Or some other status implying this category
+    s7703_determination_of_marital_status(CaseID, TaxpayerID, TaxYear, MaritalStatus7703),
+    (MaritalStatus7703 == not_married ; MaritalStatus7703 == considered_not_married_living_apart),
+    \+ s2_a_is_surviving_spouse(CaseID, TaxpayerID, TaxYear, true),
+    \+ s2_b_is_head_of_household(CaseID, TaxpayerID, TaxYear, true), !,
+    s1_c_brackets(Brackets).
+
+% Brackets definition: List of (BracketUpperLimit, MarginalRate, TaxOnIncomeUpToBracketStart, BracketStartIncome)
+% Using 'inf' for the upper limit of the last bracket.
+% These are based on the provided text for Section 1.
+
+% s1_a_brackets (Married Filing Jointly / Surviving Spouse)
+s1_a_brackets([
+    (36900,  0.15, 0,        0),
+    (89150,  0.28, 5535,     36900),
+    (140000, 0.31, 20165,    89150),
+    (250000, 0.36, 35928.50, 140000),
+    (inf,    0.396,75528.50, 250000)
+]).
+
+% s1_b_brackets (Heads of Households)
+s1_b_brackets([
+    (29600,  0.15, 0,        0),
+    (76400,  0.28, 4440,     29600),
+    (127500, 0.31, 17544,    76400),
+    (250000, 0.36, 33385,    127500),
+    (inf,    0.396,77485,    250000)
+]).
+
+% s1_c_brackets (Unmarried Individuals - Single)
+s1_c_brackets([
+    (22100,  0.15, 0,        0),
+    (53500,  0.28, 3315,     22100),
+    (115000, 0.31, 12107,    53500),
+    (250000, 0.36, 31172,    115000),
+    (inf,    0.396,79772,    250000)
+]).
+
+% s1_d_brackets (Married Filing Separately)
+s1_d_brackets([
+    (18450,  0.15, 0,        0),
+    (44575,  0.28, 2767.50,  18450),
+    (70000,  0.31, 10082.50, 44575),
+    (125000, 0.36, 17964.25, 70000),
+    (inf,    0.396,37764.25, 125000)
+]).
+
+% Specific sub-section tax calculation predicates, useful for targeted test cases.
+% s1_a_calculate_tax(TaxableIncome, TaxAmount)
+s1_a_calculate_tax(TaxableIncome, TaxAmount) :-
+    s1_a_brackets(Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, TaxAmount).
+
+% s1_b_calculate_tax(TaxableIncome, TaxAmount)
+s1_b_calculate_tax(TaxableIncome, TaxAmount) :-
+    s1_b_brackets(Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, TaxAmount).
+
+% s1_c_calculate_tax(TaxableIncome, TaxAmount)
+s1_c_calculate_tax(TaxableIncome, TaxAmount) :-
+    s1_c_brackets(Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, TaxAmount).
+
+% s1_d_calculate_tax(TaxableIncome, TaxAmount)
+s1_d_calculate_tax(TaxableIncome, TaxAmount) :-
+    s1_d_brackets(Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, TaxAmount).
+
+% Predicates for specific bracket calculations if needed by very granular tests
+% Example: s1_d_iv_tax_calculation(TaxableIncome, TaxAmount)
+% Taxable income over $70,000 but not over $125,000
+% Tax = $17,964.25, plus 36% of the excess over $70,000
+s1_d_iv_tax_calculation(TaxableIncome, TaxAmount) :-
+    TaxableIncome > 70000, TaxableIncome =< 125000,
+    TaxAmount is 17964.25 + 0.36 * (TaxableIncome - 70000).
+
+s1_c_i_tax_calculation(TaxableIncome, TaxAmount) :-
+    TaxableIncome > 0, TaxableIncome =< 22100,
+    TaxAmount is 0.15 * TaxableIncome.
+
+s1_b_iii_tax_calculation(TaxableIncome, TaxAmount) :-
+    TaxableIncome > 76400, TaxableIncome =< 127500,
+    TaxAmount is 17544 + 0.31 * (TaxableIncome - 76400).
+
+s1_a_iii_tax_calculation(TaxableIncome, TaxAmount) :- % Name from case: s1_a_1_iii_neg
+    TaxableIncome > 89150, TaxableIncome =< 140000,
+    TaxAmount is 20165 + 0.31 * (TaxableIncome - 89150).
+
+s1_c_iv_tax_calculation(TaxableIncome, TaxAmount) :-
+    TaxableIncome > 115000, TaxableIncome =< 250000,
+    TaxAmount is 31172 + 0.36 * (TaxableIncome - 115000).
+
+% For s1_a_1_pos, it's just s1_a_calculate_tax.
+% The case seems to imply the first bracket of s1(a).
+s1_a_i_tax_calculation(TaxableIncome, TaxAmount) :-
+    TaxableIncome > 0, TaxableIncome =< 36900,
+    TaxAmount is 0.15 * TaxableIncome.
+
+:- module(section3306,
+          [
+            s3306_a_is_employer/4, % s3306_a_is_employer(CaseID, PersonID, CalendarYear, IsEmployerBool)
+            s3306_b_is_futa_wage/6, % s3306_b_is_futa_wage(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, IsWageBool)
+            s3306_b_total_futa_wages_for_employer/4, % s3306_b_total_futa_wages_for_employer(CaseID, EmployerID, CalendarYear, TotalFUTAWages)
+            s3306_c_is_employment/5, % s3306_c_is_employment(CaseID, EmployerID, EmployeeID, ServiceDetails, IsEmploymentBool)
+            s3306_c_5_family_employment_exception_applies/5, % s3306_c_5_family_employment_exception_applies(CaseID, EmployerID, EmployeeID, CalendarYear, AppliesBool)
+            s3306_b_10_A_termination_payment_exception_applies/5, % s3306_b_10_A_termination_payment_exception_applies(CaseID, EmployerID, EmployeeID, PaymentDetails, AppliesBool)
+            s3306_b_7_non_business_cash_remuneration_exception_applies/5 % s3306_b_7_non_business_cash_remuneration_exception_applies(CaseID, EmployerID, EmployeeID, PaymentDetails, AppliesBool)
+          ]).
+
+:- use_module(library(helpers), [get_age_at_year_end/4]).
+:- use_module(tests, [fact/2]).
+
+% s3306_a_is_employer(CaseID, PersonID, CalendarYear, IsEmployerBool)
+% Determines if PersonID is an employer for CalendarYear.
+s3306_a_is_employer(CaseID, PersonID, CalendarYear, true) :-
+    s3306_a_1_general_employer(CaseID, PersonID, CalendarYear, true),
+    \+ s3306_a_4_special_rule_domestic_only_check(CaseID, PersonID, CalendarYear, general_employer_false),
+    !.
+s3306_a_is_employer(CaseID, PersonID, CalendarYear, true) :-
+    s3306_a_2_agricultural_employer(CaseID, PersonID, CalendarYear, true),
+     \+ s3306_a_4_special_rule_domestic_only_check(CaseID, PersonID, CalendarYear, agricultural_employer_false),
+    !.
+s3306_a_is_employer(CaseID, PersonID, CalendarYear, true) :-
+    s3306_a_3_domestic_service_employer(CaseID, PersonID, CalendarYear, true),
+    !.
+s3306_a_is_employer(_, _, _, false).
+
+% s3306_a_1_general_employer(CaseID, PersonID, CalendarYear, IsGeneralEmployerBool)
+s3306_a_1_general_employer(CaseID, PersonID, CalendarYear, true) :-
+    ( s3306_a_1_A_wage_test_general(CaseID, PersonID, CalendarYear, true)
+    ; s3306_a_1_B_employee_test_general(CaseID, PersonID, CalendarYear, true)
+    ), !.
+s3306_a_1_general_employer(_, _, _, false).
+
+s3306_a_1_A_wage_test_general(CaseID, PersonID, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    fact(CaseID, total_wages_paid_for_general_employment(PersonID, YearToCheck, Amount)),
+    Amount >= 1500,
+    !.
+s3306_a_1_A_wage_test_general(CaseID, PersonID, CalendarYear, true) :- % Sum individual wages if total not available
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    findall(WageAmount,
+            ( fact(CaseID, paid_wage_to_employee_for_service(PersonID, EmployeeID, YearToCheck, WageAmount, ServiceType)),
+              \+ ServiceType == domestic_service % Exclude domestic service wages for this test
+            ),
+            Wages),
+    sum_list(Wages, TotalWages),
+    TotalWages >= 1500,
+    !.
+s3306_a_1_A_wage_test_general(_, _, _, false).
+
+s3306_a_1_B_employee_test_general(CaseID, PersonID, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    fact(CaseID, employed_one_individual_on_x_days_general(PersonID, YearToCheck, NumDays)),
+    NumDays >= 10, % "on each of some 10 days ... each day being in a different calendar week"
+                  % Assuming fact 'employed_one_individual_on_x_days_general' respects "different calendar week"
+    !.
+s3306_a_1_B_employee_test_general(_, _, _, false).
+
+% s3306_a_2_agricultural_employer(CaseID, PersonID, CalendarYear, IsAgriEmployerBool)
+s3306_a_2_agricultural_employer(CaseID, PersonID, CalendarYear, true) :-
+    ( s3306_a_2_A_wage_test_agricultural(CaseID, PersonID, CalendarYear, true)
+    ; s3306_a_2_B_employee_test_agricultural(CaseID, PersonID, CalendarYear, true)
+    ), !.
+s3306_a_2_agricultural_employer(_, _, _, false).
+
+s3306_a_2_A_wage_test_agricultural(CaseID, PersonID, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    fact(CaseID, total_wages_paid_for_agricultural_labor(PersonID, YearToCheck, Amount)),
+    Amount >= 20000,
+    !.
+s3306_a_2_A_wage_test_agricultural(_, _, _, false).
+
+s3306_a_2_B_employee_test_agricultural(CaseID, PersonID, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    fact(CaseID, employed_five_individuals_on_x_days_agricultural(PersonID, YearToCheck, NumDays)),
+    NumDays >= 10, % "employed at least 5 individuals ... on each of some 10 days"
+    !.
+s3306_a_2_B_employee_test_agricultural(_, _, _, false).
+
+% s3306_a_3_domestic_service_employer(CaseID, PersonID, CalendarYear, IsDomEmployerBool)
+s3306_a_3_domestic_service_employer(CaseID, PersonID, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    fact(CaseID, total_cash_wages_paid_for_domestic_service(PersonID, YearToCheck, Amount)),
+    Amount >= 1000,
+    !.
+s3306_a_3_domestic_service_employer(_, _, _, false).
+
+% s3306_a_4_special_rule_domestic_only_check(CaseID, PersonID, CalendarYear, CheckTypeAtom, IsFalseBool)
+% If person is employer under (a)(3) [domestic], they are NOT employer for OTHER services
+% UNLESS they also qualify under (a)(1) or (a)(2) for those other services.
+% CheckTypeAtom: general_employer_false, agricultural_employer_false
+% IsFalseBool: true if the general/agri employer status is voided by this rule.
+s3306_a_4_special_rule_domestic_only_check(CaseID, PersonID, CalendarYear, general_employer_false) :-
+    s3306_a_3_domestic_service_employer(CaseID, PersonID, CalendarYear, true), % Is a domestic employer
+    \+ s3306_a_1_general_employer_for_other_services(CaseID, PersonID, CalendarYear, true), % But NOT general employer for non-domestic
+    !.
+s3306_a_4_special_rule_domestic_only_check(CaseID, PersonID, CalendarYear, agricultural_employer_false) :-
+    s3306_a_3_domestic_service_employer(CaseID, PersonID, CalendarYear, true), % Is a domestic employer
+    \+ s3306_a_2_agricultural_employer_for_other_services(CaseID, PersonID, CalendarYear, true), % But NOT agri employer for non-domestic
+    !.
+
+% Helper: s3306_a_1_general_employer_for_other_services (like a_1, but ensures wages/employment are non-domestic)
+s3306_a_1_general_employer_for_other_services(CaseID, PersonID, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    (   ( findall(WageAmount,
+                ( fact(CaseID, paid_wage_to_employee_for_service(PersonID, _EmpID, YearToCheck, WageAmount, ServiceType)),
+                  ServiceType \== domestic_service % Only non-domestic wages
+                ), Wages),
+          sum_list(Wages, TotalNonDomesticWages),
+          TotalNonDomesticWages >= 1500
+        )
+    ;   ( fact(CaseID, employed_one_individual_on_x_days_non_domestic(PersonID, YearToCheck, NumDays)),
+          NumDays >= 10
+        )
+    ), !.
+s3306_a_1_general_employer_for_other_services(_, _, _, false).
+% Similar helper for agricultural would be needed if there's a distinction.
+
+
+% s3306_b_is_futa_wage(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, PaymentDetails, IsWageBool)
+% Determines if a specific payment is a FUTA wage.
+% PaymentDetails might be a term like cash_remuneration, non_cash_benefit(Value), sickness_plan_payment etc.
+s3306_b_is_futa_wage(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, PaymentDetails, true) :-
+    % General definition: "all remuneration for employment"
+    s3306_c_is_employment(CaseID, EmployerID, EmployeeID, PaymentDetails, true), % Assuming PaymentDetails contains service info for employment check
+    \+ s3306_b_exception_applies(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, PaymentDetails, true),
+    !.
+s3306_b_is_futa_wage(_, _, _, _, _, _, false).
+
+% s3306_b_exception_applies(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, PaymentDetails, ExceptionAppliesBool)
+s3306_b_exception_applies(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, _PaymentDetails, true) :- % (1) $7000 wage cap
+    s3306_b_1_wage_cap_exceeded(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, true),
+    !.
+s3306_b_exception_applies(CaseID, _EmployerID, _EmployeeID, _CalendarYear, _PaymentAmount, PaymentDetails, true) :- % (2) Sickness, accident, death plan
+    s3306_b_2_plan_payment_exception(CaseID, PaymentDetails, true), % PaymentDetails needs to identify type of payment
+    !.
+s3306_b_exception_applies(CaseID, EmployerID, EmployeeID, _CalendarYear, _PaymentAmount, PaymentDetails, true) :- % (7) Non-cash for non-business service
+    s3306_b_7_non_business_cash_remuneration_exception_applies(CaseID, EmployerID, EmployeeID, PaymentDetails, true),
+    !.
+s3306_b_exception_applies(CaseID, EmployerID, EmployeeID, _CalendarYear, _PaymentAmount, PaymentDetails, true) :- % (10) Certain termination payments
+    s3306_b_10_termination_payment_exception(CaseID, EmployerID, EmployeeID, PaymentDetails, true),
+    !.
+s3306_b_exception_applies(_CaseID, _EmployerID, _EmployeeID, _CalendarYear, _PaymentAmount, PaymentDetails, true) :- % (11) Non-cash for agricultural labor
+    PaymentDetails = payment(non_cash, _, agricultural_labor_service), % payment(Type, Amount, ServiceNature)
+    !.
+s3306_b_exception_applies(_CaseID, _EmployerID, _EmployeeID, CalendarYear, _PaymentAmount, PaymentDetails, true) :- % (15) Payment to survivor after death year
+    PaymentDetails = payment_to_survivor_after_death_year(EmployeeID, PaymentYear),
+    PaymentYear > CalendarYear, % Assuming CalendarYear is year of death for EmployeeID context
+    !.
+s3306_b_exception_applies(_, _, _, _, _, _, false).
+
+% s3306_b_1_wage_cap_exceeded(CaseID, EmployerID, EmployeeID, CalendarYear, CurrentPaymentAmount, ExceededBool)
+s3306_b_1_wage_cap_exceeded(CaseID, EmployerID, EmployeeID, CalendarYear, CurrentPaymentAmount, true) :-
+    FUTAWageBase = 7000,
+    fact(CaseID, ytd_futa_wages_paid_to_employee(EmployerID, EmployeeID, CalendarYear, YTDPaidWages)), % Before this payment
+    TotalConsideringCurrent is YTDPaidWages + CurrentPaymentAmount,
+    YTDPaidWages >= FUTAWageBase, % Already at or over cap before this payment
+    !.
+s3306_b_1_wage_cap_exceeded(CaseID, EmployerID, EmployeeID, CalendarYear, CurrentPaymentAmount, true) :-
+    FUTAWageBase = 7000,
+    fact(CaseID, ytd_futa_wages_paid_to_employee(EmployerID, EmployeeID, CalendarYear, YTDPaidWages)),
+    TotalConsideringCurrent is YTDPaidWages + CurrentPaymentAmount,
+    YTDPaidWages < FUTAWageBase, TotalConsideringCurrent > FUTAWageBase, % This payment crosses the cap
+    PortionOverCap is TotalConsideringCurrent - FUTAWageBase,
+    PortionOverCap >= CurrentPaymentAmount, % The current payment is entirely over cap (this logic is tricky)
+                                       % The rule is "that part of remuneration which ... is paid" AFTER $7000 has been paid.
+                                       % So, if YTD is $6000, and current payment is $1500, then $500 is excluded.
+                                       % This predicate should check if the CurrentPaymentAmount ITSELF is part of the excess.
+                                       % This requires knowing how much of CurrentPaymentAmount is taxable.
+                                       % Simpler: this predicate is about the *portion* of the payment.
+                                       % Let's assume s3306_b_total_futa_wages_for_employer handles the capping.
+                                       % This s3306_b_is_futa_wage is for a *specific* payment amount.
+                                       % If CurrentPaymentAmount itself is the part *after* $7000, then true.
+    AmountTaxable is FUTAWageBase - YTDPaidWages,
+    (AmountTaxable < 0, ExceededBool = true ; % Already over limit, current payment is excess
+     CurrentPaymentAmount > AmountTaxable, ExceededBool = true % Part of current payment is excess
+    ), !.
+s3306_b_1_wage_cap_exceeded(_, _, _, _, _, false).
+
+% s3306_b_2_plan_payment_exception(CaseID, PaymentDetails, AppliesBool)
+s3306_b_2_plan_payment_exception(_CaseID, PaymentDetails, true) :-
+    PaymentDetails = plan_payment_sickness_disability_death(_PlanType), % e.g. employer_plan_general_employees
+    % Needs more detail on plan qualification if tested.
+    !.
+s3306_b_2_plan_payment_exception(_, _, false).
+
+% s3306_b_7_non_business_cash_remuneration_exception_applies(CaseID, EmployerID, EmployeeID, PaymentDetails, AppliesBool)
+% "remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business"
+s3306_b_7_non_business_cash_remuneration_exception_applies(_CaseID, _EmployerID, _EmployeeID, PaymentDetails, true) :-
+    PaymentDetails = payment(non_cash, _Amount, service_not_in_course_of_business),
+    !.
+s3306_b_7_non_business_cash_remuneration_exception_applies(_, _, _, _, false).
+
+% s3306_b_10_termination_payment_exception(CaseID, EmployerID, EmployeeID, PaymentDetails, AppliesBool)
+s3306_b_10_termination_payment_exception(CaseID, EmployerID, EmployeeID, PaymentDetails, true) :-
+    s3306_b_10_A_termination_payment_exception_applies(CaseID, EmployerID, EmployeeID, PaymentDetails, true),
+    PaymentDetails = termination_payment(_, PlanDetails, _), % PlanDetails needs to be checked per (B)
+    fact(CaseID, payment_under_employer_plan(EmployerID, PlanDetails)), % Plan established by employer for employees generally
+    fact(CaseID, payment_would_not_have_been_made_if_not_terminated(EmployerID, EmployeeID, PaymentDetails)),
+    !.
+s3306_b_10_termination_payment_exception(_, _, _, _, false).
+
+% s3306_b_10_A_termination_payment_exception_applies(CaseID, EmployerID, EmployeeID, PaymentDetails, AppliesBool)
+% "upon or after the termination ... because of (i) death, or (ii) retirement for disability"
+s3306_b_10_A_termination_payment_exception_applies(_CaseID, _EmployerID, _EmployeeID, PaymentDetails, true) :-
+    PaymentDetails = termination_payment(Reason, _, _Amount), % termination_payment(reason_atom, plan_details, amount)
+    (Reason == death ; Reason == retirement_for_disability),
+    !.
+s3306_b_10_A_termination_payment_exception_applies(_, _, _, _, false).
+
+% s3306_b_total_futa_wages_for_employer(CaseID, EmployerID, CalendarYear, TotalFUTAWages)
+% Sums all FUTA wages for an employer, respecting the $7000 cap per employee.
+s3306_b_total_futa_wages_for_employer(CaseID, EmployerID, CalendarYear, TotalFUTAWages) :-
+    FUTAWageBaseCap = 7000,
+    findall(EmployeeID, fact(CaseID, paid_remuneration_to_employee(EmployerID, EmployeeID, CalendarYear, _, _)), AllEmployeesList),
+    list_to_set(AllEmployeesList, UniqueEmployees), % Get unique employees for the employer in the year
+    s3306_b_sum_capped_wages_for_employees(CaseID, EmployerID, CalendarYear, UniqueEmployees, FUTAWageBaseCap, 0, TotalFUTAWages).
+
+s3306_b_sum_capped_wages_for_employees(_CaseID, _EmployerID, _CalendarYear, [], _Cap, Acc, Acc).
+s3306_b_sum_capped_wages_for_employees(CaseID, EmployerID, CalendarYear, [EmployeeID | RestEmployees], Cap, AccIn, AccOut) :-
+    findall(PaymentAmount,
+            ( fact(CaseID, paid_remuneration_to_employee(EmployerID, EmployeeID, CalendarYear, PaymentAmount, PaymentDetails)),
+              s3306_b_is_futa_wage(CaseID, EmployerID, EmployeeID, CalendarYear, PaymentAmount, PaymentDetails, true) % Check if this specific payment is a FUTA wage
+            ), EmployeePayments),
+    sum_list(EmployeePayments, TotalWagesForEmployeeUncapped),
+    CappedEmployeeWages is min(TotalWagesForEmployeeUncapped, Cap),
+    NewAcc is AccIn + CappedEmployeeWages,
+    s3306_b_sum_capped_wages_for_employees(CaseID, EmployerID, CalendarYear, RestEmployees, Cap, NewAcc, AccOut).
+
+
+% s3306_c_is_employment(CaseID, EmployerID, EmployeeID, ServiceDetails, IsEmploymentBool)
+% Determines if a service constitutes "employment". ServiceDetails is a term describing the service.
+s3306_c_is_employment(CaseID, EmployerID, EmployeeID, ServiceDetails, true) :-
+    ServiceDetails = service_details(Nature, Location, Citizenship), % e.g. service_details(general_work, usa, us_citizen)
+    % General rule: service by employee for employer
+    ( (Location == usa) % (A) Performed within the United States
+    ; (Location == outside_usa, Citizenship == us_citizen, fact(CaseID, is_american_employer(EmployerID))) % (B) Outside US by US citizen for American employer
+      % Add exclusion for contiguous country with agreement if needed
+    ),
+    \+ s3306_c_exception_applies(CaseID, EmployerID, EmployeeID, ServiceDetails, true),
+    !.
+s3306_c_is_employment(_, _, _, _, false).
+
+% s3306_c_exception_applies(CaseID, EmployerID, EmployeeID, ServiceDetails, ExceptionAppliesBool)
+s3306_c_exception_applies(CaseID, EmployerID, _EmployeeID, ServiceDetails, true) :- % (1) Agricultural labor exception
+    ServiceDetails = service_details(agricultural_labor, _, _),
+    \+ s3306_c_1_agricultural_labor_is_employment(CaseID, EmployerID, ServiceDetails, true), % Exception applies if it's NOT employment under c(1)
+    !.
+s3306_c_exception_applies(CaseID, EmployerID, _EmployeeID, ServiceDetails, true) :- % (2) Domestic service exception
+    ServiceDetails = service_details(domestic_service, _, _),
+    \+ s3306_c_2_domestic_service_is_employment(CaseID, EmployerID, ServiceDetails, true), % Exception applies if it's NOT employment under c(2)
+    !.
+s3306_c_exception_applies(CaseID, EmployerID, EmployeeID, _ServiceDetails, true) :- % (5) Family employment
+    s3306_c_5_family_employment_exception_applies(CaseID, EmployerID, EmployeeID, _CalendarYearFromServiceDetails, true), % Need CalendarYear
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, _EmployeeID, ServiceDetails, true) :- % (6) US Government
+    ServiceDetails = service_details(us_government_service, _, _),
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, _EmployeeID, ServiceDetails, true) :- % (7) State/local Government
+    ServiceDetails = service_details(state_local_government_service, _, _),
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, EmployeeID, ServiceDetails, true) :- % (10) Student/spouse at school, patient at hospital
+    s3306_c_10_school_hospital_service_exception(CaseID, EmployeeID, ServiceDetails, true),
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, _EmployeeID, ServiceDetails, true) :- % (11) Foreign government
+    ServiceDetails = service_details(foreign_government_service, _, _),
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, EmployeeID, ServiceDetails, true) :- % (13) Student nurse
+    ServiceDetails = service_details(student_nurse_service, _, _), % EmployeeID is the student nurse
+    fact(_CaseID, is_student_nurse_enrolled_attending(EmployeeID, _HospitalOrSchool)),
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, _EmployeeID, ServiceDetails, true) :- % (16) International organization
+    ServiceDetails = service_details(international_organization_service, _, _),
+    !.
+s3306_c_exception_applies(_CaseID, _EmployerID, EmployeeID, ServiceDetails, true) :- % (21) Penal institution
+    ServiceDetails = service_details(penal_institution_inmate_service, _, _), % EmployeeID is inmate
+    fact(_CaseID, is_committed_to_penal_institution(EmployeeID)),
+    !.
+s3306_c_exception_applies(_, _, _, _, false).
+
+% s3306_c_1_agricultural_labor_is_employment(CaseID, PersonWhoPays, ServiceDetails, IsEmploymentBool)
+% Agricultural labor IS employment if conditions (A) and (B) are met.
+s3306_c_1_agricultural_labor_is_employment(CaseID, PersonWhoPays, ServiceDetails, true) :-
+    ServiceDetails = service_details(agricultural_labor, _, _),
+    s3306_c_1_A_agri_employer_wage_or_employee_test(CaseID, PersonWhoPays, _CalendarYearFromService, true), % Need year
+    \+ s3306_c_1_B_agri_labor_by_certain_alien(CaseID, _EmployeeIDFromService, true), % Need employee
+    !.
+s3306_c_1_agricultural_labor_is_employment(_, _, _, false).
+
+% s3306_c_1_A_agri_employer_wage_or_employee_test(CaseID, PersonWhoPays, CalendarYear, MetBool)
+% (i) cash remuneration of $20,000 or more OR (ii) 10 days with 5+ employees
+s3306_c_1_A_agri_employer_wage_or_employee_test(CaseID, PersonWhoPays, CalendarYear, true) :-
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    (   fact(CaseID, paid_cash_remuneration_agri_labor(PersonWhoPays, YearToCheck, Amount)), Amount >= 20000
+    ;   fact(CaseID, employed_agri_labor_days_5_or_more_employees(PersonWhoPays, YearToCheck, NumDays)), NumDays >= 10
+    ), !.
+s3306_c_1_A_agri_employer_wage_or_employee_test(_, _, _, false).
+
+% s3306_c_1_B_agri_labor_by_certain_alien(CaseID, EmployeeID, IsCertainAlienBool)
+s3306_c_1_B_agri_labor_by_certain_alien(CaseID, EmployeeID, true) :-
+    fact(CaseID, is_alien_admitted_for_agri_labor_h2a(EmployeeID)), % H-2A visa holder etc.
+    !.
+s3306_c_1_B_agri_labor_by_certain_alien(_, _, false).
+
+% s3306_c_2_domestic_service_is_employment(CaseID, PersonWhoPays, ServiceDetails, IsEmploymentBool)
+% Domestic service IS employment if cash remuneration of $1000 or more.
+s3306_c_2_domestic_service_is_employment(CaseID, PersonWhoPays, ServiceDetails, true) :-
+    ServiceDetails = service_details(domestic_service, _, _),
+    % CalendarYear should be part of ServiceDetails or passed in
+    fact(CaseID, service_calendar_year(ServiceDetails, CalendarYear)),
+    YearToCheck = CalendarYear ; YearToCheck is CalendarYear - 1,
+    fact(CaseID, paid_cash_remuneration_domestic_service_to_individuals(PersonWhoPays, YearToCheck, Amount)),
+    Amount >= 1000,
+    !.
+s3306_c_2_domestic_service_is_employment(_, _, _, false).
+
+% s3306_c_5_family_employment_exception_applies(CaseID, EmployerID, EmployeeID, CalendarYear, AppliesBool)
+s3306_c_5_family_employment_exception_applies(CaseID, EmployerID, EmployeeID, _CalendarYear, true) :- % (A) Service for son, daughter, or spouse
+    ( fact(CaseID, relationship_child_of(EmployerID, EmployeeID)) % Employer is child of Employee
+    ; fact(CaseID, relationship_parent_of(EmployeeID, EmployerID)) % Employee is parent of Employer (same as above)
+    ; fact(CaseID, spouse_of(EmployerID, EmployeeID))
+    ), !.
+s3306_c_5_family_employment_exception_applies(CaseID, EmployerID, EmployeeID, CalendarYear, true) :- % (B) Service by child under 21 for parent
+    fact(CaseID, relationship_child_of(EmployeeID, EmployerID)), % Employee is child of Employer
+    get_age_at_year_end(CaseID, EmployeeID, CalendarYear, Age),
+    Age < 21,
+    !.
+s3306_c_5_family_employment_exception_applies(_, _, _, _, false).
+
+% s3306_c_10_school_hospital_service_exception(CaseID, EmployeeID, ServiceDetails, AppliesBool)
+s3306_c_10_school_hospital_service_exception(CaseID, EmployeeID, ServiceDetails, true) :- % (A)(i) Student at school
+    ServiceDetails = service_details(service_for_school_college_university, _, _),
+    fact(CaseID, is_student_enrolled_attending(EmployeeID, _SchoolName)), % Employee is student
+    !.
+s3306_c_10_school_hospital_service_exception(CaseID, EmployeeID, ServiceDetails, true) :- % (A)(ii) Spouse of student
+    ServiceDetails = service_details(service_for_school_college_university, _, _),
+    fact(CaseID, spouse_of(EmployeeID, StudentSpouseID)),
+    fact(CaseID, is_student_enrolled_attending(StudentSpouseID, _SchoolName)),
+    % Additional conditions for spouse (e.g., if student's service also covered) - text is minimal here
+    !.
+s3306_c_10_school_hospital_service_exception(_CaseID, EmployeeID, ServiceDetails, true) :- % (B) Patient at hospital
+    ServiceDetails = service_details(service_for_hospital, _, _),
+    fact(_CaseID, is_patient_of_hospital(EmployeeID, _HospitalName)), % Employee is patient
+    !.
+s3306_c_10_school_hospital_service_exception(_, _, _, false).
