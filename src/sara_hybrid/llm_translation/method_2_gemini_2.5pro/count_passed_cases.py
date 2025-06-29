@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 import re
+import os
+import sys
+from pathlib import Path
 
 def extract_true_cases(run_content):
     """Extract case IDs where 'Result = true' is immediately followed by 'PASSED (Question assertion holds)' for the same case."""
@@ -20,14 +23,23 @@ def analyze_log_file(file_path):
     """Analyze the log file and count unique passed/tested cases for each run."""
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
-    # Split by the full separator lines for the runs
-    runs = re.split(r'^=+\s*(?:First|Second|Third) Run\s*=+$', content, flags=re.MULTILINE)
+    
+    # Split by the run separator lines - handle both old and new formats
+    # Old format: "======================= First Run =========================="
+    # New format: "========================= Run 1 ========================="
+    runs = re.split(r'^=+\s*(?:First|Second|Third|Run \d+)\s*=+$', content, flags=re.MULTILINE)
+    
+    # If no runs found with the new format, try the old format
+    if len(runs) <= 1:
+        runs = re.split(r'^=+\s*(?:First|Second|Third) Run\s*=+$', content, flags=re.MULTILINE)
     
     run_names = ['First Run', 'Second Run', 'Third Run']
     # Start at index 1 because split will have an empty string at the beginning
     for idx, run_content in enumerate(runs[1:], 1):
-        if idx > len(run_names): break
-        run_name = run_names[idx-1]
+        if idx > len(run_names): 
+            run_name = f"Run {idx}"
+        else:
+            run_name = run_names[idx-1]
         
         # Find all unique tested cases
         tested_cases_list = re.findall(r'testing\(([^)]+)\)', run_content)
@@ -48,7 +60,46 @@ def analyze_log_file(file_path):
         else:
             print("Success rate: N/A (no cases tested)\n")
 
+def find_log_file():
+    """Find the appropriate log file to analyze."""
+    script_dir = Path(__file__).parent
+    
+    # Focus on current pipeline results only
+    log_files = [
+        "prolog_execution.log",  # Current pipeline output
+    ]
+    
+    for log_file in log_files:
+        log_path = script_dir / log_file
+        if log_path.exists():
+            return log_path
+    
+    return None
+
 if __name__ == "__main__":
-    # Assumes the script is run from the project root
-    log_file = "src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/log_gemini.txt"
-    analyze_log_file(log_file) 
+    # Try to find the current pipeline log file
+    log_file = find_log_file()
+    
+    # If no log file found, check command line arguments
+    if log_file is None:
+        if len(sys.argv) > 1:
+            log_file = Path(sys.argv[1])
+            if not log_file.exists():
+                print(f"Error: Log file {log_file} not found!")
+                sys.exit(1)
+        else:
+            print("Error: No pipeline log file found!")
+            print("Expected file: prolog_execution.log")
+            print("Available options:")
+            print("1. Run the pipeline first: python prolog_pipeline.py")
+            print("2. Specify log file path as argument: python count_passed_cases.py <log_file>")
+            sys.exit(1)
+    
+    print(f"Analyzing current pipeline results: {log_file}")
+    print("=" * 50)
+    
+    try:
+        analyze_log_file(log_file)
+    except Exception as e:
+        print(f"Error analyzing log file: {e}")
+        sys.exit(1) 

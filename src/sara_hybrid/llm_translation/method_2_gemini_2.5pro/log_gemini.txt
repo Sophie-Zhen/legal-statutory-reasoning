@@ -209,3 +209,28 @@ Case s63_f_3_pos: EXCEPTION error(instantiation_error,context(system:(is)/2,_818
 testing(tax_case_25)
 Case tax_case_25: ERROR - answer/2 failed or threw exception
 Case tax_case_25: FAILED (Question assertion does not hold)
+
+
+2025-06-27 method2:
+?- forall(answer(CaseID, Result), writeln(CaseID: Result)).
+s1_d_iv_neg:true
+s3306_c_5_pos:true
+s1_c_i_neg:true
+s1_b_iii_neg:true
+s152_d_2_F_pos:true
+s1_a_1_iii_neg:true
+s3306_b_10_A_neg:true
+s63_c_2_B_neg:true
+s3306_b_7_neg:true
+s152_c_1_E_pos:true
+s2_a_2_B_pos:false
+s63_c_3_pos:false
+s3306_a_1_neg:false
+s7703_b_1_pos:true
+s1_c_iv_pos:true
+s3306_b_pos:false
+s1_a_1_pos:true
+s68_b_1_A_neg:true
+true.
+
+14/18 cases

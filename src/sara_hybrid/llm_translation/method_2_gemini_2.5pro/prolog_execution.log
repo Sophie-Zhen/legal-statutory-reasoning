@@ -1,0 +1,133 @@
+
+========================= Prolog Test Execution =========================
+Command: swipl -q -f /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl -t run_all_tests -g halt
+Return code: 0
+STDOUT:
+
+STDERR:
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/helpers.pl:13:
+Warning:    import/1: prolog_debug_tools:assertion/1 is not exported (still imported into helpers)
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/helpers.pl:69:
+Warning:    Singleton variables: [EndOfYearStamp,BirthStamp]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/helpers.pl:119:
+Warning:    Singleton variables: [TaxableIncome,TaxAmount]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/helpers.pl:120:
+Warning:    Singleton variables: [Rate,BaseTaxForBracket,LimitPrevBracket]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/helpers.pl:120:
+Warning:    Singleton variable in branch: LimitPrevBracket
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section152.pl:10:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section152.pl:10:
+Warning:    Goal (directive) failed: section152:use_module(library(helpers),[get_age_at_year_end/4])
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section151.pl:7:
+ERROR:    Exported procedure section152:s152_d_2_relationship_qr_met/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section7703.pl:8:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section7703.pl:8:
+Warning:    Goal (directive) failed: section7703:use_module(library(helpers),[get_year_from_date/2])
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section7703.pl:63:
+Warning:    Singleton variable in branch: DeathY
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section68.pl:8:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section68.pl:8:
+Warning:    Goal (directive) failed: section68:use_module(library(helpers),[tcja_active_general/1])
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section151.pl:9:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section151.pl:9:
+Warning:    Goal (directive) failed: section151:use_module(library(helpers),[tcja_active_general/1,ceiling_to_int/2])
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section2.pl:7:
+Warning:    import/1: section152:s152_b_2_married_dependent_joint_return/4 is not exported (still imported into section2)
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section2.pl:9:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section2.pl:9:
+Warning:    Goal (directive) failed: section2:use_module(library(helpers),[get_year_from_date/2])
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section2.pl:218:9: Syntax error: Operator expected
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section1.pl:7:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section1.pl:7:
+Warning:    Goal (directive) failed: section1:use_module(library(helpers),[calculate_tax_from_brackets/3,round_to_nearest_dollar/2])
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section63.pl:8:
+Warning:    import/1: section151:s151_b_spouse_conditions_met/5 is not exported (still imported into section63)
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section63.pl:11:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section63.pl:11:
+Warning:    Goal (directive) failed: section63:use_module(library(helpers),[tcja_active_standard_deduction/1,get_age_at_year_end/4])
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section63.pl:173:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning:    Singleton-marked variable appears more than once: _TaxpayerID
+Warning:    Singleton-marked variable appears more than once: _TaxYear
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:11:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:11:
+Warning:    Goal (directive) failed: section3306:use_module(library(helpers),[get_age_at_year_end/4])
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:33:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:38:
+Warning:    Singleton variables: [EmployeeID]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:38:
+Warning:    Singleton variable in branch: YearToCheck
+Warning:    Singleton variable in branch: EmployeeID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:49:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:62:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:68:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:75:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:95:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:135:
+Warning:    Singleton variables: [EmployeeID]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:141:
+Warning:    Singleton variables: [TotalConsideringCurrent]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:147:
+Warning:    Singleton variable in branch: ExceededBool
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:213:
+Warning:    Singleton variables: [Nature]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:241:
+Warning:    Singleton variables: [CaseID]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:247:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:254:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:269:
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:282:
+Warning:    Singleton variable in branch: CalendarYear
+Warning:    Singleton variable in branch: YearToCheck
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3306.pl:314:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3301.pl:5:
+ERROR:    Exported procedure section3306:s3306_b_is_futa_wage/6 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3301.pl:9:
+ERROR:    source_sink `library(helpers)' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/section3301.pl:9:
+Warning:    Goal (directive) failed: section3301:use_module(library(helpers),[round_to_nearest_dollar/2])
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:25:
+Warning:    Singleton variables: [_bob_s1_d_iv_neg]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:488:
+Warning:    Singleton-marked variable appears more than once: _AnyYear
+Warning:    Singleton variable in branch: StatementTruth
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:538:
+Warning:    Singleton variable in branch: StatementTruth
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:663:
+Warning:    Singleton variable in branch: AGI
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:682:
+Warning:    Singleton variables: [ExpectedTax,TaxableIncomeForS1]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:682:
+Warning:    Clauses of tests:answer/2 are not together in the source-file
+Warning:    Earlier definition at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:440
+Warning:    Current predicate: tests:get_taxable_income/4
+Warning:    Use :- discontiguous tests:answer/2. to suppress this message
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:698:
+Warning:    Singleton variables: [TaxableIncomeForS1]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:715:
+Warning:    Singleton variables: [TaxableIncomeForS1]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:736:
+Warning:    Singleton variables: [TaxableIncomeForS1]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:780:
+Warning:    Singleton variables: [TaxableIncomeForS1]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl:831:
+Warning:    Singleton variables: [TaxableIncomeForS1]
+
