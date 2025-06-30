@@ -1,0 +1,17 @@
+case_id,question_type,success,correct,result,error
+s1_d_iv_neg,contradiction,True,True,true,
+s3306_c_5_pos,entailment,True,False,false,
+s1_c_i_neg,contradiction,True,True,true,
+s1_b_iii_neg,contradiction,True,True,true,
+s152_d_2_F_pos,entailment,False,False,,"ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/src/query_generation/stage1/stage1_results_20250630_121105/test_s152_d_2_F_pos.pl:9: Initialization goal raised exception:
+ERROR: test/0: Unknown procedure: s152_d_2_F/3
+ERROR:   However, there are definitions for:
+ERROR:         s152_d_2_A/4
+ERROR:         s152_d_2_B/4
+ERROR:         s152_d_2_C/4
+ERROR:         s152_d_2_D/4
+ERROR:         s152_d_2_G/4
+ERROR:         s152_d_2_E/5
+ERROR:         s152_d_2_F/5
+ERROR:         s152_d_2_H/6
+"

@@ -1,0 +1,6 @@
+case_id,question_type,success,correct,result,error
+s1_d_iv_neg,contradiction,True,True,true,
+s3306_c_5_pos,entailment,True,False,false,
+s1_c_i_neg,contradiction,True,True,true,
+s1_b_iii_neg,contradiction,True,True,true,
+s152_d_2_F_pos,entailment,True,True,true,

@@ -1,0 +1,1 @@
+answer('s152_c_3_neg', true).

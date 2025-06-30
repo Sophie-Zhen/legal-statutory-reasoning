@@ -1,0 +1,1 @@
+answer(s151_a_neg, true) :- \+ s151_a("Alice", 6000, 2015).

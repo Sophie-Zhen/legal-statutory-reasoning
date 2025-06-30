@@ -1,0 +1,1 @@
+case_query(Result) :- s151_b("Bob","Alice",2017), Result=true ; Result=false.

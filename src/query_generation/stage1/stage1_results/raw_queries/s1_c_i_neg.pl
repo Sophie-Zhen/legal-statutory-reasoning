@@ -1,0 +1,1 @@
+case_query(Result) :- s63("Alice",2017,X), X =:= 718791, Result = true.

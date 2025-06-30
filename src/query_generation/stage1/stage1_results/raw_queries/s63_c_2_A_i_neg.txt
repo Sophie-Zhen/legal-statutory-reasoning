@@ -1,0 +1,15 @@
+[QUESTION TO TRANSLATE]
+If John and Mary file jointly in 2017, what is their tax liability if their taxable income is $50,000?
+
+[CORRECT REASONING AND OUTPUT]
+<reasoning>
+1. **Analyze the Question:** The question asks about the tax liability of a married couple filing jointly, given a specific taxable income and year.
+2. **Select the Predicate:**  `s1_a_tax/2` calculates the tax for married couples filing jointly.
+3. **Identify Arguments:** The predicate requires the taxable income and the resulting tax. We'll use `s1_a_tax(50000, Tax)` and constrain the year to 2017 within the query.  The filing status is implicit in the choice of predicate `s1_a_tax/2`.
+</reasoning>
+<prolog_code>
+case_query(Tax) :- s1_a_tax(50000, Tax).
+</prolog_code>
+
+% --- SWI-PROLOG STDERR ---
+% SWI-Prolog TIMEOUT

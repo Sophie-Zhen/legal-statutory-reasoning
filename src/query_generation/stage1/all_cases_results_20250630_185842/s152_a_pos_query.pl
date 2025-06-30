@@ -1,0 +1,1 @@
+answer('s152_a_pos', true).

@@ -1,0 +1,43 @@
+case_id,question_type,success,correct,result,error
+s1_d_iv_neg,contradiction,False,False,,"Warning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/cases/s1_d_iv_neg.pl:11:
+Warning:    Redefined static procedure s7703/4
+Warning:    Previously defined at /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/section7703.pl:2
+Warning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/cases/s1_d_iv_neg.pl:12:
+Warning:    Redefined static procedure s63/3
+Warning:    Previously defined at /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/section63.pl:2
+ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/src/query_generation/stage1/stage1_results_20250628_180806/test_s1_d_iv_neg.pl:8: Initialization goal raised exception:
+ERROR: answer/2: Unknown procedure: s1_d/3
+ERROR:   However, there are definitions for:
+ERROR:         s1_a/4
+ERROR:         s1_b/4
+ERROR:         s1_c/4
+ERROR:         s1_d/5
+"
+s3306_c_5_pos,entailment,True,True,true,
+s1_c_i_neg,contradiction,False,False,,"Warning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/cases/s1_c_i_neg.pl:10:
+Warning:    Redefined static procedure s63/3
+Warning:    Previously defined at /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/section63.pl:2
+ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/src/query_generation/stage1/stage1_results_20250628_180806/test_s1_c_i_neg.pl:8: Initialization goal raised exception:
+ERROR: answer/2: Unknown procedure: s1_c/3
+ERROR:   However, there are definitions for:
+ERROR:         s1_a/4
+ERROR:         s1_b/4
+ERROR:         s1_c/4
+ERROR:         s1_d/5
+"
+s1_b_iii_neg,contradiction,False,False,,"Warning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/cases/s1_b_iii_neg.pl:11:
+Warning:    Redefined static procedure s2_b/3
+Warning:    Previously defined at /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/section2.pl:146
+Warning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/cases/s1_b_iii_neg.pl:12:
+Warning:    Redefined static procedure s63/3
+Warning:    Previously defined at /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/section63.pl:2
+ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/src/query_generation/stage1/stage1_results_20250628_180806/test_s1_b_iii_neg.pl:9: Initialization goal raised exception:
+ERROR: answer/2: Unknown procedure: s1_b/3
+ERROR:   However, there are definitions for:
+ERROR:         s2_b/3
+ERROR:         s1_a/4
+ERROR:         s1_b/4
+ERROR:         s1_c/4
+ERROR:         s1_d/5
+"
+s152_d_2_F_pos,entailment,True,True,true,

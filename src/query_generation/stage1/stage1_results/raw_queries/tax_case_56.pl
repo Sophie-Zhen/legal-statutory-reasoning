@@ -1,0 +1,1 @@
+case_query(true):- s1_a_tax(130388).

@@ -1,0 +1,22 @@
+case,pass,query,prompt_used
+tax_case_55,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s1_a_1_i_pos,False,"```prolog case_query(Result) :- (taxable_income(john, 2022, X), X > 50000 -> Result = true ; Result = false ). ```",prompt_income_tax.txt
+s151_d_3_B_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s2_b_2_B_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s2_b_1_A_i_II_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s1_d_v_neg,False,"```prolog case_query(Result) :- (taxable_income(john, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s1_a_2_ii_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s152_d_2_G_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+tax_case_72,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+tax_case_11,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s152_d_2_C_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+tax_case_32,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s63_c_2_A_i_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s152_a_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s151_d_5_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s152_d_2_D_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, 100000) -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s1_d_iv_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s2_a_1_B_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+s68_b_1_B_neg,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt
+tax_case_38,False,"```prolog case_query(Result) :- (taxable_income(alice, 2021, X), X > 50000 -> Result = true ; Result = false ). ```",prompt_income_tax.txt
+s151_d_3_B_pos,False,"```prolog case_query(Result) :- (taxable_income(alice, 2022, X), X > 50000 -> Result = true ; Result = false). ```",prompt_income_tax.txt

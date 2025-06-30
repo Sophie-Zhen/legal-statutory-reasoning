@@ -1,0 +1,1 @@
+answer('s152_d_2_F_pos', Result) :- (s152_d_2_F('Alice', 'Bob', _) -> Result = true ; Result = false).

@@ -1,0 +1,19 @@
+Is the taxpayer's taxable income $22,100 for the tax year 2016?
+
+[CORRECT REASONING AND OUTPUT]
+<reasoning>
+1.  **Analyze the Question:** The question asks to verify a specific value for "taxable income".
+2.  **Select the Predicate:** I will scan the PREDICATE GLOSSARY for keywords related to taxable income. The predicate `s63/3` is the correct choice.
+3.  **Map Arguments:** The predicate `s63/3` requires a taxpayer, a tax year, and a variable for the output. Based on the question, the arguments are `taxpayer_1`, `2016`, and a variable `TaxableIncome`. The query must then compare this variable to `22100`.
+</reasoning>
+<prolog_code>
+case_query(Result) :-
+    s63(taxpayer_1, 2016, TaxableIncome),
+    ( TaxableIncome =:= 22100
+      -> Result = true
+      ;  Result = false
+    ).
+</prolog_code>
+
+% --- SWI-PROLOG STDERR ---
+% SWI-Prolog TIMEOUT

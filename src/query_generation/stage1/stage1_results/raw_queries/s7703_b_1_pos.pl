@@ -1,0 +1,1 @@
+case_query(true) :- s151_c_applies("Alice","Charlie",2018), s7703_b_1("Alice",_,_,2018).

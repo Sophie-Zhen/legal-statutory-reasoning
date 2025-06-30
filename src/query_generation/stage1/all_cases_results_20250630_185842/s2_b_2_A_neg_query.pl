@@ -1,0 +1,1 @@
+answer('s2_b_2_A_neg', true).

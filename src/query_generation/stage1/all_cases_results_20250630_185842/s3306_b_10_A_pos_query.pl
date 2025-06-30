@@ -1,0 +1,1 @@
+answer('s3306_b_10_A_pos', true).
