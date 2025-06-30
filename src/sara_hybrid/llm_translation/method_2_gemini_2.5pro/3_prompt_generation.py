@@ -70,10 +70,10 @@ def create_prompt(prompt_file, statutes_file, cases_file, output_file):
         file.write(merged_content)
 
 def main():
-    prompt_file_path = "src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prompt3.0.txt"
-    statutes_file_path = "src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/statutes.txt"
-    cases_file_path = "src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/selected_cases.txt"
-    output_file_path = "src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/merged_prompt3.0.txt"
+    prompt_file_path = "promt3.0.txt"
+    statutes_file_path = "statutes.txt"
+    cases_file_path = "selected_cases.txt"
+    output_file_path = "merged_prompt3.0.txt"
     
     print("Creating merged prompt...")
     create_prompt(prompt_file_path, statutes_file_path, cases_file_path, output_file_path)
