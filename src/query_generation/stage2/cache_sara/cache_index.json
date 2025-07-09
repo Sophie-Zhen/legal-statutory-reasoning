@@ -1,0 +1,22 @@
+{
+  "tax_case_1": {
+    "cached_at": "2025-07-09T17:19:30.731826",
+    "status": "success"
+  },
+  "tax_case_31": {
+    "cached_at": "2025-07-09T17:20:54.100202",
+    "status": "success"
+  },
+  "tax_case_34": {
+    "cached_at": "2025-07-09T17:21:37.652967",
+    "status": "success"
+  },
+  "s1_a_1_pos": {
+    "cached_at": "2025-07-09T17:22:41.678138",
+    "status": "success"
+  },
+  "s3306_c_10_A_i_neg": {
+    "cached_at": "2025-07-09T17:23:55.684093",
+    "status": "success"
+  }
+}
