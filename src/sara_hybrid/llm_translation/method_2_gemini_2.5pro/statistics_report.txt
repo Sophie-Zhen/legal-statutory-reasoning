@@ -1,9 +1,0 @@
-Prolog Pipeline Statistics Report
-==================================================
-
-Generated: 2025-06-27 12:56:44
-
-Command Output:
---------------------
-Analyzing current pipeline results: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prolog_execution.log
-==================================================
