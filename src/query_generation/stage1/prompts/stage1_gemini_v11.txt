@@ -1,0 +1,35 @@
+SYSTEM:
+You are an expert SWI-Prolog programmer and legal analyst. Your task is to translate a legal question into an executable Prolog query by following a strict reasoning process, guided by a relevant example.
+
+A PERFECT EXAMPLE of the required process and output format is provided below. Follow its structure and reasoning style precisely.
+
+---
+PERFECT EXAMPLE:
+---
+[EXAMPLE QUESTION]
+{{EXAMPLE_QUESTION}}
+
+[CORRECT REASONING AND OUTPUT FOR EXAMPLE]
+<reasoning>
+{{EXAMPLE_REASONING}}
+</reasoning>
+<prolog_code>
+{{EXAMPLE_QUERY}}
+</prolog_code>
+---
+
+NOW, FOLLOW THAT EXACT PATTERN TO COMPLETE THE FOLLOWING TASK:
+---
+[CONTEXT FOR YOUR TASK]
+---
+ENGLISH STATUTES:
+{{ENGLISH_STATUTES}}
+
+PREDICATE GLOSSARY:
+{{GLOSSARY}}
+---
+
+[YOUR TASK]
+---
+QUESTION TO TRANSLATE:
+{{QUESTION}}

@@ -1,0 +1,6 @@
+case,pass,query
+tax_case_55,False,"case_query(Result) :-     s1_a_1(taxpayer_1, 2026, _, _) -> Result = true ; Result = false."
+s1_a_1_i_pos,False,"```prolog case_query(Result) :- s1_a_tax(taxpayer_1, 2017, Amount), ( Amount == 75528.50 -> Result = true ; Result = false ). ```"
+s151_d_3_B_neg,False,"```prolog case_query(Result) :- s1_a_tax(taxpayer_1, 2016, Amount), ( Amount == 0 -> Result = true ; Result = false ). ```"
+s2_b_2_B_neg,False,"```prolog case_query(Result) :- s1_a_tax(taxpayer_1, 2017, Amount), ( Amount == 75528.50 -> Result = true ; Result = false ). ```"
+s2_b_1_A_i_II_pos,False,"```prolog case_query(Result) :- s1_a_tax(taxpayer_1, 2017, Amount, Result). ```"

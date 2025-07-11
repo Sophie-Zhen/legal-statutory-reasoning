@@ -1,0 +1,15 @@
+[QUESTION TO TRANSLATE]
+What is the tax rate for a married individual filing jointly with a taxable income of $20,000 in 2017?
+
+[CORRECT REASONING AND OUTPUT]
+<reasoning>
+1. **Analyze the Question:** The question asks about the tax rate for a married individual filing jointly.
+2. **Select the Predicate:**  The glossary contains `s1_a_1/6`, which defines the tax for married individuals filing jointly.  Since the income is $20,000, which is less than $36,900, `s1_a_i/2` applies.
+3. **Identify Arguments:** The predicate `s1_a_i/2` needs the taxable income and the tax amount. The query will test `s1_a_i(20000, Tax)`.
+</reasoning>
+<prolog_code>
+case_query(Result) :- ( s1_a_i(20000, Tax), Result = Tax ; Result = false ).
+</prolog_code>
+
+% --- SWI-PROLOG STDERR ---
+% SWI-Prolog TIMEOUT

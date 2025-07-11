@@ -1,0 +1,19 @@
+[QUESTION TO TRANSLATE]
+If a taxpayer's spouse died in 2016, and the taxpayer maintains a household with a dependent stepson, is the taxpayer considered a surviving spouse for the 2017 tax year?
+
+[CORRECT REASONING AND OUTPUT]
+<reasoning>
+1. **Analyze the Question:** The question asks if a taxpayer is considered a surviving spouse given specific conditions about the death of their spouse and maintaining a household with a dependent stepson.
+2. **Select the Predicate:** The glossary contains `s2_a/3`, which defines the conditions for being a surviving spouse.
+3. **Identify Arguments:** The predicate needs the taxpayer, the year, and a result variable.  We'll use `taxpayer_1` for the taxpayer, `2017` for the year, and `Result` for the result. The query will test `s2_a(taxpayer_1, 2017, Result)`. We also need to establish the facts that the spouse died in 2016 and that the taxpayer maintains a household with a dependent stepson.  We'll represent the stepson with `stepson_1`.
+</reasoning>
+<prolog_code>
+case_query(Result) :-
+    spouse_died(taxpayer_1, 2016),
+    is_stepparent_of(taxpayer_1, stepson_1, _, _), % The stepson exists
+    s152(taxpayer_1, 2017, stepson_1), % The stepson is a dependent
+    (s2_a(taxpayer_1, 2017, Result) -> Result = true ; Result = false).
+</prolog_code>
+
+% --- SWI-PROLOG STDERR ---
+% SWI-Prolog TIMEOUT

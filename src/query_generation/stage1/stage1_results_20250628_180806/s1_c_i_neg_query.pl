@@ -1,0 +1,1 @@
+answer('s1_c_i_neg', Result) :- s1_c(718791, Tax, 2017), Tax == 265413, Result = false ; Result = true.

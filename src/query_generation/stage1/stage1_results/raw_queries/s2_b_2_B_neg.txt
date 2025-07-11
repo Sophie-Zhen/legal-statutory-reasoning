@@ -1,0 +1,20 @@
+---
+WORKSHEET TO COMPLETE
+---
+1.  **ANALYSIS:** This question asks to determine the taxable income for a given taxpayer.
+
+2.  **PREDICATE SELECTION:** `s63/3`
+
+3.  **ARGUMENT IDENTIFICATION:**
+    *   `Taxpayer` (Variable)
+    *   `Year` (Variable)
+    *   `TaxableIncome` (Variable)
+
+
+4.  **QUERY:**
+```prolog
+case_query(Result) :-
+    s63(Taxpayer, Year, TaxableIncome),
+    (TaxableIncome > 0 -> Result = true ; Result = false).
+```
+---

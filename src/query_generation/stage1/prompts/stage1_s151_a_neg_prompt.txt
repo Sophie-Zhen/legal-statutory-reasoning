@@ -1,0 +1,30 @@
+I am an expert in Prolog and U.S. federal tax law. Your task is to translate a natural language legal question into a single, executable Prolog query.
+
+**INSTRUCTIONS:**
+
+1.  **Analyze the Case:** You are given a specific case below, including a Text narrative, a Question, and a set of Prolog facts.
+2.  **Identify the Goal:** Your goal is to create a Prolog query that answers the "Question" by calling a high-level predicate like `tax/3`, `s151_a/3`, `s3306_c_1/2`, etc. You must deduce the correct predicate and its arguments from the Question.
+3.  **Handle Logic:**
+    * If the Question implies **"Contradiction"**, your final `Result` must be `true` if the underlying goal *fails*. Use the negation operator `\+`.
+    * If the Question implies **"Entailment"**, the `Result` must be `true` if the underlying goal *succeeds*.
+4.  **Generate Output:** Your entire output must be a single, complete Prolog clause in the format: `answer(CaseID, Result) :- Goal.`. Do not output any other text or explanation.
+
+---
+**CASE: `s151_a_neg`**
+
+**Natural Language Text:**
+% Alice's income in 2015 is $100000. She gets one exemption of $2000 for the year 2015 under section 151(c). Alice is not married.
+
+**Natural Language Question:**
+% Alice's total exemption for 2015 under section 151(a) is equal to $6000. Contradiction
+
+**Prolog Facts for this Case:**
+:- discontiguous s151_c/4.
+s151_c("Alice", _, 2000, 2015).
+income_(span("income", 8,13)).
+agent_(span("income", 8,13), span ("Alice", 0,4)).
+start_(span("income", 8,13), span (20150101,18,21)).
+amount_(span("income", 8,13), span (100000,27,32)).
+---
+
+Generate the `answer(s151_a_neg, Result)` clause.

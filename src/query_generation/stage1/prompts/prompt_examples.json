@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Is an individual entitled to a personal exemption for the tax year 2017?",
+    "reasoning": "1. **Analyze the Question:** The question asks about entitlement to a personal exemption. 2. **Select the Predicate:** The glossary contains `exemption_allowed/2`, which directly tests this condition. 3. **Identify Arguments:** The predicate needs the taxpayer ID and the year. The query will test `exemption_allowed(taxpayer_1, 2017)`.",
+    "query": "case_query(Result) :- ( exemption_allowed(taxpayer_1, 2017) -> Result = true ; Result = false )."
+  },
+  {
+    "question": "Does section 63 make the taxable income of the taxpayer zero for the tax year 2017?",
+    "reasoning": "1. **Analyze the Question:** This asks to verify a specific value for 'taxable income'. 2. **Select the Predicate:** The glossary contains `s63/3` for this purpose. 3. **Identify Arguments:** The predicate `s63/3` needs a taxpayer, year, and a variable for the income. The query must call `s63(taxpayer_1, 2017, TaxableIncome)` and then compare `TaxableIncome` to `0`.",
+    "query": "case_query(Result) :- s63(taxpayer_1, 2017, TaxableIncome), ( TaxableIncome =:= 0 -> Result = true ; Result = false )."
+  },
+  {
+    "question": "Is it true that an individual is considered married for the entire year of 2012?",
+    "reasoning": "1. **Analyze the Question:** The question is about marital status in a specific year. 2. **Select the Predicate:** The glossary has `s7703_a/2` for determining marital status. 3. **Identify Arguments:** The predicate requires the taxpayer ID and the year. The query will test `s7703_a(taxpayer_1, 2012)`.",
+    "query": "case_query(Result) :- ( s7703_a(taxpayer_1, 2012) -> Result = true ; Result = false )."
+  },
+  {
+    "question": "Is a person considered a qualifying child of the taxpayer for the tax year 2019?",
+    "reasoning": "1. **Analyze the Question:** The core concept is 'qualifying child'. 2. **Select the Predicate:** The glossary contains `is_qualifying_child/3`. 3. **Identify Arguments:** The predicate needs the dependent, the taxpayer, and the year. The query will test `is_qualifying_child(dependent_1, taxpayer_1, 2019)`.",
+    "query": "case_query(Result) :- ( is_qualifying_child(dependent_1, taxpayer_1, 2019) -> Result = true ; Result = false )."
+  }
+]

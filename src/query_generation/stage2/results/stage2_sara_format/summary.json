@@ -1,0 +1,140 @@
+{
+  "total_cases": 5,
+  "successful_extractions": 5,
+  "tests_passed": 5,
+  "accuracy": 1.0,
+  "timestamp": "2025-07-09T17:23:55.684508",
+  "results": [
+    {
+      "case_id": "tax_case_1",
+      "status": "success",
+      "facts_count": 21,
+      "facts": [
+        "payment(span(\"paid\",10,13)).",
+        "patient(span(\"paid\",10,13),span(\"Alice\",0,4)).",
+        "amount(span(\"paid\",10,13),span(1200,16,19)).",
+        "start(span(\"paid\",10,13),span(20190101,24,28)).",
+        "end(span(\"paid\",10,13),span(20191231,24,28)).",
+        "purpose(span(\"paid\",10,13),span(\"services\",33,40)).",
+        "location(span(\"paid\",10,13),span(\"jail\",55,58)).",
+        "service(span(\"services\",33,40)).",
+        "agent(span(\"services\",33,40),span(\"Alice\",0,4)).",
+        "location(span(\"services\",33,40),span(\"jail\",55,58)).",
+        "commitment(span(\"committed\",71,79)).",
+        "patient(span(\"committed\",71,79),span(\"Alice\",0,4)).",
+        "location(span(\"committed\",71,79),span(\"jail\",55,58)).",
+        "start(span(\"committed\",71,79),span(20150124,95,112)).",
+        "end(span(\"committed\",71,79),span(20190505,116,129)).",
+        "payment(span(\"paid\",10,13)).",
+        "patient(span(\"paid\",10,13),span(\"Alice\",0,4)).",
+        "amount(span(\"paid\",10,13),span(5320,181,184)).",
+        "start(span(\"paid\",10,13),span(20190505,136,150)).",
+        "end(span(\"paid\",10,13),span(20191231,154,168)).",
+        "purpose(span(\"paid\",10,13),span(\"remuneration\",189,200))."
+      ],
+      "query": "answer('tax_case_1', Result) :- (tax(\"Alice\",2019,0) -> Result = true ; Result = false).",
+      "test_result": {
+        "success": true,
+        "output": "true",
+        "correct": true
+      }
+    },
+    {
+      "case_id": "tax_case_31",
+      "status": "success",
+      "facts_count": 12,
+      "facts": [
+        "payment(span(\"paid\",19,22)).",
+        "start(span(\"paid\",19,22),span(20170101,3,6)).",
+        "patient(span(\"paid\",19,22),span(\"Alice\",9,13)).",
+        "amount(span(\"paid\",19,22),span(39212,25,29)).",
+        "income(span(\"income\",47,52)).",
+        "agent(span(\"income\",47,52),span(\"Bob\",36,38)).",
+        "amount(span(\"income\",47,52),span(0,4,4)).",
+        "start(span(\"income\",47,52),span(20170101,3,6)).",
+        "marriage(span(\"married\",79,85)).",
+        "agent(span(\"married\",79,85),span(\"Alice\",9,13)).",
+        "agent(span(\"married\",79,85),span(\"Bob\",36,38)).",
+        "start(span(\"married\",79,85),span(20170203,94,108))."
+      ],
+      "query": "answer('tax_case_31', Result) :- (tax(\"Alice\",2017,6621) -> Result = true ; Result = false).",
+      "test_result": {
+        "success": true,
+        "output": "false",
+        "correct": true
+      }
+    },
+    {
+      "case_id": "tax_case_34",
+      "status": "success",
+      "facts_count": 4,
+      "facts": [
+        "income(span(\"income\",14,19)).",
+        "agent(span(\"income\",14,19),span(\"Alice\",0,4)).",
+        "start(span(\"income\",14,19),span(20170101,34,38)).",
+        "amount(span(\"income\",14,19),span(22895,43,47))."
+      ],
+      "query": "answer('tax_case_34', Result) :- (tax(\"Alice\",2017,2684) -> Result = true ; Result = false).",
+      "test_result": {
+        "success": true,
+        "output": "false",
+        "correct": true
+      }
+    },
+    {
+      "case_id": "s1_a_1_pos",
+      "status": "success",
+      "facts_count": 9,
+      "facts": [
+        "marriage(span(\"married\",9,15)).",
+        "agent(span(\"married\",9,15),span(\"Alice\",0,4)).",
+        "start(span(\"married\",9,15),span(20170101,49,53)).",
+        "agent(span(\"married\",9,15),span(\"her spouse\",87,96)).",
+        "income(span(\"income\",142,147)).",
+        "agent(span(\"income\",142,147),span(\"Alice\",0,4)).",
+        "agent(span(\"income\",142,147),span(\"her husband\",120,130)).",
+        "start(span(\"income\",142,147),span(20170101,162,166)).",
+        "amount(span(\"income\",142,147),span(17330,171,175))."
+      ],
+      "query": "answer('s1_a_1_pos', Result) :- (s1_a(_{'_arg1': \"Alice\"},2017,_,2600) -> Result = true ; Result = false).",
+      "test_result": {
+        "success": true,
+        "output": "false",
+        "correct": true
+      }
+    },
+    {
+      "case_id": "s3306_c_10_A_i_neg",
+      "status": "success",
+      "facts_count": 20,
+      "facts": [
+        "payment(span(\"paid\",10,13)).",
+        "service(span(\"services\",33,40)).",
+        "educationalinstitution(span(\"University\",70,79)).",
+        "agent(span(\"paid\",10,13),span(\"Johns Hopkins University\",56,79)).",
+        "patient(span(\"paid\",10,13),span(\"Alice\",0,4)).",
+        "amount(span(\"paid\",10,13),span(3200,16,19)).",
+        "start(span(\"paid\",10,13),span(20170101,24,27)).",
+        "purpose(span(\"paid\",10,13),span(\"services\",33,40)).",
+        "agent(span(\"services\",33,40),span(\"Alice\",0,4)).",
+        "patient(span(\"services\",33,40),span(\"Johns Hopkins University\",56,79)).",
+        "enrollment_(span(\"enrolled\",92,99)).",
+        "agent(span(\"enrolled\",92,99),span(\"Alice\",0,4)).",
+        "patient(span(\"enrolled\",92,99),span(\"Johns Hopkins University\",56,79)).",
+        "start(span(\"enrolled\",92,99),span(20110827,156,170)).",
+        "end(span(\"enrolled\",92,99),span(20160529,175,188)).",
+        "attendingclasses(span(\"attending\",133,141)).",
+        "agent(span(\"attending\",133,141),span(\"Alice\",0,4)).",
+        "location(span(\"attending\",133,141),span(\"Johns Hopkins University\",56,79)).",
+        "start(span(\"attending\",133,141),span(20110827,156,170)).",
+        "end(span(\"attending\",133,141),span(20160529,175,188))."
+      ],
+      "query": "answer('s3306_c_10_A_i_neg', Result) :- (s3306_c_10_A_i(\"Alice\",_,2017) -> Result = true ; Result = false).",
+      "test_result": {
+        "success": true,
+        "output": "false",
+        "correct": true
+      }
+    }
+  ]
+}

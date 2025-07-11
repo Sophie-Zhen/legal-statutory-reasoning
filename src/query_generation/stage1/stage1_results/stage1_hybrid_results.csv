@@ -1,0 +1,6 @@
+case,pass,query
+tax_case_55,False,"answer(tax_case_55, Result) :-     Result = unknown."
+s1_a_1_i_pos,False,"answer(s1_a_1_i_pos, Result) :-     fact(s1_a_1_i_pos, gross_income(alice, 2015, GI)),     s1_a_1_i_tax_imposed(s1_a_1_i_pos, alice, 2015, GI, TaxImposed),     TaxImposed > 0,     Result = true."
+s151_d_3_B_neg,False,"answer(s151_d_3_B_neg, Result) :-     fact(s151_d_3_B_neg, adjusted_gross_income(alice, 2015, AGI)),     s151_d_3_B_applicable_percentage(s151_d_3_B_neg, alice, 2015, AGI, ComputedPercentage),     ( round(ComputedPercentage) =\= 22 -> Result = true ; Result = false )."
+s2_b_2_B_neg,False,"answer(s2_b_2_B_neg, Result) :-     Result = false."
+s2_b_1_A_i_II_pos,False,"answer(s2_b_1_A_i_II_pos, Result) :-     fact(s2_b_1_A_i_II_pos, gross_income(alice, 2019, GrossIncome)),     s2_b_1_A_i_II_applicable_percentage(s2_b_1_A_i_II_pos, alice, 2019, GrossIncome, ComputedPercentage),     (ComputedPercentage > 0 -> Result = true; Result = false)."

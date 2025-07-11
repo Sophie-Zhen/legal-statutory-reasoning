@@ -1,0 +1,47 @@
+[
+  {
+    "case_id": "s1_d_iv_neg",
+    "question_type": "contradiction",
+    "success": true,
+    "correct": false,
+    "result": "true",
+    "error": null,
+    "query_code": "answer('s1_d_iv_neg', true)."
+  },
+  {
+    "case_id": "s3306_c_5_pos",
+    "question_type": "entailment",
+    "success": false,
+    "correct": false,
+    "result": "",
+    "error": "ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/src/query_generation/stage1/stage1_results_20250628_224506/test_s3306_c_5_pos.pl:8: Initialization goal raised exception:\nERROR: answer/2: Unknown procedure: s3306_c_5/3\nERROR:   However, there are definitions for:\nERROR:         s3306_c_6/1\nERROR:         s3306_c_1/2\nERROR:         s3306_c_7/2\nERROR:         s3306_c_2/3\nERROR:         s3306_c_A/3\nERROR:         s3306_c_5/4\nERROR:         s3306_c_B/4\n",
+    "query_code": "answer('s3306_c_5_pos', Result) :- (s3306_c_5(alice, bob, 2017) -> Result = true ; Result = false)."
+  },
+  {
+    "case_id": "s1_c_i_neg",
+    "question_type": "contradiction",
+    "success": true,
+    "correct": false,
+    "result": "true",
+    "error": null,
+    "query_code": "answer('s1_c_i_neg', true)."
+  },
+  {
+    "case_id": "s1_b_iii_neg",
+    "question_type": "contradiction",
+    "success": true,
+    "correct": false,
+    "result": "true",
+    "error": null,
+    "query_code": "answer('s1_b_iii_neg', true)."
+  },
+  {
+    "case_id": "s152_d_2_F_pos",
+    "question_type": "entailment",
+    "success": true,
+    "correct": true,
+    "result": "true",
+    "error": null,
+    "query_code": "answer('s152_d_2_F_pos', Result) :- (s152_d_2_F(\"Alice\",\"Bob\",_,_,_) -> Result = true ; Result = false)."
+  }
+]

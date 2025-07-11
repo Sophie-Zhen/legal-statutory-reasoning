@@ -1,0 +1,1 @@
+answer('tax_case_89', Result) :- income_tax(alice, 2018, Tax), Result = (Tax =:= 0).

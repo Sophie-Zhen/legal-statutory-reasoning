@@ -1,0 +1,20 @@
+Stage 1 Results Summary
+======================
+Total test cases: 26
+Successfully executed: 26 (100.0%)
+Correct results: 25 (96.2%)
+
+By Question Type:
+
+contradiction:
+  Total: 9
+  Success: 9 (100.0%)
+  Correct: 9 (100.0%)
+entailment:
+  Total: 9
+  Success: 9 (100.0%)
+  Correct: 8 (88.9%)
+tax_amount:
+  Total: 8
+  Success: 8 (100.0%)
+  Correct: 8 (100.0%)

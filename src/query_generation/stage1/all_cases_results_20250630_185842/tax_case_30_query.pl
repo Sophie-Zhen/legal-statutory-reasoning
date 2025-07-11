@@ -1,0 +1,1 @@
+answer('tax_case_30', 249).

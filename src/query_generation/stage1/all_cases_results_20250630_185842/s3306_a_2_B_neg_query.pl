@@ -1,0 +1,1 @@
+answer('s3306_a_2_B_neg', true).

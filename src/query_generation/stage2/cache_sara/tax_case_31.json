@@ -1,0 +1,25 @@
+{
+  "case_id": "tax_case_31",
+  "status": "success",
+  "facts_count": 12,
+  "facts": [
+    "payment(span(\"paid\",19,22)).",
+    "start(span(\"paid\",19,22),span(20170101,3,6)).",
+    "patient(span(\"paid\",19,22),span(\"Alice\",9,13)).",
+    "amount(span(\"paid\",19,22),span(39212,25,29)).",
+    "income(span(\"income\",47,52)).",
+    "agent(span(\"income\",47,52),span(\"Bob\",36,38)).",
+    "amount(span(\"income\",47,52),span(0,4,4)).",
+    "start(span(\"income\",47,52),span(20170101,3,6)).",
+    "marriage(span(\"married\",79,85)).",
+    "agent(span(\"married\",79,85),span(\"Alice\",9,13)).",
+    "agent(span(\"married\",79,85),span(\"Bob\",36,38)).",
+    "start(span(\"married\",79,85),span(20170203,94,108))."
+  ],
+  "query": "answer('tax_case_31', Result) :- (tax(\"Alice\",2017,6621) -> Result = true ; Result = false).",
+  "test_result": {
+    "success": true,
+    "output": "false",
+    "correct": true
+  }
+}

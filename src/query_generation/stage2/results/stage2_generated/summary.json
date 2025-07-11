@@ -1,0 +1,4478 @@
+{
+  "total_cases": 376,
+  "successful_cases": 373,
+  "success_rate": 0.9920212765957447,
+  "fact_metrics_summary": {
+    "avg_precision": 0.03540281734726179,
+    "avg_recall": 0.05555555555555555,
+    "avg_f1": 0.0382618067803253
+  },
+  "timestamp": "2025-07-09T02:17:25.069190",
+  "output_directory": "/Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/src/query_generation/stage2/results/stage2_generated",
+  "detailed_results": [
+    {
+      "case_id": "s151_a_neg",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 8
+      },
+      "query": "answer('s151_a_neg', Result) :- (tax(\"Alice\",2015,6000) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_a_pos",
+      "status": "success",
+      "facts_count": 5,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 5
+      },
+      "query": "answer('s151_a_pos', Result) :- (tax(\"Alice\",2015,4000) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_b_neg",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s151_b_neg', Result) :- (s151_c(\"Alice\", \"Bob\", _, 2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_b_pos",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s151_b_pos', Result) :- (s151_b(\"Alice\",\"Bob\",_,2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_c_neg",
+      "status": "success",
+      "facts_count": 13,
+      "fact_metrics": {
+        "precision": 0.07692307692307693,
+        "recall": 1.0,
+        "f1_score": 0.14285714285714288,
+        "exact_matches": 0,
+        "semantic_matches": 1,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 13
+      },
+      "query": "answer('s151_c_neg', Result) :- (s151_c(\"Alice\",\"Bob\",_,2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_c_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s151_c_pos', Result) :- (s151_c(\"Alice\",\"Bob\",_,2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_d_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s151_d_1_neg', Result) :- (s151_d_1(0) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_d_1_pos",
+      "status": "success",
+      "facts_count": 14,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 14
+      },
+      "query": "answer('s151_d_1_pos', Result) :- (s151_d_1(2000) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_d_2_neg",
+      "status": "success",
+      "facts_count": 9,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 9
+      },
+      "query": "answer('s151_d_2_neg', Result) :- (s151_d_2(\"Bob\",2000,2000) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_d_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s151_d_2_pos', Result) :- (s151_d_2(\"Bob\",2015,0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_d_3_A_neg",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 6
+      },
+      "query": "answer('s151_d_3_A_neg', Result) :- (s151_d_3_A(\"Alice\",_,_,_,_,1900,1900) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_d_3_A_pos",
+      "status": "success",
+      "facts_count": 3,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 3
+      },
+      "query": "answer('s151_d_3_A_pos', Result) :- (s151_d_3_A(\"Alice\",_,_,_,_,1800,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_d_3_B_neg",
+      "status": "success",
+      "facts_count": 3,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 3
+      },
+      "query": "answer('s151_d_3_B_neg', Result) :- (s151_d_3_B(\"Alice\", 2015, 118) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_d_3_B_pos",
+      "status": "success",
+      "facts_count": 21,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 21
+      },
+      "query": "answer('s151_d_3_B_pos', Result) :- (s151_d_3_B(\"Alice\",2015,22) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s151_d_5_neg",
+      "status": "success",
+      "facts_count": 4,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 4
+      },
+      "query": "answer('s151_d_5_neg', Result) :- (s151_d_1(2000) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s151_d_5_pos",
+      "status": "success",
+      "facts_count": 4,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 4
+      },
+      "query": "answer('s151_d_5_pos', Result) :- (s151_d_1(0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_a_neg",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": {
+        "precision": 0.125,
+        "recall": 1.0,
+        "f1_score": 0.2222222222222222,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 8
+      },
+      "query": "answer('s152_a_neg', Result) :- (s152_a(\"Bob\",\"Alice\",2014) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_a_pos",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 8
+      },
+      "query": "answer('s152_a_pos', Result) :- (s152_a(\"Alice\",\"Bob\",2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_b_1_neg",
+      "status": "success",
+      "facts_count": 9,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 2,
+        "reference_count": 2,
+        "generated_count": 9
+      },
+      "query": "answer('s152_b_1_neg', Result) :- (s152_b_1(\"Alice\",_,2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_b_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s152_b_1_pos', Result) :- (s152_b_1(\"Bob\",_,2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_b_2_neg",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_b_2_neg', Result) :- (s152_b_2(\"Alice\",_,_,2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_b_2_pos",
+      "status": "success",
+      "facts_count": 13,
+      "fact_metrics": null,
+      "query": "answer('s152_b_2_pos', Result) :- (s152_b_2(\"Alice\",_,_,2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_1_B_neg",
+      "status": "success",
+      "facts_count": 5,
+      "fact_metrics": null,
+      "query": "answer('s152_c_1_B_neg', Result) :- (s152_c_1(\"Alice\",\"Bob\",_,2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_1_B_pos",
+      "status": "success",
+      "facts_count": 5,
+      "fact_metrics": null,
+      "query": "answer('s152_c_1_B_pos', Result) :- (s152_c_1_B(\"Alice\",\"Bob\",_,2016) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_1_E_neg",
+      "status": "success",
+      "facts_count": 12,
+      "fact_metrics": null,
+      "query": "answer('s152_c_1_E_neg', Result) :- (s152_c_1_E(\"Bob\", 2019) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_1_E_pos",
+      "status": "success",
+      "facts_count": 13,
+      "fact_metrics": null,
+      "query": "answer('s152_c_1_E_pos', Result) :- (s152_c_1_E(\"Bob\",_,_,2019) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_1_neg",
+      "status": "success",
+      "facts_count": 16,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 16
+      },
+      "query": "answer('s152_c_1_neg', Result) :- (s152_c(\"Alice\",\"Bob\",_,2019) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_1_pos",
+      "status": "success",
+      "facts_count": 34,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 34
+      },
+      "query": "answer('s152_c_1_pos', Result) :- (s152_c_1(\"Alice\", \"Bob\", _, 2019) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_2_A_neg",
+      "status": "success",
+      "facts_count": 5,
+      "fact_metrics": null,
+      "query": "answer('s152_c_2_A_neg', Result) :- (s152_c_2_B(\"Bob\",\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_2_A_pos",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s152_c_2_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_2_B_neg",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s152_c_2_B_neg', Result) :- (s152_c_2_B(\"Bob\",\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_2_B_pos",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s152_c_2_B_pos', Result) :- (s152_c_2_B(\"Bob\", \"Alice\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_2_neg",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s152_c_2_neg', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_2_pos",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s152_c_2_pos', Result) :- (s152_c_2_B(\"Bob\", \"Alice\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_c_3_neg",
+      "status": "success",
+      "facts_count": 11,
+      "fact_metrics": null,
+      "query": "answer('s152_c_3_neg', Result) :- (s152_c_3(\"Alice\",\"Bob\",2019) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_c_3_pos",
+      "status": "success",
+      "facts_count": 9,
+      "fact_metrics": null,
+      "query": "answer('s152_c_3_pos', Result) :- (s152_c_2_B(\"Bob\",\"Alice\",_,_,2019) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s152_d_1_B_neg', Result) :- (s152_d_1_B(\"Alice\",2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_1_B_pos",
+      "status": "success",
+      "facts_count": 5,
+      "fact_metrics": {
+        "precision": 0.2,
+        "recall": 1.0,
+        "f1_score": 0.33333333333333337,
+        "exact_matches": 0,
+        "semantic_matches": 1,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 5
+      },
+      "query": "answer('s152_d_1_B_pos', Result) :- (s152_d_1_B(\"Alice\",2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_1_D_neg",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1_score": 0.5,
+        "exact_matches": 0,
+        "semantic_matches": 2,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 6
+      },
+      "query": "answer('s152_d_1_D_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_1_D_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s152_d_1_D_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_A_neg', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_A_pos', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_B_neg",
+      "status": "success",
+      "facts_count": 4,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_B_neg', Result) :- (s152_c_2_B(\"Alice\",\"Bob\",_,_,2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_C_neg",
+      "status": "success",
+      "facts_count": 11,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_C_neg', Result) :- (s152_c_2_B(\"Alice\",\"Bob\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_C_pos",
+      "status": "success",
+      "facts_count": 4,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_C_pos', Result) :- (s152_c_2_B(\"Bob\", \"Alice\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_D_neg",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_D_neg', Result) :- (s152_c_2_B(\"Alice\",\"Bob\",_,_,2018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_D_pos",
+      "status": "success",
+      "facts_count": 11,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_D_pos', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2019) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_E_neg",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_E_neg', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_E_pos",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_E_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_F_neg",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_F_neg', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_F_pos",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_F_pos', Result) :- (s152_c_2_B(\"Alice\",\"Bob\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_G_neg",
+      "status": "success",
+      "facts_count": 9,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_G_neg', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2018) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_G_pos",
+      "status": "success",
+      "facts_count": 8,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_G_pos', Result) :- (s152_c_2_B(\"Alice\",\"Charlie\",_,_,2018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s152_d_2_H_neg",
+      "status": "success",
+      "facts_count": 16,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_H_neg', Result) :- (s152_c_2_B(\"Alice\",\"Bob\",_,_,2015) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s152_d_2_H_pos",
+      "status": "success",
+      "facts_count": 6,
+      "fact_metrics": null,
+      "query": "answer('s152_d_2_H_pos', Result) :- (s152_c_2_B(\"Alice\", \"Bob\", _, _, 2018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_1_i_neg",
+      "status": "success",
+      "facts_count": 12,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 12
+      },
+      "query": "answer('s1_a_1_i_neg', Result) :- (s1_a_i(42876,7208) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_1_i_pos",
+      "status": "success",
+      "facts_count": 5,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 5
+      },
+      "query": "answer('s1_a_1_i_pos', Result) :- (s1_a_i(_,2600) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_1_ii_neg",
+      "status": "success",
+      "facts_count": 18,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 18
+      },
+      "query": "answer('s1_a_1_ii_neg', Result) :- (s1_a(\"Alice\",2017,_,24543) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_1_ii_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_ii_pos', Result) :- (s1_a(\"Alice\",2017,_,7208) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_1_iii_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_iii_neg', Result) :- (s1_a(\"Alice\",2017,_,44789) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_1_iii_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_iii_pos', Result) :- (s1_a(\"Alice\",2017,_,24543) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_1_iv_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_iv_neg', Result) :- (s1_a(\"Alice\",2017,_,247647) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_1_iv_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_iv_pos', Result) :- (s1_a(\"Alice\",2017,_,44789) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_1_neg', Result) :- (s1_a(\"Alice\",2017,_,24056) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_1_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_pos', Result) :- (s1_a(\"Alice\",2017,_,2600) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_1_v_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_v_neg', Result) :- (s1_a(\"Alice\",2017,_,2600) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_1_v_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_a_1_v_pos', Result) :- (s1_a(\"Alice\",2017,_,247647) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_2_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_i_neg', Result) :- (s1_a(\"Alice\",2017,_,14836) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_2_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_i_pos', Result) :- (s1_a(\"Alice\",2017,_,3834) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_2_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_ii_neg', Result) :- (s1_a(\"Alice\",2017,_,22018) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_2_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_ii_pos', Result) :- (s1_a(\"Alice\",2017,_,14836) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_2_iii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_iii_neg', Result) :- (s1_a(\"Alice\",2017,_,70640) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_2_iii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_iii_pos', Result) :- (s1_a(\"Alice\",2017,_,22018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_2_iv_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_iv_neg', Result) :- (s1_a(\"Alice\",2017,_,220295) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_2_iv_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_iv_pos', Result) :- (s1_a(\"Alice\",2017,_,70640) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_2_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_neg', Result) :- (s1_a(\"Alice\",2017,_,65445) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_pos', Result) :- (s1_a(\"Alice\",2017,_,14836) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_a_2_v_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_v_neg', Result) :- (s1_a(\"Alice\",2017,_,3834) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_a_2_v_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_a_2_v_pos', Result) :- (s1_a(\"Alice\",2017,_,220295) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_b_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_i_neg', Result) :- (s1_b(\"Alice\",2017,_,442985) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_b_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_i_pos', Result) :- (s1_b(\"Alice\",2017,_,1434) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_b_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_ii_neg', Result) :- (s1_b(\"Alice\",2017,_,1434) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_b_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_ii_pos', Result) :- (s1_b(\"Alice\",2017,_,11489) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_b_iii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_iii_neg', Result) :- (s1_b(\"Alice\",2017,_,11489) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_b_iii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_iii_pos', Result) :- (s1_b(\"Alice\",2017,_,24056) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_b_iv_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_iv_neg', Result) :- (s1_b(\"Alice\",2017,_,24056) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_b_iv_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_iv_pos', Result) :- (s1_b(\"Alice\",2017,_,57509) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_b_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_b_neg', Result) :- (s1_b(\"Alice\",2017,_,207772) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_b_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_pos', Result) :- (s1_b(\"Alice\",2017,_,24056) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_b_v_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_v_neg', Result) :- (s1_b(\"Alice\",2017,_,57509) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_b_v_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_b_v_pos', Result) :- (s1_b(\"Alice\",2017,_,442985) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_c_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_i_neg', Result) :- (s1_c(\"Alice\",2017,17330,265413) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_c_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_i_pos', Result) :- (s1_c(\"Alice\",2017,17330,1162) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_c_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_ii_neg', Result) :- (s1_c(\"Alice\",2017,17330,1162) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_c_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_ii_pos', Result) :- (s1_c(\"Alice\",2017,17330,3538) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_c_iii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_iii_neg', Result) :- (s1_c(\"Alice\",2017,17330,3538) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_c_iii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_iii_pos', Result) :- (s1_c(\"Alice\",2017,17330,27225) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_c_iv_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_iv_neg', Result) :- (s1_c(\"Alice\",2017,17330,27225) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_c_iv_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_iv_pos', Result) :- (s1_c(\"Alice\",2017,17330,65445) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_c_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1_score": 0.5,
+        "exact_matches": 1,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_c_neg', Result) :- (s1_c(\"Alice\",2017,17330,2600) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_c_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_pos', Result) :- (s1_c(\"Alice\",2017,17330,65445) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_c_v_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_v_neg', Result) :- (s1_c(\"Alice\",2017,17330,65445) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_c_v_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s1_c_v_pos', Result) :- (s1_c(\"Alice\",2017,17330,265413) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_d_i_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_i_neg', Result) :- (s1_d_i(0,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_d_i_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_i_pos', Result) :- (s1_d_i(0,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_d_ii_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_ii_neg', Result) :- (s1_d_ii(0,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_d_ii_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_ii_pos', Result) :- (s1_d_ii(0,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_d_iii_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_iii_neg', Result) :- (s1_d_iii(0,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_d_iii_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_iii_pos', Result) :- (s1_d_iii(0,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_d_iv_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_iv_neg', Result) :- (s1_d_iv(0,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_d_iv_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_iv_pos', Result) :- (s1_d_iv(0,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_d_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s1_d_neg', Result) :- (s1_d(\"Alice\",_,2017,0,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_d_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_pos', Result) :- (s1_d(\"Alice\",_,2017,0,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s1_d_v_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_v_neg', Result) :- (s1_d_v(0,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s1_d_v_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 2,
+        "generated_count": 2
+      },
+      "query": "answer('s1_d_v_pos', Result) :- (s1_d_v(0,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_a_1_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_a_1_A_neg', Result) :- (s2_a_1_A(\"Bob\",_,_,_,2014) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_a_1_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_a_1_A_pos', Result) :- (s2_a_1_A(\"Bob\",_,_,_,2015) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_a_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_a_1_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_a_1_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_a_1_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_a_2_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_a_2_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_a_2_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_a_2_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_a_2_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_a_2_B_neg', Result) :- (s2_a_2_B(\"Bob\",_,2014) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_a_2_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_a_2_B_pos', Result) :- (s2_a_2_B(\"Bob\",_,2014) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_A_i_II_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_i_II_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_A_i_II_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_i_II_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_A_i_I_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_i_I_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_A_i_I_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_i_I_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_A_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_i_neg', Result) :- (s2_b_1_A_i(\"Bob\",_,2018) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_A_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_i_pos', Result) :- (s2_b_1_A_i(\"Charlie\",_,2018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_A_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_ii_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_A_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_ii_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 17,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 6,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_1_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_2_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_b_2_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_2_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_b_2_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_2_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_b_2_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_2_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_b_2_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_2_C_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_b_2_C_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_2_C_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s2_b_2_C_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_3_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_3_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_3_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_3_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s2_b_3_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_3_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s2_b_3_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s2_b_3_B_pos', Result) :- (tax(\"Bob\",2018,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3301_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s3301_neg', Result) :- (tax(\"Alice\",2016,26362) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3301_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 4,
+        "generated_count": 1
+      },
+      "query": "answer('s3301_pos', Result) :- (tax(\"Alice\",2015,27181) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_a_1_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_1_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_a_1_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_1_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_a_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_1_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_a_1_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_1_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_a_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_1_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_a_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_1_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_a_2_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_2_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_a_2_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_2_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_a_2_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_2_B_neg', Result) :- (s3306_a_2_B(\"Alice\",_,_,_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_a_2_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_2_B_pos', Result) :- (s3306_a_2_B(\"Alice\",_,_,_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_a_3_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_3_neg', Result) :- (s3306_a_3(\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_a_3_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_a_3_pos', Result) :- (s3306_a_3(\"Bob\",_,_,2018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_10_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_10_A_neg', Result) :- (tax(\"Alice\",2019,12980) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_10_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_10_A_pos', Result) :- (tax(\"Alice\",2019,12980) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_10_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_10_B_neg', Result) :- (tax(\"Alice\",2019,12980) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_10_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_10_B_pos', Result) :- (tax(\"Alice\",2019,12980) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_11_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_11_neg', Result) :- (s3306_b_11(_,_,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_11_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_11_pos', Result) :- (s3306_b_11(_,_,_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_15_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s3306_b_15_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_15_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s3306_b_15_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_2_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_2_A_neg', Result) :- (s3306_b_2_A(_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_2_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_2_A_pos', Result) :- (s3306_b_2_A(span(\"health insurance\",148,163)) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_2_C_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_2_C_neg', Result) :- (s3306_b_2_C(span(\"retirement fund\",103,117)) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_2_C_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_2_C_pos', Result) :- (s3306_b_2_C(span(\"life insurance\",148,161)) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_7_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_7_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_7_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_7_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_b_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_neg', Result) :- (s3306_b(_,_,_,\"Alice\",\"Bob\",\"Alice\",\"Bob\",_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_b_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_b_pos', Result) :- (s3306_b(_,span(\"paid\",10,13),_,\"Alice\",\"Bob\",\"Alice\",\"Bob\",_) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_10_A_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_10_A_i_neg', Result) :- (s3306_c_10_A_i(\"Alice\",_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_10_A_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_10_A_i_pos', Result) :- (s3306_c_10_A_i(\"Alice\",_,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_10_A_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_10_A_ii_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_10_A_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_10_A_ii_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_10_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_10_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_10_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_10_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_11_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_11_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_11_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_11_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_13_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_13_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_13_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_13_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_16_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_16_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_16_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_16_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_1_A_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_1_A_i_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_1_A_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_1_A_i_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_1_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_1_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_1_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_1_neg', Result) :- (s3306_c_1(_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_1_pos', Result) :- (s3306_c_1(_,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_21_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_21_neg', Result) :- (s3306_c_21(span(\"paid\",0,3),\"Alice\",_,20170101) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_21_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_21_pos', Result) :- (s3306_c_21(span(\"paid\",0,3),\"Alice\",_,20170101) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_2_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_2_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_2_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_5_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_5_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_5_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_5_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_6_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_6_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_6_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_6_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_7_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_7_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_7_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_7_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_A_neg', Result) :- (s3306_c_A(_,\"Alice\",\"Bob\") -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_A_pos', Result) :- (s3306_c_A(_,\"Alice\",\"Bob\") -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s3306_c_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s3306_c_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s3306_c_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_a_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s63_a_neg', Result) :- (tax(\"Alice\",2017,31200) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_a_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_a_pos', Result) :- (tax(\"Alice\",2017,26948) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_b_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s63_b_neg', Result) :- (tax(\"Alice\",2017,31400) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_b_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s63_b_pos', Result) :- (tax(\"Alice\",2017,31200) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_1_neg",
+      "status": "error",
+      "error": "FactExtractor._emergency_extraction.<locals>.<lambda>() missing 1 required positional argument: 'm'"
+    },
+    {
+      "case_id": "s63_c_1_pos",
+      "status": "error",
+      "error": "FactExtractor._emergency_extraction.<locals>.<lambda>() missing 1 required positional argument: 'm'"
+    },
+    {
+      "case_id": "s63_c_2_A_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_2_A_i_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_2_A_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_2_A_i_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_2_A_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_2_A_ii_neg', Result) :- (s63_c_2_A_ii(\"Alice\",2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_2_A_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_c_2_A_ii_pos', Result) :- (s63_c_2_A_ii(\"Alice\",2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_2_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_2_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_2_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_c_2_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_2_C_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_2_C_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_2_C_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_2_C_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_3_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s63_c_3_neg', Result) :- (s63_c_3(\"Alice\",300,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_3_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s63_c_3_pos', Result) :- (s63_c_3(\"Alice\",1200,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_5_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_5_neg', Result) :- (s63_c_5(\"Bob\",_,_,2017,_) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_5_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 2
+      },
+      "query": "answer('s63_c_5_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_6_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_6_A_neg', Result) :- (s63_c_6_A(\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_6_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_6_A_pos', Result) :- (s63_c_6_A(\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_6_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_6_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_6_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_6_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_6_D_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_6_D_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_6_D_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_6_D_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_7_i_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_c_7_i_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_7_i_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_c_7_i_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_c_7_ii_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_7_ii_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_c_7_ii_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_c_7_ii_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_d_2_neg",
+      "status": "error",
+      "error": "FactExtractor._emergency_extraction.<locals>.<lambda>() missing 1 required positional argument: 'm'"
+    },
+    {
+      "case_id": "s63_d_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_d_2_pos', Result) :- (s63_d_2(\"Alice\",[_],2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_d_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_d_neg', Result) :- (s63_d(\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_d_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_d_pos', Result) :- (s63_d(\"Alice\",_,_,2017) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_f_1_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_f_1_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_f_1_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_f_1_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_f_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_f_1_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_f_1_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_f_1_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_f_2_A_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_f_2_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_f_2_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_f_2_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_f_2_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_f_2_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_f_2_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s63_f_2_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s63_f_3_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_f_3_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s63_f_3_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s63_f_3_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_a_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_a_1_neg', Result) :- (s68_a_1(568492,275000,_,0.03) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_a_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_a_1_pos', Result) :- (s68_a_1(568492,287650,_,0.03) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_a_2_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s68_a_2_neg', Result) :- (s68_a_2(\"Alice\",_,47000,2016) -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s68_a_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s68_a_2_pos', Result) :- (s68_a_2(\"Alice\",_,48000,2016) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_b_1_A_neg",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 2
+      },
+      "query": "answer('s68_b_1_A_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s68_b_1_A_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_b_1_A_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_b_1_B_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_b_1_B_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s68_b_1_B_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_b_1_B_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_b_1_C_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_b_1_C_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s68_b_1_C_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s68_b_1_C_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_b_1_D_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_b_1_D_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s68_b_1_D_pos",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 1,
+        "reference_count": 1,
+        "generated_count": 2
+      },
+      "query": "answer('s68_b_1_D_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s68_f_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_f_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s68_f_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s68_f_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s7703_a_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s7703_a_1_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s7703_a_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s7703_a_1_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s7703_a_2_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s7703_a_2_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s7703_a_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('s7703_a_2_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s7703_b_1_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s7703_b_1_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s7703_b_1_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s7703_b_1_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s7703_b_2_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('s7703_b_2_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s7703_b_2_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s7703_b_2_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "s7703_b_3_neg",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s7703_b_3_neg', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "false"
+    },
+    {
+      "case_id": "s7703_b_3_pos",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('s7703_b_3_pos', Result) :- (true -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_1",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_1', Result) :- (tax(\"Alice\",2019,0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_10",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_10', Result) :- (tax(\"Alice\",2017,68844) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_100",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_100', Result) :- (tax(\"Bob\",2006,66088) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_11",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_11', Result) :- (tax(\"Alice\",2015,0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_12",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_12', Result) :- (tax(\"Alice\",2020,118227) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_13",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_13', Result) :- (tax(\"Bob\",2017,8710) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_14",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_14', Result) :- (tax(\"Alice\",2017,8582) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_15",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_15', Result) :- (tax(\"Alice\",2017,5460) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_16",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_16', Result) :- (tax(\"Alice\",2017,4938) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_17",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_17', Result) :- (tax(\"Bob\",2015,4509) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_18",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_18', Result) :- (tax(\"Alice\",2015,19801) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_19",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_19', Result) :- (tax(\"Alice\",2017,16664) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_2",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_2', Result) :- (tax(\"Alice\",2013,26567) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_20",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_20', Result) :- (tax(\"Alice\",2017,90683) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_21",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_21', Result) :- (tax(\"Alice\",2018,15777) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_22",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_22', Result) :- (tax(\"Alice\",2017,2174) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_23",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_23', Result) :- (tax(\"Bob\",2014,26549) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_24",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_24', Result) :- (tax(\"Alice\",2017,19039) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_25",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_25', Result) :- (tax(\"Alice\",2018,259487) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_26",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_26', Result) :- (tax(\"Alice\",2019,196056) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_27",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_27', Result) :- (tax(\"Alice\",2017,3720) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_28",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_28', Result) :- (tax(\"Alice\",2017,344848) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_29",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_29', Result) :- (tax(\"Alice\",2016,40741) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_3",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_3', Result) :- (tax(\"Alice\",2017,3390) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_30",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 7,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_30', Result) :- (tax(\"Alice\",2017,249) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_31",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_31', Result) :- (tax(\"Alice\",2017,6621) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_32",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_32', Result) :- (tax(\"Alice\",2019,2242833) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_33",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 21,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_33', Result) :- (tax(\"Alice\",2015,27181) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_34",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_34', Result) :- (tax(\"Alice\",2017,2684) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_35",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_35', Result) :- (tax(\"Alice\",2017,2384) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_36",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 2
+      },
+      "query": "answer('tax_case_36', Result) :- (tax(\"Alice\",2017,10018) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_37",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_37', Result) :- (tax(\"Alice\",2018,32045) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_38",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_38', Result) :- (tax(\"Alice\",2017,243097) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_39",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_39', Result) :- (tax(\"Bob\",2015,6812) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_4",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_4', Result) :- (tax(\"Alice\",2012,192) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_40",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_40', Result) :- (tax(\"Alice\",2017,279126) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_41",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_41', Result) :- (tax(\"Alice\",2013,17783) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_42",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_42', Result) :- (tax(\"Bob\",2015,8312) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_43",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_43', Result) :- (tax(\"Alice\",2017,8439) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_44",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_44', Result) :- (tax(\"Alice\",2017,34233) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_45",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_45', Result) :- (tax(\"Alice\",2017,0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_46",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_46', Result) :- (tax(\"Alice\",2020,17399) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_47",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_47', Result) :- (tax(\"Alice\",2017,45946) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_48",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_48', Result) :- (tax(\"Bob\",2018,33068) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_49",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_49', Result) :- (tax(\"Alice\",2015,82819) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_5",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_5', Result) :- (tax(\"Alice\",2017,116066) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_50",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_50', Result) :- (tax(\"Alice\",2017,4931) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_51",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_51', Result) :- (tax(\"Alice\",2017,55528) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_52",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_52', Result) :- (tax(\"Alice\",2017,72344) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_53",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_53', Result) :- (tax(\"Alice\",2020,206332) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_54",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_54', Result) :- (tax(\"Alice\",2019,62000) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_55",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_55', Result) :- (tax(\"Alice\",2018,187552) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_56",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_56', Result) :- (tax(\"Alice\",2015,130388) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_57",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_57', Result) :- (tax(\"Alice\",2017,4073) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_58",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_58', Result) :- (tax(\"Alice\",2017,21635) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_59",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_59', Result) :- (tax(\"Alice\",2020,15236) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_6",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_6', Result) :- (tax(\"Alice\",2017,180610) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_60",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_60', Result) :- (tax(\"Alice\",2015,4331) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_61",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_61', Result) :- (tax(\"Alice\",2015,25055) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_62",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_62', Result) :- (tax(\"Alice\",2017,1844) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_63",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_63', Result) :- (tax(\"Bob\",2019,20298) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_64",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_64', Result) :- (tax(\"Alice\",2015,81487) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_65",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_65', Result) :- (tax(\"Alice\",2016,14473) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_66",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_66', Result) :- (tax(\"Bob\",2016,16023) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_67",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_67', Result) :- (tax(\"Alice\",2016,207772) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_68",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_68', Result) :- (tax(\"Alice\",2018,28292) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_69",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_69', Result) :- (tax(\"Alice\",2014,264225) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_7",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_7', Result) :- (tax(\"Bob\",2015,245359) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_70",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_70', Result) :- (tax(\"Alice\",2016,178147) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_71",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_71', Result) :- (tax(\"Alice\",2017,356472) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_72",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_72', Result) :- (tax(\"Alice\",2013,7595) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_73",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_73', Result) :- (tax(\"Alice\",2013,15109) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_74",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_74', Result) :- (tax(\"Alice\",2017,4525) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_75",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_75', Result) :- (tax(\"Alice\",2012,8883) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_76",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_76', Result) :- (tax(\"Alice\",1997,46734) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_77",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_77', Result) :- (tax(\"Alice\",2023,6449) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_78",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_78', Result) :- (tax(\"Alice\",2019,14470) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_79",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_79', Result) :- (tax(\"Bob\",2020,17402) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_8",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_8', Result) :- (tax(\"Alice\",2017,12036) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_80",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_80', Result) :- (tax(\"Alice\",2014,21452) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_81",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_81', Result) :- (tax(\"Alice\",2012,10922) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_82",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_82', Result) :- (tax(\"Bob\",2012,986) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_83",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_83', Result) :- (tax(\"Alice\",2016,206073) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_84",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 1,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_84', Result) :- (tax(\"Alice\",2017,2574) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_85",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_85', Result) :- (tax(\"Alice\",2019,2477) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_86",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_86', Result) :- (tax(\"Alice\",2017,0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_87",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_87', Result) :- (tax(\"Alice\",2018,243103) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_88",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_88', Result) :- (tax(\"Alice\",2011,2334) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_89",
+      "status": "success",
+      "facts_count": 2,
+      "fact_metrics": null,
+      "query": "answer('tax_case_89', Result) :- (tax(\"Alice\",2018,0) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_9",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 3,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_9', Result) :- (tax(\"Alice\",2018,10598) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_90",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_90', Result) :- (tax(\"Bob\",2018,96641) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_91",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "exact_matches": 0,
+        "semantic_matches": 0,
+        "partial_matches": 0,
+        "reference_count": 2,
+        "generated_count": 1
+      },
+      "query": "answer('tax_case_91', Result) :- (tax(\"Alice\",2017,247432) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_92",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_92', Result) :- (tax(\"Alice\",2010,3274) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_93",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_93', Result) :- (tax(\"Alice\",2015,102150) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_94",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_94', Result) :- (tax(\"Alice\",2010,63345) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_95",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_95', Result) :- (tax(\"Alice\",2017,174) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_96",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_96', Result) :- (tax(\"Alice\",2003,7611) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_97",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_97', Result) :- (tax(\"Alice\",2005,33069) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_98",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_98', Result) :- (tax(\"Alice\",2015,14296) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    },
+    {
+      "case_id": "tax_case_99",
+      "status": "success",
+      "facts_count": 1,
+      "fact_metrics": null,
+      "query": "answer('tax_case_99', Result) :- (tax(\"Alice\",2017,15037) -> Result = true ; Result = false).",
+      "expected_result": "true"
+    }
+  ],
+  "prolog_evaluation": {
+    "total_cases": 374,
+    "execution_success": 358,
+    "execution_rate": 0.9572192513368984,
+    "correct_results": 251,
+    "accuracy": 0.6711229946524064
+  }
+}

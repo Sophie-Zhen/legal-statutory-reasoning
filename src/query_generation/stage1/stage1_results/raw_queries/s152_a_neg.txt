@@ -1,0 +1,15 @@
+[QUESTION TO TRANSLATE]
+What is the tax rate for a married individual filing jointly with a taxable income of $50,000 for the tax year 2017?
+
+[CORRECT REASONING AND OUTPUT]
+<reasoning>
+1. **Analyze the Question:** The question asks about the tax rate for a married individual filing jointly.
+2. **Select the Predicate:** The glossary contains `s1_a_tax/2`, which provides the tax calculation for married individuals filing jointly.  We also need to consider the income brackets defined in s1_a.
+3. **Identify Arguments:** The predicate `s1_a_tax/2` needs the taxable income and the tax. The question provides the income ($50,000) and asks for the tax. We need to use the correct sub-section of s1_a based on the income. Since $50,000 is between $36,900 and $89,150, we use `s1_a_ii/2`.
+</reasoning>
+<prolog_code>
+case_query(Result) :- s1_a_tax(50000, Result).
+</prolog_code>
+
+% --- SWI-PROLOG STDERR ---
+% SWI-Prolog TIMEOUT
