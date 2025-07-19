@@ -85,6 +85,15 @@ class FlexibleStage3Runner:
         self.pipeline.query_generator = self.query_generator
         
         logger.info("All components initialized successfully")
+
+    def get_tax_cases(self) -> List[str]:
+        """Returns a hardcoded list of the 20 tax calculation test cases from the test split."""
+        return [
+            'tax_case_28', 'tax_case_30', 'tax_case_31', 'tax_case_34', 'tax_case_43',
+            'tax_case_46', 'tax_case_48', 'tax_case_49', 'tax_case_53', 'tax_case_57',
+            'tax_case_68', 'tax_case_69', 'tax_case_75', 'tax_case_77', 'tax_case_78',
+            'tax_case_82', 'tax_case_85', 'tax_case_9', 'tax_case_90', 'tax_case_93'
+        ]
     
     def switch_model(self, new_model_name: str):
         """
@@ -308,6 +317,8 @@ def main():
                        help='Starting index for test cases (default: 0)')
     parser.add_argument('--cases', nargs='+',
                        help='Specific case IDs to test')
+    parser.add_argument('--tax-cases', action='store_true',
+                        help='Run only the 20 tax calculation cases from the test split')
     
     # Commands
     parser.add_argument('--compare', nargs='+',
@@ -362,7 +373,11 @@ def main():
         return
     
     # Handle single model test
-    if args.cases:
+    if args.tax_cases:
+        print("Testing the 20 tax calculation cases from the test split")
+        tax_cases = runner.get_tax_cases()
+        results = runner.run_specific_cases(tax_cases)
+    elif args.cases:
         print(f"Testing specific cases: {args.cases}")
         results = runner.run_specific_cases(args.cases)
     else:

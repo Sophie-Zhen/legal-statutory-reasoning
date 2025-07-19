@@ -122,10 +122,35 @@ class ModelConfigManager:
         return genai.types.GenerationConfig(**params)
     
     def get_safety_settings(self, model_name: str = None):
-        """Get relaxed safety settings for legal text processing"""
+        """Get highly permissive safety settings for legal text processing"""
         from google.generativeai.types import HarmCategory, HarmBlockThreshold
         
-        # Use relaxed safety settings for legal text processing
+        # Use highly permissive safety settings for legal text processing
+        # Legal documents often contain language that can trigger safety filters
+        return [
+            {
+                "category": HarmCategory.HARM_CATEGORY_HARASSMENT,
+                "threshold": HarmBlockThreshold.BLOCK_NONE,
+            },
+            {
+                "category": HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+                "threshold": HarmBlockThreshold.BLOCK_NONE,
+            },
+            {
+                "category": HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+                "threshold": HarmBlockThreshold.BLOCK_NONE,
+            },
+            {
+                "category": HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+                "threshold": HarmBlockThreshold.BLOCK_NONE,
+            },
+        ]
+    
+    def get_safety_settings_fallback(self, model_name: str = None):
+        """Get fallback safety settings if primary settings fail"""
+        from google.generativeai.types import HarmCategory, HarmBlockThreshold
+        
+        # Even more permissive fallback settings
         return [
             {
                 "category": HarmCategory.HARM_CATEGORY_HARASSMENT,

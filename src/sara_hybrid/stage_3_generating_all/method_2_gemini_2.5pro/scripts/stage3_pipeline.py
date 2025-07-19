@@ -218,10 +218,7 @@ class Stage3Method2Pipeline:
             temp_file = self.prolog_dir / f"temp_{case_id}.pl"
             
             with open(temp_file, 'w') as f:
-                # Add path to Method 2 codebase
-                f.write(f":- add_to_path('{self.prolog_codebase_path}').\n")
-                
-                # Load the generated case file
+                # Load the generated case file (which includes proper module imports)
                 f.write(f":- consult('{prolog_file}').\n")
                 
                 # Query the answer predicate

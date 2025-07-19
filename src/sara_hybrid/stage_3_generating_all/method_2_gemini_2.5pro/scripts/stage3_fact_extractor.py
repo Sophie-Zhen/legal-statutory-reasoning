@@ -171,6 +171,14 @@ class Stage3FactExtractor:
                 safety_settings=self.safety_settings
             )
             
+            # Handle safety-blocked responses
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'finish_reason') and candidate.finish_reason == 2:
+                    logger.warning(f"Safety filter blocked response for {case_id}")
+                    raw_response_data['error'] = "Safety filter blocked response"
+                    return [], raw_response_data
+            
             # Store raw response
             raw_response_data['raw_response'] = response.text if response.text else ""
             
@@ -186,8 +194,15 @@ class Stage3FactExtractor:
             return facts, raw_response_data
             
         except Exception as e:
-            logger.error(f"Error extracting facts for {case_id}: {e}")
-            raw_response_data['error'] = str(e)
+            error_msg = str(e)
+            logger.error(f"Error extracting facts for {case_id}: {error_msg}")
+            
+            # Check if it's a safety-related error
+            if "finish_reason" in error_msg and "2" in error_msg:
+                raw_response_data['error'] = "Safety filter blocked response"
+            else:
+                raw_response_data['error'] = error_msg
+            
             return [], raw_response_data
     
     def extract_with_retries(self, text: str, case_id: str) -> Tuple[List[str], List[Dict]]:
