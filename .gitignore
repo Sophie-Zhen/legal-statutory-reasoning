@@ -32,7 +32,8 @@ external/
 models/
 
 src/sara_hybrid/llm_translation/
-src/sara_llm_translator/
+src/sara_llm_translator
 requirements.txt
 pyproject.toml
 count_passed_cases.py
+project_tree.txt
