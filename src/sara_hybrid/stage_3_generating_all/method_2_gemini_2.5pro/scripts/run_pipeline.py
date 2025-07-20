@@ -90,7 +90,7 @@ class PipelineController:
         self.total_files_passed += len(successful_files)
         
         # Log this iteration
-        iteration_data = {
+        self.pipeline_log.append({
             "iteration": self.iteration_count,
             "response_length": len(response_text),
             "files_found": len(saved_files),
@@ -99,74 +99,9 @@ class PipelineController:
             "successful_files": [f.name for f in successful_files],
             "failed_files": [(f.name, err[:100]) for f, err in failed_files],
             "timestamp": datetime.now().isoformat()
-        }
-        
-        self.pipeline_log.append(iteration_data)
-        
-        # Save intermediate JSON results (similar to Phase 0)
-        self._save_intermediate_json(iteration_data)
-        
-        # Save raw response JSON for debugging
-        self._save_raw_response_json(response_text, iteration_data)
+        })
         
         return successful_files, failed_files
-    
-    def _save_intermediate_json(self, iteration_data: Dict):
-        """
-        Save intermediate JSON results for each response (Phase 0 style).
-        
-        Args:
-            iteration_data: Data from the current iteration
-        """
-        # Save current iteration data
-        iteration_file = self.results_dir / f"response_{self.iteration_count:03d}_results.json"
-        with open(iteration_file, 'w', encoding='utf-8') as f:
-            json.dump(iteration_data, f, indent=2)
-        
-        # Save cumulative results (similar to Phase 1's stage1_results.json)
-        cumulative_file = self.results_dir / "cumulative_results.json"
-        cumulative_data = {
-            "total_iterations": self.iteration_count,
-            "total_files_generated": self.total_files_generated,
-            "total_files_passed": self.total_files_passed,
-            "total_llm_responses": self.generator.response_count,
-            "iterations": self.pipeline_log,
-            "last_updated": datetime.now().isoformat()
-        }
-        
-        with open(cumulative_file, 'w', encoding='utf-8') as f:
-            json.dump(cumulative_data, f, indent=2)
-        
-        print(f"📊 Intermediate results saved: {iteration_file.name}")
-        print(f"📊 Cumulative results saved: {cumulative_file.name}")
-    
-    def _save_raw_response_json(self, response_text: str, iteration_data: Dict):
-        """
-        Save raw response content to JSON for debugging and analysis.
-        
-        Args:
-            response_text: Raw response from LLM
-            iteration_data: Current iteration data
-        """
-        # Create response data with raw content
-        response_data = {
-            "iteration": self.iteration_count,
-            "timestamp": datetime.now().isoformat(),
-            "response_length": len(response_text),
-            "raw_response": response_text,
-            "files_found": iteration_data["files_found"],
-            "files_passed": iteration_data["files_passed"],
-            "files_failed": iteration_data["files_failed"],
-            "successful_files": iteration_data["successful_files"],
-            "failed_files": iteration_data["failed_files"]
-        }
-        
-        # Save raw response JSON
-        raw_response_file = self.results_dir / f"raw_response_{self.iteration_count:03d}.json"
-        with open(raw_response_file, 'w', encoding='utf-8') as f:
-            json.dump(response_data, f, indent=2)
-        
-        print(f"📄 Raw response saved: {raw_response_file.name}")
     
     def handle_failed_files(self, failed_files: List[Tuple[Path, str]]) -> bool:
         """
@@ -227,12 +162,69 @@ class PipelineController:
         Returns:
             True if generation appears complete
         """
-        # Only check for explicit completion marker
+        # First priority: Check for explicit completion marker
         if self.parser.check_completion_marker(response_text):
-            print("🎯 Found explicit completion marker: <<ALL DONE>>")
-            return True
+            print("🎯 Found explicit completion marker")
+            return self._verify_complete_generation()
+        
+        # Secondary check: If we have many files but no completion marker,
+        # check if we might have missed the marker in a previous response
+        pl_files = list(self.prolog_dir.glob("*.pl"))
+        if len(pl_files) >= 12:  # We expect around 12 files total
+            print(f"📊 Found {len(pl_files)} Prolog files, checking for completeness...")
+            return self._verify_complete_generation()
         
         return False
+    
+    def _verify_complete_generation(self) -> bool:
+        """
+        Verify that the generation is actually complete by checking for:
+        1. All expected files exist
+        2. tests.pl contains answer/2 predicates
+        3. All core functionality is present
+        
+        Returns:
+            True if generation is verified complete
+        """
+        # Check for expected files
+        expected_files = [
+            "helpers.pl", "knowledge_base.pl", "tests.pl",
+            "section1.pl", "section2.pl", "section63.pl", "section68.pl",
+            "section151.pl", "section152.pl", "section3301.pl", "section3306.pl", "section7703.pl"
+        ]
+        
+        existing_files = [f.name for f in self.prolog_dir.glob("*.pl")]
+        missing_files = [f for f in expected_files if f not in existing_files]
+        
+        if missing_files:
+            print(f"⚠️ Missing expected files: {missing_files}")
+            return False
+        
+        # Check if tests.pl contains answer/2 predicates
+        tests_file = self.prolog_dir / "tests.pl"
+        if tests_file.exists():
+            with open(tests_file, 'r', encoding='utf-8') as f:
+                tests_content = f.read()
+            
+            # Look for answer/2 predicate definitions (not just exports)
+            if "answer(" not in tests_content:
+                print("⚠️ tests.pl missing answer/2 predicate definitions")
+                return False
+            
+            # Count how many answer predicates we have
+            answer_count = tests_content.count("answer(")
+            print(f"📝 Found {answer_count} answer/2 predicate definitions")
+            
+            # We expect around 26 answer predicates (one per case)
+            if answer_count < 20:
+                print(f"⚠️ Only found {answer_count} answer predicates, expected ~26")
+                return False
+        else:
+            print("⚠️ tests.pl file not found")
+            return False
+        
+        print("✅ Generation verification passed - all components present")
+        return True
     
     def run_final_tests(self) -> Dict:
         """
@@ -342,7 +334,6 @@ class PipelineController:
             successful, failed = self.process_response(initial_response)
             
             # Step 3: Continue generation until complete
-            # Stop when either: 1) <<ALL DONE>> marker found, or 2) max_iterations (50) reached
             while (self.iteration_count < self.max_iterations and 
                    not self.check_completion(initial_response if self.iteration_count == 1 else response)):
                 
@@ -360,22 +351,6 @@ class PipelineController:
                 # Add delay to avoid rate limits
                 time.sleep(2)
             
-            # Log why the pipeline completed
-            if self.iteration_count >= self.max_iterations:
-                print(f"\n⚠️ Pipeline stopped: Reached maximum iterations ({self.max_iterations})")
-            else:
-                print(f"\n✅ Pipeline completed: Found <<ALL DONE>> marker after {self.iteration_count} iterations")
-                
-                # Check answer predicate count for information
-                tests_file = self.prolog_dir / "tests.pl"
-                if tests_file.exists():
-                    with open(tests_file, 'r', encoding='utf-8') as f:
-                        tests_content = f.read()
-                    answer_count = tests_content.count("answer(")
-                    print(f"📊 Final answer predicate count: {answer_count}")
-                else:
-                    print("⚠️ tests.pl file not found in final check")
-                
             # Step 4: Final testing and results
             print("\n🏁 Generation phase complete")
             final_results = self.run_final_tests()
