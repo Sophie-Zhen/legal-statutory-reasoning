@@ -1,1 +1,0 @@
-answer('s1_d_iv_neg', Result) :- s1_d('Alice', _, 2017, 28864, Tax), (Tax \== 5683 -> Result = true ; Result = false).

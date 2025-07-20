@@ -1,1 +1,0 @@
-answer('s68_a_2_neg', true).

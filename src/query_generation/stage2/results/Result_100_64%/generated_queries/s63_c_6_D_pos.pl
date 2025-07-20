@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s63_c_6_D_pos
+% Question: Section 63(c)(6)(D) applies to the Walter Brown Family Trust II for 1999. Entailment
+
+answer('s63_c_6_D_pos', Result) :- (s63_c_6_D("the Walter Brown Family Trust II", 1999) -> Result = true ; Result = false).

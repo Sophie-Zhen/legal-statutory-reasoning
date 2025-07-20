@@ -1,1 +1,0 @@
-answer('s3306_c_5_pos', Result) :- (s3306_c_5(alice, bob, 2017) -> Result = true ; Result = false).

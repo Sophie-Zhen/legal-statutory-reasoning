@@ -1,1 +1,0 @@
-case_query(true) :- s152_c(Taxpayer), Taxpayer = "Alice".

@@ -1,1 +1,0 @@
-answer('s1_d_iv_neg', Result) :- s1_d(28864, Tax, 2017), Result = (Tax \= 5683).

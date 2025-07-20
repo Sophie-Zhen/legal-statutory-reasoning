@@ -1,8 +1,0 @@
-# Stage 2 Requirements
-# Install with: pip install -r requirements.txt
-
-# Core dependency for LLM
-google-generativeai>=0.3.0
-
-# For potential future enhancements
-pyswip>=0.2.10  # SWI-Prolog Python interface 

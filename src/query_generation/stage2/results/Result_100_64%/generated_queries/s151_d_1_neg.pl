@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s151_d_1_neg
+% Question: Alice's exemption amount under section 151(d)(1) is equal to $0. Contradiction
+
+answer('s151_d_1_neg', Result) :- (s151_d_1(0) -> Result = true ; Result = false).

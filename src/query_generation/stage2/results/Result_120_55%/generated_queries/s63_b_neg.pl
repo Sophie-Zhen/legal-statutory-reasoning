@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s63_b_neg
+% Question: Under section 63(b), Alice's taxable income in 2017 is equal to $31400. Contradiction
+
+answer('s63_b_neg', Result) :- (s63_b("Alice", 2017, 31400, _) -> Result = true ; Result = false).
