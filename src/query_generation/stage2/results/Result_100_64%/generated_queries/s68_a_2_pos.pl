@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s68_a_2_pos
+% Question: Section 68(a)(2) prescribes a reduction of Alice's itemized deductions for the year 2016 by $48000. Entailment
+
+answer('s68_a_2_pos', Result) :- (s68_a_2("Alice",_,48000,2016) -> Result = true ; Result = false).

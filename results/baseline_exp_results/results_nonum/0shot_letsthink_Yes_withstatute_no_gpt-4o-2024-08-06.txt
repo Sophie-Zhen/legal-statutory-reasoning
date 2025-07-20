@@ -1,0 +1,217 @@
+s151_d_1_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}}
+s151_d_1_pos   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}}
+s151_d_3_A_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 2, 'unclear': 0}}
+s151_d_3_A_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 2, 'unclear': 0}}
+s151_d_5_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 3, 'unclear': 0}}
+s151_d_5_pos   GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 3, 'unclear': 0}}
+s152_a_neg     GPT Response: Contradiction. The hypothesis cannot be confirmed as true based solely on the information provided for the year 2015. Each tax year must be evaluated independently, and without specific details about Bob's circumstances in 2014, we cannot conclude that he was a dependent of Alice for that year.Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}}
+s152_a_pos     GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}}
+s152_c_2_A_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 1, 'Contradiction': 1, 'unclear': 0}}
+s152_c_2_A_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 1, 'Contradiction': 1, 'unclear': 0}}
+s152_d_1_D_neg GPT Response: Contradiction. Since Bob is already a dependent of Alice under section 152(c) as a "qualifying child," section 152(d)(1)(D), which pertains to "qualifying relatives," does not apply to him.Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 4, 'unclear': 0}}
+s152_d_1_D_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 4, 'unclear': 0}}
+s152_d_2_A_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 1, 'unclear': 0}}
+s152_d_2_A_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 1, 'unclear': 0}}
+s152_d_2_C_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 1, 'unclear': 0}}
+s152_d_2_C_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 1, 'unclear': 0}}
+Got BOTH entail and contradict!
+s152_d_2_G_neg GPT Response: not definitively determinable based solely on the information provided. While Alice meets the relationship test by sharing the same principal place of abode and being a member of Bob's household, the lack of information regarding her income, the support provided by Bob, and her status as a qualifying child prevents a conclusive determination. Therefore, without additional details, we cannot confirm whether the hypothesis is an entailment or a contradiction.Interpreted as: unclear        Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 1, 'unclear': 1}}
+s152_d_2_G_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 1, 'unclear': 1}}
+s152_d_2_H_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 2, 'unclear': 1}}
+s152_d_2_H_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 2, 'unclear': 1}}
+s1_a_2_iv_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 5, 'unclear': 0}}
+s1_a_2_iv_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 2, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 5, 'unclear': 0}}
+s1_a_2_neg     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 2, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 6, 'unclear': 0}}
+s1_a_2_pos     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 3, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 6, 'unclear': 0}}
+s1_a_2_v_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 3, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 7, 'unclear': 0}}
+s1_a_2_v_pos   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 4, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 7, 'unclear': 0}}
+s1_b_i_neg     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 4, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 8, 'unclear': 0}}
+s1_b_i_pos     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 5, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 8, 'unclear': 0}}
+s1_b_neg       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 5, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 9, 'unclear': 0}}
+s1_b_pos       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 6, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 9, 'unclear': 0}}
+s1_c_iii_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 6, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 10, 'unclear': 0}}
+s1_c_iii_pos   GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 7, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 10, 'unclear': 0}}
+s1_c_neg       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 7, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 11, 'unclear': 0}}
+s1_c_pos       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 8, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 11, 'unclear': 0}}
+s1_d_i_neg     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 8, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 12, 'unclear': 0}}
+s1_d_i_pos     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 9, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 12, 'unclear': 0}}
+s1_d_ii_neg    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 9, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 13, 'unclear': 0}}
+s1_d_ii_pos    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 10, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 13, 'unclear': 0}}
+s1_d_neg       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 10, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 14, 'unclear': 0}}
+s1_d_pos       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 11, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 14, 'unclear': 0}}
+s2_a_1_B_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 11, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 15, 'unclear': 0}}
+s2_a_1_B_pos   GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 11, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 15, 'unclear': 0}}
+s2_b_1_A_i_II_negGPT Response: "Undetermined" based on the information provided. To determine if I.R.C. section 2(b)(1)(A)(i)(II) applies to Bob with Charlie as the qualifying child in 2018, we need more information about Charlie's dependency status after marriage. If Charlie is still considered a dependent under the tax code, then Bob could qualify as head of household. If not, then Bob would not meet the requirements for head of household status with Charlie as the qualifying person.Interpreted as: unclear        Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 2, 'unclear': 2}}
+Got BOTH entail and contradict!
+s2_b_1_A_i_II_posGPT Response: uncertain. 
+
+To determine whether I.R.C. section 2(b)(1)(A)(i)(II) applies to Bob with Charlie as the qualifying child in 2018, we need more information about Charlie's living situation after his marriage to Dan. If Charlie continued to live with Bob for more than half of the year, then Bob could qualify as a head of household. However, if Charlie moved out to live with Dan and did not meet the residency requirement, Bob would not qualify. Without this specific information, we cannot definitively conclude whether the hypothesis is an entailment or a contradiction.Interpreted as: unclear        Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 0, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 2, 'unclear': 2}}
+s2_b_1_A_i_I_negGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 0, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 3, 'unclear': 2}}
+s2_b_1_A_i_I_posGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 1, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 3, 'unclear': 2}}
+s2_b_1_A_i_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 1, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 4, 'unclear': 2}}
+s2_b_1_A_i_pos GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 2, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 4, 'unclear': 2}}
+s2_b_1_A_ii_negGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 11, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 16, 'unclear': 0}}
+s2_b_1_A_ii_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 11, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 16, 'unclear': 0}}
+s2_b_3_A_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 2, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 5, 'unclear': 2}}
+s2_b_3_A_pos   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 3, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 5, 'unclear': 2}}
+s3301_neg      GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 11, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 17, 'unclear': 0}}
+s3301_pos      GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 12, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 17, 'unclear': 0}}
+s3306_a_1_B_negGPT Response: Contradiction. The hypothesis that I.R.C. section 3306(a)(1)(B) applies to Alice for the year 2017 is contradicted by the fact that Alice does not meet the requirement of having an employee for at least part of a day in 20 or more different weeks during the year. Based on the employment dates provided, Alice only employed Bob for part of a day in 10 different weeks, which is insufficient to trigger FUTA tax liability under the 20-week rule.Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 3, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 6, 'unclear': 2}}
+s3306_a_1_B_posGPT Response: Contradiction. Based on the information provided, Alice does not meet the requirement of employing at least one employee for some part of a day in 20 or more different weeks during the calendar year 2017. Therefore, I.R.C. section 3306(a)(1)(B) does not apply to Alice for that year.Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 6, 'unclear': 2}}
+s3306_a_3_neg  GPT Response: Entailment. The payments Alice received for domestic service likely meet the FUTA threshold, making I.R.C. section 3306(a)(3) applicable to her for the year 2017.Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 12, 'unclear': 0}, 'Contradiction': {'Entailment': 1, 'Contradiction': 17, 'unclear': 0}}
+s3306_a_3_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 12, 'unclear': 0}, 'Contradiction': {'Entailment': 1, 'Contradiction': 17, 'unclear': 0}}
+s3306_b_2_C_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 12, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 17, 'unclear': 0}}
+s3306_b_2_C_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 12, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 17, 'unclear': 0}}
+s3306_c_10_B_negGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 12, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 18, 'unclear': 0}}
+Got BOTH entail and contradict!
+s3306_c_10_B_posGPT Response: not definitively determinable based on the information provided. We need more specific information about whether the services Alice performed were part of her treatment at the hospital. If they were, then the hypothesis would be an entailment. If they were not part of her treatment, then the hypothesis would be a contradiction.Interpreted as: unclear        Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 2, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_11_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_11_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 8, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_16_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 8, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_16_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 9, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_1_B_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 9, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_1_B_posGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 9, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 18, 'unclear': 0}}
+s3306_c_6_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 9, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 19, 'unclear': 0}}
+s3306_c_6_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 10, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 19, 'unclear': 0}}
+s3306_c_7_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 10, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 20, 'unclear': 0}}
+s3306_c_7_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 11, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 20, 'unclear': 0}}
+s3306_c_B_neg  GPT Response: Contradiction. The hypothesis that I.R.C. section 3306(c)(B) applies to Alice employing Bob for the year 2017 is incorrect because the work was performed outside the United States, and Alice does not qualify as an American employer. Therefore, the services are excluded from the definition of "employment" under FUTA according to I.R.C. section 3306(c)(B).Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 11, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 21, 'unclear': 0}}
+s3306_c_B_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 12, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 21, 'unclear': 0}}
+s63_b_neg      GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 12, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 22, 'unclear': 0}}
+s63_b_pos      GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 13, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 22, 'unclear': 0}}
+s63_c_2_A_i_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 13, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 22, 'unclear': 0}}
+s63_c_2_A_i_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 14, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 22, 'unclear': 0}}
+s63_c_2_A_ii_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 14, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 7, 'Contradiction': 22, 'unclear': 0}}
+s63_c_2_A_ii_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 15, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 7, 'Contradiction': 22, 'unclear': 0}}
+s63_c_6_B_neg  GPT Response: Entailment. If Alice elected to be treated as a resident alien for tax purposes in 2017 and filed jointly with Bob, then I.R.C. section 63(c)(6)(B) would apply to her, allowing her to claim the standard deduction.Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 15, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 8, 'Contradiction': 22, 'unclear': 0}}
+s63_c_6_B_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 16, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 8, 'Contradiction': 22, 'unclear': 0}}
+s63_c_6_D_neg  GPT Response: Contradiction. 
+
+Without evidence of a change in the classification of the Walter Brown Family Trust II from a business trust to a trust treated as an individual for tax purposes in 2021, it is unlikely that I.R.C. section 63(c)(6)(D) would apply. This section is relevant to trusts treated as individuals, and the premise indicates that the trust was considered a business trust up to 2019. Without information indicating a change in classification, the hypothesis that I.R.C. section 63(c)(6)(D) applies in 2021 contradicts the premise.Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 7, 'unclear': 2}}
+s63_c_6_D_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 5, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 7, 'unclear': 2}}
+s63_c_7_i_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 16, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 8, 'Contradiction': 23, 'unclear': 0}}
+s63_c_7_i_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 16, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 8, 'Contradiction': 23, 'unclear': 0}}
+s63_f_1_A_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 16, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 8, 'Contradiction': 24, 'unclear': 0}}
+s63_f_1_A_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 8, 'Contradiction': 24, 'unclear': 0}}
+s63_f_2_B_neg  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 9, 'Contradiction': 24, 'unclear': 0}}
+s63_f_2_B_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 9, 'Contradiction': 24, 'unclear': 0}}
+s68_a_2_neg    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 9, 'Contradiction': 25, 'unclear': 0}}
+s68_a_2_pos    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 9, 'Contradiction': 25, 'unclear': 0}}
+s68_b_1_B_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 9, 'Contradiction': 26, 'unclear': 0}}
+s68_b_1_B_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 16, 'unclear': 1}, 'Contradiction': {'Entailment': 9, 'Contradiction': 26, 'unclear': 0}}
+s68_b_1_C_neg  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 16, 'unclear': 1}, 'Contradiction': {'Entailment': 10, 'Contradiction': 26, 'unclear': 0}}
+s68_b_1_C_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 19, 'Contradiction': 16, 'unclear': 1}, 'Contradiction': {'Entailment': 10, 'Contradiction': 26, 'unclear': 0}}
+s7703_a_1_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 5, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 8, 'unclear': 2}}
+s7703_a_1_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 5, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 8, 'unclear': 2}}
+s7703_b_2_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 5, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 9, 'unclear': 2}}
+s7703_b_2_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 6, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 9, 'unclear': 2}}
+FINAL dollar_groundtruth_vs_response:
+                       Response from model         
+                   entail      contrad.   unclear 
+Actual  entail         19          16         1 
+        contrad.       10          26         0 
+FINAL nodollar_groundtruth_vs_response:
+                       Response from model         
+                   entail      contrad.   unclear 
+Actual  entail          7          6          1 
+        contrad.        3          9          2 

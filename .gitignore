@@ -1,5 +1,38 @@
-probe_gpt_seen_sara.py
-assistant_codes.py
-models.txt
-openai_models.py
+# Python build artifacts and cache
 __pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+sara_hybrid.egg-info/
+
+# Virtual Environment
+sara_py310/
+
+# Local environment configuration
+.env
+.python-version
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# macOS files
+.DS_Store
+
+# Log, cache, and output files
+evaluation_log.txt
+llm_cache.json
+pytest_output.txt
+
+# External repositories we don't want to track
+# This will solve the "embedded git repository" warning
+external/
+
+# Do not track the large models directory
+models/
+
+src/sara_hybrid/llm_translation/
+src/sara_llm_translator/
+requirements.txt
+pyproject.toml
+count_passed_cases.py

@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s2_b_3_A_pos
+% Question: Section 2(b)(3)(A) applies to Bob in 2018. Entailment
+
+answer('s2_b_3_A_pos', Result) :- (s2_b_3_A("Bob", 2018, _) -> Result = true ; Result = false).

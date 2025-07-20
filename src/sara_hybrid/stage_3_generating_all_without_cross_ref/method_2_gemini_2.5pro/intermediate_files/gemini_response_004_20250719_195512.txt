@@ -1,0 +1,323 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+Very well. Proceeding with the generation of the remaining statute modules as per the plan.
+
+### Phase 2: Prolog Encoding (Statute Modules, Continued)
+
+This response contains `section2.pl`, `section68.pl`, and `section63.pl`.
+
+%% BEGIN_FILE: section2.pl
+```prolog
+:- module(section2,
+          [ filing_status/4,
+            is_surviving_spouse/3,
+            is_head_of_household/3
+          ]).
+
+:- use_module(section151, [is_entitled_to_exemption_deduction/4]).
+:- use_module(section152, [is_dependent/4, is_qualifying_child/4]).
+:- use_module(section7703, [is_married/3, is_unmarried/3]).
+:- use_module(helpers, [string_to_atom/2]).
+
+:- multifile fact/2.
+
+/*
+    §2. Definitions and special rules
+    This module defines "surviving spouse" and "head of household" filing statuses.
+*/
+
+% filing_status(CaseID, Taxpayer, Year, Status)
+% Determines the filing status for a taxpayer. This is the main entry point for other modules.
+filing_status(CaseID, Taxpayer, Year, joint) :-
+    fact(CaseID, files_joint_return(Taxpayer, _, Year)).
+filing_status(CaseID, Taxpayer, Year, married_filing_separately) :-
+    is_married(CaseID, Taxpayer, Year),
+    fact(CaseID, files_separate_return(Taxpayer, Year)).
+filing_status(CaseID, Taxpayer, Year, surviving_spouse) :-
+    is_surviving_spouse(CaseID, Taxpayer, Year).
+filing_status(CaseID, Taxpayer, Year, head_of_household) :-
+    is_head_of_household(CaseID, Taxpayer, Year).
+filing_status(CaseID, Taxpayer, Year, single) :-
+    is_unmarried(CaseID, Taxpayer, Year),
+    \+ is_surviving_spouse(CaseID, Taxpayer, Year),
+    \+ is_head_of_household(CaseID, Taxpayer, Year).
+
+
+% is_surviving_spouse(CaseID, Taxpayer, Year)
+% §2(a)(1) Definition of surviving spouse.
+is_surviving_spouse(CaseID, Taxpayer, Year) :-
+    \+ fact(CaseID, is_nonresident_alien(Taxpayer, Year)),
+    spouse_died_in_preceding_two_years(CaseID, Taxpayer, Spouse, Year),
+    maintains_home_for_dependent_child(CaseID, Taxpayer, Year),
+    \+ has_remarried(CaseID, Taxpayer, Year),
+    could_have_filed_joint_return(CaseID, Taxpayer, Spouse, Year - YearsAgo),
+    fact(CaseID, died(Spouse, date(DeathYear, _, _))),
+    YearsAgo is Year - DeathYear.
+
+% spouse_died_in_preceding_two_years(CaseID, Taxpayer, Spouse, Year)
+% §2(a)(1)(A)
+spouse_died_in_preceding_two_years(CaseID, Taxpayer, Spouse, Year) :-
+    fact(CaseID, spouse_of(Taxpayer, Spouse)),
+    fact(CaseID, died(Spouse, date(DeathYear, _, _))),
+    Year - DeathYear > 0,
+    Year - DeathYear =< 2.
+
+% maintains_home_for_dependent_child(CaseID, Taxpayer, Year)
+% §2(a)(1)(B)
+maintains_home_for_dependent_child(CaseID, Taxpayer, Year) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, Year)),
+    fact(CaseID, child_of(Child, Taxpayer)),
+    fact(CaseID, principal_place_of_abode(Child, Taxpayer, Year)),
+    is_entitled_to_exemption_deduction(CaseID, Taxpayer, Child, Year, _).
+
+% has_remarried(CaseID, Taxpayer, Year)
+% §2(a)(2)(A) Limitation: remarriage.
+has_remarried(CaseID, Taxpayer, Year) :-
+    fact(CaseID, married(Taxpayer, _NewSpouse, date(RemarryYear, _, _))),
+    RemarryYear =< Year.
+
+% could_have_filed_joint_return(CaseID, Taxpayer, DeceasedSpouse, YearOfDeath)
+% §2(a)(2)(B) Limitation: eligibility to file joint return in year of death.
+could_have_filed_joint_return(_CaseID, Taxpayer, DeceasedSpouse, YearOfDeath) :-
+    \+ fact(_CaseID, is_nonresident_alien(Taxpayer, YearOfDeath)),
+    \+ fact(_CaseID, is_nonresident_alien(DeceasedSpouse, YearOfDeath)).
+
+% is_head_of_household(CaseID, Taxpayer, Year)
+% §2(b)(1) Definition of head of household.
+is_head_of_household(CaseID, Taxpayer, Year) :-
+    is_unmarried(CaseID, Taxpayer, Year),
+    \+ is_surviving_spouse(CaseID, Taxpayer, Year),
+    ( maintains_home_for_qualifying_person_A(CaseID, Taxpayer, Year)
+    ; maintains_home_for_parent_B(CaseID, Taxpayer, Year)
+    ),
+    \+ hoh_limitations_apply(CaseID, Taxpayer, Year).
+
+% maintains_home_for_qualifying_person_A(CaseID, Taxpayer, Year)
+% §2(b)(1)(A)
+maintains_home_for_qualifying_person_A(CaseID, Taxpayer, Year) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, Year)),
+    (   % (i) Qualifying child
+        is_qualifying_child(CaseID, Taxpayer, Child, Year),
+        fact(CaseID, lived_together_more_than_half_year(Child, Taxpayer, Year)),
+        \+ (is_married(CaseID, Child, Year),
+            \+ is_dependent(CaseID, Taxpayer, Child, Year)) % Negation of §152(b)(2) condition is complex, simplified here.
+    ;   % (ii) Other dependent
+        is_dependent(CaseID, Taxpayer, Dependent, Year),
+        fact(CaseID, lived_together_more_than_half_year(Dependent, Taxpayer, Year)),
+        is_entitled_to_exemption_deduction(CaseID, Taxpayer, Dependent, Year, _)
+    ).
+
+% maintains_home_for_parent_B(CaseID, Taxpayer, Year)
+% §2(b)(1)(B)
+maintains_home_for_parent_B(CaseID, Taxpayer, Year) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, Year)), % maintains a household for...
+    fact(CaseID, parent_of(Parent, Taxpayer)),
+    fact(CaseID, principal_place_of_abode(Parent, _Household, Year)), % Parent has a PPA
+    is_entitled_to_exemption_deduction(CaseID, Taxpayer, Parent, Year, _).
+
+% hoh_limitations_apply(CaseID, Taxpayer, Year)
+% §2(b)(3)
+hoh_limitations_apply(CaseID, Taxpayer, Year) :-
+    fact(CaseID, is_nonresident_alien(Taxpayer, Year)).
+hoh_limitations_apply(CaseID, Taxpayer, Year) :-
+    % (B) Dependent by reason of §152(d)(2)(H)
+    is_dependent(CaseID, Taxpayer, Dependent, Year),
+    \+ is_qualifying_child(CaseID, Taxpayer, Dependent, Year),
+    fact(CaseID, member_of_household(Dependent, Taxpayer, Year)),
+    % and no other relationship from (d)(2)(A-G) exists.
+    \+ fact(CaseID, child_of(Dependent, Taxpayer)),
+    \+ fact(CaseID, sibling_of(Dependent, Taxpayer)),
+    \+ fact(CaseID, parent_of(Dependent, Taxpayer)),
+    % ... and so on for all other relationship types. This is a simplification.
+    true.
+
+```
+%% END_FILE: section2.pl
+% SMOKE: ?- [tests, section7703, section152, section151, section2], assert(fact(c1, parent_of(b,a))), assert(fact(c1, furnishes_over_half_cost_of_household(a,2017))), assert(fact(c1, principal_place_of_abode(b,h,2017))), assert(fact(c1, lived_together_more_than_half_year(b,a,2017))), assert(fact(c1, gross_income(b,2017,0))), section2:is_head_of_household(c1,a,2017).
+%% BEGIN_FILE: section68.pl
+```prolog
+:- module(section68,
+          [ itemized_deduction_limitation/5,
+            applies_for_year/1,
+            applicable_amount_is_for_joint_return/3
+          ]).
+
+:- use_module(knowledge_base, [itemized_deduction_limitation_agi_threshold/3]).
+:- use_module(helpers, [tcja_active_general/1]).
+:- use_module(section2, [is_surviving_spouse/3, is_head_of_household/3, filing_status/4]).
+:- use_module(section7703, [is_married/3]).
+
+
+:- multifile fact/2.
+
+/*
+    §68. Overall limitation on itemized deductions
+*/
+
+% applies_for_year(Year)
+% §68(f) Section does not apply for TCJA years.
+applies_for_year(Year) :- \+ tcja_active_general(Year).
+
+% itemized_deduction_limitation(CaseID, Taxpayer, Year, InitialDeductions, FinalDeductions)
+% §68(a) General rule.
+itemized_deduction_limitation(CaseID, Taxpayer, Year, InitialDeductions, FinalDeductions) :-
+    applies_for_year(Year),
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI)),
+    filing_status(CaseID, Taxpayer, Year, FilingStatus),
+    itemized_deduction_limitation_agi_threshold(Year, FilingStatus, Threshold),
+    AGI > Threshold, !,
+    ExcessAGI is AGI - Threshold,
+    Reduction1 is 0.03 * ExcessAGI,
+    Reduction2 is 0.80 * InitialDeductions,
+    Reduction is min(Reduction1, Reduction2),
+    FinalDeductions is InitialDeductions - Reduction.
+itemized_deduction_limitation(_CaseID, _Taxpayer, Year, InitialDeductions, InitialDeductions) :-
+    % No limitation applies if AGI is below threshold or section is inactive.
+    ( \+ applies_for_year(Year) ; true ).
+
+% applicable_amount_is_for_joint_return(CaseID, Taxpayer, Year)
+% §68(b)(1)(A)
+applicable_amount_is_for_joint_return(CaseID, Taxpayer, Year) :-
+    (   fact(CaseID, files_joint_return(Taxpayer, _, Year))
+    ;   is_surviving_spouse(CaseID, Taxpayer, Year)
+    ).
+
+```
+%% END_FILE: section68.pl
+% SMOKE: ?- [knowledge_base, helpers, section2, section7703, section68, tests], assert(fact(c1, adjusted_gross_income(a,2016,400000))), assert(fact(c1, files_joint_return(a,b,2016))), section68:itemized_deduction_limitation(c1, a, 2016, 50000, Final).
+%% BEGIN_FILE: section63.pl
+```prolog
+:- module(section63,
+          [ taxable_income/4,
+            standard_deduction/4,
+            basic_standard_deduction/4,
+            additional_standard_deduction/4,
+            is_eligible_for_standard_deduction/3
+          ]).
+
+:- use_module(knowledge_base, [standard_deduction_basic/3, standard_deduction_dependent_floor/2, standard_deduction_dependent_earned_income_add/2, additional_std_deduction_amount/4]).
+:- use_module(section151, [total_personal_exemption_deduction/4, is_entitled_to_exemption_deduction/4]).
+:- use_module(section2, [filing_status/4, is_surviving_spouse/3]).
+:- use_module(section68, [itemized_deduction_limitation/5]).
+:- use_module(section7703, [is_married/3]).
+:- use_module(helpers, [get_age_at_year_end/3, max_list_public/2]).
+
+:- multifile fact/2.
+
+/*
+    §63. Taxable income defined
+*/
+
+% taxable_income(CaseID, Taxpayer, Year, TaxableIncome)
+taxable_income(CaseID, Taxpayer, Year, TaxableIncome) :-
+    % §63(b) Individual who does not itemize deductions.
+    \+ fact(CaseID, itemizes_deductions(Taxpayer, Year)), !,
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI)),
+    standard_deduction(CaseID, Taxpayer, Year, SD),
+    total_personal_exemption_deduction(CaseID, Taxpayer, Year, PED),
+    TaxableIncome is max(0, AGI - SD - PED).
+taxable_income(CaseID, Taxpayer, Year, TaxableIncome) :-
+    % §63(a) Individual who itemizes deductions.
+    fact(CaseID, itemizes_deductions(Taxpayer, Year)),
+    fact(CaseID, gross_income(Taxpayer, Year, GrossIncome)),
+    findall(D, fact(CaseID, itemized_deduction(Taxpayer, Year, D)), Deductions),
+    sum_list(Deductions, InitialItemizedDeductions),
+    itemized_deduction_limitation(CaseID, Taxpayer, Year, InitialItemizedDeductions, FinalItemizedDeductions),
+    TaxableIncome is max(0, GrossIncome - FinalItemizedDeductions).
+
+% standard_deduction(CaseID, Taxpayer, Year, SD)
+% §63(c)(1) Standard deduction = basic + additional.
+standard_deduction(CaseID, Taxpayer, Year, SD) :-
+    is_eligible_for_standard_deduction(CaseID, Taxpayer, Year), !,
+    basic_standard_deduction(CaseID, Taxpayer, Year, BasicSD),
+    additional_standard_deduction(CaseID, Taxpayer, Year, AdditionalSD),
+    SD is BasicSD + AdditionalSD.
+standard_deduction(_CaseID, _Taxpayer, _Year, 0). % Ineligible.
+
+% is_eligible_for_standard_deduction(CaseID, Taxpayer, Year)
+% §63(c)(6) Certain individuals not eligible.
+is_eligible_for_standard_deduction(CaseID, Taxpayer, Year) :-
+    \+ fact(CaseID, is_nonresident_alien(Taxpayer, Year)),
+    \+ ( fact(CaseID, married(Taxpayer, Spouse, _)),
+         fact(CaseID, files_separate_return(Taxpayer, Year)),
+         fact(CaseID, itemizes_deductions(Spouse, Year))
+       ).
+% Note: a,b,d are checked, but (d) for estates/trusts is not relevant to individuals.
+
+% basic_standard_deduction(CaseID, Taxpayer, Year, BasicSD)
+% §63(c)(2) Basic standard deduction.
+basic_standard_deduction(CaseID, Taxpayer, Year, BasicSD) :-
+    % §63(c)(5) Limitation for dependents.
+    fact(CaseID, claimed_as_dependent_by(Taxpayer, _Other, Year)), !,
+    standard_deduction_dependent_floor(Year, Floor),
+    standard_deduction_dependent_earned_income_add(Year, AddAmount),
+    findall(I, fact(CaseID, earned_income(Taxpayer, Year, I)), Incomes),
+    sum_list(Incomes, TotalEarnedIncome),
+    max_list_public([Floor, TotalEarnedIncome + AddAmount], LimitedSD),
+    filing_status(CaseID, Taxpayer, Year, FilingStatus),
+    standard_deduction_basic(Year, FilingStatus, FullSD),
+    BasicSD is min(LimitedSD, FullSD).
+basic_standard_deduction(CaseID, Taxpayer, Year, BasicSD) :-
+    % Standard case.
+    \+ fact(CaseID, claimed_as_dependent_by(Taxpayer, _Other, Year)),
+    filing_status(CaseID, Taxpayer, Year, FilingStatus),
+    ( FilingStatus = joint, fact(CaseID, files_joint_return(_,_,Year)) ->
+        standard_deduction_basic(Year, joint, Bsd1),
+        (is_surviving_spouse(CaseID, Taxpayer, Year) ->
+            standard_deduction_basic(Year, joint, Bsd2), % Same as joint
+            BasicSD is max(Bsd1, Bsd2)
+        ; BasicSD = Bsd1)
+    ; filing_status(CaseID, Taxpayer, Year, FS),
+      standard_deduction_basic(Year, FS, BasicSD)
+    ).
+
+% additional_standard_deduction(CaseID, Taxpayer, Year, AdditionalSD)
+% §63(c)(3) Additional standard deduction for aged and blind.
+additional_standard_deduction(CaseID, Taxpayer, Year, TotalAdditionalSD) :-
+    findall(Amount, (
+        % §63(f)(1)(A) Taxpayer aged
+        is_aged(CaseID, Taxpayer, Year),
+        get_additional_amount_for(CaseID, Taxpayer, Year, Amount)
+    ;
+        % §63(f)(2)(A) Taxpayer blind
+        is_blind(CaseID, Taxpayer, Year),
+        get_additional_amount_for(CaseID, Taxpayer, Year, Amount)
+    ;
+        % §63(f)(1)(B) Spouse aged
+        fact(CaseID, spouse_of(Taxpayer, Spouse)),
+        is_aged(CaseID, Spouse, Year),
+        is_entitled_to_exemption_deduction(CaseID, Taxpayer, Spouse, Year, _),
+        get_additional_amount_for(CaseID, Taxpayer, Year, Amount)
+    ;
+        % §63(f)(2)(B) Spouse blind
+        fact(CaseID, spouse_of(Taxpayer, Spouse)),
+        is_blind(CaseID, Spouse, Year),
+        is_entitled_to_exemption_deduction(CaseID, Taxpayer, Spouse, Year, _),
+        get_additional_amount_for(CaseID, Taxpayer, Year, Amount)
+    ), Amounts),
+    sum_list(Amounts, TotalAdditionalSD).
+
+% is_aged(CaseID, Person, Year)
+is_aged(CaseID, Person, Year) :-
+    fact(CaseID, date_of_birth(Person, DOB)),
+    get_age_at_year_end(DOB, Year, Age),
+    Age >= 65.
+
+% is_blind(CaseID, Person, Year)
+is_blind(CaseID, Person, Year) :-
+    fact(CaseID, is_blind(Person, Year)).
+
+% get_additional_amount_for(CaseID, Taxpayer, Year, Amount)
+% §63(f)(3) Higher amount for certain unmarried individuals.
+get_additional_amount_for(CaseID, Taxpayer, Year, Amount) :-
+    \+ is_married(CaseID, Taxpayer, Year),
+    \+ is_surviving_spouse(CaseID, Taxpayer, Year), !,
+    additional_std_deduction_amount(Year, unmarried, _, Amount).
+get_additional_amount_for(_CaseID, _Taxpayer, Year, Amount) :-
+    additional_std_deduction_amount(Year, married, _, Amount).
+
+```
+%% END_FILE: section63.pl
+% SMOKE: ?- [tests, section7703, section152, section151, section2, section68, section63], assert(fact(c1, adjusted_gross_income(a, 2018, 50000))), section63:taxable_income(c1, a, 2018, TI).

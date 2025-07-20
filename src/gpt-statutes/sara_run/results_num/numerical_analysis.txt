@@ -1,0 +1,11 @@
+Total cases: 96
+Correctly answered: 6
+Correctness percentage: 6.25%
+
+Questions with correct answers:
+RUNNING: Alice was paid $200 in March 2017 for services performed at Johns Hopkins Hospital. Alice was a patient at Johns Hopkins Hospital from March 15th, 2017 to April 2nd, 2017. Bob is Alice's son since April 15th, 2014. Bob and Alice have the same principal place of abode, a house maintained by Alice. Alice takes the standard deduction in 2017. How much tax does Alice have to pay in 2017?
+RUNNING: Alice was paid $200 in March 2017 for services performed at Johns Hopkins Hospital. Alice was a patient at Johns Hopkins Hospital from March 15th, 2017 to April 2nd, 2017. Bob is Alice's son since April 15th, 2014. Bob and Alice have the same principal place of abode, a house maintained by Alice. Alice takes the standard deduction in 2017. How much tax does Alice have to pay in 2017?
+RUNNING: Alice was paid $200 in March 2017 for services performed at Johns Hopkins Hospital. Alice was a patient at Johns Hopkins Hospital from March 15th, 2017 to April 2nd, 2017. Bob is Alice's son since April 15th, 2014. Bob and Alice have the same principal place of abode, a house maintained by Alice. Alice takes the standard deduction in 2017. How much tax does Alice have to pay in 2017?
+RUNNING: Alice's gross income for the year 2023 is $54775. In 2023, Bob, the son of her son Charlie, lives at her place, a house that she maintains. Bob has no income in 2023. Alice takes the standard deduction. How much tax does Alice have to pay in 2023?
+RUNNING: In 2018, Alice was paid $3200. Alice and Bob have been married since Feb 3rd, 2017. Alice and Bob file separate returns and each take their standard deduction. Bob had no income in 2018. Alice has been blind since March 20, 2016. Alice was enrolled at Johns Hopkins University and attending classes from August 29, 2015 to May 30th, 2019. How much tax does Alice have to pay in 2018?
+RUNNING: In 2018, Alice was paid $3200. Alice and Bob have been married since Feb 3rd, 2017. Alice and Bob file separate returns and each take their standard deduction. Bob had no income in 2018. Alice has been blind since March 20, 2016. Alice was enrolled at Johns Hopkins University and attending classes from August 29, 2015 to May 30th, 2019. How much tax does Alice have to pay in 2018?

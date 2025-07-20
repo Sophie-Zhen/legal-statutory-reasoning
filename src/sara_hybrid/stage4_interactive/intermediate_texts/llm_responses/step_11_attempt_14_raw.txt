@@ -1,0 +1,176 @@
+%% BEGIN_FILE: statute_3306.pl
+:- module(statute_3306,
+          [ is_employer/3,
+            is_employer_a1/3,
+            is_wages/4,
+            is_wage_exception_b7/3,
+            is_wage_exception_b10/3,
+            is_employment/3,
+            is_employment_exception_c5/3
+          ]).
+
+/**
+ * statute_3306.pl
+ *
+ * This module implements §3306, which provides the critical definitions
+ * for the Federal Unemployment Tax Act (FUTA). It defines what constitutes
+
+ * an "employer", what payments are considered "wages", and what services
+ * count as "employment".
+ */
+
+:- use_module(knowledge_base).
+
+% The system will provide the 'fact' predicates at runtime.
+:- discontiguous fact/1, fact/2, fact/3, fact/4.
+
+% is_employer(+Person, +Year, -EmployerType)
+%
+% Implements §3306(a). Determines if a person is an employer for FUTA purposes.
+% A person can be an employer under general, agricultural, or domestic service rules.
+is_employer(Person, Year, general) :-
+    is_employer_a1(Person, Year, _), !.
+is_employer(Person, Year, agricultural) :-
+    is_employer_a2(Person, Year), !.
+is_employer(Person, Year, domestic_service) :-
+    is_employer_a3(Person, Year), !.
+
+% is_employer_a1(+Person, +Year, +Employee)
+%
+% Implements §3306(a)(1). Checks for general employer status.
+% A person is a general employer if they meet wage or employment day tests in the
+% current or preceding year, explicitly excluding domestic service wages/employment.
+% The Employee argument is kept for arity consistency with the JSON mapping.
+is_employer_a1(Person, Year, _Employee) :-
+    check_year_or_preceding(meets_a1_wage_test(Person), Year).
+is_employer_a1(Person, Year, _Employee) :-
+    check_year_or_preceding(meets_a1_day_test(Person), Year).
+
+meets_a1_wage_test(Person, ForYear) :-
+    knowledge_base:employer_wage_threshold(general, Threshold),
+    findall(Wage, (
+        fact(payment_for_service(Person, _, Wage, ForYear, ServiceType)),
+        ServiceType \== domestic_service
+    ), Wages),
+    sum_list(Wages, TotalWages),
+    TotalWages >= Threshold.
+
+meets_a1_day_test(Person, ForYear) :-
+    findall(Week, (
+        fact(employed_on_day(Person, _, ForYear, _, Week, _)),
+        fact(service_type_for_employee(Person, _, ForYear, ServiceType)),
+        ServiceType \== domestic_service
+    ), Weeks),
+    sort(Weeks, UniqueWeeks),
+    length(UniqueWeeks, NumWeeks),
+    NumWeeks >= 10.
+
+% is_employer_a2/2 and is_employer_a3/2 are structured similarly for agricultural and domestic employers.
+is_employer_a2(Person, Year) :-
+    check_year_or_preceding(meets_a2_wage_test(Person), Year).
+is_employer_a2(Person, Year) :-
+    check_year_or_preceding(meets_a2_day_test(Person), Year).
+
+is_employer_a3(Person, Year) :-
+    check_year_or_preceding(meets_a3_wage_test(Person), Year).
+
+meets_a2_wage_test(Person, ForYear) :-
+    knowledge_base:employer_agricultural_wage_threshold(default, Threshold),
+    findall(Wage, fact(payment_for_service(Person, _, Wage, ForYear, agricultural_labor)), Wages),
+    sum_list(Wages, TotalWages),
+    TotalWages >= Threshold.
+
+meets_a2_day_test(Person, ForYear) :-
+    findall(Week-Day-Employee, fact(employed_on_day(Person, Employee, ForYear, Day, Week, agricultural_labor)), EmploymentDays),
+    group_by_week_day(EmploymentDays, Grouped),
+    findall(Day, (member(_-Employees, Grouped), length(Employees, Count), Count >= 5), QualifyingDays),
+    length(QualifyingDays, NumDays),
+    NumDays >= 10.
+
+meets_a3_wage_test(Person, ForYear) :-
+    knowledge_base:employer_domestic_service_wage_threshold(default, Threshold),
+    findall(Wage, fact(payment_for_service(Person, _, Wage, ForYear, domestic_service)), Wages),
+    sum_list(Wages, TotalWages),
+    TotalWages >= Threshold.
+
+% is_wages(+Payer, +Payee, +Amount, +Year)
+%
+% Implements §3306(b). Determines if a payment constitutes wages.
+% It is wages if it is remuneration for employment and not an exception.
+is_wages(Payer, Payee, Amount, Year) :-
+    fact(remuneration_for_employment(Payer, Payee, Amount, Year)),
+    \+ is_wage_exception(Payer, Payee, Amount, Year).
+
+% is_wage_exception/4 combines all exceptions from §3306(b).
+is_wage_exception(Payer, Payee, _, Year) :-
+    is_wage_exception_b1(Payer, Payee, Year).
+is_wage_exception(Payer, Payee, Amount, Year) :-
+    is_wage_exception_b7(Payer, Payee, Amount),
+    fact(payment_year(Amount, Year)).
+is_wage_exception(Payer, Payee, Amount, _Year) :-
+    is_wage_exception_b10(Amount, Payer, Payee).
+% ... other exceptions would be added here
+
+is_wage_exception_b1(Payer, Payee, Year) :-
+    knowledge_base:futa_wage_base(default, Threshold),
+    findall(W, fact(remuneration_for_employment(Payer, Payee, W, Year)), Wages),
+    sum_list(Wages, TotalWages),
+    TotalWages > Threshold.
+
+% is_wage_exception_b7(+Payer, +Payee, +Payment)
+%
+% Implements §3306(b)(7) for non-cash payment for service not in employer's business.
+is_wage_exception_b7(Payer, Payee, Payment) :-
+    fact(payment_medium(Payer, Payee, Payment, Medium)),
+    Medium \== cash,
+    fact(service_in_course_of_business(Payer, Payee, false)).
+
+% is_wage_exception_b10(+Payment, +Payer, +Payee)
+%
+% Implements §3306(b)(10)(A) for payments upon termination for death or disability.
+is_wage_exception_b10(_Payment, Payer, Payee) :-
+    fact(payment_under_plan(Payer, _)),
+    (fact(termination_reason(Payee, Payer, death)) ;
+     fact(termination_reason(Payee, Payer, disability_retirement))).
+
+% is_employment(+Employer, +Employee, +Year)
+%
+% Implements §3306(c). Determines if a service counts as employment.
+is_employment(Employer, Employee, Year) :-
+    fact(service_performed_for(Employee, Employer, Year, _Location)),
+    \+ is_employment_exception(Employer, Employee, Year).
+
+% is_employment_exception/3 combines all exceptions from §3306(c).
+is_employment_exception(Employer, Employee, Year) :-
+    is_employment_exception_c5(Employer, Employee, Year).
+% ... other exceptions would be added here
+
+% is_employment_exception_c5(+Employer, +Employee, +Year)
+%
+% Implements the family employment exception from §3306(c)(5).
+is_employment_exception_c5(Employer, Employee, _Year) :-
+    fact(child_of(Employer, Employee)). % Service for parent by child
+is_employment_exception_c5(Employer, Employee, _Year) :-
+    fact(daughter_of(Employer, Employee)).
+is_employment_exception_c5(Employer, Employee, _Year) :-
+    fact(son_of(Employer, Employee)).
+is_employment_exception_c5(Employer, Employee, _Year) :-
+    fact(spouse_of(Employee, Employer, _)).
+is_employment_exception_c5(Employer, Employee, Year) :-
+    fact(parent_of(Employer, Employee)),
+    fact(date_of_birth(Employee, Y, M, _)),
+    helpers:get_age_at_year_end(Y, M, Year, Age),
+    Age < 21.
+
+% --- Helper Predicates ---
+check_year_or_preceding(Goal, Year) :- call(Goal, Year), !.
+check_year_or_preceding(Goal, Year) :- PrecedingYear is Year - 1, call(Goal, PrecedingYear).
+
+group_by_week_day(List, Grouped) :-
+    map_list_to_pairs(key_for_grouping, List, Paired),
+    keysort(Paired, Sorted),
+    group_pairs_by_key(Sorted, Grouped).
+key_for_grouping(Week-Day-_, Week-Day).
+
+%% END_FILE: statute_3306.pl
+% SMOKE: PBA_SUCCESS :- (dynamic fact/2), assertz(fact(parent_of(bob, alice))), statute_3306:is_employment_exception_c5(alice, bob, 2017).

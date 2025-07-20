@@ -1,0 +1,6 @@
+% Stage 2 Generated Facts
+% Case: tax_case_31
+% Text: In 2017, Alice was paid $39212, and Bob had no income. Alice and Bob have been married since Feb 3rd, 2017. Alice and Bob file separately in 2017.
+% Question: How much tax does Alice have to pay in 2017? $6621
+
+:- ['statutes/prolog/init'].

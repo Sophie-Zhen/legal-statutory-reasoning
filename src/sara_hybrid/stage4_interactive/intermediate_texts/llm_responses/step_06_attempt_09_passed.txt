@@ -1,0 +1,110 @@
+=== LLM RESPONSE LOG ===
+Timestamp: 2025-07-06T13:13:31.559192
+Step: 6/15
+Attempt: 9
+Status: PASSED
+
+=== USER PROMPT ===
+The file `section152.pl` passed its smoke test.
+
+**Task: Step 6 - Generate `section68.pl`**
+
+Please generate the code for the statute module `section68.pl`, which handles the overall limitation on itemized deductions. This module depends on `section2` and `section7703`.
+
+Adhere to all rules.
+
+=== LLM RESPONSE ===
+%% BEGIN_FILE: statute_68.pl
+:- module(statute_68,
+          [ allowable_itemized_deductions/5,
+            is_applicable_amount_a/3
+          ]).
+
+/**
+ * statute_68.pl
+ *
+ * This module implements §68, which imposes an overall limitation on
+ * itemized deductions for high-income individuals.
+ *
+ * It provides a predicate to calculate the final allowable deductions
+ * and a specific test predicate for case s68_b_1_A_neg.
+ * The logic is suspended for years 2018-2025 per §68(f).
+ */
+
+:- use_module(helpers).
+:- use_module(knowledge_base).
+
+% The system will provide the 'fact' predicates at runtime.
+:- discontiguous fact/1, fact/2, fact/3, fact/4.
+
+% allowable_itemized_deductions(+Taxpayer, +Year, +OtherwiseAllowableDeductions, +AdjustedGrossIncome, -FinalDeductions)
+%
+% This is the main predicate for this section. It calculates the final amount
+% of itemized deductions after applying the §68 limitation.
+allowable_itemized_deductions(_Taxpayer, Year, OtherwiseAllowable, _AGI, OtherwiseAllowable) :-
+    helpers:tcja_active_general(Year), !. % §68(f): Section does not apply for 2018-2025.
+
+allowable_itemized_deductions(Taxpayer, Year, OtherwiseAllowable, AGI, FinalDeductions) :-
+    \+ helpers:tcja_active_general(Year),
+    calculate_deduction_reduction(Taxpayer, Year, OtherwiseAllowable, AGI, Reduction),
+    FinalDeductions is OtherwiseAllowable - Reduction,
+    FinalDeductions >= 0.
+
+% calculate_deduction_reduction(+Taxpayer, +Year, +OtherwiseAllowable, +AGI, -Reduction)
+%
+% Implements the core logic of §68(a). It determines the amount by which
+% itemized deductions must be reduced.
+calculate_deduction_reduction(Taxpayer, Year, OtherwiseAllowable, AGI, Reduction) :-
+    % To find the applicable amount, we first need the filing status.
+    % This is a cross-module call to a module that will be generated later.
+    statute_2:filing_status(Taxpayer, Year, FilingStatus),
+    applicable_amount(FilingStatus, Year, AppAmount),
+    (   AGI > AppAmount
+    ->  % AGI exceeds the threshold, so a reduction is calculated.
+        ExcessAGI is AGI - AppAmount,
+        ReductionByPercent is 0.03 * ExcessAGI,     % §68(a)(1)
+        ReductionByCap is 0.80 * OtherwiseAllowable, % §68(a)(2)
+        Reduction is min(ReductionByPercent, ReductionByCap)
+    ;   % AGI does not exceed the threshold, so no reduction is applied.
+        Reduction = 0
+    ).
+
+% applicable_amount(+FilingStatus, +Year, -Amount)
+%
+% Looks up the "applicable amount" from §68(b) by querying the knowledge base.
+applicable_amount(FilingStatus, Year, Amount) :-
+    helpers:get_year_period(Year, Period),
+    (   FilingStatus = joint_return -> KB_Status = joint_return
+    ;   FilingStatus = surviving_spouse -> KB_Status = surviving_spouse
+    ;   FilingStatus = head_of_household -> KB_Status = head_of_household
+    ;   FilingStatus = married_filing_separately -> KB_Status = married_filing_separately
+    ;   KB_Status = unmarried % Default for other cases
+    ),
+    knowledge_base:overall_limitation_applicable_amount(Period, KB_Status, Amount).
+
+% is_applicable_amount_a(+Taxpayer, +Year, +FilingStatus)
+%
+% Implements the test for §68(b)(1)(A) as required by the JSON mapping for case s68_b_1_A_neg.
+% This predicate succeeds if the given FilingStatus is one of the types listed in
+% subparagraph (A), i.e., joint return or surviving spouse.
+% The Taxpayer and Year arguments are included for arity compliance but are not used.
+is_applicable_amount_a(_Taxpayer, _Year, FilingStatus) :-
+    (FilingStatus == joint_return ; FilingStatus == surviving_spouse).
+
+%% END_FILE: statute_68.pl
+% SMOKE: PBA_FAILURE :- (dynamic fact/4, dynamic statute_2:filing_status/3), assertz(fact(adjusted_gross_income(test_user, 2016, 400000))), assertz(statute_2:filing_status(test_user, 2016, joint_return)), statute_68:allowable_itemized_deductions(test_user, 2016, 50000, 400000, 50000).
+
+=== VALIDATION RESULTS ===
+Passed: True
+Error Message: 
+Failed File: 
+
+=== CONVERSATION HISTORY LENGTH ===
+18 turns
+
+=== SYSTEM PROMPT LENGTH ===
+3485 characters
+
+=== RESPONSE STATISTICS ===
+Response Length: 3870 characters
+Prompt Length: 292 characters

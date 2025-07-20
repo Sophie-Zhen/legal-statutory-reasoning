@@ -1,0 +1,453 @@
+:- module(tests,
+          [ fact/1,
+            answer/2
+          ]).
+
+/**
+ * tests.pl
+ *
+ * This file contains the case-specific data, modeled as Prolog facts,
+ * and the orchestration logic for running each test case.
+ *
+ * The file is structured to be parsed automatically. Each case's facts
+ * and its corresponding answer/2 clause are wrapped in machine-readable
+ * markers.
+ *
+ * A test runner will dynamically assert the facts for a given CaseID,
+ * execute the corresponding answer/2 query, and compare the result against
+ * the expected outcome from the JSON mapping.
+ */
+
+:- use_module(helpers).
+:- use_module(statute_1).
+:- use_module(statute_2).
+:- use_module(statute_63).
+:- use_module(statute_68).
+:- use_module(statute_151).
+:- use_module(statute_152).
+:- use_module(statute_3301).
+:- use_module(statute_3306).
+:- use_module(statute_7703).
+
+:- dynamic fact/1.
+
+% --- Case Data as Facts ---
+
+%% --- CaseID: s1_d_iv_neg BEGIN ---
+fact(is_married_on_date(alice, spouse_of_alice, date(2017, 12, 31))).
+fact(files_separate_return(alice, 2017)).
+%% --- CaseID: s1_d_iv_neg END ---
+
+%% --- CaseID: s3306_c_5_pos BEGIN ---
+fact(payment_for_service(alice, bob, 3200, 2017, general_service)).
+fact(parent_of(bob, alice)).
+%% --- CaseID: s3306_c_5_pos END ---
+
+%% --- CaseID: s1_c_i_neg BEGIN ---
+% No facts needed. The status 'unmarried' is the default when no
+% marriage, surviving spouse, or head of household facts are present.
+%% --- CaseID: s1_c_i_neg END ---
+
+%% --- CaseID: s1_b_iii_neg BEGIN ---
+fact(furnishes_over_half_of_household_maintenance(alice, 2017)).
+fact(child_of(child_of_alice, alice)).
+fact(has_same_principal_abode(child_of_alice, alice, 2017, more_than_half)).
+fact(date_of_birth(child_of_alice, 2005, 5, 5)).
+fact(date_of_birth(alice, 1980, 1, 1)).
+fact(has_no_income(child_of_alice, 2017)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(child_of_alice)).
+%% --- CaseID: s1_b_iii_neg END ---
+
+%% --- CaseID: s152_d_2_F_pos BEGIN ---
+fact(parent_of(charlie, bob)).
+fact(sibling_of(alice, charlie)).
+%% --- CaseID: s152_d_2_F_pos END ---
+
+%% --- CaseID: s1_a_1_iii_neg BEGIN ---
+fact(is_married_on_date(alice, spouse_of_alice, date(2017, 12, 31))).
+fact(files_joint_return(alice, 2017)).
+%% --- CaseID: s1_a_1_iii_neg END ---
+
+%% --- CaseID: s3306_b_10_A_neg BEGIN ---
+fact(payment_under_plan(alice, retirement_plan)).
+fact(termination_reason(bob, alice, age_retirement)).
+fact(payment_year(12980, 2019)).
+%% --- CaseID: s3306_b_10_A_neg END ---
+
+%% --- CaseID: s63_c_2_B_neg BEGIN ---
+fact(is_married_on_date(alice, bob, date(2017, 12, 31))).
+fact(spouse_of(alice, bob, 2017)).
+fact(files_joint_return(alice, 2017)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: s63_c_2_B_neg END ---
+
+%% --- CaseID: s3306_b_7_neg BEGIN ---
+fact(payment_medium(alice, bob, 323, cash)).
+fact(service_in_course_of_business(alice, bob, false)).
+fact(payment_year(323, 2017)).
+%% --- CaseID: s3306_b_7_neg END ---
+
+%% --- CaseID: s152_c_1_E_pos BEGIN ---
+fact(child_of(bob, alice)).
+fact(has_same_principal_abode(bob, alice, 2019, more_than_half)).
+fact(is_married_on_date(bob, charlie, date(2019, 12, 31))).
+fact(files_separate_return(bob, 2019)).
+%% --- CaseID: s152_c_1_E_pos END ---
+
+%% --- CaseID: s2_a_2_B_pos BEGIN ---
+fact(is_married_on_date(alice, bob, date(2014, 7, 9))).
+fact(spouse_died_in_year(bob, alice, 2014, date(2014, 7, 9))).
+%% --- CaseID: s2_a_2_B_pos END ---
+
+%% --- CaseID: s63_c_3_pos BEGIN ---
+fact(is_married_on_date(alice, bob, date(2017, 12, 31))).
+fact(spouse_of(alice, bob, 2017)).
+fact(date_of_birth(alice, 1950, 1, 1)).
+fact(date_of_birth(bob, 1950, 1, 1)).
+fact(files_separate_return(alice, 2017)).
+fact(has_no_gross_income(bob, 2017)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: s63_c_3_pos END ---
+
+%% --- CaseID: s3306_a_1_neg BEGIN ---
+fact(payment_for_service(alice, bob, 3200, 2017, domestic_service)).
+fact(payment_for_service(bob, alice, 4500, 2018, general_service)).
+%% --- CaseID: s3306_a_1_neg END ---
+
+%% --- CaseID: s7703_b_1_pos BEGIN ---
+fact(is_married_on_date(alice, bob, date(2018, 12, 31))).
+fact(files_separate_return(alice, 2018)).
+fact(child_of(charlie, alice)).
+fact(maintains_household_for_child(alice, charlie, 2018)).
+fact(has_same_principal_abode(charlie, alice, 2018, more_than_half)).
+fact(date_of_birth(charlie, 2017, 9, 16)).
+fact(date_of_birth(alice, 1990, 1, 1)).
+fact(has_no_income(charlie, 2018)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(charlie)).
+%% --- CaseID: s7703_b_1_pos END ---
+
+%% --- CaseID: s1_c_iv_pos BEGIN ---
+% No facts needed. 'unmarried' is the default status.
+%% --- CaseID: s1_c_iv_pos END ---
+
+%% --- CaseID: s3306_b_pos BEGIN ---
+fact(remuneration_for_employment(alice, bob, 2325, 2018)).
+%% --- CaseID: s3306_b_pos END ---
+
+%% --- CaseID: s1_a_1_pos BEGIN ---
+fact(is_married_on_date(alice, spouse_of_alice, date(2017, 12, 31))).
+fact(files_joint_return(alice, 2017)).
+%% --- CaseID: s1_a_1_pos END ---
+
+%% --- CaseID: s68_b_1_A_neg BEGIN ---
+fact(is_married_on_date(alice, spouse_of_alice, date(2016, 12, 31))).
+fact(files_separate_return(alice, 2016)).
+%% --- CaseID: s68_b_1_A_neg END ---
+
+%% --- CaseID: tax_case_89 BEGIN ---
+fact(gross_income(alice, 2018, 3200)).
+fact(adjusted_gross_income(alice, 2018, 3200)).
+fact(earned_income(alice, 2018, 3200)).
+fact(is_married_on_date(alice, bob, date(2018, 12, 31))).
+fact(spouse_of(alice, bob, 2018)).
+fact(files_separate_return(alice, 2018)).
+fact(takes_standard_deduction(alice, 2018)).
+fact(has_no_gross_income(bob, 2018)).
+fact(is_blind(alice, 2018)).
+fact(student_at(alice, johns_hopkins_university, 2018)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: tax_case_89 END ---
+
+%% --- CaseID: tax_case_13 BEGIN ---
+fact(gross_income(bob, 2017, 53249)).
+fact(adjusted_gross_income(bob, 2017, 53249)).
+fact(parent_of(bob, alice)).
+fact(date_of_birth(alice, 1998, 6, 15)).
+fact(date_of_birth(bob, 1970, 1, 1)).
+fact(student_at(alice, johns_hopkins_university, 2017)).
+fact(has_same_principal_abode(alice, bob, 2017, more_than_half)).
+fact(furnishes_over_half_of_household_maintenance(bob, 2017)).
+fact(takes_standard_deduction(bob, 2017)).
+fact(has_no_income(alice, 2017)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: tax_case_13 END ---
+
+%% --- CaseID: tax_case_40 BEGIN ---
+fact(payment_for_service(alice, bob, 3200, 2017, general_service)).
+fact(parent_of(bob, alice)).
+fact(legally_separated_on_date(alice, charlie, date(2017, 9, 16))).
+fact(gross_income(alice, 2017, 756420)).
+fact(adjusted_gross_income(alice, 2017, 756420)).
+fact(takes_standard_deduction(alice, 2017)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+fact(is_potential_taxpayer(charlie)).
+%% --- CaseID: tax_case_40 END ---
+
+%% --- CaseID: tax_case_26 BEGIN ---
+fact(remuneration_for_employment(alice, bob, 1513, 2019)).
+fact(termination_reason(bob, alice, disability_retirement)).
+fact(payment_under_plan(alice, some_plan)).
+fact(payment_for_disability_termination(alice, bob, 298, 2019)).
+fact(gross_income(alice, 2019, 567192)).
+fact(adjusted_gross_income(alice, 2019, 567192)).
+fact(parent_of(charlie, alice)).
+fact(has_same_principal_abode(charlie, alice, 2019, more_than_half)).
+fact(maintains_household_for_parent(alice, charlie, 2019)).
+fact(furnishes_over_half_of_household_maintenance(alice, 2019)).
+fact(has_no_income(charlie, 2019)).
+fact(takes_standard_deduction(alice, 2019)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+fact(is_potential_taxpayer(charlie)).
+%% --- CaseID: tax_case_26 END ---
+
+%% --- CaseID: tax_case_79 BEGIN ---
+fact(is_married_on_date(alice, bob, date(2020, 12, 31))).
+fact(spouse_of(bob, alice, 2020)).
+fact(files_joint_return(bob, 2020)).
+fact(gross_income(alice, 2020, 103272)).
+fact(gross_income(bob, 2020, 10)).
+fact(adjusted_gross_income(joint_return_of_alice_and_bob, 2020, 103282)).
+fact(takes_standard_deduction(bob, 2020)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: tax_case_79 END ---
+
+%% --- CaseID: tax_case_70 BEGIN ---
+fact(sibling_of(bob, alice)).
+fact(date_of_birth(bob, 2014, 1, 31)).
+fact(is_dependent_of(bob, parents_of_bob, 2016)).
+fact(gross_income(alice, 2016, 567192)).
+fact(adjusted_gross_income(alice, 2016, 567192)).
+fact(is_married_on_date(alice, husband_of_alice, date(2016, 12, 31))).
+fact(spouse_of(alice, husband_of_alice, 2016)).
+fact(has_no_gross_income(husband_of_alice, 2016)).
+fact(files_separate_return(alice, 2016)).
+fact(itemizes_deductions(alice, 2016)).
+fact(itemized_deductions_before_limitation(alice, 2016, 100206)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+fact(is_potential_taxpayer(husband_of_alice)).
+%% --- CaseID: tax_case_70 END ---
+
+%% --- CaseID: tax_case_63 BEGIN ---
+fact(is_married_on_date(alice, bob, date(2019, 12, 31))).
+fact(spouse_of(bob, alice, 2019)).
+fact(date_of_birth(alice, 1950, 3, 2)).
+fact(date_of_birth(bob, 1955, 3, 3)).
+fact(gross_income(bob, 2019, 113580)).
+fact(has_no_income(alice, 2019)).
+fact(adjusted_gross_income(joint_return_of_alice_and_bob, 2019, 113580)).
+fact(files_joint_return(bob, 2019)).
+fact(takes_standard_deduction(bob, 2019)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: tax_case_63 END ---
+
+%% --- CaseID: tax_case_61 BEGIN ---
+fact(parent_of(bob, alice)).
+fact(has_same_principal_abode(bob, alice, 2015, full_year)).
+fact(maintains_household_for_parent(alice, bob, 2015)).
+fact(furnishes_over_half_of_household_maintenance(alice, 2015)).
+fact(has_no_income(bob, 2015)).
+fact(gross_income(alice, 2015, 102268)).
+fact(adjusted_gross_income(alice, 2015, 102268)).
+fact(takes_standard_deduction(alice, 2015)).
+fact(is_potential_taxpayer(alice)).
+fact(is_potential_taxpayer(bob)).
+%% --- CaseID: tax_case_61 END ---
+
+% --- Test Case Queries ---
+
+%% --- CaseID: s1_d_iv_neg BEGIN ---
+answer('s1_d_iv_neg', Result) :-
+    ( \+ statute_1:tax_for_filing_status(married_filing_separately, 28864, 2017, iv, _) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_d_iv_neg END ---
+
+%% --- CaseID: s3306_c_5_pos BEGIN ---
+answer('s3306_c_5_pos', Result) :-
+    ( statute_3306:is_employment_exception_c5(alice, bob, 2017) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s3306_c_5_pos END ---
+
+%% --- CaseID: s1_c_i_neg BEGIN ---
+answer('s1_c_i_neg', Result) :-
+    ( \+ statute_1:tax_for_filing_status(unmarried, 718791, 2017, i, _) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_c_i_neg END ---
+
+%% --- CaseID: s1_b_iii_neg BEGIN ---
+answer('s1_b_iii_neg', Result) :-
+    ( \+ statute_1:tax_for_filing_status(head_of_household, 54775, 2017, iii, _) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_b_iii_neg END ---
+
+%% --- CaseID: s152_d_2_F_pos BEGIN ---
+answer('s152_d_2_F_pos', Result) :-
+    ( statute_152:relationship_d2(alice, bob, 'F') ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s152_d_2_F_pos END ---
+
+%% --- CaseID: s1_a_1_iii_neg BEGIN ---
+answer('s1_a_1_iii_neg', Result) :-
+    ( \+ statute_1:tax_for_filing_status(married_filing_jointly, 164612, 2017, iii, _) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_a_1_iii_neg END ---
+
+%% --- CaseID: s3306_b_10_A_neg BEGIN ---
+answer('s3306_b_10_A_neg', Result) :-
+    ( \+ statute_3306:is_wage_exception_b10(12980, alice, bob) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s3306_b_10_A_neg END ---
+
+%% --- CaseID: s63_c_2_B_neg BEGIN ---
+answer('s63_c_2_B_neg', Result) :-
+    (   statute_2:filing_status(alice, 2017, FS),
+        statute_63:basic_standard_deduction(alice, 2017, FS, Ded),
+        ( Ded == 4400 -> Result = false ; Result = true )
+    ).
+%% --- CaseID: s63_c_2_B_neg END ---
+
+%% --- CaseID: s3306_b_7_neg BEGIN ---
+answer('s3306_b_7_neg', Result) :-
+    ( \+ statute_3306:is_wage_exception_b7(alice, bob, 323) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s3306_b_7_neg END ---
+
+%% --- CaseID: s152_c_1_E_pos BEGIN ---
+answer('s152_c_1_E_pos', Result) :-
+    ( statute_152:qualifying_child_e(bob, alice, 2019) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s152_c_1_E_pos END ---
+
+%% --- CaseID: s2_a_2_B_pos BEGIN ---
+answer('s2_a_2_B_pos', Result) :-
+    ( statute_2:surviving_spouse_limitation_b(bob, alice, 2014) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s2_a_2_B_pos END ---
+
+%% --- CaseID: s63_c_3_pos BEGIN ---
+answer('s63_c_3_pos', Result) :-
+    ( statute_63:additional_standard_deduction(alice, 2017, 1200) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s63_c_3_pos END ---
+
+%% --- CaseID: s3306_a_1_neg BEGIN ---
+answer('s3306_a_1_neg', Result) :-
+    ( \+ statute_3306:is_employer_a1(alice, 2018, bob) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s3306_a_1_neg END ---
+
+%% --- CaseID: s7703_b_1_pos BEGIN ---
+answer('s7703_b_1_pos', Result) :-
+    ( statute_7703:is_considered_not_married_b1(alice, charlie, 2018) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s7703_b_1_pos END ---
+
+%% --- CaseID: s1_c_iv_pos BEGIN ---
+answer('s1_c_iv_pos', Result) :-
+    (   statute_1:tax_for_filing_status(unmarried, 210204, 2017, iv, Tax),
+        helpers:round_to_nearest_dollar(Tax, 65445) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_c_iv_pos END ---
+
+%% --- CaseID: s3306_b_pos BEGIN ---
+answer('s3306_b_pos', Result) :-
+    ( statute_3306:is_wages(alice, bob, 2325, 2018) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s3306_b_pos END ---
+
+%% --- CaseID: s1_a_1_pos BEGIN ---
+answer('s1_a_1_pos', Result) :-
+    (   statute_1:tax_for_filing_status(married_filing_jointly, 17330, 2017, all, Tax),
+        helpers:round_to_nearest_dollar(Tax, 2600) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_a_1_pos END ---
+
+%% --- CaseID: s68_b_1_A_neg BEGIN ---
+answer('s68_b_1_A_neg', Result) :-
+    ( \+ statute_68:is_applicable_amount_a(alice, 2016, married_filing_separately) ->
+        Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s68_b_1_A_neg END ---
+
+%% --- CaseID: tax_case_89 BEGIN ---
+answer('tax_case_89', Result) :-
+    helpers:total_tax_liability(alice, 2018, Result).
+%% --- CaseID: tax_case_89 END ---
+
+%% --- CaseID: tax_case_13 BEGIN ---
+answer('tax_case_13', Result) :-
+    helpers:total_tax_liability(bob, 2017, Result).
+%% --- CaseID: tax_case_13 END ---
+
+%% --- CaseID: tax_case_40 BEGIN ---
+answer('tax_case_40', Result) :-
+    helpers:total_tax_liability(alice, 2017, Result).
+%% --- CaseID: tax_case_40 END ---
+
+%% --- CaseID: tax_case_26 BEGIN ---
+answer('tax_case_26', Result) :-
+    helpers:total_tax_liability(alice, 2019, Result).
+%% --- CaseID: tax_case_26 END ---
+
+%% --- CaseID: tax_case_79 BEGIN ---
+answer('tax_case_79', Result) :-
+    helpers:total_tax_liability(bob, 2020, Result).
+%% --- CaseID: tax_case_79 END ---
+
+%% --- CaseID: tax_case_70 BEGIN ---
+answer('tax_case_70', Result) :-
+    helpers:total_tax_liability(alice, 2016, Result).
+%% --- CaseID: tax_case_70 END ---
+
+%% --- CaseID: tax_case_63 BEGIN ---
+answer('tax_case_63', Result) :-
+    helpers:total_tax_liability(bob, 2019, Result).
+%% --- CaseID: tax_case_63 END ---
+
+%% --- CaseID: tax_case_61 BEGIN ---
+answer('tax_case_61', Result) :-
+    helpers:total_tax_liability(alice, 2015, Result).
+%% --- CaseID: tax_case_61 END ---

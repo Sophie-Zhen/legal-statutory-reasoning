@@ -1,0 +1,136 @@
+I’m an excellent expert in Prolog and U.S. federal tax law.
+
+Inputs:
+
+Statutes: Nine sections of the Internal Revenue Code, each in plain English.
+
+Cases: Twenty case-facts, each labeled with a CaseID, a free-text narrative of facts, and a question. The question is either a yes-or-no question about whether a particular tax statement is true (labeled entailment or contradiction), or a "how much tax" question which includes the expected numerical answer.
+
+Crucial Requirements for Output Generation:
+
+Completeness: Generate the complete and unabbreviated Prolog code for all specified files. Every statutory module, the helpers module, and the tests.pl file must be fully written out.
+
+No Omissions: Specifically for tests.pl, ensure all fact(CaseID, FactAtom) entries for all provided cases are generated, and all answer(CaseID, Result) predicates are fully defined.
+
+No Summaries or Placeholders: Do not skip, summarize, use placeholders (like "... other cases would follow ..."), or abbreviate any part of the required code. The final output for each file must be fully runnable in SWI-Prolog.
+
+Task:
+
+Phase 1: Pre-computation (Explicit Statute-Case Mapping)
+
+Before generating any Prolog code, first provide a structured mapping that connects each case to the statutes. This mapping is a mandatory first step.
+
+For each CaseID, list the specific statute predicates required to answer its question.
+
+For each of these predicates, map its arguments (slots) to the specific case facts that will provide the data.
+
+Use the following format for the mapping:
+
+Generated code
+CaseID: [CaseID]
+Question Type: [entailment | contradiction | how-much-tax]
+Relevant Predicate(s):
+  - Predicate: [module:predicate_name/arity]
+    Data Mapping (Slots):
+      - ArgumentName: [Value from case text or derived from fact(CaseID, ...)]
+      - ArgumentName: [Value from case text or derived from fact(CaseID, ...)]
+  - Predicate: [another_predicate_if_needed]
+    Data Mapping (Slots): ...
+
+
+Phase 2: Prolog Encoding (Guided by SARA Principles & Best Practices)
+
+Generate Prolog code that strictly adheres to the following specifications:
+
+Statute Modules: Encode each of the nine statute sections as Prolog predicates in its own module (e.g., section1.pl, section7703.pl).
+
+Predicate per Logical Unit: Each distinct subsection or logical rule must map to its own Prolog predicate. Name predicates clearly (e.g., s152_c_3_age_requirement_met/5).
+
+Slots as Arguments: The identified "slots" must become the arguments for the corresponding predicate, ensuring explicit data flow.
+
+No Unnecessary Global State: Rely on argument passing, not implicit state.
+
+Case Fact Encoding (fact/2): Encode the facts of each case as Prolog facts of the form fact(CaseID, FactAtom).
+
+FactAtom must be a consistent and semantically clear Prolog term. Examples: person_is_taxpayer(alice), adjusted_gross_income(alice, 2017, 75845), relationship_child_of(bob, alice), files_joint_return(alice, charlie, 2015).
+
+Helper Module (helpers.pl): Create a helpers.pl module for common, non-statute-specific logic.
+
+Mandatory Helper Predicates: This module must implement, at a minimum, the following predicates:
+
+get_age_at_year_end(CaseID, PersonID, TaxYear, Age): Calculates age in full years at the end of TaxYear.
+
+round_to_nearest_dollar(Amount, RoundedAmount): Rounds a number to the nearest integer.
+
+tcja_active_general(TaxYear): Returns true if TaxYear is between 2018-2025.
+
+tcja_active_standard_deduction(TaxYear): Returns true if TaxYear is between 2018-2025.
+
+calculate_tax_from_brackets(TaxableIncome, BracketList, TaxAmount): A generic tax calculator.
+
+Uniform Query Predicate (answer/2): In a tests.pl module, define answer(CaseID, Result) with the following explicitly different logic for the two question types:
+
+For "entailment" or "contradiction" questions: The Result must be true or false. Result is true if the program's logical conclusion matches the question's expectation.
+
+Example Logic:
+
+Generated prolog
+answer(some_case, Result) :-
+    % 1. Determine the truth of the statement based on statute predicates.
+    statute_predicate(some_case, ..., ComputedTruth), % Computes true or false
+    % 2. Get the expected relationship from the case facts.
+    fact(some_case, question_type(ExpectedRelationship)), % e.g., entailment
+    % 3. Compare and set final result.
+    evaluate_statement_truth(ComputedTruth, ExpectedRelationship, Result).
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Prolog
+IGNORE_WHEN_COPYING_END
+
+For "how-much-tax" questions: The Result must be the final calculated numerical answer.
+
+Example Logic:
+
+Generated prolog
+answer(tax_case_xyz, ComputedTaxAmount) :-
+    % 1. Call a chain of predicates to determine the final tax liability.
+    calculate_taxable_income(tax_case_xyz, ..., TI),
+    calculate_final_tax(tax_case_xyz, TI, ..., ComputedTaxAmount).
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Prolog
+IGNORE_WHEN_COPYING_END
+
+Explicit Code Quality Requirements:
+
+Modularization: All files must start with :- module(ModuleName, [ExportList]). and use :- use_module(module_name, [predicate/arity]). for dependencies. Do not use the library() wrapper for local module imports.
+
+Dynamic Predicates: Explicitly declare :- dynamic fact/2. in any module that defines or queries these facts.
+
+Singleton Variables: All unused variables in a clause must be prefixed with an underscore (e.g., _TaxYear).
+
+Arithmetic: Ensure all variables in expressions passed to is/2 are fully instantiated before the call. Do not use custom predicates as arithmetic functions inside is/2.
+
+Goal: The final generated code must compile and execute in SWI-Prolog without requiring manual fixes for syntax errors, module resolution, or predicate arity mismatches.
+
+Recommended Output Generation Plan (Explicit Chunking):
+
+The output may exceed the length limit. If so, generate the complete code across multiple responses by following this explicit plan. Inform me at the end of each response which part you have completed.
+
+Response 1: The complete Statute-Case Mapping analysis from Phase 1.
+
+Response 2: The code for the first set of statute modules (e.g., section7703.pl, section152.pl, section151.pl).
+
+Response 3: The code for the next set of statute modules (e.g., section2.pl, section68.pl, section63.pl).
+
+Response 4: The code for the final statute modules (e.g., section3306.pl, section3301.pl, section1.pl).
+
+Response 5: The complete helpers.pl module.
+
+Response 6: The tests.pl file containing only the :- module, :- use_module, :- dynamic fact/2., and all fact/2 definitions.
+
+Response 7 (and subsequent, if needed): The tests.pl file's answer/2 predicate definitions, delivered in batches of 5-7 cases per response until all are complete.

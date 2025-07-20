@@ -1,0 +1,59 @@
+PASSED CASES WITHOUT FACTS ANALYSIS
+==================================================
+Analysis Date: 2025-07-14T23:43:42.181025
+
+SUMMARY STATISTICS:
+Total passed cases: 48
+Passed without facts: 26
+Passed with facts: 22
+Missing Prolog files: 0
+Proportion without facts: 54.2%
+Proportion with facts: 45.8%
+
+KEY FINDING:
+🎯 26 out of 48 passed cases (54.2%) succeeded WITHOUT semantic fact extraction.
+This suggests the system can rely on built-in knowledge base rules for some cases.
+
+CASES THAT PASSED WITHOUT FACTS:
+------------------------------
+• s152_d_2_H_neg
+• s2_a_1_B_neg
+• s68_a_2_pos
+• s63_c_2_A_i_neg
+• s152_c_2_A_neg
+• s63_f_2_B_pos
+• s7703_a_1_neg
+• s3306_b_2_C_neg
+• s3306_c_1_B_pos
+• s68_b_1_C_pos
+• s63_f_1_A_neg
+• s2_b_1_A_i_neg
+• s2_b_3_A_neg
+• s2_b_1_A_i_II_neg
+• s63_b_neg
+• s63_c_2_A_i_pos
+• s63_c_7_i_pos
+• s1_c_iii_pos
+• s63_c_6_D_pos
+• s1_a_2_neg
+• s63_f_2_B_neg
+• s2_b_1_A_i_I_neg
+• s63_c_2_A_ii_neg
+• s3306_c_1_B_neg
+• s2_b_1_A_ii_neg
+• s3306_c_10_B_neg
+
+CASES THAT PASSED WITH FACTS (Sample):
+------------------------------
+• s152_d_2_A_neg (4 facts)
+• s1_b_pos (2 facts)
+• s1_b_neg (3 facts)
+• s3306_c_16_neg (3 facts)
+• s3306_c_B_pos (2 facts)
+• s1_d_pos (3 facts)
+• s1_a_2_iv_pos (2 facts)
+• s3306_c_11_neg (3 facts)
+• s1_a_2_iv_neg (2 facts)
+• s3306_c_7_neg (2 facts)
+... and 12 more
+

@@ -1,0 +1,452 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+I will now proceed with generating the remaining statute modules as planned.
+
+### **Response 5 of 8: Core Tax Calculation Modules (`section2.pl`, `section63.pl`, `section1.pl`, and `section3301.pl/section3306.pl`)**
+
+Here are the final statute modules. These integrate many of the previously defined components to determine filing status, taxable income, and ultimately, the tax imposed. `section3301` and `section3306` are combined for simplicity as `section3301` is just a single rule invoking `section3306`.
+
+%% BEGIN_FILE: section2.pl
+```prolog
+:- module(section2,
+          [ filing_status/4,             % filing_status(Taxpayer, CaseID, Year, Status)
+            is_surviving_spouse/3,       % is_surviving_spouse(Taxpayer, CaseID, Year)
+            is_head_of_household/3,      % is_head_of_household(Taxpayer, CaseID, Year)
+            could_have_filed_joint_return_in_death_year/2 % could_have_filed_joint_return_in_death_year(Taxpayer, Year)
+          ]).
+
+:- use_module(tests, [fact/2]).
+:- use_module(section7703, [is_married_a/3, is_considered_not_married_b/3]).
+:- use_module(section151, [is_entitled_to_deduction_for_dependent/4]).
+:- use_module(section152, [is_qualifying_child/4, is_dependent/4]).
+
+
+% Top-level predicate to determine a taxpayer's filing status.
+filing_status(Taxpayer, CaseID, Year, surviving_spouse) :-
+    is_surviving_spouse(Taxpayer, CaseID, Year), !.
+filing_status(Taxpayer, CaseID, Year, head_of_household) :-
+    is_head_of_household(Taxpayer, CaseID, Year), !.
+filing_status(Taxpayer, CaseID, Year, married_filing_jointly) :-
+    is_married_a(Taxpayer, CaseID, Year),
+    \+ is_considered_not_married_b(Taxpayer, CaseID, Year),
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    fact(CaseID, files_joint_return(Taxpayer, Spouse, Year)), !.
+filing_status(Taxpayer, CaseID, Year, married_filing_separately) :-
+    is_married_a(Taxpayer, CaseID, Year),
+    \+ is_considered_not_married_b(Taxpayer, CaseID, Year),
+    (fact(CaseID, files_separate_return(Taxpayer, Year)) ; (fact(CaseID, spouse(Taxpayer, Spouse)), \+ fact(CaseID, files_joint_return(Taxpayer, Spouse, Year)))), !.
+filing_status(Taxpayer, _CaseID, _Year, single) :-
+    % A taxpayer is 'single' if they are not any of the other statuses.
+    true.
+
+
+% §2(a) Definition of surviving spouse
+is_surviving_spouse(Taxpayer, CaseID, Year) :-
+    % (1)(A) Spouse died in one of the two preceding years.
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    fact(CaseID, death_of_spouse(Taxpayer, Spouse, date(DeathYear, _, _))),
+    (Year - DeathYear =:= 1 ; Year - DeathYear =:= 2),
+    % (1)(B) Maintains a home for a dependent son/daughter.
+    maintains_home_for_dependent_child(Taxpayer, CaseID, Year),
+    % (2)(A) Taxpayer has not remarried.
+    \+ fact(CaseID, remarried(Taxpayer, Year)),
+    % (2)(B) Could have filed a joint return in the year of death.
+    could_have_filed_joint_return_in_death_year(Taxpayer, DeathYear).
+
+could_have_filed_joint_return_in_death_year(Taxpayer, DeathYear) :-
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    % Not a nonresident alien.
+    \+ fact(CaseID, nonresident_alien(Taxpayer, DeathYear)),
+    \+ fact(CaseID, nonresident_alien(Spouse, DeathYear)).
+
+maintains_home_for_dependent_child(Taxpayer, CaseID, Year) :-
+    fact(CaseID, maintains_household_as_principal_abode(Taxpayer, Child, Year)),
+    is_entitled_to_deduction_for_dependent(Taxpayer, Child, CaseID, Year),
+    is_son_or_daughter(Child, Taxpayer, CaseID).
+
+is_son_or_daughter(Child, Parent, CaseID) :-
+    (   fact(CaseID, child_of(Child, Parent))
+    ;   fact(CaseID, stepchild_of(Child, Parent))
+    ).
+
+% §2(b) Definition of head of household
+is_head_of_household(Taxpayer, CaseID, Year) :-
+    % §2(b)(1) Conditions
+    \+ is_married_at_close_of_year(Taxpayer, CaseID, Year),
+    \+ is_surviving_spouse(Taxpayer, CaseID, Year),
+    maintains_household_for_qualifying_person(Taxpayer, CaseID, Year),
+    % §2(b)(3) Limitations
+    \+ fact(CaseID, nonresident_alien(Taxpayer, Year)),
+    \+ is_hoh_disqualified_by_household_member(Taxpayer, CaseID, Year).
+
+% Helper for §2(b)(1): is not married at close of year
+is_married_at_close_of_year(Taxpayer, CaseID, Year) :-
+    is_married_a(Taxpayer, CaseID, Year),
+    % Not unmarried due to special rules in §2(b)(2)
+    \+ is_considered_not_married_for_hoh(Taxpayer, CaseID, Year),
+    % Not unmarried due to §7703(b) 'living apart' rule
+    \+ is_considered_not_married_b(Taxpayer, CaseID, Year).
+
+is_considered_not_married_for_hoh(Taxpayer, CaseID, Year) :-
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    % §2(b)(2)(A) legally separated
+    fact(CaseID, legally_separated(Taxpayer, Spouse, date(SepYear,_,_))), SepYear =< Year.
+is_considered_not_married_for_hoh(Taxpayer, CaseID, Year) :-
+    % §2(b)(2)(B) spouse is nonresident alien
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    fact(CaseID, nonresident_alien(Spouse, Year)).
+
+
+% Helper for §2(b)(1): Maintains household for a qualifying person
+maintains_household_for_qualifying_person(Taxpayer, CaseID, Year) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, Year)),
+    (   % (A) Qualifying Child
+        maintains_household_for_qualifying_child(Taxpayer, CaseID, Year)
+    ;   % (A)(ii) Other dependent
+        maintains_household_for_other_dependent(Taxpayer, CaseID, Year)
+    ;   % (B) Father or Mother
+        maintains_household_for_parent(Taxpayer, CaseID, Year)
+    ).
+
+maintains_household_for_qualifying_child(Taxpayer, CaseID, Year) :-
+    is_qualifying_child(Taxpayer, Child, CaseID, Year),
+    fact(CaseID, lived_with_over_half_year(Child, Taxpayer, Year)),
+    \+ (
+        fact(CaseID, spouse(Child, _)),
+        is_dependent_ineligible_married(Child, CaseID, Year)
+    ).
+
+is_dependent_ineligible_married(Child, CaseID, Year) :-
+    % From §152(b)(2) via §2(b)(1)(A)(i)(II)
+    fact(CaseID, spouse(Child, Spouse)),
+    fact(CaseID, files_joint_return(Child, Spouse, Year)).
+
+maintains_household_for_other_dependent(Taxpayer, CaseID, Year) :-
+    is_dependent(Taxpayer, Dependent, CaseID, Year),
+    is_entitled_to_deduction_for_dependent(Taxpayer, Dependent, CaseID, Year),
+    fact(CaseID, lived_with_over_half_year(Dependent, Taxpayer, Year)).
+
+maintains_household_for_parent(Taxpayer, CaseID, Year) :-
+    is_dependent(Taxpayer, Parent, CaseID, Year),
+    (fact(CaseID, child_of(Taxpayer, Parent)); fact(CaseID, mother_of(Parent, Taxpayer)); fact(CaseID, father_of(Parent, Taxpayer))),
+    is_entitled_to_deduction_for_dependent(Taxpayer, Parent, CaseID, Year),
+    fact(CaseID, maintains_household_as_principal_abode(Taxpayer, Parent, Year)).
+
+% Helper for §2(b)(3)(B) limitation
+is_hoh_disqualified_by_household_member(Taxpayer, CaseID, Year) :-
+    is_dependent(Taxpayer, Dependent, CaseID, Year),
+    % Checks if the *only* reason they are a dependent is §152(d)(2)(H)
+    % We model this by checking if they meet the household member rule and fail others.
+    fact(CaseID, member_of_household(Dependent, Taxpayer, Year)),
+    \+ relationship_qualifying_relative_non_household(Taxpayer, Dependent, CaseID).
+
+relationship_qualifying_relative_non_household(Taxpayer, Dependent, CaseID) :-
+    section152:relationship_qualifying_relative(Taxpayer, Dependent, CaseID),
+    \+ (
+        fact(CaseID, same_principal_place_of_abode(Dependent, Taxpayer, _)),
+        fact(CaseID, member_of_household(Dependent, Taxpayer, _))
+    ).
+
+```
+%% END_FILE: section2.pl
+% SMOKE: ?- [tests, helpers, knowledge_base, section7703, section152, section151, section2], filing_status(alice, tax_case_61, 2015, S).
+
+%% BEGIN_FILE: section63.pl
+```prolog
+:- module(section63,
+          [ taxable_income/4,                % taxable_income(Taxpayer, CaseID, Year, TaxableIncome)
+            standard_deduction/4,            % standard_deduction(Taxpayer, CaseID, Year, Deduction)
+            basic_standard_deduction/4,      % basic_standard_deduction(Taxpayer, FilingStatus, Year, Deduction)
+            additional_standard_deduction/3, % additional_standard_deduction(Taxpayer, CaseID, Year, Deduction)
+            is_eligible_for_standard_deduction/3 % is_eligible_for_standard_deduction(Taxpayer, CaseID, Year)
+          ]).
+
+:- use_module(tests, [fact/2]).
+:- use_module(helpers, [calculate_age_at_year_end/3]).
+:- use_module(knowledge_base, [basic_standard_deduction_amount/3, additional_deduction_aged_blind/3, dependent_deduction_limitation/3]).
+:- use_module(section151, [personal_exemption_deduction/4]).
+:- use_module(section2, [filing_status/4]).
+:- use_module(section68, [limited_itemized_deductions/4]).
+
+
+% §63(a) & (b) Top-level predicate for taxable income
+taxable_income(Taxpayer, CaseID, Year, TaxableIncome) :-
+    fact(CaseID, gross_income(Taxpayer, Year, GrossIncome)),
+    % Assuming AGI = GrossIncome for these cases, as no above-the-line deductions are given.
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, GrossIncome)),
+    (   % Itemizes deductions
+        fact(CaseID, elects_to_itemize_deductions(Taxpayer, Year))
+    ->  % §63(a) Taxable Income = Gross Income - Itemized Deductions
+        limited_itemized_deductions(Taxpayer, CaseID, Year, ItemizedDeductions),
+        TaxableIncome is max(0, GrossIncome - ItemizedDeductions)
+    ;   % Does not itemize, takes standard deduction
+        % §63(b) Taxable Income = AGI - Standard Deduction - Personal Exemptions
+        standard_deduction(Taxpayer, CaseID, Year, StdDed),
+        personal_exemption_deduction(Taxpayer, CaseID, Year, PersEx),
+        TaxableIncome is max(0, GrossIncome - StdDed - PersEx)
+    ).
+
+% §63(c)(1) Standard Deduction = Basic + Additional
+standard_deduction(Taxpayer, CaseID, Year, Deduction) :-
+    is_eligible_for_standard_deduction(Taxpayer, CaseID, Year), !,
+    filing_status(Taxpayer, CaseID, Year, Status),
+    basic_standard_deduction(Taxpayer, Status, Year, Basic),
+    additional_standard_deduction(Taxpayer, CaseID, Year, Additional),
+    Deduction is Basic + Additional.
+standard_deduction(_, _, _, 0). % Not eligible
+
+
+% §63(c)(2) Basic Standard Deduction
+basic_standard_deduction(Taxpayer, Status, Year, Deduction) :-
+    % §63(c)(5) Limitation for dependents
+    (   fact(CaseID, is_dependent_of(Taxpayer, _, Year))
+    ->  dependent_deduction_limitation(Year, floor, Floor),
+        dependent_deduction_limitation(Year, earned_income_add, Add),
+        (fact(CaseID, earned_income(Taxpayer, Year, Earned)) -> true ; Earned = 0),
+        Limit is max(Floor, Earned + Add),
+        basic_standard_deduction_amount(Year, Status, BaseAmount),
+        Deduction is min(BaseAmount, Limit)
+    ;   % No limitation
+        basic_standard_deduction_amount(Year, Status, Deduction)
+    ).
+
+% §63(c)(3) & (f) Additional Standard Deduction
+additional_standard_deduction(Taxpayer, CaseID, Year, TotalAdditional) :-
+    filing_status(Taxpayer, CaseID, Year, Status),
+    additional_deduction_aged_blind(Year, Status, AmountPerItem),
+    findall(AmountPerItem, is_entitled_to_additional(Taxpayer, CaseID, Year, _Reason), Amounts),
+    helpers:sum_list(Amounts, TotalAdditional).
+
+is_entitled_to_additional(Taxpayer, CaseID, Year, aged_self) :-
+    % §63(f)(1)(A)
+    fact(CaseID, birth_year(Taxpayer, BirthYear)),
+    calculate_age_at_year_end(BirthYear, Year, Age),
+    Age >= 65.
+is_entitled_to_additional(Taxpayer, CaseID, Year, blind_self) :-
+    % §63(f)(2)(A)
+    fact(CaseID, is_blind(Taxpayer, Year)).
+is_entitled_to_additional(Taxpayer, CaseID, Year, aged_spouse) :-
+    % §63(f)(1)(B)
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    fact(CaseID, birth_year(Spouse, BirthYear)),
+    calculate_age_at_year_end(BirthYear, Year, Age),
+    Age >= 65,
+    % Check if additional exemption for spouse is allowable under 151(b)
+    \+ fact(CaseID, files_joint_return(Taxpayer, Spouse, Year)),
+    \+ (fact(CaseID, gross_income(Spouse, Year, Inc)), Inc > 0),
+    \+ fact(CaseID, is_dependent_of(Spouse, _, Year)).
+is_entitled_to_additional(Taxpayer, CaseID, Year, blind_spouse) :-
+    % §63(f)(2)(B)
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    fact(CaseID, is_blind(Spouse, Year)),
+    % Check if additional exemption for spouse is allowable under 151(b)
+    \+ fact(CaseID, files_joint_return(Taxpayer, Spouse, Year)),
+    \+ (fact(CaseID, gross_income(Spouse, Year, Inc)), Inc > 0),
+    \+ fact(CaseID, is_dependent_of(Spouse, _, Year)).
+
+
+% §63(c)(6) Individuals not eligible for standard deduction
+is_eligible_for_standard_deduction(Taxpayer, CaseID, Year) :-
+    % (A) Married filing separately and spouse itemizes
+    \+ (fact(CaseID, files_separate_return(Taxpayer, Year)),
+        fact(CaseID, spouse(Taxpayer, Spouse)),
+        fact(CaseID, elects_to_itemize_deductions(Spouse, Year))
+       ),
+    % (B) Nonresident alien
+    \+ fact(CaseID, nonresident_alien(Taxpayer, Year)).
+
+```
+%% END_FILE: section63.pl
+% SMOKE: ?- [tests, helpers, knowledge_base, section7703, section152, section151, section68, section2, section63], taxable_income(alice, tax_case_89, 2018, T).
+
+%% BEGIN_FILE: section1.pl
+```prolog
+:- module(section1,
+          [ tax_imposed/4 % tax_imposed(FilingStatus, TaxableIncome, Year, Tax)
+          ]).
+
+:- use_module(helpers, [calculate_tax_from_brackets/3, round_to_nearest_dollar/2]).
+:- use_module(knowledge_base, [tax_brackets/3]).
+:- use_module(section2, [filing_status/4]).
+
+% §1 Tax Imposed
+% This is a dispatcher based on filing status.
+tax_imposed(FilingStatus, TaxableIncome, Year, FinalTax) :-
+    knowledge_base:tax_brackets(Year, FilingStatus, Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, RawTax),
+    round_to_nearest_dollar(RawTax, FinalTax).
+
+```
+%% END_FILE: section1.pl
+% SMOKE: ?- [section1, helpers, knowledge_base], tax_imposed(single, 50000, 2017, T).
+
+%% BEGIN_FILE: section3301.pl
+```prolog
+:- module(section3301,
+          [ futa_tax/4 % futa_tax(Payer, Year, CaseID, Tax)
+          ]).
+
+:- use_module(section3306).
+:- use_module(knowledge_base, [futa_tax_rate/2]).
+:- use_module(helpers, [round_to_nearest_dollar/2]).
+:- use_module(tests, [fact/2]).
+
+% §3301 Rate of tax
+futa_tax(Payer, Year, CaseID, Tax) :-
+    is_employer(Payer, Year, CaseID),
+    total_wages(Payer, Year, CaseID, TotalWages),
+    futa_tax_rate(Year, Rate),
+    RawTax is TotalWages * Rate,
+    round_to_nearest_dollar(RawTax, Tax).
+futa_tax(Payer, Year, CaseID, 0) :-
+    \+ is_employer(Payer, Year, CaseID).
+```
+%% END_FILE: section3301.pl
+% SMOKE: ?- [section3301, section3306, helpers, knowledge_base, tests], futa_tax(some_corp, 2020, some_case, T).
+
+%% BEGIN_FILE: section3306.pl
+```prolog
+:- module(section3306,
+          [ is_employer/3, % is_employer(Entity, Year, CaseID)
+            total_wages/4, % total_wages(Employer, Year, CaseID, TotalWages)
+            is_wages/4,    % is_wages(Payment, Employer, Employee, Year)
+            is_employment/4, % is_employment(Service, Employer, Employee, Year)
+            is_employment_exception_child_parent/3, % is_employment_exception_child_parent(Employer, Employee, Year)
+            is_wage_exception_termination/4, % is_wage_exception_termination(Payer, Payee, Payment, Year)
+            is_wage_exception_not_in_business_course/3, % is_wage_exception_not_in_business_course(Payer, Payee, Year)
+            is_employer_general/3 % is_employer_general(Entity, Year, CaseID)
+          ]).
+
+:- use_module(tests, [fact/2]).
+:- use_module(knowledge_base, [futa_wage_base/2, futa_employer_threshold/3]).
+:- use_module(helpers, [sum_list/2, calculate_age_at_year_end/3]).
+
+
+% §3306(a) Employer
+is_employer(Entity, Year, CaseID) :-
+    is_employer_general(Entity, Year, CaseID).
+is_employer(Entity, Year, CaseID) :-
+    is_employer_agricultural(Entity, Year, CaseID).
+is_employer(Entity, Year, CaseID) :-
+    is_employer_domestic(Entity, Year, CaseID).
+
+is_employer_general(Entity, Year, CaseID) :-
+    \+ fact(CaseID, payment_for_service(Entity, _, _, _, domestic)),
+    (   paid_wages_threshold(Entity, Year, CaseID, general_wages)
+    ;   employed_days_threshold(Entity, Year, CaseID, general_employees)
+    ).
+
+is_employer_agricultural(Entity, Year, CaseID) :-
+    fact(CaseID, service_type(Entity, _, agricultural)),
+    (   paid_wages_threshold(Entity, Year, CaseID, agricultural_wages)
+    ;   employed_days_threshold(Entity, Year, CaseID, agricultural_employees)
+    ).
+
+is_employer_domestic(Entity, Year, CaseID) :-
+    fact(CaseID, payment_for_service(Entity, _, _, _, domestic)),
+    paid_wages_threshold(Entity, Year, CaseID, domestic_wages).
+
+paid_wages_threshold(Entity, Year, CaseID, Type) :-
+    futa_employer_threshold(Year, Type, Threshold),
+    findall(Amount, (fact(CaseID, payment_for_service(Entity, _, Amount, Year, _))), AmountsCurrentYear),
+    sum_list(AmountsCurrentYear, SumCurrent),
+    (   SumCurrent >= Threshold -> true
+    ;   PrevYear is Year - 1,
+        findall(Amount, (fact(CaseID, payment_for_service(Entity, _, Amount, PrevYear, _))), AmountsPrevYear),
+        sum_list(AmountsPrevYear, SumPrev),
+        SumPrev >= Threshold
+    ).
+
+employed_days_threshold(Entity, Year, CaseID, Type) :-
+    futa_employer_threshold(Year, Type, EmployeeCountThreshold),
+    futa_employer_threshold(Year, weeks, WeekThreshold),
+    (   meets_employee_day_count(Entity, Year, CaseID, EmployeeCountThreshold, WeekThreshold)
+    ;   PrevYear is Year - 1,
+        meets_employee_day_count(Entity, Year, CaseID, EmployeeCountThreshold, WeekThreshold)
+    ).
+
+meets_employee_day_count(Entity, Year, CaseID, EmployeeCountThreshold, WeekThreshold) :-
+    findall(Week, (
+        fact(CaseID, employed_on_date(Entity, _, date(Year, _, _))),
+        fact(CaseID, week_of_year(_, Week)) % Needs a fact to map dates to calendar weeks
+        ), Weeks),
+    sort(Weeks, UniqueWeeks),
+    length(UniqueWeeks, Count),
+    Count >= WeekThreshold.
+
+% §3306(b) Wages
+total_wages(Employer, Year, CaseID, TotalWages) :-
+    futa_wage_base(Year, Base),
+    findall(Wage, (
+        fact(CaseID, payment_for_service(Employer, Employee, Amount, Year, _)),
+        is_wages(Amount, Employer, Employee, Year)
+    ), AllWages),
+    % Here we need to cap per employee, not just sum all payments
+    findall(Employee, (fact(CaseID, payment_for_service(Employer, Employee, _, Year, _))), Employees),
+    setof(E, E in Employees, UniqueEmployees), % get unique employees
+    employee_capped_wages(UniqueEmployees, Employer, Year, CaseID, Base, CappedWagesList),
+    sum_list(CappedWagesList, TotalWages).
+
+employee_capped_wages([], _, _, _, _, []).
+employee_capped_wages([E|Es], Employer, Year, CaseID, Base, [Capped|Rest]) :-
+    findall(Amount, (fact(CaseID, payment_for_service(Employer, E, Amount, Year, _)), is_wages(Amount, Employer, E, Year)), Payments),
+    sum_list(Payments, TotalForEmployee),
+    Capped is min(TotalForEmployee, Base),
+    employee_capped_wages(Es, Employer, Year, CaseID, Base, Rest).
+
+is_wages(_Payment, Employer, Employee, Year) :-
+    is_employment(_, Employer, Employee, Year),
+    \+ is_wage_exception(_Payment, Employer, Employee, Year).
+
+% §3306(b) Wage Exceptions
+is_wage_exception(Payment, Payer, Payee, Year) :-
+    is_wage_exception_termination(Payer, Payee, Payment, Year).
+is_wage_exception(Payment, Payer, Payee, Year) :-
+    is_wage_exception_not_in_business_course(Payer, Payee, Year).
+% Other exceptions not fully modeled from given cases
+% (b)(2) sickness/disability, (b)(11) non-cash ag labor etc.
+
+% §3306(b)(10)(A)
+is_wage_exception_termination(Payer, Payee, _Payment, Year) :-
+    fact(CaseID, employment_termination_reason(Payer, Payee, Year, Reason)),
+    member(Reason, [death, retirement_for_disability]),
+    fact(CaseID, payment_under_plan(Payer, _)).
+
+% §3306(b)(7)
+is_wage_exception_not_in_business_course(Payer, Payee, Year) :-
+    fact(CaseID, payment_for_service(Payer, Payee, _, Year, ServiceType)),
+    \+ fact(CaseID, is_trade_or_business(Payer, ServiceType)).
+
+
+% §3306(c) Employment
+is_employment(_Service, Employer, Employee, Year) :-
+    fact(CaseID, service_performed_in_us(Employer, Employee, Year)),
+    \+ is_employment_exception(Employer, Employee, Year).
+% Other cases like (B) not modeled from given cases.
+
+% §3306(c) Employment Exceptions
+is_employment_exception(Employer, Employee, Year) :-
+    is_employment_exception_child_parent(Employer, Employee, Year).
+% Other exceptions not fully modeled...
+% (c)(2) domestic service under threshold, (c)(10) student, etc.
+
+% §3306(c)(5)
+is_employment_exception_child_parent(Employer, Employee, _Year) :-
+    fact(CaseID, child_of(Employer, Employee)).
+is_employment_exception_child_parent(Employer, Employee, _Year) :-
+    fact(CaseID, daughter_of(Employer, Employee)).
+is_employment_exception_child_parent(Employer, Employee, _Year) :-
+    fact(CaseID, son_of(Employer, Employee)).
+is_employment_exception_child_parent(Employer, Employee, _Year) :-
+    fact(CaseID, spouse(Employer, Employee)).
+is_employment_exception_child_parent(Employer, Employee, Year) :-
+    fact(CaseID, child_of(Employee, Employer)),
+    fact(CaseID, birth_year(Employee, BirthYear)),
+    calculate_age_at_year_end(BirthYear, Year, Age),
+    Age < 21.
+
+```
+%% END_FILE: section3306.pl
+% SMOKE: ?- [tests, helpers, knowledge_base, section3306], fact(s3306_c_5_pos, father_of(bob, alice)), is_employment_exception_child_parent(alice, bob, 2017).

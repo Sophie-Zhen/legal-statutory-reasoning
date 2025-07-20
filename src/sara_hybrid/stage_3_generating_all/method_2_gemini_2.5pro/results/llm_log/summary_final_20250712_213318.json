@@ -1,0 +1,11 @@
+{
+  "total_cases": 1,
+  "successful": 1,
+  "failed": 0,
+  "execution_success": 0,
+  "execution_failed": 1,
+  "start_time": "2025-07-12T21:33:15.365429",
+  "end_time": "2025-07-12T21:33:18.037640",
+  "success_rate": 1.0,
+  "execution_rate": 0.0
+}

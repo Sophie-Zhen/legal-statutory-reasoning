@@ -1,0 +1,896 @@
+{
+  "modules": {
+    "helpers": [
+      "calculate_age_at_year_end",
+      "round_to_nearest_dollar",
+      "tcja_active_for_tax_year",
+      "calculate_tax_from_brackets",
+      "sum_list"
+    ],
+    "knowledge_base": [
+      "tax_brackets",
+      "basic_standard_deduction_amount",
+      "additional_deduction_aged_blind",
+      "dependent_deduction_limitation",
+      "exemption_amount",
+      "phaseout_threshold",
+      "phaseout_step",
+      "futa_wage_base",
+      "futa_tax_rate",
+      "futa_employer_threshold"
+    ],
+    "section1": [
+      "tax_imposed"
+    ],
+    "section2": [
+      "filing_status",
+      "is_surviving_spouse",
+      "is_head_of_household",
+      "could_have_filed_joint_return_in_death_year"
+    ],
+    "section63": [
+      "taxable_income",
+      "standard_deduction",
+      "basic_standard_deduction",
+      "additional_standard_deduction",
+      "is_eligible_for_standard_deduction"
+    ],
+    "section68": [
+      "limited_itemized_deductions",
+      "applicable_amount"
+    ],
+    "section151": [
+      "personal_exemption_deduction",
+      "is_entitled_to_deduction_for_dependent",
+      "exemption_amount"
+    ],
+    "section152": [
+      "is_dependent",
+      "is_qualifying_child",
+      "is_qualifying_relative",
+      "relationship_qualifying_child",
+      "relationship_qualifying_relative"
+    ],
+    "section3301": [
+      "futa_tax"
+    ],
+    "section3306": [
+      "is_employer",
+      "total_wages",
+      "is_wages",
+      "is_employment",
+      "is_employment_exception_child_parent",
+      "is_wage_exception_termination",
+      "is_wage_exception_not_in_business_course",
+      "is_employer_general"
+    ],
+    "section7703": [
+      "is_married_a",
+      "is_considered_not_married_b"
+    ]
+  },
+  "predicates": {
+    "calculate_age_at_year_end/3": {
+      "name": "calculate_age_at_year_end",
+      "arity": 3,
+      "module": "helpers",
+      "signature": "calculate_age_at_year_end(BirthYear, TargetYear, Age)",
+      "description": "calculate_age_at_year_end(BirthYear, TargetYear, Age) A simplified age calculation. For tax law purposes, a person attains an age on the day before their birthday. A simple year-subtraction is sufficient for the statutes provided, which only check for age attainment before close of taxable year.",
+      "examples": [],
+      "is_exported": true
+    },
+    "round_to_nearest_dollar/2": {
+      "name": "round_to_nearest_dollar",
+      "arity": 2,
+      "module": "section3301",
+      "signature": "round_to_nearest_dollar(RawTax, Tax)",
+      "description": "Fact: round_to_nearest_dollar(RawTax, Tax)",
+      "examples": [
+        "round_to_nearest_dollar(RawTax, Tax)"
+      ],
+      "is_exported": false
+    },
+    "tcja_active_for_tax_year/1": {
+      "name": "tcja_active_for_tax_year",
+      "arity": 1,
+      "module": "section151",
+      "signature": "tcja_active_for_tax_year(Year), !",
+      "description": "Fact: tcja_active_for_tax_year(Year), !",
+      "examples": [
+        "tcja_active_for_tax_year(Year), !"
+      ],
+      "is_exported": false
+    },
+    "calculate_tax_from_brackets/3": {
+      "name": "calculate_tax_from_brackets",
+      "arity": 3,
+      "module": "helpers",
+      "signature": "calculate_tax_from_brackets(TaxableIncome, Brackets, Tax)",
+      "description": "calculate_tax_from_brackets(TaxableIncome, Brackets, Tax) Finds the correct bracket and calculates the tax based on the formula: Tax = BaseTax + (Rate * (TaxableIncome - LowerBoundOfBracket))",
+      "examples": [],
+      "is_exported": true
+    },
+    "find_bracket/4": {
+      "name": "find_bracket",
+      "arity": 4,
+      "module": "helpers",
+      "signature": "find_bracket(0, _, _, 0). % Special case for zero income",
+      "description": "Fact: find_bracket(0, _, _, 0). % Special case for zero income",
+      "examples": [
+        "find_bracket(0, _, _, 0). % Special case for zero income"
+      ],
+      "is_exported": false
+    },
+    "sum_list/2": {
+      "name": "sum_list",
+      "arity": 2,
+      "module": "helpers",
+      "signature": "sum_list([H|T], Sum)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "tax_brackets/7": {
+      "name": "tax_brackets",
+      "arity": 7,
+      "module": "knowledge_base",
+      "signature": "tax_brackets(Year, married_filing_separately, [bracket(18450, 0.15, 0), bracket(44575, 0.28, 2767.50), bracket(70000, 0.31, 10082.50), bracket(125000, 0.36, 17964.25), bracket(inf, 0.396, 37764.25)])",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "tax_brackets/3": {
+      "name": "tax_brackets",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "tax_brackets(Year, surviving_spouse, Brackets)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "tax_brackets/9": {
+      "name": "tax_brackets",
+      "arity": 9,
+      "module": "knowledge_base",
+      "signature": "tax_brackets(Year, single, [bracket(9700, 0.10, 0), bracket(39475, 0.12, 970), bracket(84200, 0.22, 4543), bracket(160725, 0.24, 14382.50), bracket(204100, 0.32, 32748.50), bracket(510300, 0.35, 46528.50), bracket(inf, 0.37, 153798.50)])",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "tax_brackets/8": {
+      "name": "tax_brackets",
+      "arity": 8,
+      "module": "knowledge_base",
+      "signature": "tax_brackets(Year, married_filing_separately, [bracket(9700, 0.10, 0), bracket(39475, 0.12, 970), bracket(84200, 0.22, 4543), bracket(160725, 0.24, 14382.50), bracket(306175, 0.35, 46528.50), bracket(inf, 0.37, 82354.75)])",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "basic_standard_deduction_amount/3": {
+      "name": "basic_standard_deduction_amount",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "basic_standard_deduction_amount(_Year, married_filing_separately, 12000)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "dependent_deduction_limitation/3": {
+      "name": "dependent_deduction_limitation",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "dependent_deduction_limitation(_Year, earned_income_add, 250)",
+      "description": "Fact: dependent_deduction_limitation(_Year, earned_income_add, 250)",
+      "examples": [
+        "dependent_deduction_limitation(_Year, earned_income_add, 250)"
+      ],
+      "is_exported": true
+    },
+    "additional_deduction_aged_blind/3": {
+      "name": "additional_deduction_aged_blind",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "additional_deduction_aged_blind(_Year, FilingStatus, 600)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "exemption_amount/2": {
+      "name": "exemption_amount",
+      "arity": 2,
+      "module": "knowledge_base",
+      "signature": "exemption_amount(Year, 2000)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "phaseout_threshold/3": {
+      "name": "phaseout_threshold",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "phaseout_threshold(Year, married_filing_separately, 150000)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "phaseout_step/3": {
+      "name": "phaseout_step",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "phaseout_step(_Year, _, 2500)",
+      "description": "Fact: phaseout_step(_Year, _, 2500)",
+      "examples": [
+        "phaseout_step(_Year, _, 2500)"
+      ],
+      "is_exported": true
+    },
+    "futa_tax_rate/2": {
+      "name": "futa_tax_rate",
+      "arity": 2,
+      "module": "knowledge_base",
+      "signature": "futa_tax_rate(_Year, 0.06)",
+      "description": "Fact: futa_tax_rate(_Year, 0.06)",
+      "examples": [
+        "futa_tax_rate(_Year, 0.06)"
+      ],
+      "is_exported": true
+    },
+    "futa_wage_base/2": {
+      "name": "futa_wage_base",
+      "arity": 2,
+      "module": "knowledge_base",
+      "signature": "futa_wage_base(_Year, 7000)",
+      "description": "Fact: futa_wage_base(_Year, 7000)",
+      "examples": [
+        "futa_wage_base(_Year, 7000)"
+      ],
+      "is_exported": true
+    },
+    "futa_employer_threshold/3": {
+      "name": "futa_employer_threshold",
+      "arity": 3,
+      "module": "knowledge_base",
+      "signature": "futa_employer_threshold(_Year, weeks, 10)",
+      "description": "Fact: futa_employer_threshold(_Year, weeks, 10)",
+      "examples": [
+        "futa_employer_threshold(_Year, weeks, 10)"
+      ],
+      "is_exported": true
+    },
+    "tax_imposed/4": {
+      "name": "tax_imposed",
+      "arity": 4,
+      "module": "section1",
+      "signature": "tax_imposed(FilingStatus, TaxableIncome, Year, FinalTax)",
+      "description": "\u00a71 Tax Imposed This is a dispatcher based on filing status.",
+      "examples": [],
+      "is_exported": true
+    },
+    "filing_status/4": {
+      "name": "filing_status",
+      "arity": 4,
+      "module": "section2",
+      "signature": "filing_status(Taxpayer, _CaseID, _Year, single)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "fact/2": {
+      "name": "fact",
+      "arity": 2,
+      "module": "section7703",
+      "signature": "fact(CaseID, spouse_not_member_of_household_last_6_months(Taxpayer, Year))",
+      "description": "Fact: fact(CaseID, spouse_not_member_of_household_last_6_months(Taxpayer, Year))",
+      "examples": [
+        "fact(CaseID, spouse_not_member_of_household_last_6_months(Taxpayer, Year))"
+      ],
+      "is_exported": false
+    },
+    "is_surviving_spouse/3": {
+      "name": "is_surviving_spouse",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_surviving_spouse(Taxpayer, CaseID, Year)",
+      "description": "\u00a72(a) Definition of surviving spouse",
+      "examples": [],
+      "is_exported": true
+    },
+    "could_have_filed_joint_return_in_death_year/2": {
+      "name": "could_have_filed_joint_return_in_death_year",
+      "arity": 2,
+      "module": "section2",
+      "signature": "could_have_filed_joint_return_in_death_year(Taxpayer, DeathYear)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "maintains_home_for_dependent_child/3": {
+      "name": "maintains_home_for_dependent_child",
+      "arity": 3,
+      "module": "section2",
+      "signature": "maintains_home_for_dependent_child(Taxpayer, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_son_or_daughter/3": {
+      "name": "is_son_or_daughter",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_son_or_daughter(Child, Parent, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_head_of_household/3": {
+      "name": "is_head_of_household",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_head_of_household(Taxpayer, CaseID, Year)",
+      "description": "\u00a72(b) Definition of head of household",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_married_at_close_of_year/3": {
+      "name": "is_married_at_close_of_year",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_married_at_close_of_year(Taxpayer, CaseID, Year)",
+      "description": "Helper for \u00a72(b)(1): is not married at close of year",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_considered_not_married_for_hoh/3": {
+      "name": "is_considered_not_married_for_hoh",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_considered_not_married_for_hoh(Taxpayer, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "maintains_household_for_qualifying_person/3": {
+      "name": "maintains_household_for_qualifying_person",
+      "arity": 3,
+      "module": "section2",
+      "signature": "maintains_household_for_qualifying_person(Taxpayer, CaseID, Year)",
+      "description": "Helper for \u00a72(b)(1): Maintains household for a qualifying person",
+      "examples": [],
+      "is_exported": false
+    },
+    "maintains_household_for_qualifying_child/3": {
+      "name": "maintains_household_for_qualifying_child",
+      "arity": 3,
+      "module": "section2",
+      "signature": "maintains_household_for_qualifying_child(Taxpayer, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_dependent_ineligible_married/3": {
+      "name": "is_dependent_ineligible_married",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_dependent_ineligible_married(Child, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "maintains_household_for_other_dependent/3": {
+      "name": "maintains_household_for_other_dependent",
+      "arity": 3,
+      "module": "section2",
+      "signature": "maintains_household_for_other_dependent(Taxpayer, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "maintains_household_for_parent/3": {
+      "name": "maintains_household_for_parent",
+      "arity": 3,
+      "module": "section2",
+      "signature": "maintains_household_for_parent(Taxpayer, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_hoh_disqualified_by_household_member/3": {
+      "name": "is_hoh_disqualified_by_household_member",
+      "arity": 3,
+      "module": "section2",
+      "signature": "is_hoh_disqualified_by_household_member(Taxpayer, CaseID, Year)",
+      "description": "Helper for \u00a72(b)(3)(B) limitation",
+      "examples": [],
+      "is_exported": false
+    },
+    "relationship_qualifying_relative_non_household/3": {
+      "name": "relationship_qualifying_relative_non_household",
+      "arity": 3,
+      "module": "section2",
+      "signature": "relationship_qualifying_relative_non_household(Taxpayer, Dependent, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "taxable_income/4": {
+      "name": "taxable_income",
+      "arity": 4,
+      "module": "section63",
+      "signature": "taxable_income(Taxpayer, CaseID, Year, TaxableIncome)",
+      "description": "\u00a763(a) & (b) Top-level predicate for taxable income",
+      "examples": [],
+      "is_exported": true
+    },
+    "standard_deduction/4": {
+      "name": "standard_deduction",
+      "arity": 4,
+      "module": "section63",
+      "signature": "standard_deduction(Taxpayer, CaseID, Year, Deduction)",
+      "description": "\u00a763(c)(1) Standard Deduction = Basic + Additional",
+      "examples": [],
+      "is_exported": true
+    },
+    "basic_standard_deduction/4": {
+      "name": "basic_standard_deduction",
+      "arity": 4,
+      "module": "section63",
+      "signature": "basic_standard_deduction(Taxpayer, Status, Year, Deduction)",
+      "description": "\u00a763(c)(2) Basic Standard Deduction",
+      "examples": [],
+      "is_exported": true
+    },
+    "additional_standard_deduction/4": {
+      "name": "additional_standard_deduction",
+      "arity": 4,
+      "module": "section63",
+      "signature": "additional_standard_deduction(Taxpayer, CaseID, Year, TotalAdditional)",
+      "description": "\u00a763(c)(3) & (f) Additional Standard Deduction",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_entitled_to_additional/4": {
+      "name": "is_entitled_to_additional",
+      "arity": 4,
+      "module": "section63",
+      "signature": "is_entitled_to_additional(Taxpayer, CaseID, Year, blind_spouse)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_eligible_for_standard_deduction/3": {
+      "name": "is_eligible_for_standard_deduction",
+      "arity": 3,
+      "module": "section63",
+      "signature": "is_eligible_for_standard_deduction(Taxpayer, CaseID, Year)",
+      "description": "\u00a763(c)(6) Individuals not eligible for standard deduction",
+      "examples": [],
+      "is_exported": true
+    },
+    "limited_itemized_deductions/4": {
+      "name": "limited_itemized_deductions",
+      "arity": 4,
+      "module": "section68",
+      "signature": "limited_itemized_deductions(Taxpayer, CaseID, Year, 0)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "applicable_amount/4": {
+      "name": "applicable_amount",
+      "arity": 4,
+      "module": "section68",
+      "signature": "applicable_amount(Taxpayer, CaseID, Year, Amount)",
+      "description": "\u00a768(b) Applicable amount. Determines the AGI threshold for the limitation based on filing status.",
+      "examples": [],
+      "is_exported": true
+    },
+    "personal_exemption_deduction/4": {
+      "name": "personal_exemption_deduction",
+      "arity": 4,
+      "module": "section151",
+      "signature": "personal_exemption_deduction(Taxpayer, CaseID, Year, TotalDeduction)",
+      "description": "\u00a7151(a) Main predicate to calculate total deduction for personal exemptions.",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_entitled_to_deduction_for_dependent/4": {
+      "name": "is_entitled_to_deduction_for_dependent",
+      "arity": 4,
+      "module": "section151",
+      "signature": "is_entitled_to_deduction_for_dependent(Taxpayer, Dependent, CaseID, Year)",
+      "description": "\u00a7151(c) Wrapper to check eligibility for a dependent deduction. This is used by other sections to check status, without needing the amount.",
+      "examples": [],
+      "is_exported": true
+    },
+    "exemption_for_taxpayer/4": {
+      "name": "exemption_for_taxpayer",
+      "arity": 4,
+      "module": "section151",
+      "signature": "exemption_for_taxpayer(Taxpayer, CaseID, Year, Amount)",
+      "description": "\u00a7151(b) Exemption for taxpayer.",
+      "examples": [],
+      "is_exported": false
+    },
+    "exemption_amount/4": {
+      "name": "exemption_amount",
+      "arity": 4,
+      "module": "section151",
+      "signature": "exemption_amount(Taxpayer, Year, CaseID, Amount)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "exemption_for_spouse/4": {
+      "name": "exemption_for_spouse",
+      "arity": 4,
+      "module": "section151",
+      "signature": "exemption_for_spouse(_, _, _, 0)",
+      "description": "Fact: exemption_for_spouse(_, _, _, 0)",
+      "examples": [
+        "exemption_for_spouse(_, _, _, 0)"
+      ],
+      "is_exported": false
+    },
+    "exemptions_for_dependents/4": {
+      "name": "exemptions_for_dependents",
+      "arity": 4,
+      "module": "section151",
+      "signature": "exemptions_for_dependents(Taxpayer, CaseID, Year, TotalDependentsAmount)",
+      "description": "\u00a7151(c) Sum of exemptions for all dependents.",
+      "examples": [],
+      "is_exported": false
+    },
+    "phaseout_adjusted_amount/6": {
+      "name": "phaseout_adjusted_amount",
+      "arity": 6,
+      "module": "section151",
+      "signature": "phaseout_adjusted_amount(_, _, _, _, BaseAmount, BaseAmount). % AGI not over threshold",
+      "description": "Fact: phaseout_adjusted_amount(_, _, _, _, BaseAmount, BaseAmount). % AGI not over threshold",
+      "examples": [
+        "phaseout_adjusted_amount(_, _, _, _, BaseAmount, BaseAmount). % AGI not over threshold"
+      ],
+      "is_exported": false
+    },
+    "is_dependent/4": {
+      "name": "is_dependent",
+      "arity": 4,
+      "module": "section152",
+      "signature": "is_dependent(Taxpayer, PotentialDependent, CaseID, Year)",
+      "description": "\u00a7152(a) In general, a dependent is a qualifying child or qualifying relative.",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_dependent_ineligible/4": {
+      "name": "is_dependent_ineligible",
+      "arity": 4,
+      "module": "section152",
+      "signature": "is_dependent_ineligible(Taxpayer, PotentialDependent, CaseID, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_qualifying_child/4": {
+      "name": "is_qualifying_child",
+      "arity": 4,
+      "module": "section152",
+      "signature": "is_qualifying_child(Taxpayer, PotentialChild, CaseID, Year)",
+      "description": "\u00a7152(c) Qualifying child",
+      "examples": [],
+      "is_exported": true
+    },
+    "relationship_qualifying_child/3": {
+      "name": "relationship_qualifying_child",
+      "arity": 3,
+      "module": "section152",
+      "signature": "relationship_qualifying_child(Taxpayer, Potential, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "child_or_descendant/3": {
+      "name": "child_or_descendant",
+      "arity": 3,
+      "module": "section152",
+      "signature": "child_or_descendant(Desc, Ance, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "sibling_or_descendant/3": {
+      "name": "sibling_or_descendant",
+      "arity": 3,
+      "module": "section152",
+      "signature": "sibling_or_descendant(Person, Taxpayer, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_qualifying_relative/4": {
+      "name": "is_qualifying_relative",
+      "arity": 4,
+      "module": "section152",
+      "signature": "is_qualifying_relative(Taxpayer, PotentialRelative, CaseID, Year)",
+      "description": "\u00a7152(d) Qualifying relative",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_qualifying_child_of_any_taxpayer/3": {
+      "name": "is_qualifying_child_of_any_taxpayer",
+      "arity": 3,
+      "module": "section152",
+      "signature": "is_qualifying_child_of_any_taxpayer(Person, CaseID, Year)",
+      "description": "Helper for \u00a7152(d)(1)(D)",
+      "examples": [],
+      "is_exported": false
+    },
+    "relationship_qualifying_relative/3": {
+      "name": "relationship_qualifying_relative",
+      "arity": 3,
+      "module": "section152",
+      "signature": "relationship_qualifying_relative(Taxpayer, Potential, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "sibling/3": {
+      "name": "sibling",
+      "arity": 3,
+      "module": "section152",
+      "signature": "sibling(Person, P, CaseID)",
+      "description": "Fact: sibling(Person, P, CaseID)",
+      "examples": [
+        "sibling(Person, P, CaseID)"
+      ],
+      "is_exported": false
+    },
+    "parent_or_ancestor/3": {
+      "name": "parent_or_ancestor",
+      "arity": 3,
+      "module": "section152",
+      "signature": "parent_or_ancestor(Ance, Desc, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "stepparent/3": {
+      "name": "stepparent",
+      "arity": 3,
+      "module": "section152",
+      "signature": "stepparent(SP, SC, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "in_law/3": {
+      "name": "in_law",
+      "arity": 3,
+      "module": "section152",
+      "signature": "in_law(Rel, Taxpayer, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "parent_of/3": {
+      "name": "parent_of",
+      "arity": 3,
+      "module": "section152",
+      "signature": "parent_of(Sib, Person, CaseID)",
+      "description": "Fact: parent_of(Sib, Person, CaseID)",
+      "examples": [
+        "parent_of(Sib, Person, CaseID)"
+      ],
+      "is_exported": false
+    },
+    "sibling/5": {
+      "name": "sibling",
+      "arity": 5,
+      "module": "section152",
+      "signature": "sibling(Sib, Taxpayer, CaseID), child_or_descendant(Person, Sib, CaseID)",
+      "description": "Fact: sibling(Sib, Taxpayer, CaseID), child_or_descendant(Person, Sib, CaseID)",
+      "examples": [
+        "sibling(Sib, Taxpayer, CaseID), child_or_descendant(Person, Sib, CaseID)"
+      ],
+      "is_exported": false
+    },
+    "stepbrother_or_stepsister/3": {
+      "name": "stepbrother_or_stepsister",
+      "arity": 3,
+      "module": "section152",
+      "signature": "stepbrother_or_stepsister(S1, S2, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "child_of_sibling/3": {
+      "name": "child_of_sibling",
+      "arity": 3,
+      "module": "section152",
+      "signature": "child_of_sibling(Person, Taxpayer, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "sibling_of_parent/3": {
+      "name": "sibling_of_parent",
+      "arity": 3,
+      "module": "section152",
+      "signature": "sibling_of_parent(Person, Taxpayer, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "futa_tax/4": {
+      "name": "futa_tax",
+      "arity": 4,
+      "module": "section3301",
+      "signature": "futa_tax(Payer, Year, CaseID, 0)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_employer/3": {
+      "name": "is_employer",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_employer(Entity, Year, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_employer_general/3": {
+      "name": "is_employer_general",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_employer_general(Entity, Year, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_employer_agricultural/3": {
+      "name": "is_employer_agricultural",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_employer_agricultural(Entity, Year, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_employer_domestic/3": {
+      "name": "is_employer_domestic",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_employer_domestic(Entity, Year, CaseID)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "paid_wages_threshold/4": {
+      "name": "paid_wages_threshold",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "paid_wages_threshold(Entity, Year, CaseID, Type)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "employed_days_threshold/4": {
+      "name": "employed_days_threshold",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "employed_days_threshold(Entity, Year, CaseID, Type)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "meets_employee_day_count/5": {
+      "name": "meets_employee_day_count",
+      "arity": 5,
+      "module": "section3306",
+      "signature": "meets_employee_day_count(Entity, Year, CaseID, EmployeeCountThreshold, WeekThreshold)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "total_wages/4": {
+      "name": "total_wages",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "total_wages(Employer, Year, CaseID, TotalWages)",
+      "description": "\u00a73306(b) Wages",
+      "examples": [],
+      "is_exported": true
+    },
+    "employee_capped_wages/6": {
+      "name": "employee_capped_wages",
+      "arity": 6,
+      "module": "section3306",
+      "signature": "employee_capped_wages(Es, Employer, Year, CaseID, Base, Rest)",
+      "description": "Fact: employee_capped_wages(Es, Employer, Year, CaseID, Base, Rest)",
+      "examples": [
+        "employee_capped_wages(Es, Employer, Year, CaseID, Base, Rest)"
+      ],
+      "is_exported": false
+    },
+    "is_wages/4": {
+      "name": "is_wages",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "is_wages(_Payment, Employer, Employee, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_wage_exception/4": {
+      "name": "is_wage_exception",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "is_wage_exception(Payment, Payer, Payee, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_wage_exception_termination/4": {
+      "name": "is_wage_exception_termination",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "is_wage_exception_termination(Payer, Payee, _Payment, Year)",
+      "description": "Other exceptions not fully modeled from given cases (b)(2) sickness/disability, (b)(11) non-cash ag labor etc. \u00a73306(b)(10)(A)",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_wage_exception_not_in_business_course/3": {
+      "name": "is_wage_exception_not_in_business_course",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_wage_exception_not_in_business_course(Payer, Payee, Year)",
+      "description": "\u00a73306(b)(7)",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_employment/4": {
+      "name": "is_employment",
+      "arity": 4,
+      "module": "section3306",
+      "signature": "is_employment(_Service, Employer, Employee, Year)",
+      "description": "\u00a73306(c) Employment",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_employment_exception/3": {
+      "name": "is_employment_exception",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_employment_exception(Employer, Employee, Year)",
+      "description": "Other cases like (B) not modeled from given cases. \u00a73306(c) Employment Exceptions",
+      "examples": [],
+      "is_exported": false
+    },
+    "is_employment_exception_child_parent/3": {
+      "name": "is_employment_exception_child_parent",
+      "arity": 3,
+      "module": "section3306",
+      "signature": "is_employment_exception_child_parent(Employer, Employee, Year)",
+      "description": "",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_married_a/3": {
+      "name": "is_married_a",
+      "arity": 3,
+      "module": "section7703",
+      "signature": "is_married_a(Taxpayer, CaseID, Year)",
+      "description": "\u00a77703(a) General rule for determining marital status. is_married_a(Taxpayer, CaseID, Year).",
+      "examples": [],
+      "is_exported": true
+    },
+    "is_considered_not_married_b/3": {
+      "name": "is_considered_not_married_b",
+      "arity": 3,
+      "module": "section7703",
+      "signature": "is_considered_not_married_b(Taxpayer, CaseID, Year)",
+      "description": "\u00a77703(b) Certain married individuals living apart. An individual who meets these conditions is treated as not married. is_considered_not_married_b(Taxpayer, CaseID, Year).",
+      "examples": [],
+      "is_exported": true
+    }
+  }
+}

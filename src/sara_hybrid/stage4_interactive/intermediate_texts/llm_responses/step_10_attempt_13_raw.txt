@@ -1,0 +1,67 @@
+%% BEGIN_FILE: statute_1.pl
+:- module(statute_1,
+          [ tax_for_filing_status/5
+          ]).
+
+/**
+ * statute_1.pl
+ *
+ * This module implements §1, which imposes the income tax. The core logic
+ * involves looking up the correct tax bracket table based on filing status
+ * and year, then calculating the tax on a given amount of taxable income.
+ *
+ * The main predicate `tax_for_filing_status/5` is designed to handle the
+ * specific test cases that query a particular tax bracket. For general tax
+ * calculation, the system uses `helpers:calculate_tax_from_brackets/4`.
+ */
+
+:- use_module(helpers).
+:- use_module(knowledge_base).
+
+% tax_for_filing_status(+FilingStatus, +TaxableIncome, +Year, +Bracket, -Tax)
+%
+% Calculates the tax for a given taxable income.
+% The 'Bracket' argument can be an atom like 'i', 'ii', etc., to test if the
+% income falls into that specific bracket, or 'all' to perform a general
+% calculation across all brackets.
+% This predicate fails if the income does not fall into the specified bracket.
+tax_for_filing_status(FilingStatus, TaxableIncome, Year, all, Tax) :-
+    !, % Commit to this clause if Bracket is 'all'
+    helpers:calculate_tax_from_brackets(FilingStatus, TaxableIncome, Year, Tax).
+
+tax_for_filing_status(FilingStatus, TaxableIncome, Year, Bracket, Tax) :-
+    TaxableIncome > 0,
+    helpers:get_year_period(Year, Period),
+    map_filing_status_to_kb_key(FilingStatus, KB_Status),
+    bracket_to_index(Bracket, Index),
+    % Collect all bracket rules for the given status and period
+    findall((L, U, BR), knowledge_base:tax_rate_table(Period, KB_Status, L, U, BR), Brackets),
+    % Select the specific bracket rule by its index
+    nth1(Index, Brackets, (Lower, Upper, (BaseTax, Rate))),
+    % Check if the taxable income falls within this specific bracket
+    TaxableIncome > Lower,
+    ( Upper == inf ; TaxableIncome =< Upper ),
+    !, % Found the correct, specific bracket and income is within it.
+    Excess is TaxableIncome - Lower,
+    Tax is BaseTax + (Excess * Rate).
+
+% bracket_to_index(+BracketAtom, -Index)
+%
+% Maps the Roman numeral bracket identifiers from the statute to an integer index.
+bracket_to_index(i, 1).
+bracket_to_index(ii, 2).
+bracket_to_index(iii, 3).
+bracket_to_index(iv, 4).
+bracket_to_index(v, 5).
+
+% map_filing_status_to_kb_key(+FilingStatus, -KB_Status)
+%
+% Maps the filing status atoms used in the system to the keys used in knowledge_base.pl.
+map_filing_status_to_kb_key(married_filing_jointly, married_filing_jointly).
+map_filing_status_to_kb_key(surviving_spouse, surviving_spouse).
+map_filing_status_to_kb_key(head_of_household, head_of_household).
+map_filing_status_to_kb_key(unmarried, unmarried).
+map_filing_status_to_kb_key(married_filing_separately, married_filing_separately).
+
+%% END_FILE: statute_1.pl
+% SMOKE: PBA_SUCCESS :- statute_1:tax_for_filing_status(unmarried, 210204, 2017, iv, Tax), Tax > 65445, Tax < 65446.

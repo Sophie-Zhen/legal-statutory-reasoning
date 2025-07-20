@@ -1,0 +1,353 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+Continuing the generation as planned. This response provides the final set of statute modules: `section68.pl`, `section63.pl`, `section2.pl`, and `section1.pl`, along with the FUTA root module `section3301.pl`.
+
+### Response 5: Statute Modules (Part 3)
+
+%% BEGIN_FILE: section68.pl
+:- module(section68,
+    [
+        itemized_deduction_limitation/5,
+        applicable_amount/4
+    ]).
+
+:- use_module(knowledge_base,
+    [tcja_suspension_period/2, itemized_deduction_limitation_amount/3,
+     itemized_deduction_limitation_rate/2, itemized_deduction_limitation_max_reduction/2]).
+:- use_module(section2, [get_filing_status/3]).
+
+% itemized_deduction_limitation(+CaseID, +Taxpayer, +TaxYear, +InitialDeductions, -FinalDeductions)
+% §68(a) General rule for overall limitation on itemized deductions
+itemized_deduction_limitation(_, _, TaxYear, InitialDeductions, InitialDeductions) :-
+    % (f) Section not to apply in TCJA years
+    tcja_suspension_period(Start, End),
+    TaxYear >= Start, TaxYear =< End,
+    !.
+itemized_deduction_limitation(CaseID, Taxpayer, TaxYear, InitialDeductions, FinalDeductions) :-
+    fact(CaseID, adjusted_gross_income(Taxpayer, TaxYear, AGI)),
+    applicable_amount(CaseID, Taxpayer, TaxYear, AppAmount),
+    AGI > AppAmount,
+    !,
+    itemized_deduction_limitation_rate(TaxYear, Rate),
+    itemized_deduction_limitation_max_reduction(TaxYear, MaxReductionRate),
+    ExcessAGI is AGI - AppAmount,
+    % (1) 3 percent of the excess
+    Reduction1 is ExcessAGI * Rate,
+    % (2) 80 percent of the amount of the itemized deductions
+    Reduction2 is InitialDeductions * MaxReductionRate,
+    % the lesser of (1) or (2)
+    Reduction is min(Reduction1, Reduction2),
+    FinalDeductions is InitialDeductions - Reduction.
+% If AGI is not over the applicable amount, no change.
+itemized_deduction_limitation(_, _, _, InitialDeductions, InitialDeductions).
+
+% applicable_amount(+CaseID, +Taxpayer, +TaxYear, -Amount)
+% §68(b) Applicable amount
+applicable_amount(CaseID, Taxpayer, TaxYear, Amount) :-
+    get_filing_status(CaseID, Taxpayer, TaxYear, Status),
+    itemized_deduction_limitation_amount(TaxYear, Status, Amount), !.
+applicable_amount(CaseID, Taxpayer, TaxYear, Amount) :-
+    \+ get_filing_status(CaseID, Taxpayer, TaxYear, _),
+    % Default to single if status is unknown
+    itemized_deduction_limitation_amount(TaxYear, 'single', Amount).
+%% END_FILE: section68.pl
+% SMOKE: ?- [tests, knowledge_base, helpers, section7703, section152, section151, section2, section68], applicable_amount(s68_b_1_A_neg, alice, 2016, Amount).
+
+%% BEGIN_FILE: section63.pl
+:- module(section63,
+    [
+        taxable_income/4,
+        standard_deduction/4,
+        basic_standard_deduction/4,
+        additional_standard_deduction/4
+    ]).
+
+:- use_module(knowledge_base,
+    [basic_standard_deduction/3, additional_std_deduction_amount/3,
+    dependent_std_deduction_floor/2, dependent_std_deduction_add_on/2, tcja_suspension_period/2]).
+:- use_module(helpers, [get_age_at_year_end/4, get_spouse/3]).
+:- use_module(section151, [personal_exemption_deduction/4]).
+:- use_module(section2, [get_filing_status/3]).
+:- use_module(section7703, [is_married/3]).
+
+% taxable_income(+CaseID, +Taxpayer, +TaxYear, -TaxableIncome)
+% §63. Taxable income defined
+taxable_income(CaseID, Taxpayer, TaxYear, TaxableIncome) :-
+    % (b) Individuals who do not itemize
+    (fact(CaseID, deduction_choice(Taxpayer, TaxYear, 'standard')) ; \+ fact(CaseID, deduction_choice(Taxpayer, TaxYear, _))), % Default to standard
+    !,
+    fact(CaseID, gross_income(Taxpayer, TaxYear, GrossIncome)),
+    % AGI = GrossIncome for these cases (no above-the-line deductions modeled)
+    AdjustedGrossIncome = GrossIncome,
+    standard_deduction(CaseID, Taxpayer, TaxYear, SD),
+    personal_exemption_deduction(CaseID, Taxpayer, TaxYear, PED),
+    TaxableIncome is max(0, AdjustedGrossIncome - SD - PED).
+taxable_income(CaseID, Taxpayer, TaxYear, TaxableIncome) :-
+    % (a) Individuals who do itemize
+    fact(CaseID, deduction_choice(Taxpayer, TaxYear, 'itemize')),
+    !,
+    fact(CaseID, gross_income(Taxpayer, TaxYear, GrossIncome)),
+    % AGI = GrossIncome for these cases
+    AdjustedGrossIncome = GrossIncome,
+    % Here we'd call section68 if itemized deductions were from facts
+    fact(CaseID, itemized_deductions(Taxpayer, TaxYear, ItemizedDeductions)),
+    % Personal exemptions are also deducted for itemizers (pre-TCJA)
+    personal_exemption_deduction(CaseID, Taxpayer, TaxYear, PED),
+    TaxableIncome is max(0, AdjustedGrossIncome - ItemizedDeductions - PED).
+
+% standard_deduction(+CaseID, +Taxpayer, +TaxYear, -StandardDeduction)
+% §63(c)(1) In general
+standard_deduction(CaseID, Taxpayer, TaxYear, 0) :-
+    is_ineligible_for_standard_deduction(CaseID, Taxpayer, TaxYear), !.
+standard_deduction(CaseID, Taxpayer, TaxYear, StandardDeduction) :-
+    basic_standard_deduction(CaseID, Taxpayer, TaxYear, BSD),
+    additional_standard_deduction(CaseID, Taxpayer, TaxYear, ASD),
+    StandardDeduction is BSD + ASD.
+
+% basic_standard_deduction(+CaseID, +Taxpayer, +TaxYear, -Deduction)
+% §63(c)(2) Basic standard deduction
+basic_standard_deduction(CaseID, Taxpayer, TaxYear, Deduction) :-
+    % (5) Limitation in the case of certain dependents
+    section151:can_be_claimed_as_dependent(CaseID, Taxpayer, TaxYear),
+    !,
+    dependent_std_deduction_floor(TaxYear, Floor),
+    dependent_std_deduction_add_on(TaxYear, AddOn),
+    (fact(CaseID, earned_income(Taxpayer, TaxYear, EarnedIncome)) -> true; EarnedIncome = 0),
+    LimitedBSD is max(Floor, AddOn + EarnedIncome),
+    % The limited deduction cannot exceed the normal BSD for their status
+    get_filing_status(CaseID, Taxpayer, TaxYear, Status),
+    knowledge_base:basic_standard_deduction(TaxYear, Status, NormalBSD),
+    Deduction is min(LimitedBSD, NormalBSD).
+basic_standard_deduction(CaseID, Taxpayer, TaxYear, Deduction) :-
+    % Regular case
+    get_filing_status(CaseID, Taxpayer, TaxYear, Status),
+    % TCJA adjustment is handled inside knowledge_base
+    knowledge_base:basic_standard_deduction(TaxYear, Status, BaseAmount),
+    ( (Status = 'joint' ; Status = 'surviving_spouse'), \+ tcja_suspension_period(_, TaxYear) ->
+        knowledge_base:basic_standard_deduction(TaxYear, 'single', SingleAmount), % Using 'single' as proxy for (C)
+        Deduction is 2 * SingleAmount
+    ;
+        Deduction = BaseAmount
+    ).
+
+% additional_standard_deduction(+CaseID, +Taxpayer, +TaxYear, -Deduction)
+% §63(c)(3) Additional standard deduction for aged and blind
+additional_standard_deduction(CaseID, Taxpayer, TaxYear, Deduction) :-
+    findall(Amount, additional_amount(CaseID, Taxpayer, TaxYear, Amount), Amounts),
+    sum_list(Amounts, Deduction).
+
+additional_amount(CaseID, Taxpayer, TaxYear, Amount) :-
+    % (f)(1)(A) For self, if aged 65
+    get_age_at_year_end(CaseID, Taxpayer, TaxYear, Age),
+    Age >= 65,
+    additional_amount_value(CaseID, Taxpayer, TaxYear, Amount).
+additional_amount(CaseID, Taxpayer, TaxYear, Amount) :-
+    % (f)(2)(A) For self, if blind
+    fact(CaseID, is_blind(Taxpayer, TaxYear)),
+    additional_amount_value(CaseID, Taxpayer, TaxYear, Amount).
+additional_amount(CaseID, Taxpayer, TaxYear, Amount) :-
+    % (f)(1)(B) For spouse, if aged 65
+    get_spouse(CaseID, Taxpayer, Spouse),
+    get_age_at_year_end(CaseID, Spouse, TaxYear, SpouseAge),
+    SpouseAge >= 65,
+    is_spouse_exemption_allowable(CaseID, Taxpayer, TaxYear),
+    additional_amount_value(CaseID, Taxpayer, TaxYear, Amount).
+additional_amount(CaseID, Taxpayer, TaxYear, Amount) :-
+    % (f)(2)(B) For spouse, if blind
+    get_spouse(CaseID, Taxpayer, Spouse),
+    fact(CaseID, is_blind(Spouse, TaxYear)),
+    is_spouse_exemption_allowable(CaseID, Taxpayer, TaxYear),
+    additional_amount_value(CaseID, Taxpayer, TaxYear, Amount).
+
+% §63(f)(3) Higher amount for certain unmarried individuals
+additional_amount_value(CaseID, Taxpayer, TaxYear, Amount) :-
+    \+ is_married(CaseID, Taxpayer, TaxYear),
+    \+ section2:is_surviving_spouse(CaseID, Taxpayer, TaxYear),
+    !,
+    additional_std_deduction_amount(TaxYear, 'unmarried', Amount).
+additional_amount_value(_, _, TaxYear, Amount) :-
+    additional_std_deduction_amount(TaxYear, 'married', Amount).
+
+% Helper for §63(f)(1)(B) & (f)(2)(B) - if additional exemption is allowable under §151(b)
+is_spouse_exemption_allowable(CaseID, Taxpayer, TaxYear) :-
+    % Simplified test for this context
+    \+ tcja_active_general(TaxYear),
+    fact(CaseID, filing_status(Taxpayer, TaxYear, Status)),
+    Status \= 'joint'.
+is_spouse_exemption_allowable(CaseID, Taxpayer, TaxYear) :-
+    tcja_active_general(TaxYear), % In TCJA years, there are no exemptions, but we need a rule.
+    fact(CaseID, filing_status(Taxpayer, TaxYear, Status)),
+    Status = 'joint'. % Simplification: only joint filers get spouse additions in TCJA.
+
+% is_ineligible_for_standard_deduction(+CaseID, +Taxpayer, +TaxYear)
+% §63(c)(6)
+is_ineligible_for_standard_deduction(CaseID, Taxpayer, TaxYear) :-
+    % (A) married filing separate, spouse itemizes
+    is_married(CaseID, Taxpayer, TaxYear),
+    fact(CaseID, filing_status(Taxpayer, TaxYear, 'married_filing_separately')),
+    get_spouse(CaseID, Taxpayer, Spouse),
+    fact(CaseID, deduction_choice(Spouse, TaxYear, 'itemize')).
+is_ineligible_for_standard_deduction(CaseID, Taxpayer, _TaxYear) :-
+    % (B) nonresident alien
+    fact(CaseID, is_nonresident_alien(Taxpayer)).
+%% END_FILE: section63.pl
+% SMOKE: ?- [tests, knowledge_base, helpers, section7703, section152, section151, section2, section63], standard_deduction(tax_case_63, bob, 2019, D).
+
+%% BEGIN_FILE: section2.pl
+:- module(section2,
+    [
+        is_surviving_spouse/3,
+        is_head_of_household/3,
+        get_filing_status/3,
+        surviving_spouse_joint_return_could_be_made/3
+    ]).
+
+:- use_module(helpers, [get_spouse/3]).
+:- use_module(section151, [personal_exemption_deduction_for_dependent/4]).
+:- use_module(section152, [is_dependent/4, is_qualifying_child/4]).
+:- use_module(section7703, [is_married/3]).
+
+% get_filing_status(+CaseID, +Taxpayer, +TaxYear, -Status)
+% Determines the filing status for a taxpayer. This is a high-level predicate.
+get_filing_status(CaseID, Taxpayer, TaxYear, 'surviving_spouse') :- is_surviving_spouse(CaseID, Taxpayer, TaxYear), !.
+get_filing_status(CaseID, Taxpayer, TaxYear, 'head_of_household') :- is_head_of_household(CaseID, Taxpayer, TaxYear), !.
+get_filing_status(CaseID, Taxpayer, TaxYear, 'joint') :- fact(CaseID, filing_status(Taxpayer, TaxYear, 'joint')), !.
+get_filing_status(CaseID, Taxpayer, TaxYear, 'married_filing_separately') :-
+    is_married(CaseID, Taxpayer, TaxYear),
+    (fact(CaseID, filing_status(Taxpayer, TaxYear, 'married_filing_separately')); \+ fact(CaseID, filing_status(Taxpayer, TaxYear, 'joint'))), !.
+get_filing_status(CaseID, Taxpayer, TaxYear, 'single') :- \+ is_married(CaseID, Taxpayer, TaxYear), !.
+
+% is_surviving_spouse(+CaseID, +Taxpayer, +TaxYear)
+% §2(a) Definition of surviving spouse
+is_surviving_spouse(CaseID, Taxpayer, TaxYear) :-
+    % (1)(A) spouse died during either of the two years immediately preceding
+    get_spouse(CaseID, Taxpayer, Spouse),
+    fact(CaseID, death_of(Spouse, DeathDate)),
+    fact(CaseID, date(DeathDate, DeathYear, _, _)),
+    TaxYear - DeathYear >= 1,
+    TaxYear - DeathYear =< 2,
+    % (1)(B) maintains home for dependent child
+    fact(CaseID, maintains_household(Taxpayer, TaxYear)),
+    fact(CaseID, principal_place_of_abode(Child, Taxpayer, TaxYear)),
+    fact(CaseID, relationship(Child, Taxpayer, R)), member(R, [son, stepson, daughter, stepdaughter]),
+    is_dependent(CaseID, Taxpayer, Child, TaxYear),
+    personal_exemption_deduction_for_dependent(CaseID, Taxpayer, Child, TaxYear),
+    % (2) Limitations
+    \+ has_remarried(CaseID, Taxpayer, TaxYear),
+    surviving_spouse_joint_return_could_be_made(CaseID, Taxpayer, DeathYear).
+
+% has_remarried(+CaseID, +Taxpayer, +TaxYear)
+has_remarried(CaseID, Taxpayer, TaxYear) :-
+    fact(CaseID, married(Taxpayer, _NewSpouse, RemarryDate)),
+    fact(CaseID, date(RemarryDate, RemarryYear, _, _)),
+    RemarryYear =< TaxYear.
+
+% surviving_spouse_joint_return_could_be_made(+CaseID, +Taxpayer, +YearSpouseDied)
+% §2(a)(2)(B)
+surviving_spouse_joint_return_could_be_made(CaseID, Taxpayer, YearSpouseDied) :-
+    % no joint return shall be made if either is a nonresident alien
+    \+ fact(CaseID, is_nonresident_alien(Taxpayer, YearSpouseDied)),
+    get_spouse(CaseID, Taxpayer, DeceasedSpouse),
+    \+ fact(CaseID, is_nonresident_alien(DeceasedSpouse, YearSpouseDied)).
+
+% is_head_of_household(+CaseID, +Taxpayer, +TaxYear)
+% §2(b) Definition of head of household
+is_head_of_household(CaseID, Taxpayer, TaxYear) :-
+    % (1) not married, not a surviving spouse
+    \+ is_married_for_hoh(CaseID, Taxpayer, TaxYear),
+    \+ is_surviving_spouse(CaseID, Taxpayer, TaxYear),
+    % (1)(A) or (1)(B) household tests
+    (   maintains_home_for_qualifying_person_A(CaseID, Taxpayer, TaxYear)
+    ;   maintains_home_for_parent_B(CaseID, Taxpayer, TaxYear)
+    ),
+    % (3) Limitations
+    \+ fact(CaseID, is_nonresident_alien(Taxpayer, TaxYear)).
+
+% is_married_for_hoh(+CaseID, +Taxpayer, +TaxYear)
+% Check marriage status according to §2(b)(2) rules
+is_married_for_hoh(CaseID, Taxpayer, TaxYear) :-
+    \+ fact(CaseID, legally_separated(Taxpayer, _, TaxYear)), % (2)(A)
+    \+ (get_spouse(CaseID, Taxpayer, Spouse), fact(CaseID, is_nonresident_alien(Spouse, TaxYear))), % (2)(B)
+    is_married(CaseID, Taxpayer, TaxYear). % (2)(C) is implicit in is_married from 7703
+
+% maintains_home_for_qualifying_person_A(+CaseID, +Taxpayer, +TaxYear)
+% §2(b)(1)(A)
+maintains_home_for_qualifying_person_A(CaseID, Taxpayer, TaxYear) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, TaxYear)),
+    (
+        % (i) a qualifying child...
+        fact(CaseID, principal_place_of_abode_over_half_year(Child, Taxpayer, TaxYear)),
+        is_qualifying_child(CaseID, Taxpayer, Child, TaxYear),
+        \+ (is_married(CaseID, Child, TaxYear), \+ is_dependent(CaseID, Taxpayer, Child, TaxYear)) % not married and not a dependent
+        ;
+        % (ii) any other person who is a dependent
+        fact(CaseID, principal_place_of_abode_over_half_year(OtherPerson, Taxpayer, TaxYear)),
+        is_dependent(CaseID, Taxpayer, OtherPerson, TaxYear),
+        personal_exemption_deduction_for_dependent(CaseID, Taxpayer, OtherPerson, TaxYear),
+        % (3)(B) limitation on 152(d)(2)(H)
+        \+ is_household_member_only_dependent(CaseID, Taxpayer, OtherPerson)
+    ).
+
+% maintains_home_for_parent_B(+CaseID, +Taxpayer, +TaxYear)
+% §2(b)(1)(B)
+maintains_home_for_parent_B(CaseID, Taxpayer, TaxYear) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, TaxYear)),
+    fact(CaseID, principal_place_of_abode_for_year(Parent, Taxpayer, TaxYear)),
+    (fact(CaseID, father_of(Parent, Taxpayer)) ; fact(CaseID, mother_of(Parent, Taxpayer))),
+    personal_exemption_deduction_for_dependent(CaseID, Taxpayer, Parent, TaxYear).
+
+% is_household_member_only_dependent(+CaseID, +Taxpayer, +Dependent)
+% Checks if the person is a dependent *only* because of §152(d)(2)(H)
+is_household_member_only_dependent(CaseID, Taxpayer, Dependent) :-
+    fact(CaseID, member_of_household_for_year(Dependent, Taxpayer, _)), % They are a household member
+    % And they do NOT satisfy any other relationship test in §152(d)(2)
+    \+ (
+        section152:relationship_qualifying_relative(CaseID, Taxpayer, Dependent),
+        \+ fact(CaseID, member_of_household_for_year(Dependent, Taxpayer, _))
+    ).
+%% END_FILE: section2.pl
+% SMOKE: ?- [tests, knowledge_base, helpers, section7703, section152, section151, section2], get_filing_status(tax_case_61, alice, 2015, Status).
+
+%% BEGIN_FILE: section3301.pl
+:- module(section3301,
+    [
+        futa_tax/4
+    ]).
+
+:- use_module(knowledge_base, [futa_tax_rate/2]).
+:- use_module(section3306, [is_employer/3, futa_total_wages/4]).
+
+% futa_tax(+CaseID, +Person, +TaxYear, -Tax)
+% §3301 Rate of tax
+futa_tax(CaseID, Person, TaxYear, Tax) :-
+    is_employer(CaseID, Person, TaxYear),
+    !,
+    futa_total_wages(CaseID, Person, TaxYear, TotalWages),
+    futa_tax_rate(TaxYear, Rate),
+    Tax is TotalWages * Rate.
+futa_tax(CaseID, Person, TaxYear, 0) :-
+    \+ is_employer(CaseID, Person, TaxYear).
+%% END_FILE: section3301.pl
+% SMOKE: ?- [tests, knowledge_base, helpers, section3306, section3301], futa_tax(s3306_a_1_neg, alice, 2018, Tax).
+
+%% BEGIN_FILE: section1.pl
+:- module(section1,
+    [
+        tax_imposed/5
+    ]).
+
+:- use_module(knowledge_base, [tax_brackets/3]).
+:- use_module(helpers, [calculate_tax_from_brackets/3, round_to_nearest_dollar/2]).
+:- use_module(section2, [get_filing_status/3]).
+
+% tax_imposed(+CaseID, +Taxpayer, +TaxYear, +TaxableIncome, -Tax)
+% §1. Tax imposed
+tax_imposed(CaseID, Taxpayer, TaxYear, TaxableIncome, FinalTax) :-
+    get_filing_status(CaseID, Taxpayer, TaxYear, Status),
+    tax_brackets(TaxYear, Status, Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, RawTax),
+    round_to_nearest_dollar(RawTax, FinalTax).
+%% END_FILE: section1.pl
+% SMOKE: ?- [tests, knowledge_base, helpers, section7703, section152, section151, section2, section63, section1], tax_imposed(tax_case_61, alice, 2015, 84268, Tax).

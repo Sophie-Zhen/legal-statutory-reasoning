@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s7703_b_2_pos
+% Question: Section 7703(b)(2) applies to Alice maintaining her home for the year 2018. Entailment
+
+answer('s7703_b_2_pos', Result) :- (s7703_b_2("Alice", _, _, 2018) -> Result = true ; Result = false).

@@ -1,0 +1,947 @@
+Response length: 5821 chars
+Extracted file: knowledge_base.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/knowledge_base.pl
+Running smoke test on knowledge_base.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/knowledge_base.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/knowledge_base.pl
+Smoke test passed. File saved: knowledge_base.pl
+Response saved: intermediate_texts/llm_responses/step_02_attempt_02_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_02_attempt_02_raw.txt
+Step 2 PASSED.
+
+--- Executing Step 3/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `knowledge_base.pl` passed its smoke test.
+
+Task: Step 3 - Generate `helpers.pl`
+
+Please pr...
+History length: 4 turns
+Response length: 3909 chars
+Extracted file: helpers.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl
+Running smoke test on helpers.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl
+Removed failed file: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl
+Response saved: intermediate_texts/llm_responses/step_03_attempt_03_failed.txt
+Raw response saved: intermediate_texts/llm_responses/step_03_attempt_03_raw.txt
+Step 3 FAILED.
+
+--- Executing Step 3/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The last attempt for the current task failed. The error was: `Warning: /Users/sophie/code/2025-mcm-l...
+History length: 6 turns
+Response length: 4177 chars
+Extracted file: helpers.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl
+Running smoke test on helpers.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/helpers.pl
+Smoke test passed. File saved: helpers.pl
+Response saved: intermediate_texts/llm_responses/step_03_attempt_04_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_03_attempt_04_raw.txt
+Step 3 PASSED.
+
+--- Executing Step 4/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `helpers.pl` passed its smoke test.
+
+**Task: Step 4 - Generate `section7703.pl`**
+
+Please g...
+History length: 8 turns
+Response length: 4052 chars
+Extracted file: statute_7703.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl
+Running smoke test on statute_7703.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl
+Removed failed file: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl
+Response saved: intermediate_texts/llm_responses/step_04_attempt_05_failed.txt
+Raw response saved: intermediate_texts/llm_responses/step_04_attempt_05_raw.txt
+Step 4 FAILED.
+
+--- Executing Step 4/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The last attempt for the current task failed. The error was: `ERROR: /Users/sophie/code/2025-mcm-llm...
+History length: 10 turns
+Response length: 4244 chars
+Extracted file: statute_7703.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl
+Running smoke test on statute_7703.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl
+Smoke test passed. File saved: statute_7703.pl
+Response saved: intermediate_texts/llm_responses/step_04_attempt_06_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_04_attempt_06_raw.txt
+Step 4 PASSED.
+
+--- Executing Step 5/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section7703.pl` passed its smoke test.
+
+**Task: Step 5 - Generate `section152.pl`**
+
+Pleas...
+History length: 12 turns
+Response length: 6605 chars
+Extracted file: statute_152.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl
+Running smoke test on statute_152.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl
+Removed failed file: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl
+Response saved: intermediate_texts/llm_responses/step_05_attempt_07_failed.txt
+Raw response saved: intermediate_texts/llm_responses/step_05_attempt_07_raw.txt
+Step 5 FAILED.
+
+--- Executing Step 5/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The last attempt for the current task failed. The error was: `Warning: /Users/sophie/code/2025-mcm-l...
+History length: 14 turns
+Response length: 7007 chars
+Extracted file: statute_152.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl
+Running smoke test on statute_152.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_152.pl
+Smoke test passed. File saved: statute_152.pl
+Response saved: intermediate_texts/llm_responses/step_05_attempt_08_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_05_attempt_08_raw.txt
+Step 5 PASSED.
+
+--- Executing Step 6/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section152.pl` passed its smoke test.
+
+**Task: Step 6 - Generate `section68.pl`**
+
+Please ...
+History length: 16 turns
+Response length: 3870 chars
+Extracted file: statute_68.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_68.pl
+Running smoke test on statute_68.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_68.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_68.pl
+Smoke test passed. File saved: statute_68.pl
+Response saved: intermediate_texts/llm_responses/step_06_attempt_09_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_06_attempt_09_raw.txt
+Step 6 PASSED.
+
+--- Executing Step 7/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section68.pl` passed its smoke test.
+
+**Task: Step 7 - Generate `section151.pl`**
+
+Please ...
+History length: 18 turns
+Response length: 5126 chars
+Extracted file: statute_151.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_151.pl
+Running smoke test on statute_151.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_151.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_151.pl
+Smoke test passed. File saved: statute_151.pl
+Response saved: intermediate_texts/llm_responses/step_07_attempt_10_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_07_attempt_10_raw.txt
+Step 7 PASSED.
+
+--- Executing Step 8/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section151.pl` passed its smoke test.
+
+**Task: Step 8 - Generate `section2.pl`**
+
+Please g...
+History length: 20 turns
+Response length: 6245 chars
+Extracted file: statute_2.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_2.pl
+Running smoke test on statute_2.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_2.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_2.pl
+Smoke test passed. File saved: statute_2.pl
+Response saved: intermediate_texts/llm_responses/step_08_attempt_11_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_08_attempt_11_raw.txt
+Step 8 PASSED.
+
+--- Executing Step 9/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section2.pl` passed its smoke test.
+
+**Task: Step 9 - Generate `section63.pl`**
+
+Please ge...
+History length: 22 turns
+Response length: 6676 chars
+Extracted file: statute_63.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_63.pl
+Running smoke test on statute_63.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_63.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_63.pl
+Smoke test passed. File saved: statute_63.pl
+Response saved: intermediate_texts/llm_responses/step_09_attempt_12_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_09_attempt_12_raw.txt
+Step 9 PASSED.
+
+--- Executing Step 10/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section63.pl` passed its smoke test.
+
+**Task: Step 10 - Generate `section1.pl`**
+
+Please g...
+History length: 24 turns
+Response length: 2913 chars
+Extracted file: statute_1.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_1.pl
+Running smoke test on statute_1.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_1.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_1.pl
+Smoke test passed. File saved: statute_1.pl
+Response saved: intermediate_texts/llm_responses/step_10_attempt_13_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_10_attempt_13_raw.txt
+Step 10 PASSED.
+
+--- Executing Step 11/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section1.pl` passed its smoke test.
+
+**Task: Step 11 - Generate `section3306.pl`**
+
+We wil...
+History length: 26 turns
+Response length: 7219 chars
+Extracted file: statute_3306.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_3306.pl
+Running smoke test on statute_3306.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_3306.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_3306.pl
+Smoke test passed. File saved: statute_3306.pl
+Response saved: intermediate_texts/llm_responses/step_11_attempt_14_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_11_attempt_14_raw.txt
+Step 11 PASSED.
+
+--- Executing Step 12/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The file `section3306.pl` passed its smoke test.
+
+**Task: Step 12 - Generate `section3301.pl`**
+
+Ple...
+History length: 28 turns
+Response length: 4205 chars
+Extracted file: statute_3301.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_3301.pl
+Running smoke test on statute_3301.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_3301.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_3301.pl
+Smoke test passed. File saved: statute_3301.pl
+Response saved: intermediate_texts/llm_responses/step_12_attempt_15_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_12_attempt_15_raw.txt
+Step 12 PASSED.
+
+--- Executing Step 13/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: All statute modules have been generated and passed their tests.
+
+**Task: Step 13 - Generate `tests.p...
+History length: 30 turns
+Response length: 10340 chars
+Extracted file: tests.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Running smoke test on tests.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Removed failed file: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Response saved: intermediate_texts/llm_responses/step_13_attempt_16_failed.txt
+Raw response saved: intermediate_texts/llm_responses/step_13_attempt_16_raw.txt
+Step 13 FAILED.
+
+--- Executing Step 13/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The last attempt for the current task failed. The error was: `Warning: /Users/sophie/code/2025-mcm-l...
+History length: 32 turns
+Response length: 10424 chars
+Extracted file: tests.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Running smoke test on tests.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Removed failed file: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Response saved: intermediate_texts/llm_responses/step_13_attempt_17_failed.txt
+Raw response saved: intermediate_texts/llm_responses/step_13_attempt_17_raw.txt
+Step 13 FAILED.
+
+--- Executing Step 13/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The last attempt for the current task failed. The error was: `ERROR: Exported procedure tests:answer...
+History length: 34 turns
+Response length: 9862 chars
+Extracted file: tests.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Running smoke test on tests.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Smoke test passed. File saved: tests.pl
+Response saved: intermediate_texts/llm_responses/step_13_attempt_18_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_13_attempt_18_raw.txt
+Step 13 PASSED.
+
+--- Executing Step 14/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The `tests.pl` facts have been generated.
+
+**Task: Step 14 - Generate `answer/2` Predicate for `s1_d...
+History length: 36 turns
+Response length: 246 chars
+Response saved: intermediate_texts/llm_responses/step_14_attempt_19_failed.txt
+Raw response saved: intermediate_texts/llm_responses/step_14_attempt_19_raw.txt
+Step 14 FAILED.
+
+--- Executing Step 14/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: The last attempt for the current task failed. The error was: `No Prolog files extracted from respons...
+History length: 38 turns
+Response length: 15678 chars
+Extracted file: tests.pl
+Saved file for testing: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Running smoke test on tests.pl...
+  Running smoke test: swipl -q -g load_files('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl', [silent(true)]) -g halt
+  File path: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/tests.pl
+Smoke test passed. File saved: tests.pl
+Response saved: intermediate_texts/llm_responses/step_14_attempt_20_passed.txt
+Raw response saved: intermediate_texts/llm_responses/step_14_attempt_20_raw.txt
+Step 14 PASSED.
+
+--- Executing Step 15/15 ---
+Sent message to gemini-2.5-pro
+System prompt length: 3485 chars
+User prompt: All `answer/2` predicates have been generated.
+
+**Final Task - Generate Final Manifest**
+
+Please gen...
+History length: 40 turns
+Response length: 298 chars
+
+🎉 Generation completed successfully!
+Generated 13 files:
+  - knowledge_base.pl
+  - helpers.pl
+  - statute_7703.pl
+  - statute_152.pl
+  - statute_68.pl
+  - statute_151.pl
+  - statute_2.pl
+  - statute_63.pl
+  - statute_1.pl
+  - statute_3306.pl
+  - statute_3301.pl
+  - tests.pl
+  - tests.pl
+Conversation history saved to: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/conversation_history.json
+Execution summary saved to: intermediate_texts/execution_summary.txt
+(sara)  ~/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/ [feat/llm-translation*] swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 9.3.19)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- working_directory('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase').
+ERROR: Unknown procedure: working_directory/1
+ERROR:     However, there are definitions for:
+ERROR:         working_directory/2
+false.
+
+?- work_directory('/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase').
+ERROR: Unknown procedure: work_directory/1 (DWIM could not correct goal)
+?- halt.
+(sara)  ~/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/ [feat/llm-translation*] prolog_base
+zsh: command not found: prolog_base
+(sara)  ~/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/ [feat/llm-translation*] prolog_codebase 
+(sara)  ~/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/ [feat/llm-translation*] swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 9.3.19)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- ['tests.pl'].
+ERROR: source_sink `'tests.pl'' does not exist
+ERROR: In:
+ERROR:   [26] throw(error(existence_error(source_sink,'tests.pl'),_24762))
+ERROR:   [21] '$resolve_source_path'('tests.pl',_24794,[expand(false),...]) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/init.pl:2525
+ERROR:   [20] '$load_file_e'('tests.pl',user,[expand(false),...]) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/init.pl:2494
+ERROR:   [19] '$load_file'('tests.pl',user,[expand(false),...]) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/init.pl:2461
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+ERROR: 
+ERROR: Note: some frames are missing due to last-call optimization.
+ERROR: Re-run your program in debug mode (:- debug.) to get more detail.
+?- working_directory(_, '/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase').
+true.
+
+?- ['tests.pl'].
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/knowledge_base.pl:84:
+Warning:    Clauses of knowledge_base:standard_deduction_amount/3 are not together in the source-file
+Warning:    Earlier definition at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/knowledge_base.pl:81
+Warning:    Current predicate: knowledge_base:standard_d_amount/3
+Warning:    Use :- discontiguous knowledge_base:standard_deduction_amount/3. to suppress this message
+true.
+
+?- run_all_tests.
+ERROR: Unknown procedure: run_all_tests/0 (DWIM could not correct goal)
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+?- findall(ID, fact(ID, _), All),
+|       findall(ID, answer(ID, _), Working),
+|       length(All, Total),
+|       length(Working, WorkingCount),
+|       Failed is Total - WorkingCount,
+|     format('Total: ~w, Working: ~w, Failed: ~w~n', [Total, WorkingCount, Failed]). 
+ERROR: Unknown procedure: fact/2
+ERROR:     However, there are definitions for:
+ERROR:         tests:fact/1
+false.
+
+?- ?- findall(CaseID, fact(CaseID, _), Cases), length(Cases, Count), format('Total cases: ~w~n', [Count]).
+ERROR: Unknown procedure: (?-)/1
+ERROR:   ?- is the Prolog prompt
+ERROR:   See FAQ at https://www.swi-prolog.org/FAQ/ToplevelMode.html
+ERROR: In:
+ERROR:   [11] throw(error(existence_error(procedure,...),_22714))
+ERROR:    [8] correct_goal((?- ...,...),user,['CaseID'=_22772,...|...],_22750) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/dwim.pl:92
+ERROR: 
+ERROR: Note: some frames are missing due to last-call optimization.
+ERROR: Re-run your program in debug mode (:- debug.) to get more detail.
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+?- ?- findall(CaseID, fact(CaseID, _), Cases), length(Cases, Count), format('Total cases: ~w~n', [Count]).
+ERROR: Unknown procedure: (?-)/1
+ERROR:   ?- is the Prolog prompt
+ERROR:   See FAQ at https://www.swi-prolog.org/FAQ/ToplevelMode.html
+ERROR: In:
+ERROR:   [11] throw(error(existence_error(procedure,...),_6908))
+ERROR:    [8] correct_goal((?- ...,...),user,['CaseID'=_6966,...|...],_6944) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/dwim.pl:92
+ERROR: 
+ERROR: Note: some frames are missing due to last-call optimization.
+ERROR: Re-run your program in debug mode (:- debug.) to get more detail.
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? fail
+?- current_module(statute_1).
+true.
+
+?- current_module(statute_2).
+true.
+
+?- current_module(helpers).
+true.
+
+?- fact(is_married_on_date(alice, spouse_of_alice, date(2017, 12, 31))).
+true .
+
+?- answer('s1_a_1_pos', Result).
+Result = true.
+
+?- answer('tax_case_89', Result).
+false.
+
+?- findall(CaseID-Result, 
+|               (member(CaseID, ['s1_d_iv_neg', 's3306_c_5_pos', 's1_c_i_neg', 
+|                               's1_b_iii_neg', 's152_d_2_F_pos', 's1_a_1_iii_neg',
+|                               's3306_b_10_A_neg', 's63_c_2_B_neg', 's3306_b_7_neg',
+|                               's152_c_1_E_pos', 's2_a_2_B_pos', 's63_c_3_pos',
+|                               's3306_a_1_neg', 's7703_b_1_pos', 's1_c_iv_pos',
+|                               's3306_b_pos', 's1_a_1_pos', 's68_b_1_A_neg']),
+|                answer(CaseID, Result)),
+|               EntailmentResults),
+|       length(EntailmentResults, EntailmentCount),
+|       format('Entailment cases working: ~w/18~n', [EntailmentCount]).
+Entailment cases working: 18/18
+EntailmentResults = [s1_d_iv_neg-true, s3306_c_5_pos-false, s1_c_i_neg-true, s1_b_iii_neg-true, s152_d_2_F_pos-false, s1_a_1_iii_neg-true, s3306_b_10_A_neg-true, s63_c_2_B_neg-true, ... - ...|...],
+EntailmentCount = 18.
+
+?- findall(CaseID-Result,
+|               (member(CaseID, ['tax_case_89', 'tax_case_13', 'tax_case_40',
+|                               'tax_case_26', 'tax_case_79', 'tax_case_70',
+|                               'tax_case_63', 'tax_case_61']),
+|                answer(CaseID, Result)),
+|               TaxResults),
+|       length(TaxResults, TaxCount),
+|       format('Tax calculation cases working: ~w/8~n', [TaxCount]).
+Tax calculation cases working: 0/8
+TaxResults = [],
+TaxCount = 0.
+
+?- findall(Case, (member(Case, ['s1_d_iv_neg', 's1_c_i_neg', 's1_b_iii_neg', 
+|                                   's1_a_1_iii_neg', 's1_c_iv_pos', 's1_a_1_pos']), 
+|                      answer(Case, _)), Section1Working).
+Section1Working = [s1_d_iv_neg, s1_c_i_neg, s1_b_iii_neg, s1_a_1_iii_neg, s1_c_iv_pos, s1_a_1_pos].
+
+?- debug_tax_case_89 :-
+|        % Check if basic facts are accessible
+|        fact(gross_income(alice, 2018, 3200)),
+|        format('✓ Basic facts OK~n'),
+|        
+|        % Check if helper predicate exists
+|        helpers:total_tax_liability(alice, 2018, Tax),
+|        format('✓ Tax calculation: ~w~n', [Tax]).
+ERROR: Unknown procedure: (:-)/2
+ERROR:   Rules must be loaded from a file
+ERROR:   See FAQ at https://www.swi-prolog.org/FAQ/ToplevelMode.html
+ERROR: In:
+ERROR:   [11] throw(error(existence_error(procedure,...),_7274))
+ERROR:    [8] correct_goal((debug_tax_case_89:- ...,...),user,['Tax'=_7334],_7310) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/dwim.pl:92
+ERROR: 
+ERROR: Note: some frames are missing due to last-call optimization.
+ERROR: Re-run your program in debug mode (:- debug.) to get more detail.
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+?- fact(gross_income(alice, 2018, 3200)).
+true.
+
+?- answer('tax_case_89', Result).
+false.
+
+?- answer('tax_case_13', Result).
+false.
+
+?- answer('tax_case_40', Result).
+false.
+
+?- current_predicate(helpers:total_tax_liability/3).
+true.
+
+?- current_predicate(helpers:round_to_nearest_dollar/2).
+true.
+
+?- helpers:total_tax_liability(alice, 2018, Tax).
+false.
+
+?- catch(answer('tax_case_89', R), Error, (write('Error: '), write(Error))).
+false.
+
+?- findall(Fact, fact(Fact), Facts), include(contains_alice_2018, Facts, AliceFacts), AliceFacts.
+ERROR: Unknown procedure: contains_alice_2018/1
+ERROR: In:
+ERROR:   [15] contains_alice_2018(is_married_on_date(alice,spouse_of_alice,date(2017,12,31)))
+ERROR:   [14] apply:include_([is_married_on_date(alice,spouse_of_alice,...),...|...],user:contains_alice_2018,_31384) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/library/apply.pl:115
+ERROR:   [12] '<meta-call>'(user:user: ...) <foreign>
+ERROR:   [11] toplevel_call(user:user: ...) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+ERROR: 
+ERROR: Note: some frames are missing due to last-call optimization.
+ERROR: Re-run your program in debug mode (:- debug.) to get more detail.
+   Exception: (15) contains_alice_2018(is_married_on_date(alice, spouse_of_alice, date(2017, 12, 31))) ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? fail
+?- fact(X), write(X), nl, fail; true.
+Correct to: "fact(X)"? 
+Please answer 'y' or 'n'? 
+Please answer 'y' or 'n'? yes
+ERROR: Unknown procedure: ('.')/2
+ERROR:     However, there are definitions for:
+ERROR:         ('.')/3
+false.
+
+?- fact(gross_income(alice, 2018, X)).
+X = 3200.
+
+?- fact(adjusted_gross_income(alice, 2018, X)).
+X = 3200.
+
+?- fact(is_married_on_date(alice, X, date(2018, 12, 31))).
+X = bob .
+
+?- fact(files_separate_return(alice, 2018)).
+true .
+
+?- current_predicate(statute_1:tax_for_filing_status/5).
+true.
+
+?- current_predicate(statute_63:taxable_income/4).
+true.
+
+?- current_predicate(statute_2:filing_status/3).
+true.
+
+?- statute_2:filing_status(alice, 2018, Status).
+Status = unmarried.
+
+?- statute_1:tax_for_filing_status(married_filing_separately, 3200, 2018, all, Tax). 
+false.
+
+?- current_module(M), write(M), nl, fail; true.
+prolog
+prolog_debug_tools
+prolog_stack
+ansi_term
+base32
+prolog_history
+editline
+qsave
+statute_152
+statute_3306
+lists
+system
+predicate_options
+prolog_clause
+error
+pce_expansion
+prolog_operator
+statute_3301
+link_xpce
+user
+statute_68
+statute_63
+statute_2
+predopts_analysis
+statute_1
+prolog_system_predicate_options
+prolog_debug
+tests
+swi_option
+sandbox
+statute_151
+apply
+knowledge_base
+prolog_source
+statute_7703
+shlib
+helpers
+true.
+
+?- statute_63:basic_standard_deduction(alice, 2018, married_filing_separately, Deduction).
+Deduction = 12000.
+
+?- trace, helpers:total_tax_liability(alice, 2018, Tax), notrace.
+   Call: (13) helpers:total_tax_liability(alice, 2018, _36300) ? creep
+   Call: (14) statute_2:filing_status(alice, 2018, _38432) ? creep
+   Call: (15) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Call: (16) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Call: (17) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (17) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (16) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Fail: (15) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Redo: (14) statute_2:filing_status(alice, 2018, _38432) ? creep
+   Call: (15) statute_2:is_head_of_household(alice, 2018) ? creep
+   Call: (16) statute_2:is_considered_not_married_for_hoh(alice, 2018) ? creep
+   Call: (17) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Call: (18) statute_7703:is_considered_not_married_b(alice, 2018) ? creep
+   Call: (19) statute_7703:determination_date(alice, 2018, _49366) ? creep
+   Call: (20) statute_7703:fact(spouse_died_in_year(alice, _50286, 2018, _49366)) ? creep
+   Fail: (20) statute_7703:fact(spouse_died_in_year(alice, _50286, 2018, _49366)) ? creep
+   Redo: (19) statute_7703:determination_date(alice, 2018, _49366) ? creep
+   Exit: (19) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (19) statute_7703:fact(is_married_on_date(alice, _53944, date(2018, 12, 31))) ? creep
+   Fail: (19) statute_7703:fact(is_married_on_date(alice, _53944, date(2018, 12, 31))) ? creep
+   Fail: (18) statute_7703:is_considered_not_married_b(alice, 2018) ? creep
+   Redo: (17) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Call: (18) statute_7703:determination_date(alice, 2018, _57584) ? creep
+   Call: (19) statute_7703:fact(spouse_died_in_year(alice, _58504, 2018, _57584)) ? creep
+   Fail: (19) statute_7703:fact(spouse_died_in_year(alice, _58504, 2018, _57584)) ? creep
+   Redo: (18) statute_7703:determination_date(alice, 2018, _57584) ? creep
+   Exit: (18) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (18) statute_7703:fact(legally_separated_on_date(alice, _62162, date(2018, 12, 31))) ? creep
+   Fail: (18) statute_7703:fact(legally_separated_on_date(alice, _62162, date(2018, 12, 31))) ? creep
+   Redo: (17) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Exit: (17) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Exit: (16) statute_2:is_considered_not_married_for_hoh(alice, 2018) ? creep
+   Call: (16) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Call: (17) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Call: (18) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (18) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (17) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? exit (status 4)
+(sara)  ~/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/ [feat/llm-translation*] 
+(sara)  ~/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/ [feat/llm-translation*] swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 9.3.19)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- statute_7703:marital_status(alice, 2018, Status).
+ERROR: Unknown procedure: statute_7703:marital_status/3 (DWIM could not correct goal)
+?- current_predicate(statute_7703:P).
+false.
+
+?- current_predicate(statute_7703:Name/Arity), write(Name/Arity), nl, fail; true.
+true.
+
+?- clause(statute_2:filing_status(alice, 2018, Status), Body), write(Body).
+false.
+
+?- current_predicate(statute_7703:Name/3), atom_chars(Name, Chars), append(_, [m,a,r,i,t,a,l|_], Chars).
+false.
+
+?- current_predicate(statute_1:Name/Arity), write(statute_1:Name/Arity), nl, fail; true.
+true.
+
+?- current_predicate(statute_2:Name/Arity), write(statute_2:Name/Arity), nl, fail; true.
+true.
+
+?- current_predicate(helpers:Name/Arity), write(helpers:Name/Arity), nl, fail; true. 
+true.
+
+?- current_predicate(statute_1:P), write('Found: '), write(P), nl.
+false.
+
+?- current_predicate(statute_2:P), write('Found: '), write(P), nl.
+false.
+
+?- current_predicate(helpers:P), write('Found: '), write(P), nl.
+false.
+
+?- current_predicate(knowledge_base:Name/Arity), write(knowledge_base:Name/Arity), nl, fail; true.
+true.
+
+?- current_predicate(tests:Name/Arity), write(tests:Name/Arity), nl, fail; true.
+true.
+
+?- exists_file('statute_1.pl').
+false.
+
+?- working_directory(_, '/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase').
+true.
+
+?- ['tests.pl'].
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/knowledge_base.pl:84:
+Warning:    Clauses of knowledge_base:standard_deduction_amount/3 are not together in the source-file
+Warning:    Earlier definition at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/knowledge_base.pl:81
+Warning:    Current predicate: knowledge_base:standard_d_amount/3
+Warning:    Use :- discontiguous knowledge_base:standard_deduction_amount/3. to suppress this message
+true.
+
+?- findall(C, answer(C, _), Working), length(Working, Count), format('Working cases: ~w~n', [Count]).
+Working cases: 18
+Working = [s1_d_iv_neg, s3306_c_5_pos, s1_c_i_neg, s1_b_iii_neg, s152_d_2_F_pos, s1_a_1_iii_neg, s3306_b_10_A_neg, s63_c_2_B_neg, s3306_b_7_neg|...],
+Count = 18.
+
+?- answer('tax_case_89', Result).
+false.
+
+?- helpers:total_tax_liability(alice, 2018, Tax).
+false.
+
+?- answer('s1_a_1_pos', Result).
+Result = true.
+
+?- current_predicate(statute_1:Name/Arity), write(statute_1:Name/Arity), nl, fail; true.
+statute_1:nth1/3
+statute_1:calculate_tax_from_brackets/4
+statute_1:bracket_to_index/2
+statute_1:tax_for_filing_status/5
+statute_1:employment_agricultural_wage_threshold/2
+statute_1:employment_domestic_service_wage_threshold/2
+statute_1:employer_domestic_service_wage_threshold/2
+statute_1:futa_wage_base/2
+statute_1:additional_standard_deduction_amount/2
+statute_1:standard_deduction_amount/3
+statute_1:applicable_amount_phaseout/2
+statute_1:tax_rate_table/5
+statute_1:round_to_nearest_dollar/2
+statute_1:total_tax_liability/3
+statute_1:map_filing_status_to_kb_key/2
+statute_1:employer_agricultural_wage_threshold/2
+statute_1:employer_wage_threshold/2
+statute_1:overall_limitation_applicable_amount/3
+statute_1:basic_standard_deduction_limitation/2
+statute_1:phaseout_percentage_rate/3
+statute_1:get_age_at_year_end/4
+statute_1:exemption_amount/2
+statute_1:tcja_active_general/1
+true.
+
+?- current_predicate(helpers:Name/Arity), write(helpers:Name/Arity), nl, fail; true. 
+helpers:calculate_tax_from_brackets/4
+helpers:employment_agricultural_wage_threshold/2
+helpers:employment_domestic_service_wage_threshold/2
+helpers:employer_domestic_service_wage_threshold/2
+helpers:futa_wage_base/2
+helpers:additional_standard_deduction_amount/2
+helpers:standard_deduction_amount/3
+helpers:applicable_amount_phaseout/2
+helpers:tax_rate_table/5
+helpers:round_to_nearest_dollar/2
+helpers:total_tax_liability/3
+helpers:get_year_period/2
+helpers:employer_agricultural_wage_threshold/2
+helpers:employer_wage_threshold/2
+helpers:overall_limitation_applicable_amount/3
+helpers:basic_standard_deduction_limitation/2
+helpers:phaseout_percentage_rate/3
+helpers:get_age_at_year_end/4
+helpers:exemption_amount/2
+helpers:tcja_active_general/1
+true.
+
+?- [run_tests].
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/run_tests.pl:78:
+Warning:    Singleton variable in branch: Error
+Warning:    Test is always true: var(Error)
+true.
+
+?- run_all_tests.
+=== SARA Legal Reasoning Test Results ===
+ERROR: Unknown procedure: fact/2
+ERROR:   However, there are definitions for:
+ERROR:         fact/1
+ERROR: 
+ERROR: In:
+ERROR:   [17] fact(_47558,_47560)
+ERROR:   [16] findall_loop(_47584,user:fact(_47600,_47602),_47588,[]) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/bags.pl:109
+ERROR:   [15] cleanup_bag('$bags':findall_loop(_47638,...,_47642,[]),'$bags':'$destroy_findall_bag') at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/bags.pl:106
+ERROR:   [12] run_all_tests at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/run_tests.pl:9
+ERROR:   [11] toplevel_call(user:user:run_all_tests) at /Applications/SWI-Prolog.app/Contents/Resources/swipl/boot/toplevel.pl:1319
+ERROR: 
+ERROR: Note: some frames are missing due to last-call optimization.
+ERROR: Re-run your program in debug mode (:- debug.) to get more detail.
+   Exception: (17) fact(_46836, _46842) ? creep
+   Exception: (15) cleanup_bag('$bags':findall_loop(_46836, user:fact(_46836, _46842), _46844, []), '$bags':'$destroy_findall_bag') ? creep
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? creep
+?- findall(CaseID-Result, (answer(CaseID, Result), (Result = true; Result = false)), EntailmentResults), length(EntailmentResults, EntailmentCount), format('Entailment cases working: ~w~n', [EntailmentCount]).
+Entailment cases working: 18
+EntailmentResults = [s1_d_iv_neg-true, s3306_c_5_pos-false, s1_c_i_neg-true, s1_b_iii_neg-true, s152_d_2_F_pos-false, s1_a_1_iii_neg-true, s3306_b_10_A_neg-true, s63_c_2_B_neg-true, ... - ...|...],
+EntailmentCount = 18.
+
+?- findall(CaseID-Result, (answer(CaseID, Result), number(Result)), TaxResults), length(TaxResults, TaxCount), format('Tax calculation cases working: ~w~n', [TaxCount]).
+Tax calculation cases working: 0
+TaxResults = [],
+TaxCount = 0.
+
+?- trace, answer('tax_case_89', Result), notrace.
+   Call: (13) tests:answer(tax_case_89, _27804) ? Unknown option (h for help)
+   Call: (13) tests:answer(tax_case_89, _27804) ? Trace commands:
++                 set spy point         | -              clear spy point
+/c|e|r|f|u|a goal find goal at port     | .              repeat find
+a                 abort to toplevel     | A              alternatives
+b                 break (new toplevel)  | c (ret, space) creep to next port
+[depth] d         depth for printing    | e              exit Prolog
+f                 make goal fail        | [depth] g      backtrace (-N from top)
+h (?)             help                  | i              ignore current goal
+l                 leap to spy point     | L              list current goal
+[level] r         retry goal [at level] | s              skip over
+[level] S         save goal [at level]  | u              up (complete goal)
+p                 print goals           | w              (quoted) write goals
+m                 exception details     | C              toggle show context
+   Call: (13) tests:answer(tax_case_89, _27804) ? creep
+   Call: (14) helpers:total_tax_liability(alice, 2018, _27804) ? creep
+   Call: (15) statute_2:filing_status(alice, 2018, _32500) ? creep
+   Call: (16) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Call: (17) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Call: (18) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (18) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (17) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Fail: (16) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Redo: (15) statute_2:filing_status(alice, 2018, _32500) ? creep
+   Call: (16) statute_2:is_head_of_household(alice, 2018) ? creep
+   Call: (17) statute_2:is_considered_not_married_for_hoh(alice, 2018) ? creep
+   Call: (18) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Call: (19) statute_7703:is_considered_not_married_b(alice, 2018) ? creep
+   Call: (20) statute_7703:determination_date(alice, 2018, _43434) ? creep
+   Call: (21) statute_7703:fact(spouse_died_in_year(alice, _44354, 2018, _43434)) ? creep
+   Fail: (21) statute_7703:fact(spouse_died_in_year(alice, _44354, 2018, _43434)) ? creep
+   Redo: (20) statute_7703:determination_date(alice, 2018, _43434) ? creep
+   Exit: (20) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (20) statute_7703:fact(is_married_on_date(alice, _48012, date(2018, 12, 31))) ? creep
+   Fail: (20) statute_7703:fact(is_married_on_date(alice, _48012, date(2018, 12, 31))) ? creep
+   Fail: (19) statute_7703:is_considered_not_married_b(alice, 2018) ? creep
+   Redo: (18) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Call: (19) statute_7703:determination_date(alice, 2018, _51652) ? creep
+   Call: (20) statute_7703:fact(spouse_died_in_year(alice, _52572, 2018, _51652)) ? creep
+   Fail: (20) statute_7703:fact(spouse_died_in_year(alice, _52572, 2018, _51652)) ? creep
+   Redo: (19) statute_7703:determination_date(alice, 2018, _51652) ? creep
+   Exit: (19) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (19) statute_7703:fact(legally_separated_on_date(alice, _56230, date(2018, 12, 31))) ? creep
+   Fail: (19) statute_7703:fact(legally_separated_on_date(alice, _56230, date(2018, 12, 31))) ? creep
+   Redo: (18) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Exit: (18) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Exit: (17) statute_2:is_considered_not_married_for_hoh(alice, 2018) ? creep
+   Call: (17) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Call: (18) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Call: (19) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (19) statute_2:fact(spouse_died_in_preceding_years(alice, 2, 2018)) ? creep
+   Fail: (18) statute_2:is_surviving_spouse_general_rule(alice, 2018) ? creep
+   Fail: (17) statute_2:is_surviving_spouse(alice, 2018) ? creep
+   Redo: (16) statute_2:is_head_of_household(alice, 2018) ? creep
+   Call: (17) statute_2:fact(nonresident_alien_at_any_time(alice, 2018)) ? creep
+   Fail: (17) statute_2:fact(nonresident_alien_at_any_time(alice, 2018)) ? creep
+   Redo: (16) statute_2:is_head_of_household(alice, 2018) ? creep
+   Call: (17) statute_2:fact(furnishes_over_half_of_household_maintenance(alice, 2018)) ? creep
+   Fail: (17) statute_2:fact(furnishes_over_half_of_household_maintenance(alice, 2018)) ? creep
+   Fail: (16) statute_2:is_head_of_household(alice, 2018) ? creep
+   Redo: (15) statute_2:filing_status(alice, 2018, _106) ? creep
+   Call: (16) statute_7703:marital_status(alice, 2018, married) ? creep
+   Call: (17) statute_7703:determination_date(alice, 2018, _6308) ? creep
+   Call: (18) statute_7703:fact(spouse_died_in_year(alice, _7228, 2018, _6308)) ? creep
+   Fail: (18) statute_7703:fact(spouse_died_in_year(alice, _7228, 2018, _6308)) ? creep
+   Redo: (17) statute_7703:determination_date(alice, 2018, _6308) ? creep
+   Exit: (17) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (17) statute_7703:fact(is_married_on_date(alice, _10886, date(2018, 12, 31))) ? creep
+   Fail: (17) statute_7703:fact(is_married_on_date(alice, _10886, date(2018, 12, 31))) ? creep
+   Redo: (16) statute_7703:marital_status(alice, 2018, married) ? creep
+   Fail: (16) statute_7703:marital_status(alice, 2018, married) ? creep
+   Redo: (15) statute_2:filing_status(alice, 2018, _106) ? creep
+   Call: (16) statute_7703:marital_status(alice, 2018, married) ? creep
+   Call: (17) statute_7703:determination_date(alice, 2018, _16358) ? creep
+   Call: (18) statute_7703:fact(spouse_died_in_year(alice, _17278, 2018, _16358)) ? creep
+   Fail: (18) statute_7703:fact(spouse_died_in_year(alice, _17278, 2018, _16358)) ? creep
+   Redo: (17) statute_7703:determination_date(alice, 2018, _16358) ? creep
+   Exit: (17) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (17) statute_7703:fact(is_married_on_date(alice, _20936, date(2018, 12, 31))) ? creep
+   Fail: (17) statute_7703:fact(is_married_on_date(alice, _20936, date(2018, 12, 31))) ? creep
+   Redo: (16) statute_7703:marital_status(alice, 2018, married) ? creep
+   Fail: (16) statute_7703:marital_status(alice, 2018, married) ? creep
+   Redo: (15) statute_2:filing_status(alice, 2018, _106) ? creep
+   Call: (16) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Call: (17) statute_7703:is_considered_not_married_b(alice, 2018) ? creep
+   Call: (18) statute_7703:determination_date(alice, 2018, _27318) ? creep
+   Call: (19) statute_7703:fact(spouse_died_in_year(alice, _28238, 2018, _27318)) ? creep
+   Fail: (19) statute_7703:fact(spouse_died_in_year(alice, _28238, 2018, _27318)) ? creep
+   Redo: (18) statute_7703:determination_date(alice, 2018, _27318) ? creep
+   Exit: (18) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (18) statute_7703:fact(is_married_on_date(alice, _31896, date(2018, 12, 31))) ? creep
+   Fail: (18) statute_7703:fact(is_married_on_date(alice, _31896, date(2018, 12, 31))) ? creep
+   Fail: (17) statute_7703:is_considered_not_married_b(alice, 2018) ? creep
+   Redo: (16) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Call: (17) statute_7703:determination_date(alice, 2018, _35536) ? creep
+   Call: (18) statute_7703:fact(spouse_died_in_year(alice, _36456, 2018, _35536)) ? creep
+   Fail: (18) statute_7703:fact(spouse_died_in_year(alice, _36456, 2018, _35536)) ? creep
+   Redo: (17) statute_7703:determination_date(alice, 2018, _35536) ? creep
+   Exit: (17) statute_7703:determination_date(alice, 2018, date(2018, 12, 31)) ? creep
+   Call: (17) statute_7703:fact(legally_separated_on_date(alice, _40114, date(2018, 12, 31))) ? creep
+   Fail: (17) statute_7703:fact(legally_separated_on_date(alice, _40114, date(2018, 12, 31))) ? creep
+   Redo: (16) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Exit: (16) statute_7703:marital_status(alice, 2018, not_married) ? creep
+   Exit: (15) statute_2:filing_status(alice, 2018, unmarried) ? creep
+   Call: (15) statute_63:taxable_income(alice, 2018, unmarried, _44672) ? creep
+   Call: (16) statute_63:fact(itemizes_deductions(alice, 2018)) ? creep
+   Fail: (16) statute_63:fact(itemizes_deductions(alice, 2018)) ? creep
+   Redo: (15) statute_63:taxable_income(alice, 2018, unmarried, _44672) ? creep
+   Call: (16) statute_63:fact(adjusted_gross_income(alice, 2018, _48334)) ? creep
+   Fail: (16) statute_63:fact(adjusted_gross_income(alice, 2018, _48334)) ? creep
+   Fail: (15) statute_63:taxable_income(alice, 2018, unmarried, _44672) ? creep
+   Fail: (14) helpers:total_tax_liability(alice, 2018, _58) ? creep
+   Fail: (13) tests:answer(tax_case_89, _58) ? creep
+false.
+
+[trace]  ?- 

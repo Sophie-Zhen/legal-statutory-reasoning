@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s152_c_2_A_pos
+% Question: Bob bears a relationship to Alice under section 152(c)(2)(A). Entailment
+
+answer('s152_c_2_A_pos', Result) :- (s152_c_2_A("Bob", "Alice", _, _, _) -> Result = true ; Result = false).

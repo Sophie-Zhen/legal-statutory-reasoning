@@ -1,0 +1,14 @@
+{
+  "analysis_date": "2025-07-20T11:30:32.646241",
+  "summary": {
+    "total_passed_cases": 0,
+    "passed_without_facts": 0,
+    "passed_with_facts": 0,
+    "missing_prolog_files": 0,
+    "proportion_without_facts": 0,
+    "proportion_with_facts": 0
+  },
+  "cases_without_facts": [],
+  "cases_with_facts": [],
+  "missing_files": []
+}

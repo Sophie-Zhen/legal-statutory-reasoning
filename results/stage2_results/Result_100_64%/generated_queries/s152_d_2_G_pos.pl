@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s152_d_2_G_pos
+% Question: Alice bears a relationship to Charlie under section 152(d)(2)(G) for the year 2018. Entailment
+
+answer('s152_d_2_G_pos', Result) :- (s152_d_2_G("Alice", "Charlie", _, _) -> Result = true ; Result = false).

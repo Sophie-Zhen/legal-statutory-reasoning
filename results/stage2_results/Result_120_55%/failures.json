@@ -1,0 +1,978 @@
+[
+  {
+    "case_id": "s151_d_3_A_pos",
+    "text": "Alice's income in 2015 was $260932. For 2015, Alice received one exemption of $2000 under section 151(c). Alice's applicable percentage under section 151(d)(3)(B) is equal to 10%.",
+    "question": "Under section 151(d)(3)(A), Alice's exemption amount is reduced to $1800. Entailment",
+    "generated_facts": ":- discontiguous s151_c/4.\n:- discontiguous s151_d_3_B/3.\n:- ['statutes/prolog/init'].\nincome_(span(\"income\",8,13)).\nagent_(span(\"income\",8,13),span(\"Alice\",0,4)).\nstart_(span(\"income\",8,13),span(2015,18,21)).\namount_(span(\"income\",8,13),span(260932,28,33)).\ns151_c(\"Alice\",_,2000,2015).\ns151_d_3_B(\"Alice\",10,2015).",
+    "generated_query": "answer('s151_d_3_A_pos', Result) :- (s151_d_3_A(\"Alice\",_,_,_,2000,1800,2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s151_d_3_A_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s151_d_3_A_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s151_d_3_A(\"Alice\",_,_,_,2000,1800,2015)."
+    },
+    "golden_facts": ":- discontiguous s151_c/4.\n:- ['statutes/prolog/init'].\ns151_c(\"Alice\",_,2000,2015).\nincome_(span(\"income\",8,13)).\nagent_(span(\"income\",8,13),span(\"Alice\",0,4)).\nstart_(span(\"income\",8,13),span(20150101,18,21)).\namount_(span(\"income\",8,13),span(260932,28,33)).",
+    "golden_test": "s151_d_3_A(\"Alice\",_,_,_,2000,1800,2015)."
+  },
+  {
+    "case_id": "s151_d_5_neg",
+    "text": "Alice is entitled to an exemption under section 151(b) for the year 2018.",
+    "question": "The exemption amount of Alice's exemption is equal to $2000 under section 151(d)(5). Contradiction",
+    "generated_facts": ":- discontiguous s151_b_applies/2.\n:- ['statutes/prolog/init'].\ns151_b_applies(\"Alice\",2018).",
+    "generated_query": "answer('s151_d_5_neg', Result) :- (true -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s151_d_5_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s151_d_5_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s151_d_5(2000,2018)."
+    },
+    "golden_facts": ":- discontiguous s151_b_applies/2.\n:- ['statutes/prolog/init'].\ns151_b_applies(\"Alice\",2018).",
+    "golden_test": "\\+ s151_d_5(2000,2018)."
+  },
+  {
+    "case_id": "s151_d_5_pos",
+    "text": "Alice is entitled to an exemption under section 151(b) for the year 2018.",
+    "question": "The exemption amount of Alice's exemption is equal to $0 under section 151(d)(5). Entailment",
+    "generated_facts": ":- discontiguous s151_b_applies/2.\n:- ['statutes/prolog/init'].\ns151_b_applies(\"Alice\",2018).",
+    "generated_query": "answer('s151_d_5_pos', Result) :- (s151_d_5(0, 2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s151_d_5_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s151_d_5_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s151_d_5(0,2018)."
+    },
+    "golden_facts": ":- discontiguous s151_b_applies/2.\n:- ['statutes/prolog/init'].\ns151_b_applies(\"Alice\",2018).",
+    "golden_test": "s151_d_5(0,2018)."
+  },
+  {
+    "case_id": "s152_d_1_D_neg",
+    "text": "In 2015, Alice's income was $312. The exemption amount for Alice under section 151(d) for the year 2015 was $2000. Alice is Bob's mother, and Bob is a dependent of Alice under 152(c) for the year 2015.",
+    "question": "Section 152(d)(1)(D) applies to Bob for the year 2015. Contradiction",
+    "generated_facts": ":- discontiguous s151_c/4.\n:- discontiguous s152_a/3.\n:- ['statutes/prolog/init'].\ns151_c(\"Alice\",\"Bob\",2000,2015).\ns152_a(\"Bob\",\"Alice\",2015).\nincome_(span(\"income\",17,22)).\nagent_(span(\"income\",17,22),span(\"Alice\",9,13)).\namount_(span(\"income\",17,22),span(312,29,31)).\nstart_(span(\"income\",17,22),span(2015,3,6)).\nmother_(span(\"mother\",133,138)).\nagent_(span(\"mother\",133,138),span(\"Alice\",117,121)).\npatient_(span(\"mother\",133,138),span(\"Bob\",126,128)).",
+    "generated_query": "answer('s152_d_1_D_neg', Result) :- (s152_d_1_D(\"Bob\", 2015) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s152_d_1_D_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s152_d_1_D_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s152_d_1_D(\"Bob\",2015)."
+    },
+    "golden_facts": ":- discontiguous s152_c/3.\n:- discontiguous s151_d/4.\n:- ['statutes/prolog/init'].\ns152_c(\"Bob\",\"Alice\",2015).\ns151_d(\"Alice\",_,2000,2015).\nincome_(span(\"income\",17,22)).\nmother_(span(\"mother\",130,135)).\nagent_(span(\"income\",17,22),span(\"Alice\",9,13)).\namount_(span(\"income\",17,22),span(312,29,31)).\nstart_(span(\"income\",17,22),span(20150101,3,6)).\nagent_(span(\"mother\",130,135),span(\"Alice\",115,119)).\npatient_(span(\"mother\",130,135),span(\"Bob\",124,126)).",
+    "golden_test": "\\+ s152_d_1_D(\"Bob\",2015)."
+  },
+  {
+    "case_id": "s152_d_1_D_pos",
+    "text": "In 2015, Alice's income was $312. The exemption amount for Alice under section 151(d) for the year 2015 was $2000. Bob is Alice's father.",
+    "question": "Section 152(d)(1)(D) applies to Bob for the year 2015. Entailment",
+    "generated_facts": ":- discontiguous s151_c/4.\n:- ['statutes/prolog/init'].\nincome_(span(\"income\",17,22)).\nagent_(span(\"income\",17,22),span(\"Alice\",9,13)).\namount_(span(\"income\",17,22),span(312,28,31)).\nstart_(span(\"income\",17,22),span(2015,3,6)).\ns151_c(\"Bob\",\"Alice\",2000,2015).\nfather_(span(\"father\",129,134)).\nagent_(span(\"father\",129,134),span(\"Bob\",114,116)).\npatient_(span(\"father\",129,134),span(\"Alice\",121,125)).",
+    "generated_query": "answer('s152_d_1_D_pos', Result) :- (s152_d_1_D(\"Bob\",_,_,2015) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s152_d_1_D_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s152_d_1_D_pos.pl",
+    "test_result": {
+      "success": false,
+      "error": "Undefined predicate: s152_d_1_D/4",
+      "expected": "true",
+      "golden_test": "s152_d_1_D(\"Bob\",2015).",
+      "debug_output": "ERROR: error(existence_error(procedure,s152_d_1_D/4),context(answer/2,_22110))\n",
+      "debug_stderr": "ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s152_d_1_D_pos_a6cdb153.pl:7:\nERROR:    source_sink `'statutes/prolog/init'' does not exist\nWarning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s152_d_1_D_pos_a6cdb153.pl:7:\nWarning:    Goal (directive) failed: user:['statutes/prolog/init']\nWarning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s152_d_1_D_pos_a6cdb153.pl:12:\nWarning:    Redefined static procedure s151_c/4\nWarning:    Previously defined at /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/section151.pl:103\n"
+    },
+    "golden_facts": ":- discontiguous s151_d/4.\n:- ['statutes/prolog/init'].\ns151_d(\"Alice\",_,2000,2015).\nincome_(span(\"income\",17,22)).\nfather_(span(\"father\",130,135)).\nagent_(span(\"father\",130,135),span(\"Bob\",115,117)).\npatient_(span(\"father\",130,135),span(\"Alice\",122,126)).\nagent_(span(\"income\",17,22),span(\"Alice\",9,13)).\namount_(span(\"income\",17,22),span(312,29,31)).\nstart_(span(\"income\",17,22),span(20150101,3,6)).",
+    "golden_test": "s152_d_1_D(\"Bob\",2015)."
+  },
+  {
+    "case_id": "s152_d_2_H_pos",
+    "text": "Alice and Bob started living together on April 15th, 2014. Alice and Bob are not married.",
+    "question": "Alice bears a relationship to Bob under section 152(d)(2)(H) for the year 2018. Entailment",
+    "generated_facts": ":- discontiguous agent_/2.\n:- discontiguous residence_/1.\n:- discontiguous start_/2.\n:- ['statutes/prolog/init'].\nresidence_(span(\"living together\",22,36)).\nagent_(span(\"living together\",22,36),span(\"Alice\",0,4)).\nagent_(span(\"living together\",22,36),span(\"Bob\",10,12)).\nstart_(span(\"living together\",22,36),span(20140415,41,57)).",
+    "generated_query": "answer('s152_d_2_H_pos', Result) :- (s152_d_2_H(\"Alice\", \"Bob\", 2018, _, _, _) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s152_d_2_H_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s152_d_2_H_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s152_d_2_H(\"Alice\",\"Bob\",2018,_,_,_)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nresidence_(span(\"living\",22,27)).\nagent_(span(\"living\",22,27),span(\"Alice\",0,4)).\nagent_(span(\"living\",22,27),span(\"Bob\",10,12)).\npatient_(span(\"living\",22,27),span(\"living\",22,27)).\nstart_(span(\"living\",22,27),span(20140415,41,56)).",
+    "golden_test": "s152_d_2_H(\"Alice\",\"Bob\",2018,_,_,_)."
+  },
+  {
+    "case_id": "s1_a_2_iv_neg",
+    "text": "Alice is a surviving spouse for the year 2017. Alice's taxable income for the year 2017 is $615572.",
+    "question": "Alice has to pay $220295 in taxes for the year 2017 under section 1(a)(iv). Contradiction",
+    "generated_facts": ":- discontiguous s63/3.\n:- discontiguous s2_a/3.\n:- ['statutes/prolog/init'].\ns2_a(\"Alice\",_,2017).\ns63(\"Alice\",2017,615572).",
+    "generated_query": "answer('s1_a_2_iv_neg', Result) :- (tax(\"Alice\",2017,220295) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_a_2_iv_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_a_2_iv_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s1_a_iv(615572,220295)."
+    },
+    "golden_facts": ":- discontiguous s63/3.\n:- discontiguous s2_a/3.\n:- ['statutes/prolog/init'].\ns2_a(\"Alice\",_,2017).\ns63(\"Alice\",2017,615572).",
+    "golden_test": "\\+ s1_a_iv(615572,220295)."
+  },
+  {
+    "case_id": "s1_a_2_v_neg",
+    "text": "Alice is a surviving spouse for the year 2017. Alice's taxable income for the year 2017 is $25561.",
+    "question": "Alice has to pay $3834 in taxes for the year 2017 under section 1(a)(v). Contradiction",
+    "generated_facts": ":- discontiguous s63/3.\n:- discontiguous s2_a/3.\n:- ['statutes/prolog/init'].\ns2_a(\"Alice\",_,2017).\ns63(\"Alice\",2017,25561).",
+    "generated_query": "answer('s1_a_2_v_neg', Result) :- (tax(\"Alice\",2017,3834) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_a_2_v_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_a_2_v_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s1_a_v(25561,3834)."
+    },
+    "golden_facts": ":- discontiguous s63/3.\n:- discontiguous s2_a/3.\n:- ['statutes/prolog/init.pl'].\ns2_a(\"Alice\",_,2017).\ns63(\"Alice\",2017,25561).",
+    "golden_test": "\\+ s1_a_v(25561,3834)."
+  },
+  {
+    "case_id": "s1_b_i_neg",
+    "text": "Alice is a head of household for the year 2017. Alice's taxable income for the year 2017 is $1172980.",
+    "question": "Alice has to pay $442985 in taxes for the year 2017 under section 1(b)(i). Contradiction",
+    "generated_facts": ":- discontiguous s2_b/3.\n:- discontiguous s63/3.\n:- ['statutes/prolog/init'].\ns2_b(\"Alice\",_,2017).\ns63(\"Alice\",2017,1172980).",
+    "generated_query": "answer('s1_b_i_neg', Result) :- (tax(\"Alice\",2017,442985) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_b_i_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_b_i_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s1_b_i(1172980,442985)."
+    },
+    "golden_facts": ":- discontiguous s63/3.\n:- discontiguous s2_b/3.\n:- ['statutes/prolog/init'].\ns2_b(\"Alice\",_,2017).\ns63(\"Alice\",2017,1172980).",
+    "golden_test": "\\+ s1_b_i(1172980,442985)."
+  },
+  {
+    "case_id": "s1_c_iii_neg",
+    "text": "Alice's taxable income for the year 2017 is $22895. Alice is not married, is not a surviving spouse, and is not a head of household in 2017.",
+    "question": "Alice has to pay $3538 in taxes for the year 2017 under section 1(c)(iii). Contradiction",
+    "generated_facts": ":- discontiguous s63/3.\n:- ['statutes/prolog/init'].\ns63(\"Alice\",2017,22895).",
+    "generated_query": "answer('s1_c_iii_neg', Result) :- (tax(\"Alice\",2017,3538) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_c_iii_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_c_iii_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s1_c_iii(22895,3538)."
+    },
+    "golden_facts": ":- discontiguous s63/3.\n:- ['statutes/prolog/init'].\ns63(\"Alice\",2017,22895).",
+    "golden_test": "\\+ s1_c_iii(22895,3538)."
+  },
+  {
+    "case_id": "s1_c_neg",
+    "text": "Alice is married under section 7703 for the year 2017. Alice files a joint return with her spouse for 2017. Alice's and her spouse's taxable income for the year 2017 is $17330.",
+    "question": "Alice and her spouse have to pay $2600 in taxes for the year 2017 under section 1(c). Contradiction",
+    "generated_facts": ":- discontiguous s63/3.\n:- discontiguous s7703_a/2.\n:- discontiguous s6013_a/2.\n:- ['statutes/prolog/init'].\ns7703_a(\"Alice\",2017).\ns6013_a(\"Alice\",2017).\ns63(\"Alice\",2017,17330).",
+    "generated_query": "answer('s1_c_neg', Result) :- (s1_c(\"Alice\", 2017, _, 2600) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_c_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_c_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s1_c(\"Alice\",2017,_,2600)."
+    },
+    "golden_facts": ":- discontiguous s7703/4.\n:- discontiguous s63/3.\n:- ['statutes/prolog/init'].\ns7703(\"Alice\",\"spouse\",_,2017).\ns63(\"Alice\",2017,17330).\njoint_return_(span(\"joint return\",69,80)).\nagent_(span(\"joint return\",69,80),span(\"Alice\",55,59)).\nagent_(span(\"joint return\",69,80),span(\"spouse\",91,96)).\nstart_(span(\"joint return\",69,80),span(20170101,102,105)).",
+    "golden_test": "\\+ s1_c(\"Alice\",2017,_,2600)."
+  },
+  {
+    "case_id": "s1_d_ii_pos",
+    "text": "Alice is married under section 7703 for the year 2017. Alice's taxable income for the year 2017 is $28864. Alice files a separate return.",
+    "question": "Alice has to pay $5683 in taxes for the year 2017 under section 1(d)(ii). Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('s1_d_ii_pos', Result) :- (tax(\"Alice\",2017,5683) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_d_ii_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_d_ii_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s1_d_ii(28864,5683)."
+    },
+    "golden_facts": ":- discontiguous s7703/4.\n:- discontiguous s63/3.\n:- ['statutes/prolog/init'].\ns7703(\"Alice\",_,_,2017).\ns63(\"Alice\",2017,28864).",
+    "golden_test": "s1_d_ii(28864,5683)."
+  },
+  {
+    "case_id": "s1_d_pos",
+    "text": "Alice is married under section 7703 for the year 2017. Alice's taxable income for the year 2017 is $554313. Alice files a separate return.",
+    "question": "Alice has to pay $207772 in taxes for the year 2017 under section 1(d). Entailment",
+    "generated_facts": ":- discontiguous s7703_a/2.\n:- discontiguous s63/3.\n:- discontiguous s1_d_applies/2.\n:- ['statutes/prolog/init'].\ns7703_a(\"Alice\",2017).\ns63(\"Alice\",2017,554313).\ns1_d_applies(\"Alice\",2017).",
+    "generated_query": "answer('s1_d_pos', Result) :- (s1_d(\"Alice\", _, 2017, _, 207772) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s1_d_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s1_d_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s1_d(\"Alice\",_,2017,_,207772)."
+    },
+    "golden_facts": ":- discontiguous s7703/4.\n:- discontiguous s63/3.\n:- ['statutes/prolog/init'].\ns7703(\"Alice\",_,_,2017).\ns63(\"Alice\",2017,554313).",
+    "golden_test": "s1_d(\"Alice\",_,2017,_,207772)."
+  },
+  {
+    "case_id": "s2_a_1_B_pos",
+    "text": "Alice and Bob got married on Feb 3rd, 1992. Alice and Bob have a child, Charlie, born October 9th, 2000. Alice died on July 9th, 2014. From 2004 to 2017, Bob furnished the costs of maintaining the home where he and Charlie lived during that time. From 2014 to 2017, Bob was entitled to a deduction for Charlie under section 151. Bob's income in 2016 was $553252.",
+    "question": "Section 2(a)(1)(B) applies to Bob in 2016. Entailment",
+    "generated_facts": ":- discontiguous s151_c/4.\n:- ['statutes/prolog/init'].\nmarriage_(span(\"married\",18,24)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,42)).\nchild_(span(\"child\",66,70)).\npatient_(span(\"child\",66,70),span(\"Alice\",45,49)).\npatient_(span(\"child\",66,70),span(\"Bob\",55,57)).\nagent_(span(\"child\",66,70),span(\"Charlie\",73,79)).\nbirth_(span(\"born\",82,85)).\nagent_(span(\"born\",82,85),span(\"Charlie\",73,79)).\nstart_(span(\"born\",82,85),span(20001009,87,105)).\ndeath_(span(\"died\",114,117)).\nagent_(span(\"died\",114,117),span(\"Alice\",108,112)).\nstart_(span(\"died\",114,117),span(20140709,122,136)).\npayment_(span(\"furnished the costs\",161,179)).\nagent_(span(\"furnished the costs\",161,179),span(\"Bob\",157,159)).\npatient_(span(\"furnished the costs\",161,179),span(\"maintaining the home\",184,204)).\nstart_(span(\"furnished the costs\",161,179),span(2004,143,146)).\nend_(span(\"furnished the costs\",161,179),span(2017,151,154)).\nresidence_(span(\"lived\",227,231)).\nagent_(span(\"lived\",227,231),span(\"he\",212,213)).\nagent_(span(\"lived\",227,231),span(\"Charlie\",219,225)).\nstart_(span(\"lived\",227,231),span(2004,143,146)).\nend_(span(\"lived\",227,231),span(2017,151,154)).\ns151_c(\"Bob\",\"Charlie\",_,2014).",
+    "generated_query": "answer('s2_a_1_B_pos', Result) :- (s2_a_1_B(\"Bob\", _, _, 2016) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s2_a_1_B_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s2_a_1_B_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s2_a_1_B(\"Bob\",_,_,2016)."
+    },
+    "golden_facts": ":- discontiguous s151/5.\n:- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2004,2017,Year),\natom_concat(\"furnished the costs of maintaining the home \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,158,166)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,158,166),span(\"Bob\",154,156)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,158,166),span(1,168,170)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,158,166),span(\"home\",197,200)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,158,166),span(Start_day,140,143)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,158,166),span(End_day,148,151)) :- bob_household_maintenance(_,Event,_,End_day).\ns151(\"Bob\",_,[\"Charlie\"],[0],Year) :- between(2014,2017,Year).\nmarriage_(span(\"married\",18,24)).\nson_(span(\"child\",65,69)).\ndeath_(span(\"died\",111,114)).\nresidence_(span(\"lived\",223,227)).\nincome_(span(\"income\",335,340)).\nagent_(span(\"died\",111,114),span(\"Alice\",105,109)).\nstart_(span(\"died\",111,114),span(20140709,119,132)).\nagent_(span(\"income\",335,340),span(\"Bob\",329,331)).\nstart_(span(\"income\",335,340),span(20160101,345,348)).\namount_(span(\"income\",335,340),span(553252,355,360)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nstart_(span(\"lived\",223,227),span(20040101,140,143)).\nagent_(span(\"lived\",223,227),span(\"Bob\",154,156)).\npatient_(span(\"lived\",223,227),span(\"home\",197,200)).\nagent_(span(\"lived\",223,227),span(\"Charlie\",215,221)).\nend_(span(\"lived\",223,227),span(20171231,148,151)).\npatient_(span(\"child\",65,69),span(\"Alice\",44,48)).\npatient_(span(\"child\",65,69),span(\"Bob\",54,56)).\nagent_(span(\"child\",65,69),span(\"Charlie\",72,78)).\nstart_(span(\"child\",65,69),span(20001009,86,102)).\nbirth_(span(\"born\",81,84)).\nagent_(span(\"born\",81,84),span(\"Charlie\",72,78)).\nstart_(span(\"born\",81,84),span(20001009,86,102)).",
+    "golden_test": "s2_a_1_B(\"Bob\",_,_,2016)."
+  },
+  {
+    "case_id": "s2_b_1_A_i_II_pos",
+    "text": "Alice and Bob got married on Feb 3rd, 1992. Alice and Bob have a child, Charlie, born October 9th, 2000. Alice died on July 9th, 2014. From 2004 to 2019, Bob furnished the costs of maintaining the home where he and Charlie lived during that time. Charlie married Dan on Feb 14th, 2018. Section 152(b)(2) applies to Charlie as the dependent and Bob as the taxpayer for 2018.",
+    "question": "Section 2(b)(1)(A)(i)(II) applies to Bob with Charlie as the qualifying child in 2018. Entailment",
+    "generated_facts": ":- discontiguous s152_b_2_applies/3.\n:- discontiguous marriage_/1.\n:- discontiguous agent_/2.\n:- discontiguous start_/2.\n:- discontiguous child_/1.\n:- discontiguous patient_/2.\n:- discontiguous birth_/1.\n:- discontiguous death_/1.\n:- discontiguous furnishing_/1.\n:- discontiguous end_/2.\n:- discontiguous residence_/1.\n:- discontiguous location_/2.\n:- ['statutes/prolog/init'].\nmarriage_(span(\"married\",18,24)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,42)).\nchild_(span(\"child\",67,71)).\npatient_(span(\"child\",67,71),span(\"Alice\",45,49)).\npatient_(span(\"child\",67,71),span(\"Bob\",55,57)).\nagent_(span(\"child\",67,71),span(\"Charlie\",74,80)).\nbirth_(span(\"born\",83,86)).\nagent_(span(\"born\",83,86),span(\"Charlie\",74,80)).\nstart_(span(\"born\",83,86),span(20001009,88,106)).\ndeath_(span(\"died\",115,118)).\nagent_(span(\"died\",115,118),span(\"Alice\",109,113)).\nstart_(span(\"died\",115,118),span(20140709,123,138)).\nfurnishing_(span(\"furnished\",165,173)).\nagent_(span(\"furnished\",165,173),span(\"Bob\",161,163)).\npatient_(span(\"furnished\",165,173),span(\"home\",206,209)).\nstart_(span(\"furnished\",165,173),span(2004,146,149)).\nend_(span(\"furnished\",165,173),span(2019,154,157)).\nresidence_(span(\"lived\",232,236)).\nagent_(span(\"lived\",232,236),span(\"Bob\",161,163)).\nagent_(span(\"lived\",232,236),span(\"Charlie\",224,230)).\nlocation_(span(\"lived\",232,236),span(\"home\",206,209)).\nstart_(span(\"lived\",232,236),span(2004,146,149)).\nend_(span(\"lived\",232,236),span(2019,154,157)).\nmarriage_(span(\"married\",272,278)).\nagent_(span(\"married\",272,278),span(\"Charlie\",264,270)).\nagent_(span(\"married\",272,278),span(\"Dan\",280,282)).\nstart_(span(\"married\",272,278),span(20180214,287,301)).\ns152_b_2_applies(\"Charlie\",\"Bob\",2018).",
+    "generated_query": "answer('s2_b_1_A_i_II_pos', Result) :- (s2_b(\"Bob\",_,2018) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s2_b_1_A_i_II_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s2_b_1_A_i_II_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s2_b_1_A_i_II(\"Charlie\",\"Bob\",2018)."
+    },
+    "golden_facts": ":- discontiguous s152_b_2/4.\n:- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2004,2019,Year),\natom_concat(\"furnished the costs of maintaining the home \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,158,166)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,158,166),span(\"Bob\",154,156)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,158,166),span(1,168,170)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,158,166),span(\"home\",197,200)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,158,166),span(Start_day,140,143)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,158,166),span(End_day,148,151)) :- bob_household_maintenance(_,Event,_,End_day).\ns152_b_2(\"Charlie\",_,\"Bob\",2018).\nmarriage_(span(\"married\",18,24)).\nson_(span(\"child\",65,69)).\ndeath_(span(\"died\",111,114)).\nresidence_(span(\"lived\",223,227)).\nmarriage_(span(\"married\",255,261)).\nagent_(span(\"died\",111,114),span(\"Alice\",105,109)).\nstart_(span(\"died\",111,114),span(20140709,119,132)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nagent_(span(\"married\",255,261),span(\"Charlie\",247,253)).\nagent_(span(\"married\",255,261),span(\"Dan\",263,265)).\nstart_(span(\"married\",255,261),span(20180214,270,283)).\nstart_(span(\"lived\",223,227),span(20040101,140,143)).\nend_(span(\"lived\",223,227),span(20191231,148,151)).\nagent_(span(\"lived\",223,227),span(\"Bob\",154,156)).\npatient_(span(\"lived\",223,227),span(\"home\",197,200)).\nagent_(span(\"lived\",223,227),span(\"Charlie\",215,221)).\npatient_(span(\"child\",65,69),span(\"Alice\",44,48)).\npatient_(span(\"child\",65,69),span(\"Bob\",54,56)).\nagent_(span(\"child\",65,69),span(\"Charlie\",72,78)).\nstart_(span(\"child\",65,69),span(20001009,86,102)).\nbirth_(span(\"born\",81,84)).\nagent_(span(\"born\",81,84),span(\"Charlie\",72,78)).\nstart_(span(\"born\",81,84),span(20001009,86,102)).",
+    "golden_test": "s2_b_1_A_i_II(\"Charlie\",\"Bob\",2018)."
+  },
+  {
+    "case_id": "s2_b_1_A_i_pos",
+    "text": "Alice and Bob got married on Feb 3rd, 1992. Alice and Bob have a child, Charlie, born October 9th, 2000. Alice died on July 9th, 2014. From 2004 to 2019, Bob furnished the costs of maintaining the home where he and Charlie lived during that time.",
+    "question": "Section 2(b)(1)(A)(i) applies to Charlie in 2018. Entailment",
+    "generated_facts": ":- discontiguous agent_/2.\n:- discontiguous patient_/2.\n:- discontiguous start_/2.\n:- discontiguous end_/2.\n:- ['statutes/prolog/init'].\nmarriage_(span(\"married\",18,24)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nchild_(span(\"child\",66,70)).\npatient_(span(\"child\",66,70),span(\"Alice\",44,48)).\npatient_(span(\"child\",66,70),span(\"Bob\",54,56)).\nagent_(span(\"child\",66,70),span(\"Charlie\",73,79)).\nbirth_(span(\"born\",82,85)).\nagent_(span(\"born\",82,85),span(\"Charlie\",73,79)).\nstart_(span(\"born\",82,85),span(20001009,87,104)).\ndeath_(span(\"died\",113,116)).\nagent_(span(\"died\",113,116),span(\"Alice\",107,111)).\nstart_(span(\"died\",113,116),span(20140709,118,132)).\nfurnish_(span(\"furnished\",165,173)).\nagent_(span(\"furnished\",165,173),span(\"Bob\",162,164)).\nstart_(span(\"furnished\",165,173),span(2004,147,150)).\nend_(span(\"furnished\",165,173),span(2019,155,158)).\nresidence_(span(\"lived\",230,234)).\nagent_(span(\"lived\",230,234),span(\"he\",218,219)).\nagent_(span(\"lived\",230,234),span(\"Charlie\",223,229)).\nstart_(span(\"lived\",230,234),span(2004,147,150)).\nend_(span(\"lived\",230,234),span(2019,155,158)).",
+    "generated_query": "answer('s2_b_1_A_i_pos', Result) :- (s2_b_1_A_i(\"Bob\", \"Charlie\", 2018) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s2_b_1_A_i_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s2_b_1_A_i_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s2_b_1_A_i(_,\"Charlie\",2018)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2004,2019,Year),\natom_concat(\"furnished the costs of maintaining the home \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,158,166)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,158,166),span(\"Bob\",154,156)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,158,166),span(1,168,170)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,158,166),span(\"home\",197,200)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,158,166),span(Start_day,140,143)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,158,166),span(End_day,148,151)) :- bob_household_maintenance(_,Event,_,End_day).\nmarriage_(span(\"married\",18,24)).\nson_(span(\"child\",65,69)).\ndeath_(span(\"died\",111,114)).\nresidence_(span(\"lived\",223,227)).\nagent_(span(\"died\",111,114),span(\"Alice\",105,109)).\nstart_(span(\"died\",111,114),span(20140709,119,132)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nstart_(span(\"lived\",223,227),span(20040101,140,143)).\nend_(span(\"lived\",223,227),span(20191231,148,151)).\nagent_(span(\"lived\",223,227),span(\"Bob\",154,156)).\npatient_(span(\"lived\",223,227),span(\"home\",197,200)).\nagent_(span(\"lived\",223,227),span(\"Charlie\",215,221)).\npatient_(span(\"child\",65,69),span(\"Alice\",44,48)).\npatient_(span(\"child\",65,69),span(\"Bob\",54,56)).\nagent_(span(\"child\",65,69),span(\"Charlie\",72,78)).\nstart_(span(\"child\",65,69),span(20001009,86,102)).\nbirth_(span(\"born\",81,84)).\nagent_(span(\"born\",81,84),span(\"Charlie\",72,78)).\nstart_(span(\"born\",81,84),span(20001009,86,102)).",
+    "golden_test": "s2_b_1_A_i(_,\"Charlie\",2018)."
+  },
+  {
+    "case_id": "s2_b_1_A_ii_pos",
+    "text": "Alice and Bob got married on Feb 3rd, 1992. Bob has a brother, Charlie, born October 9th, 2000. Alice died on July 9th, 2014. From 2004 to 2019, Bob furnished the costs of maintaining the home where he and Charlie lived during that time. From 2015 to 2019, Bob was entitled to a deduction for Charlie under section 151(c). In 2017, Bob earned $5254312.",
+    "question": "Section 2(b)(1)(A)(ii) applies to Charlie as the dependent in 2017. Entailment",
+    "generated_facts": ":- discontiguous s151_c/4.\n:- ['statutes/prolog/init'].\nmarriage_(span(\"married\",18,24)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,42)).\nbrother_(span(\"brother\",55,61)).\npatient_(span(\"brother\",55,61),span(\"Bob\",45,47)).\nagent_(span(\"brother\",55,61),span(\"Charlie\",64,70)).\nstart_(span(\"brother\",55,61),span(20001009,78,96)).\nbirth_(span(\"born\",73,76)).\nagent_(span(\"born\",73,76),span(\"Charlie\",64,70)).\nstart_(span(\"born\",73,76),span(20001009,78,96)).\ndeath_(span(\"died\",105,108)).\nagent_(span(\"died\",105,108),span(\"Alice\",99,103)).\nstart_(span(\"died\",105,108),span(20140709,113,128)).\nfurnishing_(span(\"furnished the costs of maintaining the home\",154,196)).\nagent_(span(\"furnished the costs of maintaining the home\",154,196),span(\"Bob\",150,152)).\nstart_(span(\"furnished the costs of maintaining the home\",154,196),span(2004,136,139)).\nend_(span(\"furnished the costs of maintaining the home\",154,196),span(2019,144,147)).\nresidence_(span(\"lived\",219,223)).\nagent_(span(\"lived\",219,223),span(\"he\",204,205)).\nagent_(span(\"lived\",219,223),span(\"Charlie\",211,217)).\nstart_(span(\"lived\",219,223),span(2004,136,139)).\nend_(span(\"lived\",219,223),span(2019,144,147)).\ns151_c(\"Bob\",\"Charlie\",_,2015).\ns151_c(\"Bob\",\"Charlie\",_,2016).\ns151_c(\"Bob\",\"Charlie\",_,2017).\ns151_c(\"Bob\",\"Charlie\",_,2018).\ns151_c(\"Bob\",\"Charlie\",_,2019).\nincome_(span(\"earned\",344,349)).\nagent_(span(\"earned\",344,349),span(\"Bob\",340,342)).\namount_(span(\"earned\",344,349),span(5254312,351,358)).\nstart_(span(\"earned\",344,349),span(2017,334,337)).",
+    "generated_query": "answer('s2_b_1_A_ii_pos', Result) :- (s2_b_1_A_ii(\"Bob\", \"Charlie\", 2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s2_b_1_A_ii_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s2_b_1_A_ii_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s2_b_1_A_ii(_,\"Charlie\",2017)."
+    },
+    "golden_facts": ":- discontiguous s151_c_applies/3.\n:- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2004,2019,Year),\natom_concat(\"furnished the costs of maintaining the home \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,149,157)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,149,157),span(\"Bob\",145,147)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,149,157),span(1,159,161)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,149,157),span(\"home\",188,191)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,149,157),span(Start_day,131,134)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,149,157),span(End_day,139,142)) :- bob_household_maintenance(_,Event,_,End_day).\ns151_c_applies(\"Bob\",\"Charlie\",Year) :- between(2015,2019,Year).\nmarriage_(span(\"married\",18,24)).\nbrother_(span(\"brother\",54,60)).\ndeath_(span(\"died\",102,105)).\nresidence_(span(\"lived\",214,218)).\nincome_(span(\"earned\",336,341)).\npatient_(span(\"brother\",54,60),span(\"Bob\",44,46)).\nagent_(span(\"brother\",54,60),span(\"Charlie\",63,69)).\nstart_(span(\"brother\",54,60),span(20001009,77,93)).\nbirth_(span(\"born\",72,75)).\nagent_(span(\"born\",72,75),span(\"Charlie\",63,69)).\nstart_(span(\"born\",72,75),span(20001009,77,93)).\nagent_(span(\"died\",102,105),span(\"Alice\",96,100)).\nstart_(span(\"died\",102,105),span(20140709,110,123)).\nstart_(span(\"earned\",336,341),span(20170101,326,329)).\nagent_(span(\"earned\",336,341),span(\"Bob\",332,334)).\namount_(span(\"earned\",336,341),span(5254312,344,350)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nstart_(span(\"lived\",214,218),span(20040101,131,134)).\nagent_(span(\"lived\",214,218),span(\"Bob\",145,147)).\npatient_(span(\"lived\",214,218),span(\"home\",188,191)).\nagent_(span(\"lived\",214,218),span(\"Charlie\",206,212)).\nend_(span(\"lived\",214,218),span(20191231,139,142)).",
+    "golden_test": "s2_b_1_A_ii(_,\"Charlie\",2017)."
+  },
+  {
+    "case_id": "s3301_pos",
+    "text": "Alice is an employer under section 3306(a) for the year 2015 and 2016, and she has paid $453009 in total wages in 2015, and $443870 in 2016.",
+    "question": "Alice has to pay $27181 in excise tax for the year 2015 under section 3301. Entailment",
+    "generated_facts": ":- discontiguous s3306_a_1/2, amount_/2, start_/2.\n:- ['statutes/prolog/init'].\ns3306_a_1(\"Alice\",2015).\ns3306_a_1(\"Alice\",2016).\npayment_(span(\"paid\",83,86)).\nagent_(span(\"paid\",83,86),span(\"Alice\",0,4)).\namount_(span(\"paid\",83,86),span(453009,88,94)).\nstart_(span(\"paid\",83,86),span(2015,111,114)).\namount_(span(\"paid\",83,86),span(443870,122,128)).\nstart_(span(\"paid\",83,86),span(2016,134,137)).\nwages_(span(\"wages\",103,107)).\npatient_(span(\"wages\",103,107),span(\"paid\",83,86)).",
+    "generated_query": "answer('s3301_pos', Result) :- (tax(\"Alice\",2015,27181) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3301_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3301_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3301(\"Alice\",2015,_,_,_,27181)."
+    },
+    "golden_facts": ":- discontiguous total_wages_employer/6.\n:- discontiguous s3306_a/2.\n:- ['statutes/prolog/init'].\ns3306_a(\"Alice\",2015).\ns3306_a(\"Alice\",2016).\ntotal_wages_employer(\"Alice\",453009,_,_,20150101,20151231).\ntotal_wages_employer(\"Alice\",443870,_,_,20160101,20161231).",
+    "golden_test": "s3301(\"Alice\",2015,_,_,_,27181)."
+  },
+  {
+    "case_id": "s3306_a_1_B_pos",
+    "text": "Alice has employed Bob on various occasions during the year 2017: - Jan 24 - Feb 4 - Mar 3 - Mar 18 - Apr 1 - May 9 - Oct 14 - Oct 25 - Nov 8 - Nov 22 - Dec 1 - Dec 2",
+    "question": "Section 3306(a)(1)(B) applies to Alice for the year 2017. Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].\nemployment_(span(\"employed\",10,17)).\nagent_(span(\"employed\",10,17),span(\"Alice\",0,4)).\npatient_(span(\"employed\",10,17),span(\"Bob\",19,21)).\nstart_(span(\"employed\",10,17),span(20170124,60,65)).\nstart_(span(\"employed\",10,17),span(20170204,69,73)).\nstart_(span(\"employed\",10,17),span(20170303,77,81)).\nstart_(span(\"employed\",10,17),span(20170318,85,90)).\nstart_(span(\"employed\",10,17),span(20170401,94,98)).\nstart_(span(\"employed\",10,17),span(20170509,102,106)).\nstart_(span(\"employed\",10,17),span(20171014,110,115)).\nstart_(span(\"employed\",10,17),span(20171025,119,124)).\nstart_(span(\"employed\",10,17),span(20171108,128,132)).\nstart_(span(\"employed\",10,17),span(20171122,136,141)).\nstart_(span(\"employed\",10,17),span(20171201,145,149)).\nstart_(span(\"employed\",10,17),span(20171202,153,157)).",
+    "generated_query": "answer('s3306_a_1_B_pos', Result) :- (s3306_a_1_A(\"Alice\",_,2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_a_1_B_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_a_1_B_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3306_a_1_B(\"Alice\",_,_,2017)."
+    },
+    "golden_facts": ":- discontiguous s3306_c/5.\n:- ['statutes/prolog/init'].\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20170124,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20170204,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20170303,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20170318,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20170401,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20170509,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20171014,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20171025,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20171108,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20171122,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20171201,_).\ns3306_c(span(\"employed\",10,17),\"Alice\",\"Bob\",20171202,_).",
+    "golden_test": "s3306_a_1_B(\"Alice\",_,_,2017)."
+  },
+  {
+    "case_id": "s3306_a_3_pos",
+    "text": "Alice has paid $3200 in cash to Bob for agricultural labor done from Feb 1st, 2017 to Sep 2nd, 2017. Bob has paid $4200 in cash to Alice for domestic service in his home, done from Apr 1st, 2017 to Sep 1st, 2018.",
+    "question": "Section 3306(a)(3) applies to Bob for the year 2018. Entailment",
+    "generated_facts": ":- discontiguous payment_/1.\n:- discontiguous agent_/2.\n:- discontiguous recipient_/2.\n:- discontiguous amount_/2.\n:- discontiguous medium_/2.\n:- discontiguous purpose_/2.\n:- discontiguous start_/2.\n:- discontiguous end_/2.\n:- discontiguous location_/2.\n:- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\nrecipient_(span(\"paid\",10,13),span(\"Bob\",30,32)).\namount_(span(\"paid\",10,13),3200).\nmedium_(span(\"paid\",10,13),span(\"cash\",22,25)).\npurpose_(span(\"paid\",10,13),span(\"agricultural labor\",38,55)).\nstart_(span(\"paid\",10,13),span(20170201,67,80)).\nend_(span(\"paid\",10,13),span(20170902,85,98)).\npayment_(span(\"paid\",109,112)).\nagent_(span(\"paid\",109,112),span(\"Bob\",101,103)).\nrecipient_(span(\"paid\",109,112),span(\"Alice\",129,133)).\namount_(span(\"paid\",109,112),4200).\nmedium_(span(\"paid\",109,112),span(\"cash\",121,124)).\npurpose_(span(\"paid\",109,112),span(\"domestic service\",139,154)).\nlocation_(span(\"paid\",109,112),span(\"his home\",159,166)).\nstart_(span(\"paid\",109,112),span(20170401,179,192)).\nend_(span(\"paid\",109,112),span(20180901,197,210)).",
+    "generated_query": "answer('s3306_a_3_pos', Result) :- (s3306_a_3(\"Bob\", _, _, 2018) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_a_3_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_a_3_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3306_a_3(\"Bob\",_,_,2018)."
+    },
+    "golden_facts": ":- discontiguous s3306_b/8.\n:- ['statutes/prolog/init'].\ns3306_b(3200,span(\"paid\",10,13),span(\"labor\",53,57),\"Alice\",\"Bob\",\"Alice\",\"Bob\",_).\ns3306_b(4200,span(\"paid\",109,112),span(\"service\",150,156),\"Bob\",\"Alice\",\"Bob\",\"Alice\",_).\npayment_(span(\"paid\",10,13)).\nservice_(span(\"labor\",53,57)).\npayment_(span(\"paid\",109,112)).\nservice_(span(\"service\",150,156)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\nmeans_(span(\"paid\",10,13),span(\"cash\",24,27)).\npatient_(span(\"paid\",10,13),span(\"Bob\",32,34)).\npurpose_(span(\"paid\",10,13),span(\"labor\",53,57)).\nstart_(span(\"paid\",10,13),span(20170902,86,98)).\nagent_(span(\"paid\",109,112),span(\"Bob\",101,103)).\namount_(span(\"paid\",109,112),span(4200,115,118)).\nmeans_(span(\"paid\",109,112),span(\"cash\",123,126)).\npatient_(span(\"paid\",109,112),span(\"Alice\",131,135)).\npurpose_(span(\"paid\",109,112),span(\"service\",150,156)).\nstart_(span(\"paid\",109,112),span(20180901,198,210)).\npatient_(span(\"labor\",53,57),span(\"Alice\",0,4)).\nagent_(span(\"labor\",53,57),span(\"Bob\",32,34)).\npurpose_(span(\"labor\",53,57),span(\"agricultural labor\",40,57)).\nstart_(span(\"labor\",53,57),span(20170201,69,81)).\nend_(span(\"labor\",53,57),span(20170902,86,98)).\npatient_(span(\"service\",150,156),span(\"Bob\",101,103)).\nagent_(span(\"service\",150,156),span(\"Alice\",131,135)).\npurpose_(span(\"service\",150,156),span(\"domestic service\",141,156)).\nlocation_(span(\"service\",150,156),span(\"home\",165,168)).\nstart_(span(\"service\",150,156),span(20170401,181,193)).\nend_(span(\"service\",150,156),span(20180901,198,210)).",
+    "golden_test": "s3306_a_3(\"Bob\",_,_,2018)."
+  },
+  {
+    "case_id": "s3306_b_2_C_neg",
+    "text": "Alice has paid $45252 to Bob for work done in the year 2017. In 2017, Alice has also paid $9832 into a retirement fund for Bob, and paid $5322 into life insurance for Charlie, who is Alice's father and has retired in 2016.",
+    "question": "Section 3306(b)(2)(C) applies to the payment Alice made to the retirement fund for the year 2017. Contradiction",
+    "generated_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\npatient_(span(\"paid\",10,13),span(\"Bob\",22,24)).\namount_(span(\"paid\",10,13),span(45252,15,20)).\nstart_(span(\"paid\",10,13),span(2017,52,55)).\npayment_(span(\"paid\",78,81)).\nagent_(span(\"paid\",78,81),span(\"Alice\",67,71)).\npatient_(span(\"paid\",78,81),span(\"Bob\",116,118)).\namount_(span(\"paid\",78,81),span(9832,83,87)).\nstart_(span(\"paid\",78,81),span(2017,59,62)).\npayment_(span(\"paid\",125,128)).\nagent_(span(\"paid\",125,128),span(\"Alice\",67,71)).\npatient_(span(\"paid\",125,128),span(\"Charlie\",160,166)).\namount_(span(\"paid\",125,128),span(5322,130,134)).\nstart_(span(\"paid\",125,128),span(2017,59,62)).\nfather_(span(\"father\",182,187)).\nagent_(span(\"father\",182,187),span(\"Charlie\",160,166)).\npatient_(span(\"father\",182,187),span(\"Alice\",175,179)).\nretirement_(span(\"retired\",197,203)).\nagent_(span(\"retired\",197,203),span(\"Charlie\",160,166)).\nstart_(span(\"retired\",197,203),span(2016,208,211)).",
+    "generated_query": "answer('s3306_b_2_C_neg', Result) :- (s3306_b_2_C(_,_,_,\"Alice\",_,_) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_b_2_C_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_b_2_C_neg.pl",
+    "test_result": {
+      "success": false,
+      "error": "Undefined predicate: s3306_b_2_C/6",
+      "expected": "false",
+      "golden_test": "\\+ s3306_b_2_C(span(\"retirement fund\",103,117)).",
+      "debug_output": "ERROR: error(existence_error(procedure,s3306_b_2_C/6),context(answer/2,_20872))\n",
+      "debug_stderr": "ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s3306_b_2_C_neg_8f271d7b.pl:6:\nERROR:    source_sink `'statutes/prolog/init'' does not exist\nWarning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s3306_b_2_C_neg_8f271d7b.pl:6:\nWarning:    Goal (directive) failed: user:['statutes/prolog/init']\n"
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nplan_(span(\"retirement fund\",103,117)).\nplan_(span(\"life insurance\",148,161)).\npurpose_(span(\"retirement fund\",103,117),span(\"make provisions for employees in case of retirement\",103,117)).\npurpose_(span(\"life insurance\",148,161),span(\"make provisions for employees in case of death\",148,161)).\npayment_(span(\"paid\",10,13)).\nservice_(span(\"work\",33,36)).\npayment_(span(\"paid\",85,88)).\npayment_(span(\"paid\",132,135)).\nfather_(span(\"father\",191,196)).\nretirement_(span(\"retired\",206,212)).\nagent_(span(\"father\",191,196),span(\"Charlie\",167,173)).\npatient_(span(\"father\",191,196),span(\"Alice\",183,187)).\nstart_(span(\"paid\",132,135),span(20170101,64,67)).\namount_(span(\"paid\",132,135),span(5322,138,141)).\npatient_(span(\"paid\",132,135),span(\"life insurance\",148,161)).\nbeneficiary_(span(\"paid\",132,135),span(\"Charlie\",167,173)).\nagent_(span(\"paid\",132,135),span(\"Alice\",70,74)).\nstart_(span(\"paid\",85,88),span(20170101,64,67)).\nagent_(span(\"paid\",85,88),span(\"Alice\",70,74)).\namount_(span(\"paid\",85,88),span(9832,91,94)).\npatient_(span(\"paid\",85,88),span(\"retirement fund\",103,117)).\nbeneficiary_(span(\"paid\",85,88),span(\"Bob\",123,125)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(45252,16,20)).\npatient_(span(\"paid\",10,13),span(\"Bob\",25,27)).\npurpose_(span(\"paid\",10,13),span(\"work\",33,36)).\nstart_(span(\"paid\",10,13),span(20170101,55,58)).\nagent_(span(\"retired\",206,212),span(\"Charlie\",167,173)).\nstart_(span(\"retired\",206,212),span(20160101,217,220)).\npatient_(span(\"work\",33,36),span(\"Alice\",0,4)).\nagent_(span(\"work\",33,36),span(\"Bob\",25,27)).\nend_(span(\"work\",33,36),span(20171231,55,58)).\nstart_(span(\"work\",33,36),span(20170101,55,58)).",
+    "golden_test": "\\+ s3306_b_2_C(span(\"retirement fund\",103,117))."
+  },
+  {
+    "case_id": "s3306_b_2_C_pos",
+    "text": "Alice has paid $45252 to Bob for work done in the year 2017. In 2017, Alice has also paid $9832 into a retirement fund for Bob, and paid $5322 into life insurance for Bob.",
+    "question": "Section 3306(b)(2)(C) applies to the payment Alice made to the life insurance fund for the year 2017. Entailment",
+    "generated_facts": ":- discontiguous payment_/1, agent_/2, amount_/2, start_/2, patient_/2, destination_/2, beneficiary_/2.\n:- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(45252,15,19)).\npatient_(span(\"paid\",10,13),span(\"Bob\",27,29)).\nstart_(span(\"paid\",10,13),span(2017,52,55)).\npayment_(span(\"paid\",74,77)).\nagent_(span(\"paid\",74,77),span(\"Alice\",67,71)).\namount_(span(\"paid\",74,77),span(9832,79,82)).\ndestination_(span(\"paid\",74,77),span(\"retirement fund\",91,105)).\nbeneficiary_(span(\"paid\",74,77),span(\"Bob\",111,113)).\nstart_(span(\"paid\",74,77),span(2017,58,61)).\npayment_(span(\"paid\",119,122)).\nagent_(span(\"paid\",119,122),span(\"Alice\",67,71)).\namount_(span(\"paid\",119,122),span(5322,124,127)).\ndestination_(span(\"paid\",119,122),span(\"life insurance\",134,147)).\nbeneficiary_(span(\"paid\",119,122),span(\"Bob\",153,155)).\nstart_(span(\"paid\",119,122),span(2017,58,61)).",
+    "generated_query": "answer('s3306_b_2_C_pos', Result) :- (s3306_b_2_C(_,_,_,\"Alice\",_,_) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_b_2_C_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_b_2_C_pos.pl",
+    "test_result": {
+      "success": false,
+      "error": "Undefined predicate: s3306_b_2_C/6",
+      "expected": "true",
+      "golden_test": "s3306_b_2_C(span(\"life insurance\",148,161)).",
+      "debug_output": "ERROR: error(existence_error(procedure,s3306_b_2_C/6),context(answer/2,_20872))\n",
+      "debug_stderr": "ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s3306_b_2_C_pos_0162e4a1.pl:7:\nERROR:    source_sink `'statutes/prolog/init'' does not exist\nWarning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s3306_b_2_C_pos_0162e4a1.pl:7:\nWarning:    Goal (directive) failed: user:['statutes/prolog/init']\n"
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npurpose_(span(\"retirement fund\",103,117),span(\"make provisions for employees in case of retirement\",103,117)).\npurpose_(span(\"life insurance\",148,161),span(\"make provisions for employees in case of death\",148,161)).\npayment_(span(\"paid\",10,13)).\nservice_(span(\"work\",33,36)).\npayment_(span(\"paid\",85,88)).\nplan_(span(\"retirement fund\",103,117)).\npayment_(span(\"paid\",132,135)).\nplan_(span(\"life insurance\",148,161)).\nstart_(span(\"paid\",132,135),span(20170101,64,67)).\nagent_(span(\"paid\",132,135),span(\"Alice\",70,74)).\namount_(span(\"paid\",132,135),span(5322,138,141)).\npatient_(span(\"paid\",132,135),span(\"life insurance\",148,161)).\nstart_(span(\"paid\",85,88),span(20170101,64,67)).\nagent_(span(\"paid\",85,88),span(\"Alice\",70,74)).\namount_(span(\"paid\",85,88),span(9832,91,94)).\npatient_(span(\"paid\",85,88),span(\"retirement fund\",103,117)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(45252,16,20)).\npatient_(span(\"paid\",10,13),span(\"Bob\",25,27)).\npurpose_(span(\"paid\",10,13),span(\"work\",33,36)).\nstart_(span(\"paid\",10,13),span(20170101,55,58)).\nbeneficiary_(span(\"life insurance\",148,161),span(\"Bob\",167,169)).\nbeneficiary_(span(\"retirement fund\",103,117),span(\"Bob\",123,125)).\npatient_(span(\"work\",33,36),span(\"Alice\",0,4)).\nagent_(span(\"work\",33,36),span(\"Bob\",25,27)).\nend_(span(\"work\",33,36),span(20171231,55,58)).\nstart_(span(\"work\",33,36),span(20170101,55,58)).",
+    "golden_test": "s3306_b_2_C(span(\"life insurance\",148,161))."
+  },
+  {
+    "case_id": "s3306_c_10_B_pos",
+    "text": "Alice was paid $200 in March 2017 for services performed at Johns Hopkins Hospital in March 2017. Alice was a patient at Johns Hopkins Hospital from March 15th, 2017 to April 2nd, 2017.",
+    "question": "Section 3306(c)(10)(B) applies to Alice's employment situation in 2017. Entailment",
+    "generated_facts": ":- discontiguous payment_/1.\n:- discontiguous agent_/2.\n:- discontiguous patient_/2.\n:- discontiguous amount_/2.\n:- discontiguous start_/2.\n:- discontiguous end_/2.\n:- discontiguous service_/1.\n:- discontiguous location_/2.\n:- discontiguous patient_event_/1.\n:- discontiguous hospital_/1.\n:- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Johns Hopkins Hospital\",60,81)).\npatient_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(200,15,18)).\nstart_(span(\"paid\",10,13),span(201703,23,32)).\nend_(span(\"paid\",10,13),span(201703,23,32)).\nservice_(span(\"services performed\",38,55)).\nagent_(span(\"services performed\",38,55),span(\"Alice\",0,4)).\nlocation_(span(\"services performed\",38,55),span(\"Johns Hopkins Hospital\",60,81)).\nstart_(span(\"services performed\",38,55),span(201703,86,95)).\nend_(span(\"services performed\",38,55),span(201703,86,95)).\npatient_event_(span(\"patient\",110,116)).\nagent_(span(\"patient_event_\",110,116),span(\"Alice\",98,102)).\nlocation_(span(\"patient_event_\",110,116),span(\"Johns Hopkins Hospital\",121,142)).\nstart_(span(\"patient_event_\",110,116),span(20170315,148,164)).\nend_(span(\"patient_event_\",110,116),span(20170402,169,184)).\nhospital_(span(\"Johns Hopkins Hospital\",60,81)).\nhospital_(span(\"Johns Hopkins Hospital\",121,142)).",
+    "generated_query": "answer('s3306_c_10_B_pos', Result) :- (s3306_c_10_A_i(\"Alice\",_,2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_c_10_B_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_c_10_B_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3306_c_10_B(span(\"services\",38,45),_,\"Alice\",20170315)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"services\",38,45)).\nhospital_(span(\"Hospital\",74,81)).\nmedical_patient_(span(\"patient\",110,116)).\nagent_(span(\"Hospital\",74,81),span(\"Johns Hopkins Hospital\",60,81)).\nagent_(span(\"patient\",110,116),span(\"Alice\",98,102)).\npatient_(span(\"patient\",110,116),span(\"Johns Hopkins Hospital\",121,142)).\nstart_(span(\"patient\",110,116),span(20170315,149,164)).\nend_(span(\"patient\",110,116),span(20170402,169,183)).\npatient_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(200,16,18)).\nstart_(span(\"paid\",10,13),span(20170301,23,32)).\npurpose_(span(\"paid\",10,13),span(\"services\",38,45)).\nagent_(span(\"paid\",10,13),span(\"Johns Hopkins Hospital\",60,81)).\nagent_(span(\"services\",38,45),span(\"Alice\",0,4)).\nend_(span(\"services\",38,45),span(20170331,86,95)).\npatient_(span(\"services\",38,45),span(\"Johns Hopkins Hospital\",60,81)).\nstart_(span(\"services\",38,45),span(20170301,86,95)).",
+    "golden_test": "s3306_c_10_B(span(\"services\",38,45),_,\"Alice\",20170315)."
+  },
+  {
+    "case_id": "s3306_c_11_pos",
+    "text": "Alice was paid $73200 in 2017 as an employee of the Canadian Government, in Toronto, Ontario, Canada.",
+    "question": "Section 3306(c)(11) applies to Alice's employment situation in 2017. Entailment",
+    "generated_facts": ":- discontiguous s3306_c_11_applies/2.\n:- ['statutes/prolog/init'].\npayment_(span(\"paid\",9,12)).\nagent_(span(\"paid\",9,12),span(\"Canadian Government\",51,69)).\npatient_(span(\"paid\",9,12),span(\"Alice\",0,4)).\namount_(span(\"paid\",9,12),span(73200,14,19)).\nstart_(span(\"paid\",9,12),span(2017,24,27)).\nemployment_(span(\"employee\",35,42)).\nagent_(span(\"employee\",35,42),span(\"Alice\",0,4)).\npatient_(span(\"employee\",35,42),span(\"Canadian Government\",51,69)).\nstart_(span(\"employee\",35,42),span(2017,24,27)).\nlocation_(span(\"employee\",35,42),span(\"Toronto, Ontario, Canada\",75,99)).\ns3306_c_11_applies(\"Alice\",2017).",
+    "generated_query": "answer('s3306_c_11_pos', Result) :- (s3306_b_11(span(\"employment\",_,_),_,_) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_c_11_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_c_11_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3306_c_11(span(\"employee\",36,43),_)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"employee\",36,43)).\npatient_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(73200,16,20)).\nstart_(span(\"paid\",10,13),span(20170101,25,28)).\npurpose_(span(\"paid\",10,13),span(\"employee\",36,43)).\nagent_(span(\"paid\",10,13),span(\"Canadian Government\",52,70)).\nagent_(span(\"employee\",36,43),span(\"Alice\",0,4)).\nend_(span(\"employee\",36,43),span(20171231,25,28)).\nstart_(span(\"employee\",36,43),span(20170101,25,28)).\npatient_(span(\"employee\",36,43),span(\"Canadian Government\",52,70)).\nlocation_(span(\"employee\",36,43),span(\"Toronto\",76,82)).\nlocation_(span(\"employee\",36,43),span(\"Ontario\",85,91)).\nlocation_(span(\"employee\",36,43),span(\"Canada\",94,99)).",
+    "golden_test": "s3306_c_11(span(\"employee\",36,43),_)."
+  },
+  {
+    "case_id": "s3306_c_1_B_neg",
+    "text": "Alice has paid $3200 to Bob for agricultural labor done from Feb 1st, 2017 to Sep 2nd, 2017, in Stanley, Wisconsin, USA. Alice is an American citizen, and Bob is a Mexican citizen who was admitted to the USA to perform agricultural labor pursuant to sections 214(c) and 101(a)(15)(H) of the Immigration and Nationality Act.",
+    "question": "Section 3306(c)(1)(B) applies to Alice employing Bob for the year 2017. Contradiction",
+    "generated_facts": ":- discontiguous agent_/2.\n:- discontiguous patient_/2.\n:- discontiguous purpose_/2.\n:- discontiguous citizen_/1.\n:- discontiguous nationality_/2.\n:- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\npatient_(span(\"paid\",10,13),span(\"Bob\",22,24)).\namount_(span(\"paid\",10,13),span(3200,15,19)).\npurpose_(span(\"paid\",10,13),span(\"agricultural labor\",30,48)).\nagricultural_labor_(span(\"agricultural labor\",30,48)).\nagent_(span(\"agricultural labor\",30,48),span(\"Bob\",22,24)).\npatient_(span(\"agricultural labor\",30,48),span(\"Alice\",0,4)).\nstart_(span(\"agricultural labor\",30,48),span(20170201,55,67)).\nend_(span(\"agricultural labor\",30,48),span(20170902,72,85)).\nlocation_(span(\"agricultural labor\",30,48),span(\"Stanley, Wisconsin, USA\",91,114)).\ncitizen_(span(\"citizen\",131,137)).\nagent_(span(\"citizen\",131,137),span(\"Alice\",117,121)).\nnationality_(span(\"citizen\",131,137),span(\"American\",122,129)).\ncitizen_(span(\"citizen\",156,162)).\nagent_(span(\"citizen\",156,162),span(\"Bob\",143,145)).\nnationality_(span(\"citizen\",156,162),span(\"Mexican\",148,154)).\nadmission_(span(\"admitted\",172,179)).\nagent_(span(\"admitted\",172,179),span(\"Bob\",143,145)).\ndestination_(span(\"admitted\",172,179),span(\"USA\",188,190)).\npurpose_(span(\"admitted\",172,179),span(\"to perform agricultural labor\",192,220)).\nauthority_(span(\"admitted\",172,179),span(\"sections 214(c) and 101(a)(15)(H) of the Immigration and Nationality Act\",234,318)).",
+    "generated_query": "answer('s3306_c_1_B_neg', Result) :- (s3306_c_1(span(_,_,_),2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_c_1_B_neg_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_c_1_B_neg.pl",
+    "test_result": {
+      "success": true,
+      "expected": "false",
+      "actual": "true",
+      "correct": false,
+      "golden_test": "\\+ s3306_c_1_B(span(\"labor\",45,49),\"Bob\")."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"labor\",45,49)).\ncitizenship_(span(\"citizen\",142,148)).\ncitizenship_(span(\"citizen\",172,178)).\nmigration_(span(\"admitted\",188,195)).\nagent_(span(\"citizen\",142,148),span(\"Alice\",121,125)).\npatient_(span(\"citizen\",142,148),span(\"American\",133,140)).\nagent_(span(\"citizen\",172,178),span(\"Bob\",155,157)).\npatient_(span(\"citizen\",172,178),span(\"Mexican\",164,170)).\nagent_(span(\"admitted\",188,195),span(\"Bob\",155,157)).\ndestination_(span(\"admitted\",188,195),span(\"USA\",204,206)).\npurpose_(span(\"admitted\",188,195),span(\"agricultural labor\",219,236)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\npurpose_(span(\"paid\",10,13),span(\"labor\",45,49)).\nstart_(span(\"paid\",10,13),span(20170902,78,90)).\npatient_(span(\"labor\",45,49),span(\"Alice\",0,4)).\nagent_(span(\"labor\",45,49),span(\"Bob\",24,26)).\npurpose_(span(\"labor\",45,49),span(\"agricultural labor\",32,49)).\nstart_(span(\"labor\",45,49),span(20170201,61,73)).\nend_(span(\"labor\",45,49),span(20170902,78,90)).\nlocation_(span(\"labor\",45,49),span(\"Stanley, Wisconsin, USA\",96,118)).\ncountry_(span(\"Stanley, Wisconsin, USA\",96,118),span(\"USA\",116,118)).",
+    "golden_test": "\\+ s3306_c_1_B(span(\"labor\",45,49),\"Bob\")."
+  },
+  {
+    "case_id": "s3306_c_1_B_pos",
+    "text": "Alice has paid $3200 to Bob for agricultural labor done from Feb 1st, 2017 to Sep 2nd, 2017, in Caracas, Venezuela. Bob is an American citizen. Alice is an American employer.",
+    "question": "Section 3306(c)(1)(B) applies to Alice employing Bob for the year 2017. Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\nstart_(span(\"paid\",10,13),span(20170201,62,75)).\nend_(span(\"paid\",10,13),span(20170902,80,93)).\nagricultural_labor_(span(\"agricultural labor\",32,51)).\nagent_(span(\"agricultural labor\",32,51),span(\"Bob\",24,26)).\npatient_(span(\"agricultural labor\",32,51),span(\"Alice\",0,4)).\nstart_(span(\"agricultural labor\",32,51),span(20170201,62,75)).\nend_(span(\"agricultural labor\",32,51),span(20170902,80,93)).\nlocation_(span(\"agricultural labor\",32,51),span(\"Caracas\",99,105)).\nlocation_(span(\"agricultural labor\",32,51),span(\"Venezuela\",108,116)).\namerican_citizen_(span(\"American citizen\",126,141)).\nagent_(span(\"American citizen\",126,141),span(\"Bob\",119,121)).\namerican_employer_(span(\"American employer\",153,169)).\nagent_(span(\"American employer\",153,169),span(\"Alice\",144,148)).",
+    "generated_query": "answer('s3306_c_1_B_pos', Result) :- (s3306_c_1(span(_,_,_),2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_c_1_B_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_c_1_B_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3306_c_1_B(span(\"labor\",45,49),\"Bob\")."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"labor\",45,49)).\ncitizenship_(span(\"citizen\",135,141)).\namerican_employer_(span(\"American employer\",156,172)).\nagent_(span(\"American employer\",156,172),span(\"Alice\",144,148)).\nagent_(span(\"citizen\",135,141),span(\"Bob\",116,118)).\npatient_(span(\"citizen\",135,141),span(\"American\",126,133)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\npurpose_(span(\"paid\",10,13),span(\"labor\",45,49)).\nstart_(span(\"paid\",10,13),span(20170902,78,90)).\npatient_(span(\"labor\",45,49),span(\"Alice\",0,4)).\nagent_(span(\"labor\",45,49),span(\"Bob\",24,26)).\npurpose_(span(\"labor\",45,49),span(\"agricultural labor\",32,49)).\nstart_(span(\"labor\",45,49),span(20170201,61,73)).\nend_(span(\"labor\",45,49),span(20170902,78,90)).\nlocation_(span(\"labor\",45,49),span(\"Caracas, Venezuela\",96,113)).\ncountry_(span(\"Caracas, Venezuela\",96,113),span(\"Venezuela\",105,113)).",
+    "golden_test": "s3306_c_1_B(span(\"labor\",45,49),\"Bob\")."
+  },
+  {
+    "case_id": "s3306_c_7_pos",
+    "text": "Alice was paid $73200 in 2017 as an employee of the State of Maryland in Baltimore, Maryland, USA.",
+    "question": "Section 3306(c)(7) applies to Alice's employment situation in 2017. Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",9,12)).\nagent_(span(\"paid\",9,12),span(\"the State of Maryland\",47,67)).\npatient_(span(\"paid\",9,12),span(\"Alice\",0,4)).\namount_(span(\"paid\",9,12),span(73200,14,19)).\nstart_(span(\"paid\",9,12),span(2017,24,27)).\nemployment_(span(\"employee\",35,42)).\nagent_(span(\"employee\",35,42),span(\"Alice\",0,4)).\npatient_(span(\"employee\",35,42),span(\"the State of Maryland\",47,67)).\nstart_(span(\"employee\",35,42),span(2017,24,27)).\nlocation_(span(\"employee\",35,42),span(\"Baltimore, Maryland, USA\",72,96)).",
+    "generated_query": "answer('s3306_c_7_pos', Result) :- (s3306_c(span(\"employment\",_,_),2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_c_7_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_c_7_pos.pl",
+    "test_result": {
+      "success": false,
+      "error": "Undefined predicate: s3306_c/2",
+      "expected": "true",
+      "golden_test": "s3306_c_7(span(\"employee\",36,43),_).",
+      "debug_output": "ERROR: error(existence_error(procedure,s3306_c/2),context(answer/2,_20882))\n",
+      "debug_stderr": "ERROR: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s3306_c_7_pos_ca918a36.pl:6:\nERROR:    source_sink `'statutes/prolog/init'' does not exist\nWarning: /Users/sawpu/Desktop/PrologLLM/2025-mcm-llms-applied-in-law-contexts/data/sara_v3/statutes/prolog/temp_s3306_c_7_pos_ca918a36.pl:6:\nWarning:    Goal (directive) failed: user:['statutes/prolog/init']\n"
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"employee\",36,43)).\npatient_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(73200,16,20)).\nstart_(span(\"paid\",10,13),span(20170101,25,28)).\npurpose_(span(\"paid\",10,13),span(\"employee\",36,43)).\nagent_(span(\"paid\",10,13),span(\"State of Maryland\",52,68)).\nagent_(span(\"employee\",36,43),span(\"Alice\",0,4)).\nend_(span(\"employee\",36,43),span(20171231,25,28)).\nstart_(span(\"employee\",36,43),span(20170101,25,28)).\npatient_(span(\"employee\",36,43),span(\"State of Maryland\",52,68)).\nlocation_(span(\"employee\",36,43),span(\"Maryland\",84,91)).\nlocation_(span(\"employee\",36,43),span(\"Baltimore\",73,81)).\nlocation_(span(\"employee\",36,43),span(\"USA\",94,96)).",
+    "golden_test": "s3306_c_7(span(\"employee\",36,43),_)."
+  },
+  {
+    "case_id": "s3306_c_B_pos",
+    "text": "Alice has paid $3200 to Bob for work done from Feb 1st, 2017 to Sep 2nd, 2017, in Caracas, Venezuela. Bob is an American citizen and Alice is an American employer.",
+    "question": "Section 3306(c)(B) applies to Alice employing Bob for the year 2017. Entailment",
+    "generated_facts": ":- discontiguous s3306_c_B_applies/3.\n:- discontiguous agent_/2.\n:- discontiguous location_/2.\n:- ['statutes/prolog/init'].\ns3306_c_B_applies(\"Alice\",\"Bob\",2017).\npayment_(span(\"paid\",10,13)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\namount_(span(\"paid\",10,13),span(3200,15,19)).\nstart_(span(\"paid\",10,13),span(20170201,44,56)).\nend_(span(\"paid\",10,13),span(20170902,61,73)).\nlocation_(span(\"paid\",10,13),span(\"Caracas, Venezuela\",79,97)).\ncitizen_(span(\"citizen\",117,123)).\nagent_(span(\"citizen\",117,123),span(\"Bob\",101,103)).\nlocation_(span(\"citizen\",117,123),span(\"American\",108,115)).\nemployer_(span(\"employer\",148,155)).\nagent_(span(\"employer\",148,155),span(\"Alice\",127,131)).\nlocation_(span(\"employer\",148,155),span(\"American\",139,146)).",
+    "generated_query": "answer('s3306_c_B_pos', Result) :- (s3306_c_A(span(_,_,_),\"Alice\",_) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s3306_c_B_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s3306_c_B_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s3306_c_B(span(\"work\",32,35),\"Alice\",\"Bob\",_)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"work\",32,35)).\ncitizenship_(span(\"citizen\",121,127)).\namerican_employer_(span(\"American employer\",145,161)).\nagent_(span(\"American employer\",145,161),span(\"Alice\",133,137)).\nagent_(span(\"citizen\",121,127),span(\"Bob\",102,104)).\npatient_(span(\"citizen\",121,127),span(\"American\",112,119)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\npurpose_(span(\"paid\",10,13),span(\"work\",32,35)).\nstart_(span(\"paid\",10,13),span(20170902,64,76)).\npatient_(span(\"work\",32,35),span(\"Alice\",0,4)).\nagent_(span(\"work\",32,35),span(\"Bob\",24,26)).\nstart_(span(\"work\",32,35),span(20170201,47,59)).\nend_(span(\"work\",32,35),span(20170902,64,76)).\nlocation_(span(\"work\",32,35),span(\"Caracas, Venezuela\",82,99)).\ncountry_(span(\"Caracas, Venezuela\",82,99),span(\"Venezuela\",91,99)).",
+    "golden_test": "s3306_c_B(span(\"work\",32,35),\"Alice\",\"Bob\",_)."
+  },
+  {
+    "case_id": "s63_b_pos",
+    "text": "In 2017, Alice was paid $33200. She is allowed a deduction under section 63(c)(1) of $2000 for the year 2017, and no deduction under section 151. Alice decides not to itemize her deductions.",
+    "question": "Under section 63(b), Alice's taxable income in 2017 is equal to $31200. Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('s63_b_pos', Result) :- (s63_b(\"Alice\", 2017, 31200, _) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s63_b_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s63_b_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s63_b(\"Alice\",2017,31200,_)."
+    },
+    "golden_facts": ":- discontiguous s151/5.\n:- discontiguous s63_c_1/3.\n:- ['statutes/prolog/init'].\ns63_c_1(\"Alice\",2017,2000).\ns151(\"Alice\",0,_,_,2017).\npayment_(span(\"paid\",19,22)).\npatient_(span(\"paid\",19,22),span(\"Alice\",9,13)).\namount_(span(\"paid\",19,22),span(33200,25,29)).\nstart_(span(\"paid\",19,22),span(20170101,3,6)).",
+    "golden_test": "s63_b(\"Alice\",2017,31200,_)."
+  },
+  {
+    "case_id": "s63_c_2_A_i_pos",
+    "text": "In 2017, Alice was paid $33200 in remuneration. Alice and Bob have been married since Feb 3rd, 2017, and they file a joint return for 2017.",
+    "question": "Section 63(c)(2)(A)(i) applies to Alice in 2017. Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('s63_c_2_A_i_pos', Result) :- (s63_c_2_A_i(\"Alice\", _, 2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s63_c_2_A_i_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s63_c_2_A_i_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s63_c_2_A_i(\"Alice\",_,2017)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init.pl'].\npayment_(span(\"paid\",19,22)).\nmarriage_(span(\"married\",72,78)).\njoint_return_(span(\"joint return\",117,128)).\nagent_(span(\"joint return\",117,128),span(\"Alice\",48,52)).\nagent_(span(\"joint return\",117,128),span(\"Bob\",58,60)).\nstart_(span(\"joint return\",117,128),span(20170101,134,137)).\nagent_(span(\"married\",72,78),span(\"Alice\",48,52)).\nagent_(span(\"married\",72,78),span(\"Bob\",58,60)).\nstart_(span(\"married\",72,78),span(20170203,86,98)).\nstart_(span(\"paid\",19,22),span(20170101,3,6)).\npatient_(span(\"paid\",19,22),span(\"Alice\",9,13)).\namount_(span(\"paid\",19,22),span(33200,25,29)).",
+    "golden_test": "s63_c_2_A_i(\"Alice\",_,2017)."
+  },
+  {
+    "case_id": "s63_c_6_D_pos",
+    "text": "From 1973 to 2019, the Walter Brown Family Trust II was considered to be a business trust.",
+    "question": "Section 63(c)(6)(D) applies to the Walter Brown Family Trust II for 1999. Entailment",
+    "generated_facts": ":- discontiguous agent_/2.\n:- discontiguous start_/2.\n:- discontiguous end_/2.\n:- ['statutes/prolog/init'].\nbusiness_trust_(span(\"business trust\",75,88)).\nagent_(span(\"business trust\",75,88),span(\"the Walter Brown Family Trust II\",19,50)).\nstart_(span(\"business trust\",75,88),span(1973,5,8)).\nend_(span(\"business trust\",75,88),span(2019,13,16)).",
+    "generated_query": "answer('s63_c_6_D_pos', Result) :- (s63_c_6_D(\"the Walter Brown Family Trust II\", 1999) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s63_c_6_D_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s63_c_6_D_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s63_c_6_D(\"Walter Brown Family Trust II\",1999)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init.pl'].\nbusiness_trust_(span(\"business trust\",75,88)).\nstart_(span(\"business trust\",75,88),span(19730101,5,8)).\nend_(span(\"business trust\",75,88),span(20191231,13,16)).\nagent_(span(\"business trust\",75,88),span(\"Walter Brown Family Trust II\",23,50)).",
+    "golden_test": "s63_c_6_D(\"Walter Brown Family Trust II\",1999)."
+  },
+  {
+    "case_id": "s63_f_2_B_pos",
+    "text": "In 2017, Alice was paid $33200. Alice and Bob have been married since Feb 3rd, 2017. Alice has been blind since Feb 28, 2014. In addition, Bob is allowed an exemption for Alice under section 151(b) for the year 2017.",
+    "question": "Section 63(f)(2)(B) applies to Bob in 2017 with Alice as the spouse. Entailment",
+    "generated_facts": ":- discontiguous s151_b_applies/2.\n:- ['statutes/prolog/init'].\npayment_(span(\"paid\",20,23)).\npatient_(span(\"paid\",20,23),span(\"Alice\",10,14)).\namount_(span(\"paid\",20,23),span(33200,25,30)).\nstart_(span(\"paid\",20,23),span(2017,3,6)).\nmarriage_(span(\"married\",57,63)).\nparticipant_(span(\"married\",57,63),span(\"Alice\",33,37)).\nparticipant_(span(\"married\",57,63),span(\"Bob\",43,45)).\nstart_(span(\"married\",57,63),span(20170203,71,84)).\nblind_(span(\"blind\",101,105)).\npatient_(span(\"blind\",101,105),span(\"Alice\",86,90)).\nstart_(span(\"blind\",101,105),span(20140228,113,125)).\ns151_b_applies(\"Bob\",2017).",
+    "generated_query": "answer('s63_f_2_B_pos', Result) :- (s63_f_2_B(\"Bob\", \"Alice\", 2017) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s63_f_2_B_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s63_f_2_B_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s63_f_2_B(\"Bob\",\"Alice\",2017)."
+    },
+    "golden_facts": ":- discontiguous s151_b_applies/3.\n:- ['statutes/prolog/init'].\ns151_b_applies(\"Bob\",\"Alice\",2017).\npayment_(span(\"paid\",19,22)).\nmarriage_(span(\"married\",56,62)).\nblindness_(span(\"blind\",100,104)).\nagent_(span(\"blind\",100,104),span(\"Alice\",85,89)).\nstart_(span(\"blind\",100,104),span(20140228,112,123)).\nagent_(span(\"married\",56,62),span(\"Alice\",32,36)).\nagent_(span(\"married\",56,62),span(\"Bob\",42,44)).\nstart_(span(\"married\",56,62),span(20170203,70,82)).\nstart_(span(\"paid\",19,22),span(20170101,3,6)).\npatient_(span(\"paid\",19,22),span(\"Alice\",9,13)).\namount_(span(\"paid\",19,22),span(33200,25,29)).",
+    "golden_test": "s63_f_2_B(\"Bob\",\"Alice\",2017)."
+  },
+  {
+    "case_id": "s68_a_2_pos",
+    "text": "In 2016, Alice's income was $277192. Alice is a head of household for the year 2016. Alice is allowed itemized deductions of $60000 under section 63.",
+    "question": "Section 68(a)(2) prescribes a reduction of Alice's itemized deductions for the year 2016 by $48000. Entailment",
+    "generated_facts": ":- discontiguous s2_b/2.\n:- discontiguous s63_c_1/3.\n:- ['statutes/prolog/init'].\nincome_(span(\"income\",20,25)).\nagent_(span(\"income\",20,25),span(\"Alice\",10,14)).\namount_(span(\"income\",20,25),span(277192,31,37)).\nstart_(span(\"income\",20,25),span(2016,3,6)).\ns2_b(\"Alice\",2016).\ns63_c_1(\"Alice\",60000,2016).",
+    "generated_query": "answer('s68_a_2_pos', Result) :- (s68_a_2(\"Alice\",_,48000,2016) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s68_a_2_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s68_a_2_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s68_a_2(\"Alice\",_,48000,2016)."
+    },
+    "golden_facts": ":- discontiguous s63_d/4.\n:- discontiguous s2_b/3.\n:- ['statutes/prolog/init'].\ns63_d(\"Alice\",_,60000,2016).\ns2_b(\"Alice\",_,2016).\nincome_(span(\"income\",17,22)).\nagent_(span(\"income\",17,22),span(\"Alice\",9,13)).\namount_(span(\"income\",17,22),span(277192,29,34)).\nstart_(span(\"income\",17,22),span(20160101,3,6)).",
+    "golden_test": "s68_a_2(\"Alice\",_,48000,2016)."
+  },
+  {
+    "case_id": "s68_b_1_C_pos",
+    "text": "In 2016, Alice's income was $567192. Alice is not married, is not a surviving spouse, and is not a head of household in 2016.",
+    "question": "Section 68(b)(1)(C) applies to Alice in 2016 with the applicable amount equal to $250000. Entailment",
+    "generated_facts": ":- discontiguous s68_b_1_C/3.\n:- ['statutes/prolog/init'].\ns68_b_1_C(\"Alice\",2016,250000).\nincome_(span(\"income\",21,26)).\nagent_(span(\"income\",21,26),span(\"Alice\",10,14)).\namount_(span(\"income\",21,26),span(567192,32,38)).\nstart_(span(\"income\",21,26),span(2016,3,6)).",
+    "generated_query": "answer('s68_b_1_C_pos', Result) :- (s68_b_1_C(\"Alice\", 250000, 2016) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s68_b_1_C_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s68_b_1_C_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s68_b_1_C(\"Alice\",250000,2016)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nincome_(span(\"income\",17,22)).\nstart_(span(\"income\",17,22),span(20160101,3,6)).\nagent_(span(\"income\",17,22),span(\"Alice\",9,13)).\namount_(span(\"income\",17,22),span(567192,29,34)).",
+    "golden_test": "s68_b_1_C(\"Alice\",250000,2016)."
+  },
+  {
+    "case_id": "s7703_b_2_pos",
+    "text": "Alice and Bob got married on April 5th, 2012. Alice and Bob have a son, Charlie, who was born on September 16th, 2017. Alice and Charlie live in a home maintained by Alice since September 16th, 2017. Alice is entitled to a deduction for Charlie under section 151(c) for the years 2017 to 2019. Alice and Bob file a joint return for the years 2017 to 2019.",
+    "question": "Section 7703(b)(2) applies to Alice maintaining her home for the year 2018. Entailment",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('s7703_b_2_pos', Result) :- (s7703_b_2(\"Alice\", _, _, 2018) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/s7703_b_2_pos_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/s7703_b_2_pos.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "s7703_b_2(\"Alice\",\"home\",_,2018)."
+    },
+    "golden_facts": ":- discontiguous s151_c_applies/3.\n:- ['statutes/prolog/init'].\nalice_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2017,2027,Year),\natom_concat(\"maintained \",Year,Event),\n(\n(\ndouble_equal(Year, 2017),\nStart_day=20170916\n)\n;\n(\n\\+ double_equal(Year, 2017),\nfirst_day_year(Year,Start_day)\n)\n),\nlast_day_year(Year,End_day).\npayment_(span(Event,152,161)) :- alice_household_maintenance(_,Event,_,_).\nagent_(span(Event,152,161),span(\"Alice\",166,170)) :- alice_household_maintenance(_,Event,_,_).\namount_(span(Event,152,161),span(1,152,161)) :- alice_household_maintenance(_,Event,_,_).\npurpose_(span(Event,152,161),span(\"live\",137,140)) :- alice_household_maintenance(_,Event,_,_).\nstart_(span(Event,152,161),span(Start_day,178,197)) :- alice_household_maintenance(_,Event,Start_day,_).\ns151_c_applies(\"Alice\",\"Charlie\",Year) :- between(2017,2019,Year).\nmarriage_(span(\"married\",18,24)).\nson_(span(\"son\",67,69)).\nresidence_(span(\"live\",137,140)).\njoint_return_(span(\"joint return\",315,326)).\nagent_(span(\"joint return\",315,326),span(\"Alice\",294,298)).\nagent_(span(\"joint return\",315,326),span(\"Bob\",304,306)).\nstart_(span(\"joint return\",315,326),span(20170101,342,345)).\nstart_(span(\"joint return\",315,326),span(20180101,347,348)).\nstart_(span(\"joint return\",315,326),span(20190101,350,353)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(20120405,29,43)).\nagent_(span(\"live\",137,140),span(\"Alice\",119,123)).\nagent_(span(\"live\",137,140),span(\"Charlie\",129,135)).\npatient_(span(\"live\",137,140),span(\"home\",147,150)).\nstart_(span(\"live\",137,140),span(20170916,178,197)).\npatient_(span(\"son\",67,69),span(\"Alice\",46,50)).\npatient_(span(\"son\",67,69),span(\"Bob\",56,58)).\nagent_(span(\"son\",67,69),span(\"Charlie\",72,78)).\nstart_(span(\"son\",67,69),span(20170916,97,116)).\nbirth_(span(\"born\",89,92)).\nagent_(span(\"born\",89,92),span(\"Charlie\",72,78)).\nstart_(span(\"born\",89,92),span(20170916,97,116)).",
+    "golden_test": "s7703_b_2(\"Alice\",\"home\",_,2018)."
+  },
+  {
+    "case_id": "tax_case_28",
+    "text": "Alice has paid wages of $53200 to Bob for domestic service done from Feb 1st, 2017 to Sep 2nd, 2017. Alice's gross income in 2017 was $921324. Alice takes the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2017? $344848",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_28', Result) :- (tax(\"Alice\",2017,344848) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_28_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_28.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2017,344848)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"service\",51,57)).\nincome_(span(\"income\",115,120)).\nagent_(span(\"income\",115,120),span(\"Alice\",101,105)).\nstart_(span(\"income\",115,120),span(20170101,125,128)).\namount_(span(\"income\",115,120),span(921324,135,140)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(53200,25,29)).\npatient_(span(\"paid\",10,13),span(\"Bob\",34,36)).\npurpose_(span(\"paid\",10,13),span(\"service\",51,57)).\nstart_(span(\"paid\",10,13),span(20170902,86,98)).\npatient_(span(\"service\",51,57),span(\"Alice\",0,4)).\nagent_(span(\"service\",51,57),span(\"Bob\",34,36)).\npurpose_(span(\"service\",51,57),span(\"domestic service\",42,57)).\nstart_(span(\"service\",51,57),span(20170201,69,81)).\nend_(span(\"service\",51,57),span(20170902,86,98)).",
+    "golden_test": "tax(\"Alice\",2017,344848)."
+  },
+  {
+    "case_id": "tax_case_30",
+    "text": "Alice's gross income for the year 2017 is $6662, Bob's gross income is $17896. Alice and Bob got married on Feb 3rd, 1992. From 2004 to 2019, Bob furnished the costs of maintaining the home where he and Alice lived during that time. In 2017, Alice and Bob file separate returns, and they both take the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2017? $249",
+    "generated_facts": ":- discontiguous income_/1.\n:- discontiguous agent_/2.\n:- discontiguous amount_/2.\n:- discontiguous start_/2.\n:- discontiguous patient_/2.\n:- discontiguous end_/2.\n:- ['statutes/prolog/init'].\nincome_(span(\"income\",14,19)).\nagent_(span(\"income\",14,19),span(\"Alice\",0,4)).\namount_(span(\"income\",14,19),span(6662,44,47)).\nstart_(span(\"income\",14,19),span(2017,35,38)).\nincome_(span(\"income\",62,67)).\nagent_(span(\"income\",62,67),span(\"Bob\",50,52)).\namount_(span(\"income\",62,67),span(17896,73,77)).\nstart_(span(\"income\",62,67),span(2017,35,38)).\nmarriage_(span(\"married\",98,104)).\nagent_(span(\"married\",98,104),span(\"Alice\",80,84)).\nagent_(span(\"married\",98,104),span(\"Bob\",90,92)).\nstart_(span(\"married\",98,104),span(19920203,109,122)).\nfurnishing_(span(\"furnished\",147,155)).\nagent_(span(\"furnished\",147,155),span(\"Bob\",143,145)).\npatient_(span(\"furnished\",147,155),span(\"home\",185,188)).\nstart_(span(\"furnished\",147,155),span(2004,129,132)).\nend_(span(\"furnished\",147,155),span(2019,137,140)).\nresidence_(span(\"lived\",209,213)).\nagent_(span(\"residence\",209,213),span(\"he\",196,197)).\nagent_(span(\"residence\",209,213),span(\"Alice\",203,207)).\nlocation_(span(\"residence\",209,213),span(\"home\",185,188)).\nstart_(span(\"residence\",209,213),span(2004,129,132)).\nend_(span(\"residence\",209,213),span(2019,137,140)).\nfiling_(span(\"file\",261,264)).\nagent_(span(\"filing\",261,264),span(\"Alice\",247,251)).\nagent_(span(\"filing\",261,264),span(\"Bob\",257,259)).\nstart_(span(\"filing\",261,264),span(2017,241,244)).\nmanner_(span(\"filing\",261,264),span(\"separate returns\",266,281)).\ndeduction_(span(\"take\",298,301)).\nagent_(span(\"deduction\",298,301),span(\"they\",288,291)).\npatient_(span(\"deduction\",298,301),span(\"standard deduction\",303,320)).\nstart_(span(\"deduction\",298,301),span(2017,241,244)).",
+    "generated_query": "answer('tax_case_30', Result) :- (tax(\"Alice\",2017,249) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_30_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_30.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2017,249)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2015,2019,Year),\natom_concat(\"furnished \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,146,154)) :-\nbob_household_maintenance(_,Event,_,_).\nagent_(span(Event,146,154),span(\"Bob\",142,144)) :-\nbob_household_maintenance(_,Event,_,_).\namount_(span(Event,146,154),span(1,156,158)) :-\nbob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,146,154),span(\"home\",185,188)) :-\nbob_household_maintenance(_,Event,_,_).\nstart_(span(Event,146,154),span(Start_day,128,131)) :-\nbob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,146,154),span(End_day,136,139)) :-\nbob_household_maintenance(_,Event,_,End_day).\nincome_(span(\"income\",14,19)).\nincome_(span(\"income\",61,66)).\nmarriage_(span(\"married\",97,103)).\nresidence_(span(\"lived\",209,213)).\nagent_(span(\"income\",14,19),span(\"Alice\",0,4)).\nstart_(span(\"income\",14,19),span(20170101,34,37)).\namount_(span(\"income\",14,19),span(6662,43,46)).\nstart_(span(\"income\",61,66),span(20170101,34,37)).\nagent_(span(\"income\",61,66),span(\"Bob\",49,51)).\namount_(span(\"income\",61,66),span(17896,72,76)).\nagent_(span(\"married\",97,103),span(\"Alice\",79,83)).\nagent_(span(\"married\",97,103),span(\"Bob\",89,91)).\nstart_(span(\"married\",97,103),span(19920203,108,120)).\nstart_(span(\"lived\",209,213),span(20040101,128,131)).\nend_(span(\"lived\",209,213),span(20191231,136,139)).\nagent_(span(\"lived\",209,213),span(\"Bob\",142,144)).\npatient_(span(\"lived\",209,213),span(\"home\",185,188)).\nagent_(span(\"lived\",209,213),span(\"Alice\",203,207)).",
+    "golden_test": "tax(\"Alice\",2017,249)."
+  },
+  {
+    "case_id": "tax_case_31",
+    "text": "In 2017, Alice was paid $39212, and Bob had no income. Alice and Bob have been married since Feb 3rd, 2017. Alice and Bob file separately in 2017.",
+    "question": "How much tax does Alice have to pay in 2017? $6621",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_31', Result) :- (tax(\"Alice\",2017,6621) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_31_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_31.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2017,6621)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",19,22)).\nmarriage_(span(\"married\",79,85)).\nagent_(span(\"married\",79,85),span(\"Alice\",55,59)).\nagent_(span(\"married\",79,85),span(\"Bob\",65,67)).\nstart_(span(\"married\",79,85),span(20170203,93,105)).\nstart_(span(\"paid\",19,22),span(20170101,3,6)).\npatient_(span(\"paid\",19,22),span(\"Alice\",9,13)).\namount_(span(\"paid\",19,22),span(39212,25,29)).",
+    "golden_test": "tax(\"Alice\",2017,6621)."
+  },
+  {
+    "case_id": "tax_case_34",
+    "text": "Alice's gross income for the year 2017 is $22895. Alice takes the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2017? $2684",
+    "generated_facts": ":- discontiguous s151_b_applies/2.\n:- ['statutes/prolog/init'].\ns151_b_applies(\"Alice\",2017).\nincome_(span(\"gross income\",8,19)).\nagent_(span(\"gross income\",8,19),span(\"Alice\",0,4)).\namount_(span(\"gross income\",8,19),span(22895,43,47)).\nstart_(span(\"gross income\",8,19),span(2017,33,36)).",
+    "generated_query": "answer('tax_case_34', Result) :- (tax(\"Alice\",2017,2684) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_34_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_34.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2017,2684)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nincome_(span(\"income\",14,19)).\nagent_(span(\"income\",14,19),span(\"Alice\",0,4)).\nstart_(span(\"income\",14,19),span(20170101,34,37)).\namount_(span(\"income\",14,19),span(22895,43,47)).",
+    "golden_test": "tax(\"Alice\",2017,2684)."
+  },
+  {
+    "case_id": "tax_case_43",
+    "text": "In 2017, Alice was paid $23191. Alice and Bob got married on Feb 3rd, 1992. Alice was a nonresident alien until July 9th, 2014. Bob earned $34081 in 2017. Alice and Bob file jointly in 2017 and take the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2017? $8439",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_43', Result) :- (tax(\"Alice\",2017,8439) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_43_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_43.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2017,8439)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",19,22)).\nmarriage_(span(\"married\",50,56)).\nnonresident_alien_(span(\"nonresident alien\",88,104)).\nincome_(span(\"earned\",132,137)).\njoint_return_(span(\"file jointly\",169,180)).\nagent_(span(\"earned\",132,137),span(\"Bob\",128,130)).\namount_(span(\"earned\",132,137),span(34081,140,144)).\nstart_(span(\"earned\",132,137),span(20170101,149,152)).\nagent_(span(\"file jointly\",169,180),span(\"Alice\",155,159)).\nagent_(span(\"file jointly\",169,180),span(\"Bob\",165,167)).\nstart_(span(\"file jointly\",169,180),span(20170101,185,188)).\nagent_(span(\"married\",50,56),span(\"Alice\",32,36)).\nagent_(span(\"married\",50,56),span(\"Bob\",42,44)).\nstart_(span(\"married\",50,56),span(19920203,61,73)).\nagent_(span(\"nonresident alien\",88,104),span(\"Alice\",76,80)).\nend_(span(\"nonresident alien\",88,104),span(20140709,112,125)).\nstart_(span(\"paid\",19,22),span(20170101,3,6)).\npatient_(span(\"paid\",19,22),span(\"Alice\",9,13)).\namount_(span(\"paid\",19,22),span(23191,25,29)).",
+    "golden_test": "tax(\"Alice\",2017,8439)."
+  },
+  {
+    "case_id": "tax_case_46",
+    "text": "Alice has paid $3200 to Bob for agricultural labor done from Feb 1st, 2020 to Sep 2nd, 2020. Alice paid Bob with eggs, grapes and hay. Alice has been married since 1999. Alice files a joint return with her spouse for 2020. Alice's and her spouse's gross income for the year 2020 is $103272. Alice takes the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2020? $17399",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_46', Result) :- (tax(\"Alice\",2020,17399) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_46_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_46.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2020,17399)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"labor\",45,49)).\nmarriage_(span(\"married\",150,156)).\njoint_return_(span(\"joint return\",184,195)).\nincome_(span(\"income\",254,259)).\nagent_(span(\"income\",254,259),span(\"Alice\",223,227)).\nstart_(span(\"income\",254,259),span(20200101,274,277)).\namount_(span(\"income\",254,259),span(103272,283,288)).\nagent_(span(\"joint return\",184,195),span(\"Alice\",170,174)).\nagent_(span(\"joint return\",184,195),span(\"spouse\",206,211)).\nstart_(span(\"joint return\",184,195),span(20200101,217,220)).\nagent_(span(\"married\",150,156),span(\"Alice\",135,139)).\nstart_(span(\"married\",150,156),span(19990101,164,167)).\nagent_(span(\"married\",150,156),span(\"spouse\",206,211)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\npurpose_(span(\"paid\",10,13),span(\"labor\",45,49)).\nstart_(span(\"paid\",10,13),span(20200902,78,90)).\nmeans_(span(\"paid\",10,13),span(\"eggs, grapes and hay\",113,132)).\npatient_(span(\"labor\",45,49),span(\"Alice\",0,4)).\nagent_(span(\"labor\",45,49),span(\"Bob\",24,26)).\npurpose_(span(\"labor\",45,49),span(\"agricultural labor\",32,49)).\nstart_(span(\"labor\",45,49),span(20200201,61,73)).\nend_(span(\"labor\",45,49),span(20200902,78,90)).",
+    "golden_test": "tax(\"Alice\",2020,17399)."
+  },
+  {
+    "case_id": "tax_case_48",
+    "text": "Alice and Bob got married on Feb 3rd, 1992. Alice and Bob have a child, Charlie, born October 9th, 2000. Alice died on July 9th, 2014. From 2004 to 2018, Bob furnished the costs of maintaining the home where he and Charlie lived during that time. Charlie married Dan on Feb 14th, 2018, and they file a joint return that same year. Bob's gross income in 2018 was $132268. Bob takes the standard deduction.",
+    "question": "How much tax does Bob have to pay in 2018? $33068",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_48', Result) :- (tax(\"Bob\",2018,33068) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_48_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_48.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Bob\",2018,33068)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2004,2018,Year),\natom_concat(\"furnished the costs \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,181,191)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,181,191),span(\"Bob\",154,156)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,181,191),span(1,181,191)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,181,191),span(\"home\",197,200)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,181,191),span(Start_day,140,143)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,181,191),span(End_day,148,151)) :- bob_household_maintenance(_,Event,_,End_day).\nmarriage_(span(\"married\",18,24)).\nson_(span(\"child\",65,69)).\ndeath_(span(\"died\",111,114)).\nresidence_(span(\"lived\",223,227)).\nmarriage_(span(\"married\",255,261)).\njoint_return_(span(\"joint return\",302,313)).\nincome_(span(\"income\",343,348)).\nagent_(span(\"died\",111,114),span(\"Alice\",105,109)).\nstart_(span(\"died\",111,114),span(20140709,119,132)).\nagent_(span(\"income\",343,348),span(\"Bob\",331,333)).\nstart_(span(\"income\",343,348),span(20180101,353,356)).\namount_(span(\"income\",343,348),span(132268,363,368)).\nagent_(span(\"joint return\",302,313),span(\"Charlie\",247,253)).\nagent_(span(\"joint return\",302,313),span(\"Dan\",263,265)).\nstart_(span(\"joint return\",302,313),span(20180101,280,283)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nagent_(span(\"married\",255,261),span(\"Charlie\",247,253)).\nagent_(span(\"married\",255,261),span(\"Dan\",263,265)).\nstart_(span(\"married\",255,261),span(20180214,270,283)).\nstart_(span(\"lived\",223,227),span(20040101,140,143)).\nend_(span(\"lived\",223,227),span(20181231,148,151)).\nagent_(span(\"lived\",223,227),span(\"Bob\",154,156)).\npatient_(span(\"lived\",223,227),span(\"home\",197,200)).\nagent_(span(\"lived\",223,227),span(\"Charlie\",215,221)).\npatient_(span(\"child\",65,69),span(\"Alice\",44,48)).\npatient_(span(\"child\",65,69),span(\"Bob\",54,56)).\nagent_(span(\"child\",65,69),span(\"Charlie\",72,78)).\nstart_(span(\"child\",65,69),span(20001009,86,102)).\nbirth_(span(\"born\",81,84)).\nagent_(span(\"born\",81,84),span(\"Charlie\",72,78)).\nstart_(span(\"born\",81,84),span(20001009,86,102)).",
+    "golden_test": "tax(\"Bob\",2018,33068)."
+  },
+  {
+    "case_id": "tax_case_49",
+    "text": "Bob is Alice and Charlie's father. Bob had no income in 2015. Alice's gross income in 2015 is $264215. Alice takes the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2015? $82819",
+    "generated_facts": ":- ['statutes/prolog/init'].\nfather_(span(\"father\",27,32)).\nagent_(span(\"father\",27,32),span(\"Bob\",0,2)).\npatient_(span(\"father\",27,32),span(\"Alice\",7,11)).\npatient_(span(\"father\",27,32),span(\"Charlie\",17,23)).\nincome_(span(\"income\",46,51)).\nagent_(span(\"income\",46,51),span(\"Bob\",35,37)).\namount_(span(\"income\",46,51),0).\nstart_(span(\"income\",46,51),span(2015,56,59)).\nincome_(span(\"income\",76,81)).\nagent_(span(\"income\",76,81),span(\"Alice\",62,66)).\namount_(span(\"income\",76,81),264215).\nstart_(span(\"income\",76,81),span(2015,86,89)).",
+    "generated_query": "answer('tax_case_49', Result) :- (tax(\"Alice\",2015,82819) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_49_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_49.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2015,82819)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nfather_(span(\"father\",27,32)).\nincome_(span(\"income\",76,81)).\nagent_(span(\"father\",27,32),span(\"Bob\",0,2)).\npatient_(span(\"father\",27,32),span(\"Alice\",7,11)).\npatient_(span(\"father\",27,32),span(\"Charlie\",17,23)).\nagent_(span(\"income\",76,81),span(\"Alice\",62,66)).\nstart_(span(\"income\",76,81),span(20150101,86,89)).\namount_(span(\"income\",76,81),span(264215,95,100)).",
+    "golden_test": "tax(\"Alice\",2015,82819)."
+  },
+  {
+    "case_id": "tax_case_53",
+    "text": "Alice has a brother, Bob, who was born January 31st, 2014. Alice's gross income in 2020 was $604312. Alice married Charlie on October 12th, 1992. Charlie had no income in 2020. Alice and Charlie file jointly and take the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2020? $206332",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_53', Result) :- (tax(\"Alice\",2020,206332) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_53_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_53.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2020,206332)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nbrother_(span(\"brother\",12,18)).\npatient_(span(\"brother\",12,18),span(\"Alice\",0,4)).\nagent_(span(\"brother\",12,18),span(\"Bob\",21,23)).\nstart_(span(\"brother\",12,18),span(20140131,39,56)).\nincome_(span(\"income\",73,78)).\nagent_(span(\"income\",73,78),span(\"Alice\",59,63)).\nstart_(span(\"income\",73,78),span(20200101,83,86)).\namount_(span(\"income\",73,78),span(604312,93,98)).\nmarriage_(span(\"married\",107,113)).\nagent_(span(\"married\",107,113),span(\"Alice\",101,105)).\nagent_(span(\"married\",107,113),span(\"Charlie\",115,121)).\nstart_(span(\"married\",107,113),span(19921012,126,143)).\njoint_return_(span(\"file jointly\",195,206)).\nstart_(span(\"file jointly\",195,206),span(20200101,171,174)).\nagent_(span(\"file jointly\",195,206),span(\"Alice\",177,181)).\nagent_(span(\"file jointly\",195,206),span(\"Charlie\",187,193)).\nbirth_(span(\"born\",34,37)).\nagent_(span(\"born\",34,37),span(\"Bob\",21,23)).\nstart_(span(\"born\",34,37),span(20140131,39,56)).",
+    "golden_test": "tax(\"Alice\",2020,206332)."
+  },
+  {
+    "case_id": "tax_case_57",
+    "text": "Alice got married on Feb 29, 2000. Alice files a joint return with her spouse for 2017. Alice's gross income for the year 2017 is $22895, and her spouse's income is $14257. They take the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2017? $4073",
+    "generated_facts": ":- ['statutes/prolog/init'].\nmarriage_(span(\"married\",10,16)).\nparticipant_(span(\"married\",10,16),span(\"Alice\",0,4)).\nparticipant_(span(\"married\",10,16),span(\"her spouse\",66,75)).\nstart_(span(\"married\",10,16),span(20000229,21,32)).\njoint_return_(span(\"joint return\",48,59)).\nagent_(span(\"joint return\",48,59),span(\"Alice\",35,39)).\nagent_(span(\"joint return\",48,59),span(\"her spouse\",66,75)).\nstart_(span(\"joint return\",48,59),span(2017,81,84)).\nincome_(span(\"gross income\",93,104)).\nagent_(span(\"gross income\",93,104),span(\"Alice's\",87,91)).\nstart_(span(\"gross income\",93,104),span(2017,114,117)).\namount_(span(\"gross income\",93,104),span(22895,122,127)).\nincome_(span(\"income\",146,151)).\nagent_(span(\"income\",146,151),span(\"her spouse's\",134,144)).\namount_(span(\"income\",146,151),span(14257,156,161)).\nstart_(span(\"income\",146,151),span(2017,114,117)).\nstandard_deduction_(span(\"standard deduction\",178,195)).\nagent_(span(\"standard deduction\",178,195),span(\"They\",164,167)).\nstart_(span(\"standard deduction\",178,195),span(2017,114,117)).",
+    "generated_query": "answer('tax_case_57', Result) :- (tax(\"Alice\",2017,4073) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_57_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_57.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2017,4073)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nmarriage_(span(\"married\",10,16)).\njoint_return_(span(\"joint return\",49,60)).\nincome_(span(\"income\",102,107)).\nincome_(span(\"income\",155,160)).\nagent_(span(\"income\",102,107),span(\"Alice\",88,92)).\nstart_(span(\"income\",102,107),span(20170101,122,125)).\namount_(span(\"income\",102,107),span(22895,131,135)).\nstart_(span(\"income\",155,160),span(20170101,122,125)).\nagent_(span(\"income\",155,160),span(\"spouse\",146,151)).\namount_(span(\"income\",155,160),span(14257,166,170)).\nagent_(span(\"joint return\",49,60),span(\"Alice\",35,39)).\nagent_(span(\"joint return\",49,60),span(\"spouse\",71,76)).\nstart_(span(\"joint return\",49,60),span(20170101,82,85)).\nagent_(span(\"married\",10,16),span(\"Alice\",0,4)).\nstart_(span(\"married\",10,16),span(20000229,21,32)).\nagent_(span(\"married\",10,16),span(\"spouse\",71,76)).",
+    "golden_test": "tax(\"Alice\",2017,4073)."
+  },
+  {
+    "case_id": "tax_case_68",
+    "text": "Alice has paid $3200 to Bob for domestic service done from Feb 1st, 2017 to Sep 2nd, 2017. In 2018, Bob has paid $4500 to Alice for work done from Apr 1st, 2017 to Sep 1st, 2018. Alice was otherwise paid $113209 in 2018.",
+    "question": "How much tax does Alice have to pay in 2018? $28292",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_68', Result) :- (tax(\"Alice\",2018,28292) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_68_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_68.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2018,28292)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",10,13)).\nservice_(span(\"service\",41,47)).\npayment_(span(\"paid\",108,111)).\nservice_(span(\"work\",132,135)).\npayment_(span(\"paid\",199,202)).\nagent_(span(\"paid\",10,13),span(\"Alice\",0,4)).\namount_(span(\"paid\",10,13),span(3200,16,19)).\npatient_(span(\"paid\",10,13),span(\"Bob\",24,26)).\npurpose_(span(\"paid\",10,13),span(\"service\",41,47)).\nstart_(span(\"paid\",10,13),span(20170902,76,88)).\npatient_(span(\"paid\",199,202),span(\"Alice\",179,183)).\namount_(span(\"paid\",199,202),span(113209,205,210)).\nstart_(span(\"paid\",199,202),span(20180101,215,218)).\nagent_(span(\"paid\",108,111),span(\"Bob\",100,102)).\namount_(span(\"paid\",108,111),span(4500,114,117)).\npatient_(span(\"paid\",108,111),span(\"Alice\",122,126)).\npurpose_(span(\"paid\",108,111),span(\"work\",132,135)).\nstart_(span(\"paid\",108,111),span(20180101,94,97)).\npatient_(span(\"service\",41,47),span(\"Alice\",0,4)).\nagent_(span(\"service\",41,47),span(\"Bob\",24,26)).\npurpose_(span(\"service\",41,47),span(\"domestic service\",32,47)).\nstart_(span(\"service\",41,47),span(20170201,59,71)).\nend_(span(\"service\",41,47),span(20170902,76,88)).\nstart_(span(\"work\",132,135),span(20170401,147,159)).\nend_(span(\"work\",132,135),span(20180901,164,176)).\npatient_(span(\"work\",132,135),span(\"Bob\",100,102)).\nagent_(span(\"work\",132,135),span(\"Alice\",122,126)).",
+    "golden_test": "tax(\"Alice\",2018,28292)."
+  },
+  {
+    "case_id": "tax_case_69",
+    "text": "Alice and Bob were married from Feb 3rd, 1997 to Oct 30th, 2001. Alice's gross income for the year 2014 is $718791 and she takes the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2014? $264225",
+    "generated_facts": ":- discontiguous s63/3.\n:- ['statutes/prolog/init'].\nmarriage_(span(\"married\",19,25)).\nagent_(span(\"married\",19,25),span(\"Alice\",0,4)).\nagent_(span(\"married\",19,25),span(\"Bob\",10,12)).\nstart_(span(\"married\",19,25),span(19970203,32,44)).\nend_(span(\"married\",19,25),span(20011030,49,62)).\nincome_(span(\"gross income\",73,84)).\nagent_(span(\"gross income\",73,84),span(\"Alice\",65,69)).\namount_(span(\"gross income\",73,84),span(718791,106,112)).\nstart_(span(\"gross income\",73,84),span(2014,98,101)).\ntakes_standard_deduction_(span(\"takes the standard deduction\",122,149)).\nagent_(span(\"takes the standard deduction\",122,149),span(\"Alice\",118,120)).\nstart_(span(\"takes the standard deduction\",122,149),span(2014,98,101)).",
+    "generated_query": "answer('tax_case_69', Result) :- (tax(\"Alice\",2014,264225) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_69_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_69.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2014,264225)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nmarriage_(span(\"married\",19,25)).\nincome_(span(\"income\",79,84)).\nagent_(span(\"income\",79,84),span(\"Alice\",65,69)).\nstart_(span(\"income\",79,84),span(20140101,99,102)).\namount_(span(\"income\",79,84),span(718791,108,113)).\nagent_(span(\"married\",19,25),span(\"Alice\",0,4)).\nagent_(span(\"married\",19,25),span(\"Bob\",10,12)).\nstart_(span(\"married\",19,25),span(19970203,32,44)).\nend_(span(\"married\",19,25),span(20011030,49,62)).",
+    "golden_test": "tax(\"Alice\",2014,264225)."
+  },
+  {
+    "case_id": "tax_case_75",
+    "text": "Alice shares a house with her father Bob since 2007. Alice pays for 75% of the costs of the house, while Charlie, her brother, pays for the remaining 25%. Alice's gross income for the year 2012 was $67285 and Charlie's income was $56174. Alice is allowed itemized deductions of $17817.",
+    "question": "How much tax does Alice have to pay in 2012? $8883",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_75', Result) :- (tax(\"Alice\",2012,8883) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_75_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_75.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2012,8883)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nstart_(span(\"pays\",59,62),span(Day,47,50)) :- between(2007,2017,Year),\nfirst_day_year(Year,Day).\nstart_(span(\"pays\",127,130),span(Day,47,50)) :- between(2007,2017,Year),\nfirst_day_year(Year,Day).\nresidence_(span(\"house\",15,19)).\nfather_(span(\"father\",30,35)).\npayment_(span(\"pays\",59,62)).\nbrother_(span(\"brother\",118,124)).\npayment_(span(\"pays\",127,130)).\nincome_(span(\"income\",169,174)).\nincome_(span(\"income\",219,224)).\ndeduction_(span(\"deductions\",264,273)).\nagent_(span(\"brother\",118,124),span(\"Charlie\",105,111)).\npatient_(span(\"brother\",118,124),span(\"Alice\",53,57)).\nstart_(span(\"deductions\",264,273),span(20120101,189,192)).\nagent_(span(\"deductions\",264,273),span(\"Alice\",238,242)).\namount_(span(\"deductions\",264,273),span(17817,279,283)).\npatient_(span(\"father\",30,35),span(\"Alice\",0,4)).\nagent_(span(\"father\",30,35),span(\"Bob\",37,39)).\nagent_(span(\"income\",169,174),span(\"Alice\",155,159)).\nstart_(span(\"income\",169,174),span(20120101,189,192)).\namount_(span(\"income\",169,174),span(67285,199,203)).\nstart_(span(\"income\",219,224),span(20120101,189,192)).\nagent_(span(\"income\",219,224),span(\"Charlie\",209,215)).\namount_(span(\"income\",219,224),span(56174,231,235)).\npurpose_(span(\"pays\",59,62),span(\"house\",15,19)).\nagent_(span(\"pays\",59,62),span(\"Alice\",53,57)).\namount_(span(\"pays\",59,62),span(75,68,69)).\npurpose_(span(\"pays\",127,130),span(\"house\",15,19)).\namount_(span(\"pays\",127,130),span(25,150,151)).\nagent_(span(\"pays\",127,130),span(\"Charlie\",105,111)).\nagent_(span(\"house\",15,19),span(\"Alice\",0,4)).\npatient_(span(\"house\",15,19),span(\"house\",15,19)).\nagent_(span(\"house\",15,19),span(\"Bob\",37,39)).\nstart_(span(\"house\",15,19),span(20070101,47,50)).",
+    "golden_test": "tax(\"Alice\",2012,8883)."
+  },
+  {
+    "case_id": "tax_case_77",
+    "text": "Alice's gross income for the year 2023 is $54775. In 2023, Bob, the son of her son Charlie, lives at her place, a house that she maintains. Bob has no income in 2023. Alice takes the standard deduction.",
+    "question": "How much tax does Alice have to pay in 2023? $6449",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_77', Result) :- (tax(\"Alice\",2023,6449) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_77_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_77.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2023,6449)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nincome_(span(\"income\",14,19)).\nson_(span(\"son\",68,70)).\nson_(span(\"son\",79,81)).\nresidence_(span(\"lives\",92,96)).\nresidence_(span(\"place\",105,109)).\npayment_(span(\"maintains\",129,137)).\nagent_(span(\"income\",14,19),span(\"Alice\",0,4)).\nstart_(span(\"income\",14,19),span(20230101,34,37)).\namount_(span(\"income\",14,19),span(54775,43,47)).\npurpose_(span(\"maintains\",129,137),span(\"house\",114,118)).\namount_(span(\"maintains\",129,137),span(1,129,137)).\nstart_(span(\"maintains\",129,137),span(20230101,53,56)).\nagent_(span(\"maintains\",129,137),span(\"Alice\",0,4)).\npatient_(span(\"place\",105,109),span(\"house\",114,118)).\nend_(span(\"place\",105,109),span(20231231,53,56)).\nstart_(span(\"place\",105,109),span(20230101,53,56)).\nagent_(span(\"place\",105,109),span(\"Alice\",0,4)).\npatient_(span(\"lives\",92,96),span(\"house\",114,118)).\nagent_(span(\"lives\",92,96),span(\"Bob\",59,61)).\nend_(span(\"lives\",92,96),span(20231231,53,56)).\nstart_(span(\"lives\",92,96),span(20230101,53,56)).\nagent_(span(\"son\",68,70),span(\"Bob\",59,61)).\npatient_(span(\"son\",68,70),span(\"Charlie\",83,89)).\npatient_(span(\"son\",79,81),span(\"Alice\",0,4)).\nagent_(span(\"son\",79,81),span(\"Charlie\",83,89)).",
+    "golden_test": "tax(\"Alice\",2023,6449)."
+  },
+  {
+    "case_id": "tax_case_78",
+    "text": "Alice and Bob got married on April 5th, 2012. Alice and Bob have a son, Charlie, who was born on September 16th, 2017. Alice and Charlie live in a home maintained by Alice since September 16th, 2017. Alice's gross income in 2019 is $73124. Alice and Bob file separate returns. Alice takes the standard deduction. In 2019, Bob has a different principal place of abode than Alice and Charlie.",
+    "question": "How much tax does Alice have to pay in 2019? $14470",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_78', Result) :- (tax(\"Alice\",2019,14470) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_78_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_78.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2019,14470)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init.pl'].\nmarriage_(span(\"married\",18,24)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(20120405,29,43)).\nson_(span(\"son\",67,69)).\npatient_(span(\"son\",67,69),span(\"Alice\",46,50)).\npatient_(span(\"son\",67,69),span(\"Bob\",56,58)).\nagent_(span(\"son\",67,69),span(\"Charlie\",72,78)).\nstart_(span(\"son\",67,69),span(20170916,97,116)).\nresidence_(span(\"live\",137,140)).\nagent_(span(\"live\",137,140),span(\"Alice\",119,123)).\nagent_(span(\"live\",137,140),span(\"Charlie\",129,135)).\npatient_(span(\"live\",137,140),span(\"home\",147,150)).\nstart_(span(\"live\",137,140),span(20170916,178,197)).\nalice_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2017,2027,Year),\natom_concat(\"maintained \",Year,Event),\n(\n(\ndouble_equal(Year, 2017),\nStart_day=20170916\n)\n;\n(\n\\+ double_equal(Year, 2017),\nfirst_day_year(Year,Start_day)\n)\n),\nlast_day_year(Year,End_day).\npayment_(span(Event,152,161)) :- alice_household_maintenance(_,Event,_,_).\nagent_(span(Event,152,161),span(\"Alice\",166,170)) :- alice_household_maintenance(_,Event,_,_).\namount_(span(Event,152,161),span(1,152,161)) :- alice_household_maintenance(_,Event,_,_).\npurpose_(span(Event,152,161),span(\"home\",147,150)) :- alice_household_maintenance(_,Event,_,_).\nstart_(span(Event,152,161),span(Start_day,178,197)) :- alice_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,152,161),span(End_day,178,197)) :- alice_household_maintenance(_,Event,_,End_day).\nincome_(span(\"income\",214,219)).\nagent_(span(\"income\",214,219),span(\"Alice\",200,204)).\nstart_(span(\"income\",214,219),span(20190101,224,227)).\namount_(span(\"income\",214,219),span(73124,233,237)).\nresidence_(span(\"abode\",361,365)).\nend_(span(\"abode\",361,365),span(20191231,316,319)).\nstart_(span(\"abode\",361,365),span(20190101,316,319)).\nagent_(span(\"abode\",361,365),span(\"Bob\",322,324)).\npatient_(span(\"abode\",361,365),span(\"place\",352,356)).\nbirth_(span(\"born\",89,92)).\nagent_(span(\"born\",89,92),span(\"Charlie\",72,78)).\nstart_(span(\"born\",89,92),span(20170916,97,116)).",
+    "golden_test": "tax(\"Alice\",2019,14470)."
+  },
+  {
+    "case_id": "tax_case_85",
+    "text": "In 2019, Alice was paid $34510. Alice has a brother, Charlie, whose son Bob lived at Alice's place in 2019, a house that she maintains. In 2019, Charlie had a different principal place of abode, and Bob had no income. Alice takes the standard deduction in 2019.",
+    "question": "How much tax does Alice have to pay in 2019? $2477",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_85', Result) :- (tax(\"Alice\",2019,2477) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_85_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_85.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2019,2477)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\npayment_(span(\"paid\",19,22)).\nbrother_(span(\"brother\",44,50)).\nson_(span(\"son\",68,70)).\nresidence_(span(\"lived\",76,80)).\nresidence_(span(\"place\",93,97)).\npayment_(span(\"maintains\",125,133)).\nresidence_(span(\"abode\",188,192)).\npatient_(span(\"brother\",44,50),span(\"Alice\",32,36)).\nagent_(span(\"brother\",44,50),span(\"Charlie\",53,59)).\nagent_(span(\"maintains\",125,133),span(\"Alice\",85,89)).\npurpose_(span(\"maintains\",125,133),span(\"house\",110,114)).\namount_(span(\"maintains\",125,133),span(1,125,133)).\nstart_(span(\"maintains\",125,133),span(20190101,102,105)).\nstart_(span(\"paid\",19,22),span(20190101,3,6)).\npatient_(span(\"paid\",19,22),span(\"Alice\",9,13)).\namount_(span(\"paid\",19,22),span(34510,25,29)).\nagent_(span(\"place\",93,97),span(\"Alice\",85,89)).\npatient_(span(\"place\",93,97),span(\"house\",110,114)).\nend_(span(\"place\",93,97),span(20191231,102,105)).\nstart_(span(\"place\",93,97),span(20190101,102,105)).\nagent_(span(\"lived\",76,80),span(\"Bob\",72,74)).\npatient_(span(\"lived\",76,80),span(\"house\",110,114)).\nend_(span(\"lived\",76,80),span(20191231,102,105)).\nstart_(span(\"lived\",76,80),span(20190101,102,105)).\nend_(span(\"abode\",188,192),span(20191231,139,142)).\nstart_(span(\"abode\",188,192),span(20190101,139,142)).\nagent_(span(\"abode\",188,192),span(\"Charlie\",145,151)).\npatient_(span(\"abode\",188,192),span(\"place\",179,183)).\npatient_(span(\"son\",68,70),span(\"Charlie\",53,59)).\nagent_(span(\"son\",68,70),span(\"Bob\",72,74)).",
+    "golden_test": "tax(\"Alice\",2019,2477)."
+  },
+  {
+    "case_id": "tax_case_9",
+    "text": "Alice and Bob got married on April 5th, 2012. Alice and Bob have a son, Charlie, who was born on September 16th, 2017. Alice and Charlie live in a home for which Alice furnished 40% of the maintenance costs, and Bob the remaining 60%, since September 16th, 2017. Alice and Bob file jointly from 2017 to 2019. Alice and Bob's gross incomes in 2018 were $36991 and $41990 respectively. Alice and Bob take the standard deduction. From 2017 to 2019, Bob lived separately.",
+    "question": "How much tax does Alice have to pay in 2018? $10598",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_9', Result) :- (tax(\"Alice\",2018,10598) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_9_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_9.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2018,10598)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2017,2027,Year),\natom_concat(\"Bob the remaining 60% \",Year,Event),\n(\n(\ndouble_equal(Year, 2017),\nStart_day=20170916\n)\n;\n(\n\\+ double_equal(Year, 2017),\nfirst_day_year(Year,Start_day)\n)\n),\nlast_day_year(Year,End_day).\npayment_(span(Event,220,228)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,220,228),span(\"Bob\",212,214)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,220,228),span(60,230,231)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,220,228),span(\"live\",137,140)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,220,228),span(Start_day,241,260)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,220,228),span(End_day,241,260)) :- bob_household_maintenance(_,Event,_,End_day).\nalice_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2017,2027,Year),\natom_concat(\"Alice furnished 40% of the maintenance costs \",Year,Event),\n(\n(\ndouble_equal(Year, 2017),\nStart_day=20170916\n)\n;\n(\n\\+ double_equal(Year, 2017),\nfirst_day_year(Year,Start_day)\n)\n),\nlast_day_year(Year,End_day).\npayment_(span(Event,168,176)) :- alice_household_maintenance(_,Event,_,_).\nagent_(span(Event,168,176),span(\"Alice\",162,166)) :- alice_household_maintenance(_,Event,_,_).\namount_(span(Event,168,176),span(40,178,179)) :- alice_household_maintenance(_,Event,_,_).\npurpose_(span(Event,168,176),span(\"live\",137,140)) :- alice_household_maintenance(_,Event,_,_).\nstart_(span(Event,168,176),span(Start_day,241,260)) :- alice_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,168,176),span(End_day,241,260)) :- alice_household_maintenance(_,Event,_,End_day).\njoint_return_alice_and_bob(Year,Event,Start_day,End_day) :-\nbetween(2017,2019,Year),\natom_concat(\"file jointly \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\njoint_return_(span(Event,277,288)) :- joint_return_alice_and_bob(_,Event,_,_).\nagent_(span(Event,277,288),span(\"Alice\",263,267)) :- joint_return_alice_and_bob(_,Event,_,_).\nagent_(span(Event,277,288),span(\"Bob\",273,275)) :- joint_return_alice_and_bob(_,Event,_,_).\nstart_(span(Event,277,288),span(Day,295,298)) :- joint_return_alice_and_bob(_,Event,Day,_).\nend_(span(Event,277,288),span(Day,303,306)) :- joint_return_alice_and_bob(_,Event,_,Day).\nincome_(span(\"Alice\",309,313)).\nagent_(span(\"Alice\",309,313),span(\"Alice\",309,313)).\namount_(span(\"Alice\",309,313),span(36991,353,357)).\nstart_(span(\"Alice\",309,313),span(20180101,342,345)).\nmarriage_(span(\"married\",18,24)).\nson_(span(\"son\",67,69)).\nresidence_(span(\"live\",137,140)).\nagent_(span(\"live\",137,140),span(\"Alice\",119,123)).\nagent_(span(\"live\",137,140),span(\"Charlie\",129,135)).\npatient_(span(\"live\",137,140),span(\"home\",147,150)).\nstart_(span(\"live\",137,140),span(20170916,241,260)).\nincome_(span(\"Bob\",319,321)).\nresidence_(span(\"lived\",450,454)).\nagent_(span(\"Bob\",319,321),span(\"Bob\",319,321)).\nstart_(span(\"Bob\",319,321),span(20180101,342,345)).\namount_(span(\"Bob\",319,321),span(41990,364,368)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(20120405,29,43)).\nstart_(span(\"lived\",450,454),span(20170101,432,435)).\nend_(span(\"lived\",450,454),span(20191231,440,443)).\nagent_(span(\"lived\",450,454),span(\"Bob\",446,448)).\npatient_(span(\"lived\",450,454),span(\"separately\",456,465)).\npatient_(span(\"son\",67,69),span(\"Alice\",46,50)).\npatient_(span(\"son\",67,69),span(\"Bob\",56,58)).\nagent_(span(\"son\",67,69),span(\"Charlie\",72,78)).\nstart_(span(\"son\",67,69),span(20170916,97,116)).\nbirth_(span(\"born\",89,92)).\nagent_(span(\"born\",89,92),span(\"Charlie\",72,78)).\nstart_(span(\"born\",89,92),span(20170916,97,116)).",
+    "golden_test": "tax(\"Alice\",2018,10598)."
+  },
+  {
+    "case_id": "tax_case_90",
+    "text": "Alice and Bob got married on Feb 3rd, 1992. Alice died on July 9th, 2014. From 2015 to 2019, Bob furnished the costs of maintaining the home where he and his friend Charlie lived during that time, while Charlie had no income and was not the qualifying child of any taxpayer. Bob earned $304598 every year from 2015 to 2019.",
+    "question": "How much tax does Bob have to pay in 2018? $96641",
+    "generated_facts": ":- ['statutes/prolog/init'].",
+    "generated_query": "answer('tax_case_90', Result) :- (tax(\"Bob\",2018,96641) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_90_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_90.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Bob\",2018,96641)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nbob_household_maintenance(Year,Event,Start_day,End_day) :-\nbetween(2015,2019,Year),\natom_concat(\"furnished the costs \",Year,Event),\nfirst_day_year(Year,Start_day),\nlast_day_year(Year,End_day).\npayment_(span(Event,97,105)) :- bob_household_maintenance(_,Event,_,_).\nagent_(span(Event,97,105),span(\"Bob\",93,95)) :- bob_household_maintenance(_,Event,_,_).\namount_(span(Event,97,105),span(1,107,109)) :- bob_household_maintenance(_,Event,_,_).\npurpose_(span(Event,97,105),span(\"home\",136,139)) :- bob_household_maintenance(_,Event,_,_).\nstart_(span(Event,97,105),span(Start_day,79,82)) :- bob_household_maintenance(_,Event,Start_day,_).\nend_(span(Event,97,105),span(End_day,87,90)) :- bob_household_maintenance(_,Event,_,End_day).\nbob_income(Year,Event,Day) :-\nbetween(2015,2019,Year),\natom_concat(\"bob_income_\",Year,Event),\nlast_day_year(Year,Day).\nincome_(span(Event,279,284)) :- bob_income(_,Event,_).\nagent_(span(Event,279,284),span(\"Bob\",275,277)) :- bob_income(_,Event,_).\namount_(span(Event,279,284),span(304598,287,292)) :- bob_income(_,Event,_).\nstart_(span(Event,279,284),span(Day,310,313)) :- bob_income(_,Event,Day).\nmarriage_(span(\"married\",18,24)).\ndeath_(span(\"died\",50,53)).\nresidence_(span(\"lived\",173,177)).\nagent_(span(\"died\",50,53),span(\"Alice\",44,48)).\nstart_(span(\"died\",50,53),span(20140709,58,71)).\nagent_(span(\"married\",18,24),span(\"Alice\",0,4)).\nagent_(span(\"married\",18,24),span(\"Bob\",10,12)).\nstart_(span(\"married\",18,24),span(19920203,29,41)).\nstart_(span(\"lived\",173,177),span(20150101,79,82)).\nend_(span(\"lived\",173,177),span(20191231,87,90)).\nagent_(span(\"lived\",173,177),span(\"Bob\",93,95)).\npatient_(span(\"lived\",173,177),span(\"home\",136,139)).\nagent_(span(\"lived\",173,177),span(\"Charlie\",165,171)).",
+    "golden_test": "tax(\"Bob\",2018,96641)."
+  },
+  {
+    "case_id": "tax_case_93",
+    "text": "Bob is Alice's father. Alice's gross income in 2015 is $311510. Bob has no income in 2015. Alice takes the standard deduction in 2015.",
+    "question": "How much tax does Alice have to pay in 2015? $102150",
+    "generated_facts": ":- ['statutes/prolog/init'].\nfather_(span(\"father\",17,22)).\nagent_(span(\"father\",17,22),span(\"Bob\",0,2)).\npatient_(span(\"father\",17,22),span(\"Alice\",7,11)).\nincome_(span(\"income\",38,43)).\nagent_(span(\"income\",38,43),span(\"Alice\",24,28)).\nstart_(span(\"income\",38,43),span(2015,48,51)).\namount_(span(\"income\",38,43),span(311510,59,65)).\nincome_(span(\"income\",80,85)).\nagent_(span(\"income\",80,85),span(\"Bob\",69,71)).\namount_(span(\"income\",80,85),span(0,76,77)).\nstart_(span(\"income\",80,85),span(2015,90,93)).\ntakes_(span(\"takes\",103,107)).\nagent_(span(\"takes\",103,107),span(\"Alice\",97,101)).\npatient_(span(\"takes\",103,107),span(\"standard deduction\",109,126)).\nstart_(span(\"takes\",103,107),span(2015,131,134)).",
+    "generated_query": "answer('tax_case_93', Result) :- (tax(\"Alice\",2015,102150) -> Result = true ; Result = false).",
+    "facts_file": "results/stage2_stage2_default_120_test/generated_facts/tax_case_93_facts.pl",
+    "query_file": "results/stage2_stage2_default_120_test/generated_queries/tax_case_93.pl",
+    "test_result": {
+      "success": true,
+      "expected": "true",
+      "actual": "false",
+      "correct": false,
+      "golden_test": "tax(\"Alice\",2015,102150)."
+    },
+    "golden_facts": ":- ['statutes/prolog/init'].\nfather_(span(\"father\",15,20)).\nincome_(span(\"income\",37,42)).\nagent_(span(\"father\",15,20),span(\"Bob\",0,2)).\npatient_(span(\"father\",15,20),span(\"Alice\",7,11)).\nagent_(span(\"income\",37,42),span(\"Alice\",23,27)).\nstart_(span(\"income\",37,42),span(20150101,47,50)).\namount_(span(\"income\",37,42),span(311510,56,61)).",
+    "golden_test": "tax(\"Alice\",2015,102150)."
+  }
+]

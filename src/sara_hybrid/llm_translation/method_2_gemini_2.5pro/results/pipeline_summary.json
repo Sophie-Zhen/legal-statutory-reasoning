@@ -1,0 +1,161 @@
+{
+  "pipeline_info": {
+    "method": "method_2_gemini_2.5pro",
+    "model_used": "gemini-2.5-pro",
+    "start_time": "2025-07-09T16:06:07.476384",
+    "end_time": "2025-07-09T16:20:40.077725",
+    "total_iterations": 13,
+    "max_iterations": 50
+  },
+  "generation_stats": {
+    "total_files_generated": 28,
+    "total_files_passed_smoke_test": 28,
+    "total_llm_responses": 13,
+    "conversation_turns": 13
+  },
+  "final_results": {
+    "total_files": 12,
+    "successful_files": 12,
+    "failed_files": 0,
+    "success_rate": 100.0,
+    "successful_file_names": [
+      "section3306.pl",
+      "knowledge_base.pl",
+      "section68.pl",
+      "section63.pl",
+      "section151.pl",
+      "section2.pl",
+      "section152.pl",
+      "section1.pl",
+      "section7703.pl",
+      "tests.pl",
+      "section3301.pl",
+      "helpers.pl"
+    ],
+    "failed_file_names": []
+  },
+  "iteration_log": [
+    {
+      "iteration": 2,
+      "response_length": 9370,
+      "files_found": 2,
+      "files_passed": 2,
+      "files_failed": 0,
+      "successful_files": [
+        "knowledge_base.pl",
+        "helpers.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:06:07.476384"
+    },
+    {
+      "iteration": 3,
+      "response_length": 10120,
+      "files_found": 2,
+      "files_passed": 2,
+      "files_failed": 0,
+      "successful_files": [
+        "section7703.pl",
+        "section152.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:07:07.609447"
+    },
+    {
+      "iteration": 4,
+      "response_length": 7437,
+      "files_found": 2,
+      "files_passed": 2,
+      "files_failed": 0,
+      "successful_files": [
+        "section151.pl",
+        "section68.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:08:21.346962"
+    },
+    {
+      "iteration": 5,
+      "response_length": 21172,
+      "files_found": 5,
+      "files_passed": 5,
+      "files_failed": 0,
+      "successful_files": [
+        "section2.pl",
+        "section63.pl",
+        "section1.pl",
+        "section3301.pl",
+        "section3306.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:09:31.277777"
+    },
+    {
+      "iteration": 6,
+      "response_length": 12805,
+      "files_found": 1,
+      "files_passed": 1,
+      "files_failed": 0,
+      "successful_files": [
+        "tests.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:10:24.841433"
+    },
+    {
+      "iteration": 7,
+      "response_length": 6613,
+      "files_found": 2,
+      "files_passed": 2,
+      "files_failed": 0,
+      "successful_files": [
+        "tests.pl (APPEND)",
+        "tests.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:13:25.947490"
+    },
+    {
+      "iteration": 8,
+      "response_length": 5392,
+      "files_found": 2,
+      "files_passed": 2,
+      "files_failed": 0,
+      "successful_files": [
+        "tests.pl (APPEND)",
+        "tests.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:15:42.538607"
+    },
+    {
+      "iteration": 13,
+      "response_length": 69119,
+      "files_found": 12,
+      "files_passed": 12,
+      "files_failed": 0,
+      "successful_files": [
+        "knowledge_base.pl",
+        "helpers.pl",
+        "section7703.pl",
+        "section152.pl",
+        "section151.pl",
+        "section68.pl",
+        "section2.pl",
+        "section63.pl",
+        "section1.pl",
+        "section3301.pl",
+        "section3306.pl",
+        "tests.pl"
+      ],
+      "failed_files": [],
+      "timestamp": "2025-07-09T16:20:35.102594"
+    }
+  ],
+  "conversation_summary": {
+    "total_responses": 13,
+    "conversation_turns": 13,
+    "model_used": "gemini-2.5-pro",
+    "start_time": "2025-07-09T16:20:40.077753"
+  }
+}

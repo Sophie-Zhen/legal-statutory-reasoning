@@ -1,0 +1,12 @@
+PASSED CASES WITHOUT FACTS ANALYSIS
+==================================================
+Analysis Date: 2025-07-20T11:30:32.646241
+
+SUMMARY STATISTICS:
+Total passed cases: 0
+Passed without facts: 0
+Passed with facts: 0
+Missing Prolog files: 0
+Proportion without facts: 0.0%
+Proportion with facts: 0.0%
+

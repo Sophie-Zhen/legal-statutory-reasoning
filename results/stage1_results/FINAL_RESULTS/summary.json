@@ -1,0 +1,15 @@
+{
+  "run_timestamp": "2025-07-16T21:14:11.243313",
+  "total_cases": 120,
+  "correct_cases": 111,
+  "accuracy": "92.50%",
+  "contradiction_failures": 2,
+  "entailment_failures": 5,
+  "unknown_failures": 1,
+  "errors": [
+    {
+      "case_id": "s152_d_2_G_neg",
+      "error": "Undefined predicate: s152_d_2_G/5"
+    }
+  ]
+}

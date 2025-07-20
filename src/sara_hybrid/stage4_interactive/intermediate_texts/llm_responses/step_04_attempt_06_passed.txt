@@ -1,0 +1,124 @@
+=== LLM RESPONSE LOG ===
+Timestamp: 2025-07-06T13:10:59.288134
+Step: 4/15
+Attempt: 6
+Status: PASSED
+
+=== USER PROMPT ===
+The last attempt for the current task failed. The error was: `ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl:16:
+ERROR:    source_sink `statute_151' does not exist
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/prolog_codebase/statute_7703.pl:16:
+Warning:    Goal (directive) failed: statute_7703:use_module(statute_151)`. Please try again to complete the task for Step 4, adhering strictly to all rules in the system prompt.
+
+The file `statute_7703.pl` specifically failed validation.
+
+=== LLM RESPONSE ===
+%% BEGIN_FILE: statute_7703.pl
+:- module(statute_7703,
+          [ marital_status/3,
+            is_considered_not_married_b1/3
+          ]).
+
+/**
+ * statute_7703.pl
+ *
+ * This module implements §7703, which defines the rules for determining
+ * an individual's marital status for tax purposes.
+ *
+ * The primary entry point is marital_status/3, which resolves to either
+ * 'married' or 'not_married' based on the conditions in subsections (a) and (b).
+ * The dependency on statute_151 is handled by a module-qualified call,
+ * allowing this file to be compiled before statute_151.pl is generated.
+ */
+
+% The system will provide the 'fact' predicates at runtime.
+:- discontiguous fact/1, fact/2, fact/3, fact/4.
+
+% marital_status(+Taxpayer, +Year, -Status)
+%
+% Determines the marital status of a taxpayer for a given year.
+% Status will be one of [married, not_married].
+% This predicate follows the logic of §7703 by first checking the special
+% "living apart" rule in (b), then applying the general rules from (a).
+marital_status(Taxpayer, Year, not_married) :-
+    is_considered_not_married_b(Taxpayer, Year), !.
+marital_status(Taxpayer, Year, not_married) :-
+    determination_date(Taxpayer, Year, DetDate),
+    fact(legally_separated_on_date(Taxpayer, _, DetDate)), !.
+marital_status(Taxpayer, Year, married) :-
+    determination_date(Taxpayer, Year, DetDate),
+    fact(is_married_on_date(Taxpayer, _, DetDate)), !.
+marital_status(_, _, not_married).
+
+% is_considered_not_married_b(+Individual, +Year)
+%
+% Implements §7703(b). Succeeds if an individual who is otherwise married
+% can be considered "not married" because they are living apart.
+% This requires meeting all conditions in (b)(1), (b)(2), and (b)(3).
+is_considered_not_married_b(Individual, Year) :-
+    % Pre-condition from (a): The individual is married.
+    determination_date(Individual, Year, DetDate),
+    fact(is_married_on_date(Individual, Spouse, DetDate)),
+    \+ fact(legally_separated_on_date(Individual, _, DetDate)),
+    % Condition from (b)(1): Files a separate return.
+    fact(files_separate_return(Individual, Year)),
+    % Condition from (b)(1): Maintains home for a qualifying child.
+    % We must find at least one child who meets the criteria.
+    findall(Child,
+            is_considered_not_married_b1(Individual, Child, Year),
+            QualifyingChildren),
+    length(QualifyingChildren, L),
+    L > 0,
+    % Condition from (b)(2): Furnishes over half the cost of the household.
+    is_considered_not_married_b2(Individual, Year),
+    % Condition from (b)(3): Spouse not a member of the household for last 6 months.
+    is_considered_not_married_b3(Individual, Spouse, Year).
+
+% is_considered_not_married_b1(+Individual, +Child, +Year)
+%
+% Implements the child-related test of §7703(b)(1).
+% Succeeds if the individual maintains a household for a child for whom
+% a §151 deduction is allowable. Exported for s7703_b_1_pos.
+is_considered_not_married_b1(Individual, Child, Year) :-
+    fact(maintains_household_for_child(Individual, Child, Year)),
+    % This is a cross-module call to a module that will be generated later.
+    statute_151:deduction_for_dependent(Individual, Child, Year, _).
+
+% is_considered_not_married_b2(+Individual, +Year)
+%
+% Implements the household cost test of §7703(b)(2).
+is_considered_not_married_b2(Individual, Year) :-
+    fact(furnishes_over_half_of_household_maintenance(Individual, Year)).
+
+% is_considered_not_married_b3(+Individual, +Spouse, +Year)
+%
+% Implements the spouse-absence test of §7703(b)(3).
+is_considered_not_married_b3(Individual, Spouse, Year) :-
+    fact(spouse_not_in_household_last_6_months(Individual, Spouse, Year)).
+
+% determination_date(+Taxpayer, +Year, -Date)
+%
+% Implements §7703(a)(1). Determines the specific date on which marital status
+% is to be assessed. It is the end of the year unless a spouse died during
+% the year, in which case it is the date of death.
+determination_date(Taxpayer, Year, DeathDate) :-
+    fact(spouse_died_in_year(Taxpayer, _Spouse, Year, DeathDate)), !.
+determination_date(_Taxpayer, Year, date(Year, 12, 31)).
+
+%% END_FILE: statute_7703.pl
+% SMOKE: PBA_FAILURE :- (dynamic fact/4), retractall(fact(_,_,_,_)), statute_7703:marital_status(ghost, 2023, married).
+
+=== VALIDATION RESULTS ===
+Passed: True
+Error Message: 
+Failed File: 
+
+=== CONVERSATION HISTORY LENGTH ===
+12 turns
+
+=== SYSTEM PROMPT LENGTH ===
+3485 characters
+
+=== RESPONSE STATISTICS ===
+Response Length: 4244 characters
+Prompt Length: 615 characters

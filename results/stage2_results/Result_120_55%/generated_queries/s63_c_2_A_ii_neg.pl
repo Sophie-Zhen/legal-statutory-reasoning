@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s63_c_2_A_ii_neg
+% Question: Section 63(c)(2)(A)(ii) applies to Alice in 2017. Contradiction
+
+answer('s63_c_2_A_ii_neg', Result) :- (s63_c_2_A_ii("Alice", 2017) -> Result = true ; Result = false).
