@@ -98,8 +98,15 @@ class PrologParser:
         # Ensure the content has proper Prolog structure
         cleaned_content = self._clean_prolog_content(content)
         
-        with open(filepath, 'w', encoding='utf-8') as f:
-            f.write(cleaned_content)
+        # Special handling for tests.pl - append content instead of overwriting
+        if filename == "tests.pl" and filepath.exists():
+            print(f"📝 Appending to existing {filename} file")
+            with open(filepath, 'a', encoding='utf-8') as f:
+                f.write("\n" + cleaned_content)
+        else:
+            # For all other files, overwrite (normal behavior)
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(cleaned_content)
         
         print(f"Saved Prolog file: {filepath}")
         return filepath

@@ -21,7 +21,7 @@ class PassedCasesWithoutFactsAnalyzer:
     def __init__(self):
         """Initialize the analyzer with project paths"""
         self.base_dir = Path(__file__).parent.parent
-        self.accuracy_results_path = self.base_dir / "results" / "results" / "acc_analysis" / "stage3_individual_accuracy.txt"
+        self.accuracy_results_path = self.base_dir / "results" / "acc_analysis" / "stage3_individual_accuracy.txt"
         self.prolog_files_dir = self.base_dir / "results" / "stage3_test_split" / "prolog"
         self.output_dir = self.base_dir / "results" / "acc_analysis"
         
