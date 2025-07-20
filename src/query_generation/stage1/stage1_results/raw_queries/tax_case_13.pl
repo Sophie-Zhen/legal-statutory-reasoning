@@ -1,1 +1,0 @@
-case_query(Result) :- s152_c(Result).

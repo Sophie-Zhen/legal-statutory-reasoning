@@ -1,1 +1,0 @@
-answer('s152_d_2_B_neg', true).

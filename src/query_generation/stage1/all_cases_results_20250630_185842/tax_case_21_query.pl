@@ -1,1 +1,0 @@
-answer('tax_case_21', 15777).

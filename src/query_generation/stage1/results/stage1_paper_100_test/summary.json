@@ -1,0 +1,10 @@
+{
+  "run_timestamp": "2025-07-19T13:32:28.395969",
+  "total_cases": 100,
+  "correct_cases": 78,
+  "accuracy": "78.00%",
+  "contradiction_failures": 18,
+  "entailment_failures": 3,
+  "unknown_failures": 1,
+  "errors": []
+}

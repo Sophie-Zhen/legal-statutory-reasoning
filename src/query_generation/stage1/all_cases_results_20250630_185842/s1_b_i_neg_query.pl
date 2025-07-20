@@ -1,1 +1,0 @@
-answer('s1_b_i_neg', true).

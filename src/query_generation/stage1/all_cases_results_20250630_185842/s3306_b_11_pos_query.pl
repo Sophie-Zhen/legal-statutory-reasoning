@@ -1,1 +1,0 @@
-answer('s3306_b_11_pos', true).

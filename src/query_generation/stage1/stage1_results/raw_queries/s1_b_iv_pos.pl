@@ -1,1 +1,0 @@
-case_query(Result) :- s2_b("Alice",_,Year), s63("Alice",Year,Tax), Tax > 0, Result = true.
