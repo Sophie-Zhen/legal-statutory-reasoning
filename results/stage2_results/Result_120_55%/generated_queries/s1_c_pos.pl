@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s1_c_pos
+% Question: Alice has to pay $65445 in taxes for the year 2017 under section 1(c). Entailment
+
+answer('s1_c_pos', Result) :- (s1_c("Alice", 2017, _, 65445) -> Result = true ; Result = false).

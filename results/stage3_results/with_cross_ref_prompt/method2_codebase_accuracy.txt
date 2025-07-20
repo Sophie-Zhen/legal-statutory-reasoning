@@ -1,0 +1,51 @@
+=== METHOD 2 CODEBASE - ACCURACY ANALYSIS RESULTS ===
+Analysis Date: 2025-07-14T21:44:19.704053
+
+OVERALL PERFORMANCE:
+Total cases: 26
+Passed cases: 19
+Failed cases: 7
+Success rate: 73.1%
+
+=== DETAILED BREAKDOWN ===
+
+TRUE/FALSE CASES: 12/18 = 66.7% success
+PASSED (12 cases):
+  - s152_c_1_E_pos (result: true)
+  - s1_a_1_iii_neg (result: false)
+  - s1_a_1_pos (result: true)
+  - s1_b_iii_neg (result: false)
+  - s1_c_i_neg (result: false)
+  - s1_c_iv_pos (result: true)
+  - s1_d_iv_neg (result: false)
+  - s2_a_2_B_pos (result: true)
+  - s3306_b_7_neg (result: false)
+  - s3306_c_5_pos (result: true)
+  - s63_c_2_B_neg (result: false)
+  - s68_b_1_A_neg (result: false)
+
+FAILED (6 cases):
+  - s152_d_2_F_pos (result: false)
+  - s3306_a_1_neg (result: true)
+  - s3306_b_10_A_neg (result: true)
+  - s3306_b_pos (result: false)
+  - s63_c_3_pos (result: NO_RESULT)
+  - s7703_b_1_pos (result: NO_RESULT)
+
+TAX CALCULATION CASES: 7/8 = 87.5% success
+PASSED (7 cases):
+  - tax_case_13 (result: 8710)
+  - tax_case_26 (result: 196056)
+  - tax_case_61 (result: 25055)
+  - tax_case_63 (result: 20298)
+  - tax_case_70 (result: 178147)
+  - tax_case_79 (result: 17402)
+  - tax_case_89 (result: 0)
+
+FAILED (1 cases):
+  - tax_case_40 (result: NO_RESULT)
+
+=== METHODOLOGY ===
+- True/False Cases: Expected result from case ID suffix (_pos = true, _neg = false)
+- Tax Cases: Boolean results treated as valid, numeric results compared when ground truth available
+- Individual case testing with proper error handling

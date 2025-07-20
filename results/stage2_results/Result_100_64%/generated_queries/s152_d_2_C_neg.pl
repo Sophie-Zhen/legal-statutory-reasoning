@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s152_d_2_C_neg
+% Question: Alice bears a relationship to Bob under section 152(d)(2)(C). Contradiction
+
+answer('s152_d_2_C_neg', Result) :- (s152_d_2_C("Alice", "Bob", _, _) -> Result = true ; Result = false).

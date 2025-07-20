@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s63_f_2_B_neg
+% Question: Section 63(f)(2)(B) applies to Alice in 2017 with Bob as the spouse. Contradiction
+
+answer('s63_f_2_B_neg', Result) :- (s63_f_2_B("Alice", "Bob", 2017) -> Result = true ; Result = false).
