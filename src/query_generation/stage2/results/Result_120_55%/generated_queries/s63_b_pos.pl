@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s63_b_pos
+% Question: Under section 63(b), Alice's taxable income in 2017 is equal to $31200. Entailment
+
+answer('s63_b_pos', Result) :- (s63_b("Alice", 2017, 31200, _) -> Result = true ; Result = false).

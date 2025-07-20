@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-07-18T07:49:57.645703",
+  "total_cases": 120,
+  "accuracy": "55.00%",
+  "fact_generation_rate": "100.00%",
+  "query_generation_rate": "100.00%",
+  "execution_rate": "96.67%",
+  "errors": {
+    "fact_generation": 0,
+    "query_generation": 0,
+    "execution": 4,
+    "undefined_predicate": 4,
+    "contradiction_failures": 8,
+    "entailment_failures": 42
+  }
+}

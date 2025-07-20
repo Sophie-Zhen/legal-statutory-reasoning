@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s152_d_2_H_neg
+% Question: Alice bears a relationship to Bob under section 152(d)(2)(H) for the year 2015. Contradiction
+
+answer('s152_d_2_H_neg', Result) :- (s152_d_2_H("Alice", "Bob", 2015, _, _, _) -> Result = true ; Result = false).
