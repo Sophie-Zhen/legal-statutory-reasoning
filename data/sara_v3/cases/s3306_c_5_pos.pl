@@ -26,3 +26,4 @@ location_(span("work",43,46),span("USA",114,116)).
 
 % Test
 :- s3306_c_5(span("work",43,46),"Alice","Bob",20170201).
+...

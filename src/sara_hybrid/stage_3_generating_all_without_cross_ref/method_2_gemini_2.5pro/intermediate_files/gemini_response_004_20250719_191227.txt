@@ -1,0 +1,218 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+This is the fourth response, containing the `section68.pl`, `section7703.pl`, `section3301.pl`, and `section3306.pl` modules.
+
+%% BEGIN_FILE: section68.pl
+:- module(section68,
+    [
+        limitation_on_itemized_deductions/5,
+        is_applicable_amount_A/3
+    ]).
+
+:- use_module(knowledge_base, [itemized_deduction_limitation_agi_threshold/3]).
+:- use_module(helpers, [get_fact/3, tcja_active_general/1]).
+:- use_module(section2, [is_surviving_spouse/3]).
+:- use_module(section7703, [is_married/3]).
+
+/** <module> section68
+ *
+ * Encodes §68, the overall limitation on itemized deductions.
+ * This section is not applicable for TCJA years (2018-2025).
+ */
+
+% limitation_on_itemized_deductions(+CaseID, +Payer, +Year, +AGI, +InitialDeductions, -FinalDeductions)
+% Calculates the final itemized deductions after applying the §68 limitation.
+limitation_on_itemized_deductions(_CaseID, _Payer, Year, _AGI, InitialDeductions, InitialDeductions) :-
+    tcja_active_general(Year), !.
+limitation_on_itemized_deductions(CaseID, Payer, Year, AGI, InitialDeductions, FinalDeductions) :-
+    \+ tcja_active_general(Year),
+    fact(CaseID, filing_status(Payer, FilingStatus, Year)),
+    (   itemized_deduction_limitation_agi_threshold(Year, FilingStatus, Threshold),
+        AGI > Threshold
+    ->  Reduction1 is 0.03 * (AGI - Threshold),
+        Reduction2 is 0.80 * InitialDeductions,
+        Reduction is min(Reduction1, Reduction2),
+        FinalDeductions is InitialDeductions - Reduction
+    ;   FinalDeductions = InitialDeductions
+    ).
+
+% is_applicable_amount_A(+CaseID, +Taxpayer, +Year)
+% Helper to check for case s68_b_1_A_neg.
+is_applicable_amount_A(CaseID, Taxpayer, Year) :-
+    (   is_surviving_spouse(CaseID, Taxpayer, Year)
+    ;   (   is_married(CaseID, Taxpayer, Year),
+            fact(CaseID, filing_status(Taxpayer, married_filing_jointly, Year))
+        )
+    ).
+%% END_FILE: section68.pl
+% SMOKE: ?- [helpers, section2, section7703, knowledge_base, section68], assertz(fact(c, filing_status(p, single, 2016))), limitation_on_itemized_deductions(c, p, 2016, 300000, 50000, FD).
+
+%% BEGIN_FILE: section7703.pl
+:- module(section7703,
+    [
+        is_married/3,
+        is_considered_unmarried_living_apart/3
+    ]).
+
+:- use_module(helpers, [get_fact/3]).
+:- use_module(section151, [is_deduction_for_dependent_allowed/4]).
+
+/** <module> section7703
+ *
+ * Encodes §7703, which determines marital status for tax purposes.
+ */
+
+% is_married/3(+CaseID, +Person, +Year)
+% Determines if a person is considered married for the given tax year.
+is_married(CaseID, Person, Year) :-
+    % §7703(a) general rule
+    (   fact(CaseID, married(Person, _, Year))
+    ;   fact(CaseID, spouse(Person, Spouse)),
+        fact(CaseID, death_date(Spouse, date(Year, _, _)))
+    ),
+    \+ fact(CaseID, legally_separated(Person, _, Year)),
+    % §7703(b) exception does not apply
+    \+ is_considered_unmarried_living_apart(CaseID, Person, Year).
+
+% is_considered_unmarried_living_apart/3(+CaseID, +Person, +Year)
+% Implements the §7703(b) exception for certain married individuals living apart.
+is_considered_unmarried_living_apart(CaseID, Person, Year) :-
+    % Condition: Must be married under (a) to be considered for this exception.
+    (fact(CaseID, married(Person, _, Year)) ; (fact(CaseID, spouse(Person, Spouse)), fact(CaseID, death_date(Spouse, date(Year, _, _))))),
+    \+ fact(CaseID, legally_separated(Person, _, Year)),
+    % (1) files a separate return
+    fact(CaseID, filing_status(Person, married_filing_separately, Year)),
+    % (1) maintains a household for a child
+    maintains_home_for_child(CaseID, Person, Year),
+    % (2) furnishes over half the cost of the household
+    fact(CaseID, cost_of_maintaining_household(Person, Year, PayerCost)),
+    fact(CaseID, cost_of_maintaining_household(total, Year, TotalCost)),
+    PayerCost > TotalCost / 2,
+    % (3) spouse is not a member of the household for the last 6 months
+    fact(CaseID, spouse(Person, Spouse)),
+    \+ fact(CaseID, member_of_household_last_6_months(Spouse, Year)).
+
+maintains_home_for_child(CaseID, Person, Year) :-
+    fact(CaseID, child(Child, Person)),
+    fact(CaseID, principal_place_of_abode_more_than_half_year(Child, Location, Year)),
+    fact(CaseID, maintains_household(Person, Location, Year)),
+    is_deduction_for_dependent_allowed(CaseID, Person, Child, Year).
+%% END_FILE: section7703.pl
+% SMOKE: ?- [tests], [helpers, section151, section7703], is_considered_unmarried_living_apart(s7703_b_1_pos, 'Alice', 2018).
+
+%% BEGIN_FILE: section3301.pl
+:- module(section3301,
+    [
+        calculate_futa_tax/4
+    ]).
+
+:- use_module(knowledge_base, [futa_tax_rate/2]).
+:- use_module(section3306, [total_wages_subject_to_futa/4]).
+
+/** <module> section3301
+ *
+ * Encodes §3301, which imposes the FUTA (Federal Unemployment Tax Act) tax.
+ */
+
+% calculate_futa_tax/4(+CaseID, +Employer, +Year, -Tax)
+% Calculates the FUTA tax for an employer for a given year.
+calculate_futa_tax(CaseID, Employer, Year, Tax) :-
+    total_wages_subject_to_futa(CaseID, Employer, Year, TaxableWages),
+    futa_tax_rate(Year, Rate),
+    Tax is TaxableWages * Rate.
+%% END_FILE: section3301.pl
+% SMOKE: ?- [knowledge_base, section3306, section3301], assertz(fact(c, wages('Alice', 'Bob', 10000, 2017))), calculate_futa_tax(c, 'Alice', 2017, Tax).
+
+%% BEGIN_FILE: section3306.pl
+:- module(section3306,
+    [
+        is_employer/3,
+        is_wages/5,
+        is_employment/4,
+        is_employer_general/4,
+        is_wages_exception_termination/3,
+        is_wages_exception_not_in_business_course/3,
+        is_employment_exception_family/4,
+        total_wages_subject_to_futa/4
+    ]).
+
+:- use_module(knowledge_base).
+:- use_module(helpers, [get_fact/3, get_age_at_year_end/4, sum_list/2]).
+
+/** <module> section3306
+ *
+ * Encodes §3306, which provides definitions for FUTA tax purposes, including
+ * "employer", "wages", and "employment".
+ */
+
+% is_employer/3(+CaseID, +PotentialEmployer, +Year)
+% §3306(a) - Determines if a person is an "employer".
+is_employer(CaseID, P, Year) :- is_employer_general(CaseID, P, Year) ; is_employer_agricultural(CaseID, P, Year) ; is_employer_domestic(CaseID, P, Year).
+is_employer_general(CaseID, P, Year) :- (   wages_paid(CaseID, P, Year, general, W), futa_wage_threshold_general(T), W >= T ;   employees_hired(CaseID, P, Year, general, E), futa_employee_threshold_general(T), E >= T ).
+is_employer_agricultural(CaseID, P, Year) :- (   wages_paid(CaseID, P, Year, agricultural, W), futa_wage_threshold_agricultural(T), W >= T ;   employees_hired(CaseID, P, Year, agricultural, E), futa_employee_threshold_agricultural(T), E >= T ).
+is_employer_domestic(CaseID, P, Year) :- wages_paid(CaseID, P, Year, domestic, W), futa_wage_threshold_domestic(T), W >= T.
+
+wages_paid(CaseID, P, Year, Type, TotalWages) :- findall(W, (fact(CaseID, wages(P, _, W, Year, Type))), Wages), sum_list(Wages, TotalWages).
+employees_hired(CaseID, P, Year, Type, Count) :- findall(E, (fact(CaseID, employee_for_day_in_week(P, E, _, Year, Type))), Es), length(Es, Count).
+
+% is_wages/5(+CaseID, +Employer, +Employee, +Amount, +Year)
+% §3306(b) - Determines if a payment constitutes "wages".
+is_wages(CaseID, Employer, Employee, Amount, Year) :-
+    is_remuneration_for_employment(CaseID, Employer, Employee, Year),
+    \+ is_wages_exception(CaseID, Employer, Employee, Amount, Year).
+
+is_remuneration_for_employment(CaseID, Employer, Employee, Year) :- is_employment(CaseID, Employer, Employee, Year).
+
+is_wages_exception(CaseID, Employer, Employee, Amount, Year) :-
+    (   futa_wage_cap(Cap), Amount > Cap
+    ;   is_wages_exception_sickness_death(CaseID, Employer, Employee)
+    ;   is_wages_exception_not_in_business_course(CaseID, Employer)
+    ;   is_wages_exception_termination(CaseID, Employee, Amount)
+    ).
+
+is_wages_exception_sickness_death(CaseID, E, Emp) :- fact(CaseID, payment_under_plan(E, Emp, _)), (fact(CaseID, payment_reason(E, Emp, sickness)); fact(CaseID, payment_reason(E, Emp, death))).
+is_wages_exception_not_in_business_course(CaseID, E) :- fact(CaseID, payment(E, _, _, _, cash, Service)), \+ fact(CaseID, in_course_of_business(E, Service)).
+is_wages_exception_termination(CaseID, Emp, _) :- fact(CaseID, payment_termination_reason(Emp, death)) ; fact(CaseID, payment_termination_reason(Emp, disability)).
+
+% is_employment/4(+CaseID, +Employer, +Employee, +Year)
+% §3306(c) - Determines if a service constitutes "employment".
+is_employment(CaseID, Employer, Employee, Year) :-
+    fact(CaseID, service_performed(Employee, Employer, Year)),
+    \+ is_employment_exception(CaseID, Employer, Employee, Year).
+
+is_employment_exception(CaseID, Employer, Employee, Year) :-
+    (   is_employment_exception_agricultural_labor(CaseID, Employer, Year)
+    ;   is_employment_exception_domestic_service(CaseID, Employer, Year)
+    ;   is_employment_exception_family(CaseID, Employer, Employee, Year)
+    ;   fact(CaseID, employer_type(Employer, us_government))
+    ;   fact(CaseID, employer_type(Employer, state_government))
+    ;   is_employment_exception_student(CaseID, Employer, Employee)
+    ;   fact(CaseID, employer_type(Employer, foreign_government))
+    ;   fact(CaseID, employee_type(Employee, student_nurse))
+    ;   fact(CaseID, employer_type(Employer, international_organization))
+    ;   fact(CaseID, employee_status(Employee, committed_to_penal_institution))
+    ).
+
+is_employment_exception_agricultural_labor(CaseID, E, Y) :- fact(CaseID, service_type(_, agricultural)), \+ is_employer_agricultural(CaseID, E, Y).
+is_employment_exception_domestic_service(CaseID, E, Y) :- fact(CaseID, service_type(_, domestic)), \+ is_employer_domestic(CaseID, E, Y).
+is_employment_exception_family(CaseID, Employer, Employee, Year) :- (   fact(CaseID, relationship(Employee, Employer, son)) ;   fact(CaseID, relationship(Employee, Employer, daughter)) ;   fact(CaseID, relationship(Employee, Employer, spouse)) ;  (   fact(CaseID, child(Employee, Employer)), get_age_at_year_end(CaseID, Employee, Year, Age), Age < 21 ) ).
+is_employment_exception_student(CaseID, E, Emp) :- fact(CaseID, employer_type(E, school)), (fact(CaseID, student_at(Emp, E)) ; (fact(CaseID, spouse(Emp, S)), fact(CaseID, student_at(S, E)))).
+
+% total_wages_subject_to_futa/4(+CaseID, +Employer, +Year, -TotalWages)
+total_wages_subject_to_futa(CaseID, Employer, Year, TotalWages) :-
+    is_employer(CaseID, Employer, Year),
+    findall(E, fact(CaseID, employee(E, Employer)), Employees),
+    calculate_total_capped_wages(CaseID, Employer, Employees, Year, TotalWages).
+
+calculate_total_capped_wages(_CaseID, _Employer, [], _Year, 0).
+calculate_total_capped_wages(CaseID, Employer, [Employee|Rest], Year, TotalWages) :-
+    futa_wage_cap(Cap),
+    findall(W, (fact(CaseID, wages(Employer, Employee, W, Year, _)), is_wages(CaseID, Employer, Employee, W, Year)), EmployeeWagesList),
+    sum_list(EmployeeWagesList, EmployeeTotalWages),
+    CappedWages is min(Cap, EmployeeTotalWages),
+    calculate_total_capped_wages(CaseID, Employer, Rest, Year, RestWages),
+    TotalWages is CappedWages + RestWages.
+%% END_FILE: section3306.pl
+% SMOKE: ?- [knowledge_base, helpers, section3306], assertz(fact(c, wages('Alice', 'Bob', 8000, 2017, general))), assertz(fact(c, employee('Bob', 'Alice'))), assertz(fact(c, service_performed('Bob', 'Alice', 2017))), total_wages_subject_to_futa(c, 'Alice', 2017, W).

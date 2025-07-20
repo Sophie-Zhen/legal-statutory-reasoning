@@ -1,0 +1,234 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+I have completed the JSON analysis and the base helper/knowledge base modules. I will now continue with Phase 2, generating the first set of statute modules as planned.
+
+**Part 3 of 8: `section7703.pl` and `section152.pl`**
+
+%% BEGIN_FILE: section7703.pl
+:- module(section7703,
+    [
+        is_married/4,
+        is_not_considered_married_living_apart/4
+    ]).
+
+:- use_module(section151, [is_entitled_to_deduction/4]).
+:- use_module(library(lists), [member/2]).
+
+% Forward declaration for tests.pl, which will be loaded at runtime.
+:- multifile fact/2.
+
+/**
+ * section7703.pl
+ *
+ * Encodes §7703: Determination of marital status.
+ *
+ * Predicates are parameterized with a CaseID to query case-specific facts.
+ */
+
+% is_married/4
+% §7703(a) Determines if an individual is considered married for tax purposes for a given year.
+% Status is one of [married, not_married].
+is_married(CaseID, Taxpayer, Year, not_married) :-
+    fact(CaseID, legally_separated(_Taxpayer, _Spouse, Year, _Date)),
+    (Taxpayer = _Taxpayer; Taxpayer = _Spouse),
+    !.
+is_married(CaseID, Taxpayer, Year, not_married) :-
+    is_not_considered_married_living_apart(CaseID, Taxpayer, Year, true),
+    !.
+is_married(CaseID, Taxpayer, Year, Status) :-
+    fact(CaseID, married(Taxpayer, Spouse, StartDate)),
+    fact(CaseID, date(StartDate, SY, _, _)),
+    SY =< Year,
+    % Check if spouse died during the year. If so, status is 'married'.
+    (   fact(CaseID, died(Spouse, Year, _))
+    ->  Status = married
+    % Check if spouse died in a prior year. If so, not married for this year.
+    ;   fact(CaseID, died(Spouse, DeathYear, _)), DeathYear < Year
+    ->  Status = not_married
+    % Otherwise, they are married.
+    ;   Status = married
+    ).
+is_married(_CaseID, _Taxpayer, _Year, not_married). % Default case
+
+
+% is_not_considered_married_living_apart/4
+% §7703(b) Checks the "certain married individuals living apart" rule.
+% Result is one of [true, false].
+is_not_considered_married_living_apart(CaseID, Taxpayer, Year, true) :-
+    % (1) married (within the meaning of subsection (a)) and files a separate return
+    is_married_under_a(CaseID, Taxpayer, Year),
+    fact(CaseID, files_separate_return(Taxpayer, Year)),
+    % (1) maintains as his home a household which constitutes for more than one-half of the taxable year
+    % the principal place of abode of a child with respect to whom such individual is entitled to a
+    % deduction for the taxable year under section 151
+    fact(CaseID, maintains_household_for_child_gt_half_year(Taxpayer, Child, Year)),
+    is_entitled_to_deduction(CaseID, Taxpayer, Child, Year),
+    % (2) such individual furnishes over one-half of the cost of maintaining such household
+    fact(CaseID, furnished_over_half_cost_of_household(Taxpayer, Year)),
+    % (3) during the last 6 months of the taxable year, such individual's spouse is not a member of such household
+    fact(CaseID, spouse_not_in_household_last_6_months(Taxpayer, Year)),
+    !.
+is_not_considered_married_living_apart(_CaseID, _Taxpayer, _Year, false).
+
+
+% Helper to check marital status under 7703(a) without the 7703(b) recursion.
+is_married_under_a(CaseID, Taxpayer, Year) :-
+    \+ fact(CaseID, legally_separated(Taxpayer, _, Year, _)),
+    fact(CaseID, married(Taxpayer, Spouse, StartDate)),
+    fact(CaseID, date(StartDate, SY, _, _)),
+    SY =< Year,
+    \+ (fact(CaseID, died(Spouse, DeathYear, _)), DeathYear < Year).
+%% END_FILE: section7703.pl
+% SMOKE: ?- [tests], is_married(s7703_b_1_pos, alice, 2018, Status).
+
+%% BEGIN_FILE: section152.pl
+:- module(section152,
+    [
+        is_dependent/4,
+        is_qualifying_child/4,
+        is_qualifying_relative/4,
+        relationship_qualifying_child/3,
+        relationship_qualifying_relative/3,
+        qualifying_child_no_joint_return/3
+    ]).
+
+:- use_module(section7703, [is_married/4]).
+:- use_module(helpers, [get_age_at_year_end/3]).
+:- use_module(library(lists), [member/2]).
+
+% Forward declaration for tests.pl, which will be loaded at runtime.
+:- multifile fact/2.
+
+/**
+ * section152.pl
+ *
+ * Encodes §152: Dependent defined.
+ *
+ * Predicates are parameterized with a CaseID to query case-specific facts.
+ */
+
+% is_dependent/4
+% §152(a) Determines if an individual is a dependent of a taxpayer.
+is_dependent(CaseID, Taxpayer, PotentialDependent, Year) :-
+    % Exceptions under §152(b) must not apply
+    \+ exception_b1_dependent_ineligible(CaseID, PotentialDependent, Year),
+    \+ exception_b2_married_dependent(CaseID, PotentialDependent, Year),
+    % Must be a qualifying child or a qualifying relative
+    (   is_qualifying_child(CaseID, Taxpayer, PotentialDependent, Year)
+    ;   is_qualifying_relative(CaseID, Taxpayer, PotentialDependent, Year)
+    ).
+
+% exception_b1_dependent_ineligible/3
+% §152(b)(1) An individual who is a dependent of a taxpayer cannot have their own dependents.
+exception_b1_dependent_ineligible(CaseID, Taxpayer, Year) :-
+    fact(CaseID, is_dependent_of(Taxpayer, _OtherTaxpayer, Year)).
+
+% exception_b2_married_dependent/3
+% §152(b)(2) An individual is not a dependent if they file a joint return with their spouse.
+exception_b2_married_dependent(CaseID, PotentialDependent, Year) :-
+    fact(CaseID, files_joint_return(PotentialDependent, _Spouse, Year)).
+
+
+% is_qualifying_child/4
+% §152(c) Defines "qualifying child".
+is_qualifying_child(CaseID, Taxpayer, PotentialQC, Year) :-
+    % (A) Relationship test
+    relationship_qualifying_child(CaseID, Taxpayer, PotentialQC),
+    % (B) Abode test
+    fact(CaseID, principal_place_of_abode_for_more_than_half_year(PotentialQC, Taxpayer, Year)),
+    % (C) Age test
+    age_requirement_qualifying_child(CaseID, Taxpayer, PotentialQC, Year),
+    % (E) No joint return test
+    qualifying_child_no_joint_return(PotentialQC, Year, CaseID).
+
+
+% is_qualifying_relative/4
+% §152(d) Defines "qualifying relative".
+is_qualifying_relative(CaseID, Taxpayer, PotentialQR, Year) :-
+    % (A) Relationship test
+    relationship_qualifying_relative(CaseID, Taxpayer, PotentialQR),
+    % (B) Gross income test
+    \+ fact(CaseID, gross_income(PotentialQR, Year, Income)), Income > 0,
+    % (D) Not a qualifying child test
+    \+ is_qualifying_child(CaseID, Taxpayer, PotentialQR, Year),
+    % Also must not be a qualifying child of any other taxpayer (this is a simplification for now)
+    \+ (fact(CaseID, fact(is_qualifying_child_of(PotentialQR, OtherTaxpayer, Year))), OtherTaxpayer \= Taxpayer).
+
+
+% relationship_qualifying_child/3
+% §152(c)(2) Relationship test for a qualifying child.
+relationship_qualifying_child(CaseID, Taxpayer, Person) :-
+    (   child_or_descendant(CaseID, Taxpayer, Person)
+    ;   sibling_or_descendant(CaseID, Taxpayer, Person)
+    ).
+
+% age_requirement_qualifying_child/4
+% §152(c)(3) Age requirements for a qualifying child.
+age_requirement_qualifying_child(CaseID, Taxpayer, PotentialQC, Year) :-
+    fact(CaseID, date_of_birth(Taxpayer, TaxpayerDOB)),
+    fact(CaseID, date_of_birth(PotentialQC, PotentialQCDOB)),
+    get_age_at_year_end(TaxpayerDOB, Year, TaxpayerAge),
+    get_age_at_year_end(PotentialQCDOB, Year, PotentialQCAge),
+    PotentialQCAge < TaxpayerAge,
+    PotentialQCAge < 25.
+
+
+% qualifying_child_no_joint_return/3
+% §152(c)(1)(E) The child has not filed a joint return.
+qualifying_child_no_joint_return(Child, Year, CaseID) :-
+    \+ fact(CaseID, files_joint_return(Child, _Spouse, Year)).
+% Note: The statute has an exception for "only for a claim of refund", which is not modeled here.
+
+% relationship_qualifying_relative/3
+% §152(d)(2) Relationship test for a qualifying relative.
+relationship_qualifying_relative(CaseID, Taxpayer, Person) :-
+    member(RelationshipType, [
+        (A), (B), (C), (D), (E), (F), (G), (H)
+    ]),
+    relationship_qualifying_relative(CaseID, Taxpayer, Person, RelationshipType).
+
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (A)) :- child_or_descendant(CaseID, Taxpayer, Person).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (B)) :- sibling_or_descendant(CaseID, Taxpayer, Person).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (C)) :- parent_or_ancestor(CaseID, Taxpayer, Person).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (D)) :- fact(CaseID, step_parent(Person, Taxpayer)).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (E)) :- child_of_sibling(CaseID, Taxpayer, Person).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (F)) :- sibling_of_parent(CaseID, Taxpayer, Person).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (G)) :- in_law(CaseID, Taxpayer, Person).
+relationship_qualifying_relative(CaseID, Taxpayer, Person, (H)) :-
+    % Not a spouse at any time during the year
+    \+ fact(CaseID, married(Taxpayer, Person, _)),
+    is_married(CaseID, Taxpayer, Year, Status), (Status = not_married ; (Status = married, \+ fact(CaseID, married(Taxpayer, Person, _)))),
+    % Same principal place of abode and member of household for the year
+    fact(CaseID, principal_place_of_abode_for_full_year(Person, Taxpayer, Year)).
+
+% --- Relationship helpers ---
+child_or_descendant(CaseID, Parent, Child) :- fact(CaseID, child(Child, Parent)).
+child_or_descendant(CaseID, Ancestor, Descendant) :-
+    fact(CaseID, child(Descendant, Intermediate)),
+    child_or_descendant(CaseID, Ancestor, Intermediate).
+
+sibling_or_descendant(CaseID, Person, Sibling) :- fact(CaseID, sibling(Sibling, Person)).
+sibling_or_descendant(CaseID, Person, Descendant) :-
+    fact(CaseID, sibling(Sibling, Person)),
+    child_or_descendant(CaseID, Sibling, Descendant).
+
+parent_or_ancestor(CaseID, Child, Parent) :- child_or_descendant(CaseID, Parent, Child).
+
+child_of_sibling(CaseID, Person, NieceNephew) :-
+    fact(CaseID, sibling(Sibling, Person)),
+    fact(CaseID, child(NieceNephew, Sibling)).
+
+sibling_of_parent(CaseID, Person, AuntUncle) :-
+    fact(CaseID, child(Person, Parent)),
+    fact(CaseID, sibling(AuntUncle, Parent)).
+
+in_law(CaseID, Person, InLaw) :-
+    ( fact(CaseID, married(Person, Spouse, _)); fact(CaseID, married(Spouse, Person, _)) ),
+    ( fact(CaseID, child(Spouse, InLaw))      % mother/father-in-law
+    ; fact(CaseID, child(InLaw, Person))      % son/daughter-in-law
+    ; fact(CaseID, sibling(InLaw, Spouse))    % brother/sister-in-law
+    ).
+%% END_FILE: section152.pl
+% SMOKE: ?- [tests], is_dependent(s152_d_2_F_pos, bob, alice, 2017).

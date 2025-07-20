@@ -1,0 +1,147 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+Right, I will generate the final portion of the Prolog codebase and the concluding manifest.
+
+### Phase 2: Prolog Encoding (`tests.pl` Answers, Batch 4 of 4)
+
+This response contains the remaining `answer/2` predicates and the top-level `test/0` runner predicate that executes all cases.
+
+%% BEGIN_FILE: tests.pl
+```prolog
+%% --- CaseID: tax_case_79 BEGIN ---
+% Question: How much tax does Bob have to pay in 2020? $17402
+% Note: The question asks about Bob, but since it's a joint return, the liability is for the unit.
+% The system calculates tax based on the primary taxpayer, which we've designated as Alice.
+answer(tax_case_79, Result) :-
+    section1:tax_liability(tax_case_79, alice, 2020, Result).
+%% --- CaseID: tax_case_79 END ---
+
+%% --- CaseID: tax_case_70 BEGIN ---
+% Question: How much tax does Alice have to pay in 2016? $178147
+answer(tax_case_70, Result) :-
+    section1:tax_liability(tax_case_70, alice, 2016, Result).
+%% --- CaseID: tax_case_70 END ---
+
+%% --- CaseID: tax_case_63 BEGIN ---
+% Question: How much tax does Bob have to pay in 2019? $20298
+answer(tax_case_63, Result) :-
+    section1:tax_liability(tax_case_63, bob, 2019, Result).
+%% --- CaseID: tax_case_63 END ---
+
+%% --- CaseID: tax_case_61 BEGIN ---
+% Question: How much tax does Alice have to pay in 2015? $25055
+answer(tax_case_61, Result) :-
+    section1:tax_liability(tax_case_61, alice, 2015, Result).
+%% --- CaseID: tax_case_61 END ---
+
+/*******************************************************************************
+ *
+ *                      TEST HARNESS
+ *
+ *******************************************************************************/
+
+test :-
+    findall(CaseID, answer(CaseID, _), Cases),
+    list_to_set(Cases, UniqueCases),
+    format('Running ~w test cases...~n~n', [UniqueCases]),
+    run_tests(UniqueCases, Passed, Failed),
+    length(Passed, NumPassed),
+    length(Failed, NumFailed),
+    format('~n---~n'),
+    format('~w PASSED, ~w FAILED.~n', [NumPassed, NumFailed]),
+    (   NumFailed > 0 ->
+        format('Failed cases: ~w~n', [Failed]),
+        halt(1)
+    ;   format('All tests passed.~n'),
+        halt(0)
+    ).
+
+run_tests([], [], []).
+run_tests([Case|Rest], Passed, Failed) :-
+    run_test(Case, Result),
+    (   Result == pass ->
+        Passed = [Case|RestPassed],
+        Failed = RestFailed
+    ;   Passed = RestPassed,
+        Failed = [Case|RestFailed]
+    ),
+    run_tests(Rest, RestPassed, RestFailed).
+
+run_test(CaseID, Result) :-
+    expected(CaseID, ExpectedResult),
+    (   catch(answer(CaseID, ActualResult), E, (format('~w: ERROR. Predicate failed: ~w~n', [CaseID, E]), fail)) ->
+        (   (is_float(ActualResult), is_float(ExpectedResult)) ->
+            (abs(ActualResult - ExpectedResult) < 0.01 ->
+                format('~w: PASSED~n', [CaseID]),
+                Result = pass
+            ;   format('~w: FAILED. Expected: ~w, Got: ~w~n', [CaseID, ExpectedResult, ActualResult]),
+                Result = fail
+            )
+        ;   (ActualResult == ExpectedResult ->
+                format('~w: PASSED~n', [CaseID]),
+                Result = pass
+            ;   format('~w: FAILED. Expected: ~w, Got: ~w~n', [CaseID, ExpectedResult, ActualResult]),
+                Result = fail
+            )
+        )
+    ;   format('~w: FAILED. Predicate failed to produce an answer.~n', [CaseID]),
+        Result = fail
+    ).
+
+% Expected results database
+expected(s1_d_iv_neg, true).
+expected(s3306_c_5_pos, true).
+expected(s1_c_i_neg, true).
+expected(s1_b_iii_neg, true).
+expected(s152_d_2_F_pos, true).
+expected(s1_a_1_iii_neg, true).
+expected(s3306_b_10_A_neg, true).
+expected(s63_c_2_B_neg, true).
+expected(s3306_b_7_neg, true).
+expected(s152_c_1_E_pos, true).
+expected(s2_a_2_B_pos, true).
+expected(s63_c_3_pos, true).
+expected(s3306_a_1_neg, true).
+expected(s7703_b_1_pos, true).
+expected(s1_c_iv_pos, true).
+expected(s3306_b_pos, true).
+expected(s1_a_1_pos, true).
+expected(s68_b_1_A_neg, true).
+expected(tax_case_89, 0).
+expected(tax_case_13, 8710).
+expected(tax_case_40, 279126).
+expected(tax_case_26, 196056).
+expected(tax_case_79, 17402).
+expected(tax_case_70, 178147).
+expected(tax_case_63, 20298).
+expected(tax_case_61, 25055).
+
+```
+%% END_FILE: tests.pl
+% SMOKE: ?- ['tests.pl'], test.
+
+### Final Manifest
+
+This JSON object lists all the generated Prolog files as requested.
+```json
+{
+  "modules": [
+    "knowledge_base.pl",
+    "helpers.pl",
+    "section7703.pl",
+    "section152.pl",
+    "section151.pl",
+    "section2.pl",
+    "section68.pl",
+    "section63.pl",
+    "section1.pl",
+    "section3306.pl",
+    "section3301.pl"
+  ],
+  "test_suite": "tests.pl"
+}
+```
+
+<<ALL DONE>>

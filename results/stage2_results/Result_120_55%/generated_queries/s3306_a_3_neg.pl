@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s3306_a_3_neg
+% Question: Section 3306(a)(3) applies to Alice for the year 2017. Contradiction
+
+answer('s3306_a_3_neg', Result) :- (s3306_a_3("Alice", _, _, 2017) -> Result = true ; Result = false).

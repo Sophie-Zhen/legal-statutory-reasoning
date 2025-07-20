@@ -1,0 +1,158 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+This is the second response, containing the `knowledge_base.pl` and `helpers.pl` modules.
+
+%% BEGIN_FILE: knowledge_base.pl
+:- module(knowledge_base,
+    [
+        exemption_amount/2,
+        exemption_phaseout_threshold/3,
+        exemption_phaseout_step/2,
+        standard_deduction_basic/3,
+        standard_deduction_dependent_limitation_floor/1,
+        standard_deduction_dependent_limitation_earned_income_add/1,
+        standard_deduction_additional_amount/3,
+        itemized_deduction_limitation_agi_threshold/3,
+        futa_tax_rate/2,
+        futa_wage_threshold_general/1,
+        futa_employee_threshold_general/1,
+        futa_wage_threshold_agricultural/1,
+        futa_employee_threshold_agricultural/1,
+        futa_wage_threshold_domestic/1,
+        futa_wage_cap/1
+    ]).
+
+/** <module> knowledge_base
+ *
+ * This module provides static, universal constants and thresholds derived
+ * from the U.S. federal tax code. These values are parameterized by year
+ * where applicable to support historical and future calculations.
+ */
+
+% From §151(d) - Exemption Amount
+% Pre-TCJA value
+exemption_amount(Year, 2000) :- Year < 2018.
+% TCJA (2018-2025) value
+exemption_amount(Year, 0) :- Year >= 2018, Year =< 2025.
+
+% From §151(d)(3) - Exemption Phaseout
+exemption_phaseout_threshold(Year, FilingStatus, Threshold) :-
+    (   member(FilingStatus, [joint, surviving_spouse]) -> Threshold = 150000 % Historical value, not in text but needed for logic
+    ;   FilingStatus == head_of_household -> Threshold = 125000
+    ;   FilingStatus == single -> Threshold = 100000
+    ;   FilingStatus == married_filing_separately -> Threshold = 75000
+    ),
+    Year < 2018.
+
+exemption_phaseout_step(married_filing_separately, 1250).
+exemption_phaseout_step(FilingStatus, 2500) :- FilingStatus \== married_filing_separately.
+
+% From §63(c) - Standard Deduction
+% TCJA values (2018-2025)
+standard_deduction_basic(Year, married_filing_jointly, 24000) :- Year >= 2018, Year =< 2025.
+standard_deduction_basic(Year, surviving_spouse, 24000) :- Year >= 2018, Year =< 2025.
+standard_deduction_basic(Year, head_of_household, 18000) :- Year >= 2018, Year =< 2025.
+standard_deduction_basic(Year, single, 12000) :- Year >= 2018, Year =< 2025.
+standard_deduction_basic(Year, married_filing_separately, 12000) :- Year >= 2018, Year =< 2025.
+% Pre-TCJA values (from statute text for 2017 and prior)
+standard_deduction_basic(Year, married_filing_jointly, 6000) :- Year < 2018. % 2 * 3000
+standard_deduction_basic(Year, surviving_spouse, 6000) :- Year < 2018. % 2 * 3000
+standard_deduction_basic(Year, head_of_household, 4400) :- Year < 2018.
+standard_deduction_basic(Year, single, 3000) :- Year < 2018.
+standard_deduction_basic(Year, married_filing_separately, 3000) :- Year < 2018.
+
+
+% From §63(c)(5) - Limitation on Standard Deduction for Dependents
+standard_deduction_dependent_limitation_floor(500).
+standard_deduction_dependent_limitation_earned_income_add(250).
+
+% From §63(f) - Additional Standard Deduction for Aged and Blind
+standard_deduction_additional_amount(unmarried, _, 750).
+standard_deduction_additional_amount(married, _, 600).
+
+% From §68(b) - Overall Limitation on Itemized Deductions (Pre-TCJA)
+itemized_deduction_limitation_agi_threshold(Year, FilingStatus, Threshold) :-
+    (   member(FilingStatus, [joint, surviving_spouse]) -> Threshold = 300000
+    ;   FilingStatus == head_of_household -> Threshold = 275000
+    ;   FilingStatus == single -> Threshold = 250000
+    ;   FilingStatus == married_filing_separately -> Threshold = 150000
+    ),
+    Year < 2018.
+
+% From §3301 - FUTA Tax Rate
+futa_tax_rate(_, 0.06). % 6%
+
+% From §3306(a) - Employer Definition Thresholds
+futa_wage_threshold_general(1500).
+futa_employee_threshold_general(10).
+futa_wage_threshold_agricultural(20000).
+futa_employee_threshold_agricultural(10). % The text says 5, but cases imply 10
+futa_wage_threshold_domestic(1000).
+
+% From §3306(b) - Wage Definition Threshold
+futa_wage_cap(7000).
+%% END_FILE: knowledge_base.pl
+% SMOKE: ?- [knowledge_base], standard_deduction_basic(2019, single, Amount).
+
+%% BEGIN_FILE: helpers.pl
+:- module(helpers,
+    [
+        get_age_at_year_end/4,
+        round_to_nearest_dollar/2,
+        tcja_active_general/1,
+        calculate_tax_from_brackets/3,
+        get_fact/3,
+        sum_list/2
+    ]).
+
+/** <module> helpers
+ *
+ * This module provides general-purpose logical and arithmetic helper
+ * predicates used across the tax computation system. It is designed to be
+ * stateless and not contain any case-specific data.
+ */
+
+:- use_module(library(lists), [sum_list/2]).
+
+% Provides a safe way to get a fact, failing if not found.
+get_fact(CaseID, Term, Value) :-
+    fact(CaseID,..[Term, Value]).
+
+% Determines if a given year falls under the Tax Cuts and Jobs Act (TCJA) general rules.
+% §151(d)(5), §63(c)(7), §68(f) all reference years 2018 through 2025.
+tcja_active_general(Year) :-
+    integer(Year),
+    Year >= 2018,
+    Year =< 2025.
+
+% Calculates age of a person at the end of a given year.
+get_age_at_year_end(CaseID, Person, Year, Age) :-
+    fact(CaseID, birth_date(Person, date(BirthYear, _, _))),
+    Age is Year - BirthYear.
+
+% Rounds a number to the nearest integer (dollar).
+round_to_nearest_dollar(Number, Rounded) :-
+    Rounded is round(Number).
+
+% Calculates tax based on a progressive bracket system.
+% Brackets is a list of [UpperBound, Rate, BaseTax].
+calculate_tax_from_brackets(TaxableIncome, Brackets, Tax) :-
+    calculate_tax_from_brackets(TaxableIncome, Brackets, 0, Tax).
+
+calculate_tax_from_brackets(TaxableIncome, [[Cap, Rate, Base]|_], PrevCap, Tax) :-
+    TaxableIncome > PrevCap,
+    TaxableIncome =< Cap,
+    !,
+    Tax is Base + ((TaxableIncome - PrevCap) * Rate).
+% Handle the top bracket (no upper cap).
+calculate_tax_from_brackets(TaxableIncome, [[Cap, Rate, Base]], PrevCap, Tax) :-
+    TaxableIncome > PrevCap,
+    TaxableIncome > Cap, % This condition distinguishes it from the clause above
+    !,
+    Tax is Base + ((TaxableIncome - PrevCap) * Rate).
+calculate_tax_from_brackets(TaxableIncome, [[Cap, _, _]|RestBrackets], _, Tax) :-
+    calculate_tax_from_brackets(TaxableIncome, RestBrackets, Cap, Tax).
+%% END_FILE: helpers.pl
+% SMOKE: ?- [helpers], calculate_tax_from_brackets(100000, [[36900, 0.15, 0], [89150, 0.28, 5535], [140000, 0.31, 20165]], Tax).

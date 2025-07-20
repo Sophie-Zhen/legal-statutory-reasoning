@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s2_b_1_A_i_neg
+% Question: Section 2(b)(1)(A)(i) applies to Bob in 2018. Contradiction
+
+answer('s2_b_1_A_i_neg', Result) :- (s2_b_1_A_i("Bob",_,2018) -> Result = true ; Result = false).

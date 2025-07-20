@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s152_d_2_H_pos
+% Question: Alice bears a relationship to Bob under section 152(d)(2)(H) for the year 2018. Entailment
+
+answer('s152_d_2_H_pos', Result) :- (s152_d_2_H("Alice", "Bob", 2018, _, _, _) -> Result = true ; Result = false).

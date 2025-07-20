@@ -1,0 +1,50 @@
+[2025-06-27 12:45:03] ============================================================
+[2025-06-27 12:45:03] STARTING PROLOG PIPELINE EXECUTION
+[2025-06-27 12:45:03] ============================================================
+[2025-06-27 12:45:03] Initializing working directory...
+[2025-06-27 12:45:03] Working directory initialized successfully. Found 12 required files.
+[2025-06-27 12:45:03] Starting Prolog test execution (3 runs)...
+[2025-06-27 12:45:03] Starting Run 1/3...
+[2025-06-27 12:45:03] Executing: swipl -q -f /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl -t run_all_tests -g halt
+[2025-06-27 12:45:05] Run 1 completed successfully
+[2025-06-27 12:45:07] Starting Run 2/3...
+[2025-06-27 12:45:07] Executing: swipl -q -f /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl -t run_all_tests -g halt
+[2025-06-27 12:45:08] Run 2 completed successfully
+[2025-06-27 12:45:10] Starting Run 3/3...
+[2025-06-27 12:45:10] Executing: swipl -q -f /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl -t run_all_tests -g halt
+[2025-06-27 12:45:12] Run 3 completed successfully
+[2025-06-27 12:45:12] Prolog execution completed. Output saved to /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prolog_execution.log
+[2025-06-27 12:45:12] Running statistics analysis...
+[2025-06-27 12:45:12] Executing: /Users/sophie/miniconda3/envs/sara/bin/python /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/count_passed_cases.py
+[2025-06-27 12:45:12] Statistics analysis completed. Report saved to /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/statistics_report.txt
+[2025-06-27 12:45:12] Generating summary report...
+[2025-06-27 12:45:12] Summary report generated: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_summary.txt
+[2025-06-27 12:45:12] ============================================================
+[2025-06-27 12:45:12] PIPELINE EXECUTION COMPLETED SUCCESSFULLY
+[2025-06-27 12:45:12] ============================================================
+[2025-06-27 12:45:12] Summary report: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_summary.txt
+[2025-06-27 12:45:12] Prolog output: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prolog_execution.log
+[2025-06-27 12:45:12] Statistics: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/statistics_report.txt
+[2025-06-27 12:45:12] Pipeline log: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_log.txt
+[2025-06-27 12:56:42] ============================================================
+[2025-06-27 12:56:42] STARTING PROLOG PIPELINE EXECUTION
+[2025-06-27 12:56:42] ============================================================
+[2025-06-27 12:56:42] Initializing working directory...
+[2025-06-27 12:56:42] Working directory initialized successfully. Found 12 required files.
+[2025-06-27 12:56:42] Starting Prolog test execution (1 run)...
+[2025-06-27 12:56:42] Starting Run 1/1...
+[2025-06-27 12:56:42] Executing: swipl -q -f /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/tests.pl -t run_all_tests -g halt
+[2025-06-27 12:56:44] Run 1 completed successfully
+[2025-06-27 12:56:44] Prolog execution completed. Output saved to /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prolog_execution.log
+[2025-06-27 12:56:44] Running statistics analysis...
+[2025-06-27 12:56:44] Executing: /Users/sophie/miniconda3/envs/sara/bin/python /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/count_passed_cases.py
+[2025-06-27 12:56:44] Statistics analysis completed. Report saved to /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/statistics_report.txt
+[2025-06-27 12:56:44] Generating summary report...
+[2025-06-27 12:56:44] Summary report generated: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_summary.txt
+[2025-06-27 12:56:44] ============================================================
+[2025-06-27 12:56:44] PIPELINE EXECUTION COMPLETED SUCCESSFULLY
+[2025-06-27 12:56:44] ============================================================
+[2025-06-27 12:56:44] Summary report: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_summary.txt
+[2025-06-27 12:56:44] Prolog output: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prolog_execution.log
+[2025-06-27 12:56:44] Statistics: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/statistics_report.txt
+[2025-06-27 12:56:44] Pipeline log: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_log.txt

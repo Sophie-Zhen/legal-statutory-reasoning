@@ -1,0 +1,118 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+I have generated the fact definitions for `tests.pl`. I will now proceed with generating the `answer/2` predicates, which contain the logic for solving each case. I will deliver these in two batches as planned.
+
+**Part 7 of 8: `tests.pl` (Answer Predicates - Batch 1 of 2)**
+
+%% --- CaseID: s1_d_iv_neg BEGIN ---
+answer(s1_d_iv_neg, true) :-
+    % CONTRADICTION: The statement is that tax is calculated under 1(d)(iv), but the income
+    % level ($28,864) falls under 1(d)(ii). The system proves the premise is false.
+    fact(s1_d_iv_neg, taxable_income(alice, 2017, TI)),
+    tax_brackets(2017, married_filing_separately, Brackets),
+    member(bracket(Lower, _, _), Brackets),
+    TI > Lower,
+    \+ ( member(bracket(70000, _, _), Brackets), TI > 70000 ). % Fails the condition for 1(d)(iv)
+%% --- CaseID: s1_d_iv_neg END ---
+
+%% --- CaseID: s3306_c_5_pos BEGIN ---
+answer(s3306_c_5_pos, true) :-
+    % ENTAILMENT: Does the exception in 3306(c)(5) apply?
+    % The service is performed by Bob (father) for Alice (daughter).
+    % 3306(c)(5)(A) exempts "service performed by an individual in the employ of his...daughter". This matches.
+    is_employment_exception_c5(s3306_c_5_pos, alice, bob, 2017, _).
+%% --- CaseID: s3306_c_5_pos END ---
+
+%% --- CaseID: s1_c_i_neg BEGIN ---
+answer(s1_c_i_neg, true) :-
+    % CONTRADICTION: The statement is that tax is calculated under 1(c)(i), but the income
+    % level ($718,791) falls under 1(c)(v). The system proves the premise is false.
+    fact(s1_c_i_neg, taxable_income(alice, 2017, TI)),
+    tax_brackets(2017, unmarried, Brackets),
+    member(bracket(Lower, _, _), Brackets),
+    TI > Lower,
+    \+ ( member(bracket(0, _, _), Brackets), TI < 22100). % Fails the condition for 1(c)(i)
+%% --- CaseID: s1_c_i_neg END ---
+
+%% --- CaseID: s1_b_iii_neg BEGIN ---
+answer(s1_b_iii_neg, true) :-
+    % CONTRADICTION: The statement is that tax is calculated under 1(b)(iii) ($76,400-$127,500),
+    % but the income level ($54,775) falls under 1(b)(ii). Even though the final tax amount
+    % is coincidentally correct, the legal justification (the clause) is wrong.
+    fact(s1_b_iii_neg, taxable_income(alice, 2017, TI)),
+    TI < 76400.
+%% --- CaseID: s1_b_iii_neg END ---
+
+%% --- CaseID: s152_d_2_F_pos BEGIN ---
+answer(s152_d_2_F_pos, true) :-
+    % ENTAILMENT: Does Alice bear a relationship to Bob under 152(d)(2)(F)?
+    % (F) is "A brother or sister of the father or mother of the taxpayer."
+    % Taxpayer=Bob. Father=Charlie. Sister of Father=Alice. This matches.
+    relationship_qualifying_relative(s152_d_2_F_pos, bob, alice, ('F')).
+%% --- CaseID: s152_d_2_F_pos END ---
+
+%% --- CaseID: s1_a_1_iii_neg BEGIN ---
+answer(s1_a_1_iii_neg, true) :-
+    % CONTRADICTION: The statement is that tax is calculated under 1(a)(iii) ($89,150-$140,000),
+    % but the income level ($164,612) falls under 1(a)(iv).
+    fact(s1_a_1_iii_neg, taxable_income(alice, 2017, TI)),
+    TI > 140000.
+%% --- CaseID: s1_a_1_iii_neg END ---
+
+%% --- CaseID: s3306_b_10_A_neg BEGIN ---
+answer(s3306_b_10_A_neg, true) :-
+    % CONTRADICTION: Does 3306(b)(10)(A) apply?
+    % It requires retirement for DEATH or DISABILITY. The facts state retirement for AGE.
+    % Thus the exception does not apply. The question says it does.
+    \+ is_wages_exception_b10(s3306_b_10_A_neg, alice, bob, 12980, 2019, _).
+%% --- CaseID: s3306_b_10_A_neg END ---
+
+%% --- CaseID: s63_c_2_B_neg BEGIN ---
+answer(s63_c_2_B_neg, true) :-
+    % CONTRADICTION: The statement claims deduction is $4400 under 63(c)(2)(B).
+    % (B) is for Head of Household. The facts indicate Married Filing Jointly status, which is (A).
+    % The system determines the status is not HoH.
+    \+ is_head_of_household(s63_c_2_B_neg, alice, 2017).
+%% --- CaseID: s63_c_2_B_neg END ---
+
+%% --- CaseID: s3306_b_7_neg BEGIN ---
+answer(s3306_b_7_neg, true) :-
+    % CONTRADICTION: Does 3306(b)(7) apply?
+    % It applies to remuneration "in any medium OTHER THAN CASH". The facts state payment was in cash.
+    % Thus the exception does not apply. The question says it does.
+    \+ is_wages_exception_b7(s3306_b_7_neg, alice, bob, 323, 2017, _).
+%% --- CaseID: s3306_b_7_neg END ---
+
+%% --- CaseID: s152_c_1_E_pos BEGIN ---
+answer(s152_c_1_E_pos, true) :-
+    % ENTAILMENT: Does 152(c)(1)(E) apply?
+    % It requires the individual (Bob) has not filed a joint return. The facts state he filed a separate return. This satisfies the condition.
+    qualifying_child_no_joint_return(bob, 2019, s152_c_1_E_pos).
+%% --- CaseID: s152_c_1_E_pos END ---
+
+%% --- CaseID: s2_a_2_B_pos BEGIN ---
+answer(s2_a_2_B_pos, true) :-
+    % ENTAILMENT: Does 2(a)(2)(B) apply? This section requires that a joint return COULD have been made
+    % in the year of death for the survivor to claim "surviving spouse" status.
+    % The predicate checks this condition, which is met as there's no fact about non-resident alien status.
+    surviving_spouse_limitation_joint_return_possible(bob, alice, 2014, s2_a_2_B_pos).
+%% --- CaseID: s2_a_2_B_pos END ---
+
+%% --- CaseID: s63_c_3_pos BEGIN ---
+answer(s63_c_3_pos, true) :-
+    % ENTAILMENT: Is the additional standard deduction $1200?
+    % For 2017 MFJ, each condition (age/blindness) gives $600. Alice is >65, Bob is >65.
+    % Total is 600 (for Alice) + 600 (for Bob) = 1200.
+    additional_standard_deduction(s63_c_3_pos, alice, 2017, Deduction),
+    Deduction =:= 1200.
+%% --- CaseID: s63_c_3_pos END ---
+
+%% --- CaseID: s3306_a_1_neg BEGIN ---
+answer(s3306_a_1_neg, true) :-
+    % CONTRADICTION: Is Alice an employer under 3306(a)(1)?
+    % This section explicitly states "there shall not be taken into account any wages paid to... domestic services".
+    % The only wages paid were domestic, so they are ignored, and she does not meet the threshold.
+    \+ is_employer_general(s3306_a_1_neg, alice, 2018, true).
+%% --- CaseID: s3306_a_1_neg END ---

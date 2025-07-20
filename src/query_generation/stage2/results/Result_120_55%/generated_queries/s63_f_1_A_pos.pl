@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s63_f_1_A_pos
+% Question: Section 63(f)(1)(A) applies to Alice in 2017. Entailment
+
+answer('s63_f_1_A_pos', Result) :- (s63_f_1_A("Alice", 2017) -> Result = true ; Result = false).

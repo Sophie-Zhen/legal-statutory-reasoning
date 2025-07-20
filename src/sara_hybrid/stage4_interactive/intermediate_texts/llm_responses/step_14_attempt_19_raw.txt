@@ -1,0 +1,7 @@
+%% --- CaseID: s1_d_iv_neg BEGIN ---
+answer('s1_d_iv_neg', Result) :-
+    (   \+ statute_1:tax_for_filing_status(married_filing_separately, 28864, 2017, iv, _)
+    ->  Result = true
+    ;   Result = false
+    ).
+%% --- CaseID: s1_d_iv_neg END ---

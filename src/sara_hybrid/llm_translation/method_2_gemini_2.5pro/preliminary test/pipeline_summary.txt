@@ -1,0 +1,25 @@
+PROLOG PIPELINE SUMMARY REPORT
+==================================================
+
+Generated: 2025-06-27 12:56:44
+Working Directory: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro
+
+FILE STATUS:
+---------------
+✓ tests.pl (59,151 bytes)
+✓ helpers.pl (9,352 bytes)
+✓ section1.pl (6,686 bytes)
+✓ section2.pl (19,096 bytes)
+✓ section63.pl (19,363 bytes)
+✓ section68.pl (3,557 bytes)
+✓ section151.pl (9,693 bytes)
+✓ section152.pl (15,318 bytes)
+✓ section7703.pl (7,888 bytes)
+✓ section3301.pl (1,273 bytes)
+✓ section3306.pl (23,797 bytes)
+
+EXECUTION LOGS:
+---------------
+✓ Prolog execution log: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/prolog_execution.log
+✓ Statistics report: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/statistics_report.txt
+✓ Pipeline log: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_2_gemini_2.5pro/pipeline_log.txt

@@ -1,0 +1,55 @@
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/knowledge_base.pl:84:
+Warning:    Clauses of knowledge_base:standard_deduction_amount/3 are not together in the source-file
+Warning:    Earlier definition at /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/knowledge_base.pl:81
+Warning:    Current predicate: knowledge_base:standard_d_amount/3
+Warning:    Use :- discontiguous knowledge_base:standard_deduction_amount/3. to suppress this message
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/llm_translation/method_3/prolog_codebase/run_tests.pl:78:
+Warning:    Singleton variable in branch: Error
+Warning:    Test is always true: var(Error)
+=== SARA Legal Reasoning Test Results ===
+Total test cases: 18
+
+=== SUCCESSFUL CASES ===
+s1_d_iv_neg: success -> true
+s3306_c_5_pos: success -> false
+s1_c_i_neg: success -> true
+s1_b_iii_neg: success -> true
+s152_d_2_F_pos: success -> false
+s1_a_1_iii_neg: success -> true
+s3306_b_10_A_neg: success -> true
+s63_c_2_B_neg: success -> true
+s3306_b_7_neg: success -> true
+s152_c_1_E_pos: success -> true
+s2_a_2_B_pos: success -> true
+s63_c_3_pos: success -> false
+s3306_a_1_neg: success -> true
+s7703_b_1_pos: success -> false
+s1_c_iv_pos: success -> true
+s3306_b_pos: success -> false
+s1_a_1_pos: success -> true
+s68_b_1_A_neg: success -> true
+
+=== FAILED CASES ===
+s1_d_iv_neg: error -> _2610
+s3306_c_5_pos: error -> _2592
+s1_c_i_neg: error -> _2574
+s1_b_iii_neg: error -> _2556
+s152_d_2_F_pos: error -> _2538
+s1_a_1_iii_neg: error -> _2520
+s3306_b_10_A_neg: error -> _2502
+s63_c_2_B_neg: error -> _2484
+s3306_b_7_neg: error -> _2466
+s152_c_1_E_pos: error -> _2448
+s2_a_2_B_pos: error -> _2430
+s63_c_3_pos: error -> _2412
+s3306_a_1_neg: error -> _2394
+s7703_b_1_pos: error -> _2376
+s1_c_iv_pos: error -> _2358
+s3306_b_pos: error -> _2340
+s1_a_1_pos: error -> _2322
+s68_b_1_A_neg: error -> _2304
+
+=== SUMMARY ===
+Successful: 18/18
+Failed: 18/18
+Success Rate: 100.00%

@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s151_d_5_pos
+% Question: The exemption amount of Alice's exemption is equal to $0 under section 151(d)(5). Entailment
+
+answer('s151_d_5_pos', Result) :- (s151_d_5(0, 2017) -> Result = true ; Result = false).

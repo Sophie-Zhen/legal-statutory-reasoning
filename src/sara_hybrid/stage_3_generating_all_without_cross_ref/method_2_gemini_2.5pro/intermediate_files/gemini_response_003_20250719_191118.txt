@@ -1,0 +1,264 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+This is the third response, containing the first set of statute modules: `section1.pl`, `section2.pl`, and `section63.pl`.
+
+%% BEGIN_FILE: section1.pl
+:- module(section1,
+    [
+        calculate_tax/4,
+        tax_brackets/3
+    ]).
+
+:- use_module(helpers, [calculate_tax_from_brackets/3, round_to_nearest_dollar/2, tcja_active_general/1]).
+:- use_module(library(lists), [reverse/2]).
+
+/** <module> section1
+ *
+ * Encodes §1, which imposes tax based on taxable income and filing status.
+ * It defines the tax brackets for different years and statuses.
+ */
+
+% calculate_tax/4(+FilingStatus, +TaxableIncome, +Year, -Tax)
+% Calculates the final tax owed. It fetches the appropriate brackets for the
+% year and filing status, then calculates the tax using a helper.
+calculate_tax(FilingStatus, TaxableIncome, Year, Tax) :-
+    tax_brackets(Year, FilingStatus, Brackets),
+    calculate_tax_from_brackets(TaxableIncome, Brackets, RawTax),
+    round_to_nearest_dollar(RawTax, Tax).
+
+% find_tax_in_bracket(+TaxableIncome, +ReversedBrackets, -Tax)
+% Helper for calculate_tax_from_brackets. Finds the correct bracket for the
+% income and calculates the tax. Brackets must be reversed (highest first).
+find_tax_in_bracket(TaxableIncome, [bracket(Lower, Rate, Base)|_], Tax) :-
+    TaxableIncome > Lower,
+    !, % Found the correct bracket, cut.
+    Tax is Base + (TaxableIncome - Lower) * Rate.
+find_tax_in_bracket(TaxableIncome, [_|RestBrackets], Tax) :-
+    find_tax_in_bracket(TaxableIncome, RestBrackets, Tax).
+
+% tax_brackets/3(+Year, +FilingStatus, -Brackets)
+% Defines tax brackets as a list of bracket(LowerBound, Rate, BaseTax).
+% These are based on the statute text and external tables for TCJA years.
+
+% --- Pre-TCJA Brackets (e.g., for 2017) ---
+
+% §1(a) Married Filing Jointly / Surviving Spouse
+tax_brackets(Year, married_filing_jointly, Brackets) :-
+    \+ tcja_active_general(Year),
+    Brackets = [ bracket(0, 0.15, 0), bracket(36900, 0.28, 5535), bracket(89150, 0.31, 20165), bracket(140000, 0.36, 35928.50), bracket(250000, 0.396, 75528.50) ].
+tax_brackets(Year, surviving_spouse, Brackets) :- \+ tcja_active_general(Year), tax_brackets(Year, married_filing_jointly, Brackets).
+
+% §1(b) Head of Household
+tax_brackets(Year, head_of_household, Brackets) :-
+    \+ tcja_active_general(Year),
+    Brackets = [ bracket(0, 0.15, 0), bracket(29600, 0.28, 4440), bracket(76400, 0.31, 17544), bracket(127500, 0.36, 33385), bracket(250000, 0.396, 77485) ].
+
+% §1(c) Single
+tax_brackets(Year, single, Brackets) :-
+    \+ tcja_active_general(Year),
+    Brackets = [ bracket(0, 0.15, 0), bracket(22100, 0.28, 3315), bracket(53500, 0.31, 12107), bracket(115000, 0.36, 31172), bracket(250000, 0.396, 79772) ].
+
+% §1(d) Married Filing Separately
+tax_brackets(Year, married_filing_separately, Brackets) :-
+    \+ tcja_active_general(Year),
+    Brackets = [ bracket(0, 0.15, 0), bracket(18450, 0.28, 2767.50), bracket(44575, 0.31, 10082.50), bracket(70000, 0.36, 17964.25), bracket(125000, 0.396, 37764.25) ].
+
+% --- TCJA Brackets (2018-2025) ---
+% Based on 2019 IRS tax tables as a representative sample for TCJA years.
+
+tax_brackets(Year, married_filing_jointly, Brackets) :- tcja_active_general(Year), Brackets = [ bracket(0, 0.10, 0), bracket(19400, 0.12, 1940), bracket(78950, 0.22, 9086), bracket(168400, 0.24, 28765), bracket(321450, 0.32, 67205), bracket(408200, 0.35, 94725), bracket(612350, 0.37, 166997.5) ].
+tax_brackets(Year, surviving_spouse, Brackets) :- tcja_active_general(Year), tax_brackets(Year, married_filing_jointly, Brackets).
+
+tax_brackets(Year, head_of_household, Brackets) :- tcja_active_general(Year), Brackets = [ bracket(0, 0.10, 0), bracket(13850, 0.12, 1385), bracket(52850, 0.22, 6065), bracket(84200, 0.24, 12962), bracket(160700, 0.32, 31322), bracket(204100, 0.35, 45210), bracket(510300, 0.37, 152380) ].
+
+tax_brackets(Year, single, Brackets) :- tcja_active_general(Year), Brackets = [ bracket(0, 0.10, 0), bracket(9700, 0.12, 970), bracket(39475, 0.22, 4543), bracket(84200, 0.24, 14382.5), bracket(160725, 0.32, 33603), bracket(204100, 0.35, 49335.5), bracket(510300, 0.37, 156235.25) ].
+
+tax_brackets(Year, married_filing_separately, Brackets) :- tcja_active_general(Year), Brackets = [ bracket(0, 0.10, 0), bracket(9700, 0.12, 970), bracket(39475, 0.22, 4543), bracket(84200, 0.24, 14382.5), bracket(160725, 0.32, 33603), bracket(306175, 0.35, 47362.5), bracket(612350, 0.37, 83648.75) ].
+%% END_FILE: section1.pl
+% SMOKE: ?- [helpers, section1], calculate_tax(single, 100000, 2017, Tax).
+
+%% BEGIN_FILE: section2.pl
+:- module(section2,
+    [
+        is_surviving_spouse/3,
+        is_head_of_household/3,
+        surviving_spouse_joint_return_could_be_made/4
+    ]).
+
+:- use_module(helpers, [get_fact/3]).
+:- use_module(section151, [is_deduction_for_dependent_allowed/4]).
+:- use_module(section152, [is_dependent/4, is_qualifying_child/4, relationship_qualifying_relative/3, relationship_qualifying_relative_household_member/4]).
+:- use_module(section7703, [is_married/3]).
+
+/** <module> section2
+ *
+ * Encodes §2, defining "surviving spouse" and "head of household" statuses.
+ */
+
+% §2(a) Definition of surviving spouse
+is_surviving_spouse(CaseID, Taxpayer, Year) :-
+    is_surviving_spouse_requirements(CaseID, Taxpayer, Year),
+    \+ is_surviving_spouse_limitation(CaseID, Taxpayer, Year).
+
+is_surviving_spouse_requirements(CaseID, Taxpayer, Year) :-
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    fact(CaseID, death_date(Spouse, date(DeathYear, _, _))),
+    PrecedingYear1 is Year - 1,
+    PrecedingYear2 is Year - 2,
+    (DeathYear =:= PrecedingYear1 ; DeathYear =:= PrecedingYear2),
+    maintains_household_for_dependent_child(CaseID, Taxpayer, Year).
+
+maintains_household_for_dependent_child(CaseID, Taxpayer, Year) :-
+    is_dependent(CaseID, Taxpayer, Dependent, Year),
+    (fact(CaseID, relationship(Dependent, Taxpayer, son)) ; fact(CaseID, relationship(Dependent, Taxpayer, daughter))),
+    is_deduction_for_dependent_allowed(CaseID, Taxpayer, Dependent, Year),
+    fact(CaseID, principal_place_of_abode(Dependent, Location, Year)),
+    fact(CaseID, maintains_household(Taxpayer, Location, Year)),
+    fact(CaseID, cost_of_maintaining_household(Taxpayer, Year, PayerCost)),
+    fact(CaseID, cost_of_maintaining_household(total, Year, TotalCost)),
+    PayerCost > TotalCost / 2.
+
+is_surviving_spouse_limitation(CaseID, Taxpayer, Year) :-
+    is_married(CaseID, Taxpayer, Year) ;
+    (   fact(CaseID, spouse(Taxpayer, DeceasedSpouse)),
+        fact(CaseID, death_date(DeceasedSpouse, date(DeathYear, _, _))),
+        \+ surviving_spouse_joint_return_could_be_made(CaseID, Taxpayer, DeathYear)
+    ).
+
+% §2(a)(2)(B) - check if a joint return could have been made
+surviving_spouse_joint_return_could_be_made(CaseID, Taxpayer, Year) :-
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    \+ fact(CaseID, nonresident_alien(Taxpayer, Year)),
+    \+ fact(CaseID, nonresident_alien(Spouse, Year)).
+
+% §2(b) Definition of head of household
+is_head_of_household(CaseID, Taxpayer, Year) :-
+    is_head_of_household_requirements(CaseID, Taxpayer, Year),
+    \+ is_head_of_household_limitation(CaseID, Taxpayer, Year).
+
+is_head_of_household_requirements(CaseID, Taxpayer, Year) :-
+    \+ is_married(CaseID, Taxpayer, Year),
+    \+ is_surviving_spouse(CaseID, Taxpayer, Year),
+    (   maintains_household_for_qualifying_person(CaseID, Taxpayer, Year)
+    ;   maintains_household_for_parent(CaseID, Taxpayer, Year)
+    ).
+
+maintains_household_for_qualifying_person(CaseID, Taxpayer, Year) :-
+    (is_qualifying_child(CaseID, Taxpayer, Child, Year) -> QualifyingPerson = Child ; is_dependent(CaseID, Taxpayer, Other, Year), QualifyingPerson = Other),
+    fact(CaseID, principal_place_of_abode_more_than_half_year(QualifyingPerson, Location, Year)),
+    fact(CaseID, maintains_household(Taxpayer, Location, Year)),
+    fact(CaseID, cost_of_maintaining_household(Taxpayer, Year, PayerCost)),
+    fact(CaseID, cost_of_maintaining_household(total, Year, TotalCost)),
+    PayerCost > TotalCost / 2.
+
+maintains_household_for_parent(CaseID, Taxpayer, Year) :-
+    is_dependent(CaseID, Taxpayer, Parent, Year),
+    is_deduction_for_dependent_allowed(CaseID, Taxpayer, Parent, Year),
+    fact(CaseID, parent(Parent, Taxpayer)),
+    fact(CaseID, principal_place_of_abode(Parent, Location, Year)),
+    fact(CaseID, maintains_household(Taxpayer, Location, Year)).
+
+is_head_of_household_limitation(CaseID, Taxpayer, Year) :-
+    fact(CaseID, nonresident_alien(Taxpayer, Year));
+    (   is_dependent(CaseID, Taxpayer, Dependent, Year),
+        \+ relationship_qualifying_relative(CaseID, Taxpayer, Dependent),
+        relationship_qualifying_relative_household_member(CaseID, Taxpayer, Dependent, Year)
+    ).
+%% END_FILE: section2.pl
+% SMOKE: ?- [tests], assertz(fact(s2_a_2_B_pos, spouse('Bob', 'Alice'))), assertz(fact(s2_a_2_B_pos, death_date('Alice', date(2014, 7, 9)))), [helpers, section151, section152, section7703, section2], surviving_spouse_joint_return_could_be_made(s2_a_2_B_pos, 'Bob', 2014).
+
+%% BEGIN_FILE: section63.pl
+:- module(section63,
+    [
+        taxable_income/4,
+        standard_deduction/4,
+        calculate_basic_standard_deduction/4,
+        calculate_additional_standard_deduction/4,
+        itemized_deductions/4
+    ]).
+
+:- use_module(knowledge_base).
+:- use_module(helpers, [get_fact/3, get_age_at_year_end/4, tcja_active_general/1]).
+:- use_module(section151, [is_claimable_as_dependent/3, is_exemption_for_spouse_allowed/3, personal_exemption_deduction/4]).
+:- use_module(section7703, [is_married/3]).
+
+/** <module> section63
+ *
+ * Encodes §63, defining "taxable income". This involves choosing between
+ * standard and itemized deductions and calculating them.
+ */
+
+% §63(a) & (b) Taxable income defined
+taxable_income(CaseID, Payer, Year, TaxableIncome) :-
+    fact(CaseID, gross_income(Payer, Year, GrossIncome)),
+    % AGI is assumed to be GrossIncome unless specified.
+    (   fact(CaseID, takes_standard_deduction(Payer, Year))
+    ->  standard_deduction(CaseID, Payer, Year, StandardDeduction),
+        personal_exemption_deduction(CaseID, Payer, Year, PersonalExemptions),
+        TaxableIncome is max(0, GrossIncome - StandardDeduction - PersonalExemptions)
+    ;   itemized_deductions(CaseID, Payer, Year, FinalItemizedDeductions),
+        personal_exemption_deduction(CaseID, Payer, Year, PersonalExemptions),
+        TaxableIncome is max(0, GrossIncome - FinalItemizedDeductions - PersonalExemptions)
+    ).
+
+% §63(d) Itemized deductions
+itemized_deductions(CaseID, Payer, Year, FinalDeductions) :-
+    fact(CaseID, itemized_deductions(Payer, Year, InitialDeductions)),
+    % This is where §68 limitation would be applied.
+    % For now, we assume the provided value is final.
+    FinalDeductions = InitialDeductions.
+
+% §63(c) Standard deduction
+standard_deduction(CaseID, Payer, Year, TotalStandardDeduction) :-
+    is_eligible_for_standard_deduction(CaseID, Payer, Year), !,
+    calculate_basic_standard_deduction(CaseID, Payer, Year, Basic),
+    calculate_additional_standard_deduction(CaseID, Payer, Year, Additional),
+    TotalStandardDeduction is Basic + Additional.
+standard_deduction(_CaseID, _Payer, _Year, 0). % Not eligible
+
+is_eligible_for_standard_deduction(CaseID, Payer, Year) :-
+    \+ fact(CaseID, nonresident_alien(Payer, Year)),
+    \+ ( is_married(CaseID, Payer, Year),
+         fact(CaseID, filing_status(Payer, married_filing_separately, Year)),
+         fact(CaseID, spouse(Payer, Spouse)),
+         \+ fact(CaseID, takes_standard_deduction(Spouse, Year))
+       ).
+
+% §63(c)(2), (c)(5), (c)(7) Basic standard deduction
+calculate_basic_standard_deduction(CaseID, Payer, Year, BasicDeduction) :-
+    (   is_claimable_as_dependent(CaseID, Payer, Year)
+    ->  standard_deduction_dependent_limitation_floor(Floor),
+        standard_deduction_dependent_limitation_earned_income_add(Add),
+        ( fact(CaseID, earned_income(Payer, Year, EarnedIncome)) -> LimitCeiling is Add + EarnedIncome ; LimitCeiling = Add ),
+        BasicDeduction is max(Floor, LimitCeiling)
+    ;   fact(CaseID, filing_status(Payer, FilingStatus, Year)),
+        standard_deduction_basic(Year, FilingStatus, BasicDeduction)
+    ).
+
+% §63(f), (c)(3) Additional standard deduction
+calculate_additional_standard_deduction(CaseID, Payer, Year, TotalAdditional) :-
+    get_additional_for_self(CaseID, Payer, Year, SelfAmount),
+    get_additional_for_spouse(CaseID, Payer, Year, SpouseAmount),
+    TotalAdditional is SelfAmount + SpouseAmount.
+
+get_additional_for_self(CaseID, Payer, Year, Amount) :-
+    ( is_married(CaseID, Payer, Year) -> MaritalCategory = married ; MaritalCategory = unmarried ),
+    standard_deduction_additional_amount(MaritalCategory, Year, PerItemAmount),
+    ( get_age_at_year_end(CaseID, Payer, Year, Age), Age >= 65 -> AgedAmount = PerItemAmount ; AgedAmount = 0 ),
+    ( fact(CaseID, is_blind(Payer, Year)) -> BlindAmount = PerItemAmount ; BlindAmount = 0 ),
+    Amount is AgedAmount + BlindAmount.
+
+get_additional_for_spouse(CaseID, Payer, Year, Amount) :-
+    (   fact(CaseID, spouse(Payer, Spouse)),
+        fact(CaseID, filing_status(Payer, married_filing_jointly, Year)),
+        is_exemption_for_spouse_allowed(CaseID, Payer, Year)
+    ->  standard_deduction_additional_amount(married, Year, PerItemAmount),
+        ( get_age_at_year_end(CaseID, Spouse, Year, SpouseAge), SpouseAge >= 65 -> AgedAmount = PerItemAmount ; AgedAmount = 0 ),
+        ( (fact(CaseID, is_blind(Spouse, Year)) ; (fact(CaseID, death_date(Spouse, date(Year,_,_))), fact(CaseID, is_blind_at_death(Spouse)))) -> BlindAmount = PerItemAmount ; BlindAmount = 0 ),
+        Amount is AgedAmount + BlindAmount
+    ;   Amount = 0
+    ).
+%% END_FILE: section63.pl
+% SMOKE: ?- [tests], [knowledge_base, helpers, section151, section7703, section63], standard_deduction(tax_case_89, 'Alice', 2018, SD).

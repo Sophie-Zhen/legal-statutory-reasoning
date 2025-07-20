@@ -1,0 +1,330 @@
+{
+  "analysis_date": "2025-07-14T23:43:42.181025",
+  "summary": {
+    "total_passed_cases": 48,
+    "passed_without_facts": 26,
+    "passed_with_facts": 22,
+    "missing_prolog_files": 0,
+    "proportion_without_facts": 0.5416666666666666,
+    "proportion_with_facts": 0.4583333333333333
+  },
+  "cases_without_facts": [
+    {
+      "case_id": "s152_d_2_H_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s2_a_1_B_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s68_a_2_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_c_2_A_i_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s152_c_2_A_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_f_2_B_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s7703_a_1_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s3306_b_2_C_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s3306_c_1_B_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s68_b_1_C_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_f_1_A_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s2_b_1_A_i_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s2_b_3_A_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s2_b_1_A_i_II_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_b_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_c_2_A_i_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_c_7_i_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s1_c_iii_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_c_6_D_pos",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s1_a_2_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_f_2_B_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s2_b_1_A_i_I_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s63_c_2_A_ii_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s3306_c_1_B_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s2_b_1_A_ii_neg",
+      "fact_count": 0,
+      "facts": []
+    },
+    {
+      "case_id": "s3306_c_10_B_neg",
+      "fact_count": 0,
+      "facts": []
+    }
+  ],
+  "cases_with_facts": [
+    {
+      "case_id": "s152_d_2_A_neg",
+      "fact_count": 4,
+      "facts": [
+        "fact(s152_d_2_A_neg, relationship_qualifying_child(alice, bob, s152_d_2_A_neg)).",
+        "fact(s152_d_2_A_neg, relationship_qualifying_relative(alice, bob, s152_d_2_A_neg)).",
+        "fact(s152_d_2_A_neg, relationship_qualifying_child(bob, alice, s152_d_2_A_neg))."
+      ]
+    },
+    {
+      "case_id": "s1_b_pos",
+      "fact_count": 2,
+      "facts": [
+        "fact(s1_b_pos, is_head_of_household(alice, s1_b_pos, 2017)).",
+        "fact(s1_b_pos, taxable_income(alice, s1_b_pos, 2017, 97407))."
+      ]
+    },
+    {
+      "case_id": "s1_b_neg",
+      "fact_count": 3,
+      "facts": [
+        "fact(s1_b_neg, is_married_a(alice, s1_b_neg, 2017)).",
+        "fact(s1_b_neg, taxable_income(alice, s1_b_neg, 2017, 554313)).",
+        "fact(s1_b_neg, filing_status(alice, s1_b_neg, 2017, married_filing_separately))."
+      ]
+    },
+    {
+      "case_id": "s3306_c_16_neg",
+      "fact_count": 3,
+      "facts": [
+        "fact(s3306_c_16_neg, is_wages(73200, united_states_government, alice, 2017)).",
+        "fact(s3306_c_16_neg, is_employer(united_states_government, 2017, s3306_c_16_neg)).",
+        "fact(s3306_c_16_neg, is_employment(service_as_employee, united_states_government, alice, 2017))."
+      ]
+    },
+    {
+      "case_id": "s3306_c_B_pos",
+      "fact_count": 2,
+      "facts": [
+        "fact(s3306_c_B_pos, is_employer(alice, 2017, s3306_c_B_pos)).",
+        "fact(s3306_c_B_pos, is_wages(3200, alice, bob, 2017))."
+      ]
+    },
+    {
+      "case_id": "s1_d_pos",
+      "fact_count": 3,
+      "facts": [
+        "fact(s1_d_pos, is_married_a(alice, s1_d_pos, 2017)).",
+        "fact(s1_d_pos, taxable_income(alice, s1_d_pos, 2017, 554313)).",
+        "fact(s1_d_pos, filing_status(alice, s1_d_pos, 2017, married_filing_separately))."
+      ]
+    },
+    {
+      "case_id": "s1_a_2_iv_pos",
+      "fact_count": 2,
+      "facts": [
+        "fact(s1_a_2_iv_pos, is_surviving_spouse(alice, s1_a_2_iv_pos, 2017)).",
+        "fact(s1_a_2_iv_pos, taxable_income(alice, s1_a_2_iv_pos, 2017, 236422))."
+      ]
+    },
+    {
+      "case_id": "s3306_c_11_neg",
+      "fact_count": 3,
+      "facts": [
+        "fact(s3306_c_11_neg, is_wages(73200, state_of_maryland, alice, 2017)).",
+        "fact(s3306_c_11_neg, is_employer(state_of_maryland, 2017, s3306_c_11_neg)).",
+        "fact(s3306_c_11_neg, is_employment(service, state_of_maryland, alice, 2017))."
+      ]
+    },
+    {
+      "case_id": "s1_a_2_iv_neg",
+      "fact_count": 2,
+      "facts": [
+        "fact(s1_a_2_iv_neg, filing_status(alice, s1_a_2_iv_neg, 2017, surviving_spouse)).",
+        "fact(s1_a_2_iv_neg, taxable_income(alice, s1_a_2_iv_neg, 2017, 615572))."
+      ]
+    },
+    {
+      "case_id": "s3306_c_7_neg",
+      "fact_count": 2,
+      "facts": [
+        "fact(s3306_c_7_neg, is_wages(73200, berthas_mussels, alice, 2017)).",
+        "fact(s3306_c_7_neg, is_employer(berthas_mussels, 2017, s3306_c_7_neg))."
+      ]
+    },
+    {
+      "case_id": "s1_d_ii_neg",
+      "fact_count": 3,
+      "facts": [
+        "fact(s1_d_ii_neg, is_married_a(alice, s1_d_ii_neg, 2017)).",
+        "fact(s1_d_ii_neg, taxable_income(alice, s1_d_ii_neg, 2017, 113580)).",
+        "fact(s1_d_ii_neg, filing_status(alice, s1_d_ii_neg, 2017, married_filing_separately))."
+      ]
+    },
+    {
+      "case_id": "s3306_c_16_pos",
+      "fact_count": 3,
+      "facts": [
+        "fact(s3306_c_16_pos, is_wages(73200, international_monetary_fund, alice, 2017)).",
+        "fact(s3306_c_16_pos, is_employer(international_monetary_fund, 2017, s3306_c_16_pos)).",
+        "fact(s3306_c_16_pos, is_employment(service, international_monetary_fund, alice, 2017))."
+      ]
+    },
+    {
+      "case_id": "s151_d_1_neg",
+      "fact_count": 2,
+      "facts": [
+        "fact(s151_d_1_neg, personal_exemption_deduction(alice, s151_d_1_neg, 2015, Amount)).",
+        "fact(s151_d_1_neg, \\+ is_entitled_to_deduction_for_dependent(OtherTaxpayer, alice, s151_d_1_neg, 2015))."
+      ]
+    },
+    {
+      "case_id": "s1_d_ii_pos",
+      "fact_count": 3,
+      "facts": [
+        "fact(s1_d_ii_pos, is_married_a(alice, s1_d_ii_pos, 2017)).",
+        "fact(s1_d_ii_pos, taxable_income(alice, s1_d_ii_pos, 2017, 28864)).",
+        "fact(s1_d_ii_pos, filing_status(alice, s1_d_ii_pos, 2017, married_filing_separately))."
+      ]
+    },
+    {
+      "case_id": "s1_b_i_pos",
+      "fact_count": 2,
+      "facts": [
+        "fact(s1_b_i_pos, filing_status(alice, s1_b_i_pos, 2017, head_of_household)).",
+        "fact(s1_b_i_pos, taxable_income(alice, s1_b_i_pos, 2017, 9560))."
+      ]
+    },
+    {
+      "case_id": "s151_d_5_pos",
+      "fact_count": 1,
+      "facts": [
+        "fact(s151_d_5_pos, personal_exemption_deduction(alice, 2018, ExemptionAmount, '151(b)'))."
+      ]
+    },
+    {
+      "case_id": "s1_b_i_neg",
+      "fact_count": 2,
+      "facts": [
+        "fact(s1_b_i_neg, is_head_of_household(alice, s1_b_i_neg, 2017)).",
+        "fact(s1_b_i_neg, taxable_income(alice, s1_b_i_neg, 2017, 1172980))."
+      ]
+    },
+    {
+      "case_id": "s3306_c_6_neg",
+      "fact_count": 2,
+      "facts": [
+        "fact(s3306_c_6_neg, is_wages(73200, nandos_chicken, alice, 2017)).",
+        "fact(s3306_c_6_neg, is_employer(nandos_chicken, 2017, s3306_c_6_neg))."
+      ]
+    },
+    {
+      "case_id": "s1_a_2_pos",
+      "fact_count": 2,
+      "facts": [
+        "fact(s1_a_2_pos, is_surviving_spouse(alice, s1_a_2_pos, 2017)).",
+        "fact(s1_a_2_pos, taxable_income(alice, s1_a_2_pos, 2017, 70117))."
+      ]
+    },
+    {
+      "case_id": "s1_d_i_neg",
+      "fact_count": 3,
+      "facts": [
+        "fact(s1_d_i_neg, is_married_a(alice, s1_d_i_neg, 2017)).",
+        "fact(s1_d_i_neg, taxable_income(alice, s1_d_i_neg, 2017, 67285)).",
+        "fact(s1_d_i_neg, filing_status(alice, s1_d_i_neg, 2017, married_filing_separately))."
+      ]
+    },
+    {
+      "case_id": "s152_d_1_D_neg",
+      "fact_count": 3,
+      "facts": [
+        "fact(s152_d_1_D_neg, exemption_amount(alice, 2015, s152_d_1_D_neg, 2000)).",
+        "fact(s152_d_1_D_neg, relationship_qualifying_child(alice, bob, s152_d_1_D_neg)).",
+        "fact(s152_d_1_D_neg, is_qualifying_child(alice, bob, s152_d_1_D_neg, 2015))."
+      ]
+    },
+    {
+      "case_id": "s1_c_iii_neg",
+      "fact_count": 1,
+      "facts": [
+        "fact(s1_c_iii_neg, taxable_income(alice, s1_c_iii_neg, 2017, 22895))."
+      ]
+    }
+  ],
+  "missing_files": []
+}

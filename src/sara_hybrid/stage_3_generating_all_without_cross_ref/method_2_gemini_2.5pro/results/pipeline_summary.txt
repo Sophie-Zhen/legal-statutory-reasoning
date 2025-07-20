@@ -1,0 +1,22 @@
+=== Method 2 Gemini 2.5 Pro Pipeline Summary ===
+
+Model: gemini-2.5-pro
+Total iterations: 10
+Total LLM responses: 10
+Total files generated: 16
+Files passing smoke tests: 16
+Final success rate: 100.0%
+
+=== Final Successful Files ===
+✅ section3306.pl
+✅ knowledge_base.pl
+✅ section68.pl
+✅ section63.pl
+✅ section151.pl
+✅ section2.pl
+✅ section152.pl
+✅ section1.pl
+✅ section7703.pl
+✅ tests.pl
+✅ section3301.pl
+✅ helpers.pl

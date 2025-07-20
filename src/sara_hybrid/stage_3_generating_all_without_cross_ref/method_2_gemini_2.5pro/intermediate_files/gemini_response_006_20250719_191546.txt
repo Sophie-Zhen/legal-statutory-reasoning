@@ -1,0 +1,263 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+This is the sixth response, containing the module declaration and all `fact/2` definitions for the `tests.pl` file.
+
+%% BEGIN_FILE: tests.pl
+:- module(tests,
+    [
+        fact/2,
+        answer/2,
+        run_tests/0
+    ]).
+
+:- use_module(helpers).
+:- use_module(section1).
+:- use_module(section2).
+:- use_module(section63).
+:- use_module(section68).
+:- use_module(section151).
+:- use_module(section152).
+:- use_module(section3301).
+:- use_module(section3306).
+:- use_module(section7703).
+
+:- dynamic fact/2.
+
+% =============================================================================
+% FACTS
+% =============================================================================
+
+%% --- CaseID: s1_d_iv_neg BEGIN ---
+fact(s1_d_iv_neg, married('Alice', _, 2017)).
+fact(s1_d_iv_neg, taxable_income('Alice', 2017, 28864)).
+fact(s1_d_iv_neg, filing_status('Alice', married_filing_separately, 2017)).
+%% --- CaseID: s1_d_iv_neg END ---
+
+%% --- CaseID: s3306_c_5_pos BEGIN ---
+fact(s3306_c_5_pos, paid('Alice', 'Bob', 3200, 2017)).
+fact(s3306_c_5_pos, relationship('Bob', 'Alice', father)).
+fact(s3306_c_5_pos, service_performed('Bob', 'Alice', 2017)).
+fact(s3306_c_5_pos, location_of_service(usa, 2017)).
+%% --- CaseID: s3306_c_5_pos END ---
+
+%% --- CaseID: s1_c_i_neg BEGIN ---
+fact(s1_c_i_neg, taxable_income('Alice', 2017, 718791)).
+fact(s1_c_i_neg, filing_status('Alice', single, 2017)).
+%% --- CaseID: s1_c_i_neg END ---
+
+%% --- CaseID: s1_b_iii_neg BEGIN ---
+fact(s1_b_iii_neg, filing_status('Alice', head_of_household, 2017)).
+fact(s1_b_iii_neg, taxable_income('Alice', 2017, 54775)).
+%% --- CaseID: s1_b_iii_neg END ---
+
+%% --- CaseID: s152_d_2_F_pos BEGIN ---
+fact(s152_d_2_F_pos, relationship('Charlie', 'Bob', father)).
+fact(s152_d_2_F_pos, relationship('Alice', 'Charlie', sister)).
+%% --- CaseID: s152_d_2_F_pos END ---
+
+%% --- CaseID: s1_a_1_iii_neg BEGIN ---
+fact(s1_a_1_iii_neg, married('Alice', _, 2017)).
+fact(s1_a_1_iii_neg, filing_status('Alice', married_filing_jointly, 2017)).
+fact(s1_a_1_iii_neg, taxable_income('Alice', 2017, 164612)).
+%% --- CaseID: s1_a_1_iii_neg END ---
+
+%% --- CaseID: s3306_b_10_A_neg BEGIN ---
+fact(s3306_b_10_A_neg, employed('Alice', 'Bob', 2019)).
+fact(s3306_b_10_A_neg, payment_termination_reason('Bob', retirement_age)).
+fact(s3306_b_10_A_neg, paid('Alice', 'Bob', 12980, 2019)).
+%% --- CaseID: s3306_b_10_A_neg END ---
+
+%% --- CaseID: s63_c_2_B_neg BEGIN ---
+fact(s63_c_2_B_neg, gross_income('Alice', 2017, 33200)).
+fact(s63_c_2_B_neg, married('Alice', 'Bob', 2017)).
+fact(s63_c_2_B_neg, spouse('Alice', 'Bob')).
+fact(s63_c_2_B_neg, filing_status('Alice', married_filing_jointly, 2017)).
+%% --- CaseID: s63_c_2_B_neg END ---
+
+%% --- CaseID: s3306_b_7_neg BEGIN ---
+fact(s3306_b_7_neg, business('Alice', typewriter_factory)).
+fact(s3306_b_7_neg, employee('Bob', 'Alice')).
+fact(s3306_b_7_neg, payment('Alice', 'Bob', 323, 2017, cash, house_painting)).
+fact(s3306_b_7_neg, not_in_course_of_business('Alice', house_painting)).
+%% --- CaseID: s3306_b_7_neg END ---
+
+%% --- CaseID: s152_c_1_E_pos BEGIN ---
+fact(s152_c_1_E_pos, relationship('Bob', 'Alice', son)).
+fact(s152_c_1_E_pos, lived_in_same_home('Alice', 'Bob', 2019)).
+fact(s152_c_1_E_pos, married('Bob', 'Charlie', 2019)).
+fact(s152_c_1_E_pos, spouse('Bob', 'Charlie')).
+fact(s152_c_1_E_pos, filing_status('Bob', married_filing_separately, 2019)).
+fact(s152_c_1_E_pos, filing_status('Charlie', married_filing_separately, 2019)).
+%% --- CaseID: s152_c_1_E_pos END ---
+
+%% --- CaseID: s2_a_2_B_pos BEGIN ---
+fact(s2_a_2_B_pos, married('Alice', 'Bob', 1992)).
+fact(s2_a_2_B_pos, spouse('Bob', 'Alice')).
+fact(s2_a_2_B_pos, death_date('Alice', date(2014, 7, 9))).
+%% --- CaseID: s2_a_2_B_pos END ---
+
+%% --- CaseID: s63_c_3_pos BEGIN ---
+fact(s63_c_3_pos, gross_income('Alice', 2017, 33200)).
+fact(s63_c_3_pos, married('Alice', 'Bob', 2017)).
+fact(s63_c_3_pos, spouse('Alice', 'Bob')).
+fact(s63_c_3_pos, filing_status('Alice', married_filing_jointly, 2017)).
+fact(s63_c_3_pos, birth_date('Alice', date(1950, 1, 1))).
+fact(s63_c_3_pos, birth_date('Bob', date(1950, 1, 1))).
+%% --- CaseID: s63_c_3_pos END ---
+
+%% --- CaseID: s3306_a_1_neg BEGIN ---
+fact(s3306_a_1_neg, wages('Alice', 'Bob', 3200, 2017, domestic)).
+fact(s3306_a_1_neg, wages('Bob', 'Alice', 4500, 2018, general)).
+%% --- CaseID: s3306_a_1_neg END ---
+
+%% --- CaseID: s7703_b_1_pos BEGIN ---
+fact(s7703_b_1_pos, married('Alice', 'Bob', 2018)).
+fact(s7703_b_1_pos, spouse('Alice', 'Bob')).
+fact(s7703_b_1_pos, child('Charlie', 'Alice')).
+fact(s7703_b_1_pos, principal_place_of_abode_more_than_half_year('Charlie', home_of_alice, 2018)).
+fact(s7703_b_1_pos, maintains_household('Alice', home_of_alice, 2018)).
+fact(s7703_b_1_pos, filing_status('Alice', married_filing_separately, 2018)).
+fact(s7703_b_1_pos, birth_date('Charlie', date(2017, 9, 16))).
+fact(s7703_b_1_pos, birth_date('Alice', date(1990, 1, 1))).
+%% --- CaseID: s7703_b_1_pos END ---
+
+%% --- CaseID: s1_c_iv_pos BEGIN ---
+fact(s1_c_iv_pos, taxable_income('Alice', 2017, 210204)).
+fact(s1_c_iv_pos, filing_status('Alice', single, 2017)).
+%% --- CaseID: s1_c_iv_pos END ---
+
+%% --- CaseID: s3306_b_pos BEGIN ---
+fact(s3306_b_pos, paid('Alice', 'Bob', 2325, 2018)).
+fact(s3306_b_pos, service_performed('Bob', 'Alice', 2018)).
+%% --- CaseID: s3306_b_pos END ---
+
+%% --- CaseID: s1_a_1_pos BEGIN ---
+fact(s1_a_1_pos, married('Alice', _, 2017)).
+fact(s1_a_1_pos, filing_status('Alice', married_filing_jointly, 2017)).
+fact(s1_a_1_pos, taxable_income('Alice', 2017, 17330)).
+%% --- CaseID: s1_a_1_pos END ---
+
+%% --- CaseID: s68_b_1_A_neg BEGIN ---
+fact(s68_b_1_A_neg, gross_income('Alice', 2016, 567192)).
+fact(s68_b_1_A_neg, married('Alice', 'Spouse', 2016)).
+fact(s68_b_1_A_neg, spouse('Alice', 'Spouse')).
+fact(s68_b_1_A_neg, filing_status('Alice', married_filing_separately, 2016)).
+%% --- CaseID: s68_b_1_A_neg END ---
+
+%% --- CaseID: tax_case_89 BEGIN ---
+fact(tax_case_89, gross_income('Alice', 2018, 3200)).
+fact(tax_case_89, married('Alice', 'Bob', 2018)).
+fact(tax_case_89, spouse('Alice', 'Bob')).
+fact(tax_case_89, filing_status('Alice', married_filing_separately, 2018)).
+fact(tax_case_89, filing_status('Bob', married_filing_separately, 2018)).
+fact(tax_case_89, takes_standard_deduction('Alice', 2018)).
+fact(tax_case_89, takes_standard_deduction('Bob', 2018)).
+fact(tax_case_89, gross_income('Bob', 2018, 0)).
+fact(tax_case_89, is_blind('Alice', 2018)).
+fact(tax_case_89, student_at('Alice', 'Johns Hopkins University', 2018)).
+fact(tax_case_89, birth_date('Alice', date(1990, 1, 1))).
+fact(tax_case_89, birth_date('Bob', date(1990, 1, 1))).
+%% --- CaseID: tax_case_89 END ---
+
+%% --- CaseID: tax_case_13 BEGIN ---
+fact(tax_case_13, relationship('Alice', 'Bob', daughter)).
+fact(tax_case_13, child('Alice', 'Bob')).
+fact(tax_case_13, gross_income('Bob', 2017, 53249)).
+fact(tax_case_13, employer_type('Johns Hopkins University', school)).
+fact(tax_case_13, student_at('Alice', 'Johns Hopkins University', 2017)).
+fact(tax_case_13, principal_place_of_abode('Alice', home_of_bob, 2017)).
+fact(tax_case_13, principal_place_of_abode('Bob', home_of_bob, 2017)).
+fact(tax_case_13, lived_together_more_than_half_year('Alice', 'Bob', 2017)).
+fact(tax_case_13, takes_standard_deduction('Bob', 2017)).
+fact(tax_case_13, birth_date('Bob', date(1970, 1, 1))).
+fact(tax_case_13, birth_date('Alice', date(1995, 1, 1))).
+fact(tax_case_13, maintains_household('Bob', home_of_bob, 2017)).
+fact(tax_case_13, cost_of_maintaining_household('Bob', 2017, 100)).
+fact(tax_case_13, cost_of_maintaining_household(total, 2017, 100)).
+%% --- CaseID: tax_case_13 END ---
+
+%% --- CaseID: tax_case_40 BEGIN ---
+fact(tax_case_40, paid('Alice', 'Bob', 3200, 2017)).
+fact(tax_case_40, relationship('Bob', 'Alice', father)).
+fact(tax_case_40, legally_separated('Alice', 'Charlie', 2017)).
+fact(tax_case_40, gross_income('Alice', 2017, 756420)).
+fact(tax_case_40, takes_standard_deduction('Alice', 2017)).
+fact(tax_case_40, birth_date('Alice', date(1980, 1, 1))).
+%% --- CaseID: tax_case_40 END ---
+
+%% --- CaseID: tax_case_26 BEGIN ---
+fact(tax_case_26, paid('Alice', 'Bob', 1513, 2019)).
+fact(tax_case_26, paid_termination('Alice', 'Bob', 298, 2019)).
+fact(tax_case_26, payment_termination_reason('Bob', disability)).
+fact(tax_case_26, gross_income('Alice', 2019, 567192)).
+fact(tax_case_26, relationship('Charlie', 'Alice', father)).
+fact(tax_case_26, principal_place_of_abode('Charlie', home_of_alice, 2019)).
+fact(tax_case_26, principal_place_of_abode('Alice', home_of_alice, 2019)).
+fact(tax_case_26, lived_together_more_than_half_year('Charlie', 'Alice', 2019)).
+fact(tax_case_26, maintains_household('Alice', home_of_alice, 2019)).
+fact(tax_case_26, cost_of_maintaining_household('Alice', 2019, 100)).
+fact(tax_case_26, cost_of_maintaining_household(total, 2019, 100)).
+fact(tax_case_26, gross_income('Charlie', 2019, 0)).
+fact(tax_case_26, takes_standard_deduction('Alice', 2019)).
+fact(tax_case_26, birth_date('Alice', date(1980, 1, 1))).
+fact(tax_case_26, birth_date('Charlie', date(1950, 1, 1))).
+%% --- CaseID: tax_case_26 END ---
+
+%% --- CaseID: tax_case_79 BEGIN ---
+fact(tax_case_79, married('Alice', 'Bob', 2020)).
+fact(tax_case_79, spouse('Alice', 'Bob')).
+fact(tax_case_79, filing_status('Alice', married_filing_jointly, 2020)).
+fact(tax_case_79, filing_status('Bob', married_filing_jointly, 2020)).
+fact(tax_case_79, gross_income('Alice', 2020, 103272)).
+fact(tax_case_79, gross_income('Bob', 2020, 10)).
+fact(tax_case_79, takes_standard_deduction('Alice', 2020)).
+fact(tax_case_79, takes_standard_deduction('Bob', 2020)).
+fact(tax_case_79, birth_date('Alice', date(1980, 1, 1))).
+fact(tax_case_79, birth_date('Bob', date(1980, 1, 1))).
+%% --- CaseID: tax_case_79 END ---
+
+%% --- CaseID: tax_case_70 BEGIN ---
+fact(tax_case_70, relationship('Bob', 'Alice', brother)).
+fact(tax_case_70, birth_date('Bob', date(2014, 1, 31))).
+fact(tax_case_70, gross_income('Alice', 2016, 567192)).
+fact(tax_case_70, married('Alice', 'Husband', 2016)).
+fact(tax_case_70, spouse('Alice', 'Husband')).
+fact(tax_case_70, gross_income('Husband', 2016, 0)).
+fact(tax_case_70, filing_status('Alice', married_filing_separately, 2016)).
+fact(tax_case_70, itemized_deductions('Alice', 2016, 100206)).
+fact(tax_case_70, potential_claimer('Husband')) :- fail.
+fact(tax_case_70, birth_date('Alice', date(1980, 1, 1))).
+fact(tax_case_70, birth_date('Husband', date(1980, 1, 1))).
+%% --- CaseID: tax_case_70 END ---
+
+%% --- CaseID: tax_case_63 BEGIN ---
+fact(tax_case_63, married('Alice', 'Bob', 2019)).
+fact(tax_case_63, spouse('Alice', 'Bob')).
+fact(tax_case_63, birth_date('Alice', date(1950, 3, 2))).
+fact(tax_case_63, birth_date('Bob', date(1955, 3, 3))).
+fact(tax_case_63, gross_income('Bob', 2019, 113580)).
+fact(tax_case_63, gross_income('Alice', 2019, 0)).
+fact(tax_case_63, filing_status('Alice', married_filing_jointly, 2019)).
+fact(tax_case_63, filing_status('Bob', married_filing_jointly, 2019)).
+fact(tax_case_63, takes_standard_deduction('Alice', 2019)).
+fact(tax_case_63, takes_standard_deduction('Bob', 2019)).
+%% --- CaseID: tax_case_63 END ---
+
+%% --- CaseID: tax_case_61 BEGIN ---
+fact(tax_case_61, relationship('Bob', 'Alice', father)).
+fact(tax_case_61, principal_place_of_abode('Bob', home_of_alice, 2015)).
+fact(tax_case_61, principal_place_of_abode('Alice', home_of_alice, 2015)).
+fact(tax_case_61, lived_together_more_than_half_year('Bob', 'Alice', 2015)).
+fact(tax_case_61, gross_income('Bob', 2015, 0)).
+fact(tax_case_61, gross_income('Alice', 2015, 102268)).
+fact(tax_case_61, takes_standard_deduction('Alice', 2015)).
+fact(tax_case_61, maintains_household('Alice', home_of_alice, 2015)).
+fact(tax_case_61, cost_of_maintaining_household('Alice', 2015, 100)).
+fact(tax_case_61, cost_of_maintaining_household(total, 2015, 100)).
+fact(tax_case_61, birth_date('Alice', date(1980, 1, 1))).
+fact(tax_case_61, birth_date('Bob', date(1950, 1, 1))).
+%% --- CaseID: tax_case_61 END ---
+%% END_FILE: tests.pl
+% SMOKE: ?- [tests], fact(s1_d_iv_neg, taxable_income('Alice', 2017, 28864)).

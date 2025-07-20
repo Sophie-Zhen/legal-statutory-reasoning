@@ -1,0 +1,496 @@
+Objective:
+I am an expert in Prolog and U.S. federal tax law. My goal is to generate a modular, extensible, and logically sound Prolog system that encodes U.S. federal tax statutes. The system must correctly evaluate an initial set of test cases provided in a single file, while being architected to handle future, unseen cases on an individual file basis.
+Inputs:
+Statutes: Nine sections of the Internal Revenue Code.
+Statute Dependency Graph: A set of xref/2 facts defining the direct dependencies between statute sections.
+Cases: Twenty-six case-facts, each with a CaseID, narrative facts, and a question.
+Crucial Requirement for Extensibility & Generalization:
+The generated Prolog codebase must serve as a robust, general-purpose logical model.
+Strict Separation of Logic and Data: The system must be structured into four distinct layers:
+knowledge_base.pl: Static, universal constants and thresholds.
+helpers.pl: General-purpose logical and arithmetic helpers.
+Statute Modules (section1.pl, etc.): Generalized predicates encoding the logic of the law.
+tests.pl: The test harness for the initial cases.
+Parameterized and General Statute Logic: Predicates in statute modules MUST NOT embed specific case data. All data must be passed via arguments.
+Dual-Mode Testing Strategy:
+While for these initial 25 training cases you must generate a single combined tests.pl file for efficiency, the structure must be explicitly designed to make extracting any single case straightforward.
+Clearly delineate each case's fact/2 and answer/2 definitions with comments (e.g., % --- Case ID: [CaseID] ---).
+This design must support a future mode where new, unseen cases are provided in individual Prolog files (one per case) without requiring structural changes to the core statute, helper, or knowledge base modules.
+
+Task Breakdown & Machine-Readable Output Format:
+Phase 0: Semantic Dependency Analysis of Legal Statutes
+Objective:
+Your task is to analyze the provided legal statutes and generate a comprehensive dependency graph. This graph must capture not only explicit textual references but also the underlying semantic and conceptual dependencies between sections. The final output must be a complete set of Prolog facts using the xref/2 predicate.
+Analysis Requirements:
+Your analysis must identify two types of dependencies:
+1. Explicit Cross-References: These are direct citations where one section explicitly mentions another by its number (e.g., §2 refers to "section 152", so a dependency from section2 to section152 exists).
+2. Implicit Semantic Dependencies: This is the most critical requirement. You must identify dependencies where one section is functionally reliant on a key legal term or concept that is formally defined in another section, even if that section is not explicitly cited by number.
+
+Your analysis MUST capture all explicit and implicit connections to be considered correct.
+
+Output Format:
+For each statute provided, generate a single xref/2 fact. The first argument is the section being analyzed, and the second is a list containing all of its direct explicit and implicit dependencies.
+Task:
+Based on the full text of the statutes provided (§1, §2, §63, §68, etc.), generate the complete and robust set of xref/2 Prolog facts that accurately represents all dependencies. Do not include self-references in the dependency list.
+
+Phase 1: Pre-computation (Statute-Case Mapping Using Dependency Graph as JSON)
+Before generating Prolog code, provide a structured mapping. For each CaseID:
+- Identify the initial "seed" section(s) from the case question.
+- Use transitive_deps/2 from Phase 0 to compute the full set of all relevant statute sections.
+- For this complete set, list the specific statute predicates required and map their arguments (slots) to the case facts.
+Output ONLY a single JSON array of objects in the following format. Do not include any other commentary or text.
+[
+  {
+    "CaseID": "case_id_string",
+    "QuestionType": "entailment | contradiction | how-much-tax",
+    "SeedSections": ["section_name_1", "section_name_2"],
+    "FullDeps": ["dep_1", "dep_2", "dep_3"],
+    "Predicates": [
+      {
+        "Module": "module_name",
+        "Name": "predicate_name",
+        "Arity": 4,
+        "Slots": {
+          "ArgumentName1": "value_or_source_fact",
+          "ArgumentName2": "value_or_source_fact",
+          "OutputArgument": null
+        }
+      }
+    ]
+  }
+]
+
+Phase 2: Prolog Encoding (Guided by SARA & Best Practices)
+Generate Prolog code that strictly adheres to the following specifications:
+File Structure & Modules:
+knowledge_base.pl: Static constants.
+helpers.pl: Logical/arithmetic helpers. Must implement, at minimum: get_age_at_year_end/4, round_to_nearest_dollar/2, tcja_active_general/1, calculate_tax_from_brackets/3.
+Statute Modules: One module per statute. Module imports (use_module) must be correctly derived from the dependency graph.
+tests.pl: The test harness for the initial 25 cases.
+Uniform Query Predicate (answer/2): In tests.pl, define answer(CaseID, Result) with explicitly different logic for the two question types:
+For "entailment" or "contradiction" questions: Result must be true or false.
+For "how-much-tax" questions: Result must be the final calculated numerical answer.
+Explicit Code Quality & Prolog Standards:
+Modules: All files must start with :- module(ModuleName, [ExportList]). and use :- use_module(module_name, ...). for dependencies. Do not use the library() wrapper for local module imports.
+Dynamic Predicates: tests.pl must begin with :- dynamic fact/2..
+Variables: Unused variables must be prefixed with _.
+Run-Ready Code: The final generated code must compile and execute in SWI-Prolog without requiring manual fixes.
+Generate all Prolog code according to the following strict formatting rules:
+File Markers: Every Prolog file's content must be wrapped in unique, parseable tags:
+%% BEGIN_FILE: filename.pl
+... Prolog code ...
+%% END_FILE: filename.pl
+Smoke Tests: After each file block, append a comment with a one-line Prolog smoke test to validate its core functionality.
+% SMOKE: ?- [filename], sample_predicate(arg, Result).
+Case Markers: In tests.pl, each case (facts and answer predicate) must be wrapped in its own parseable block:
+%% --- CaseID: case_id_string BEGIN ---
+fact(case_id_string, ...).
+answer(case_id_string, Result) :- ... .
+%% --- CaseID: case_id_string END ---
+
+Output Generation Plan (Explicit Chunking):
+If the output exceeds the length limit, generate the complete code across multiple responses by following this explicit plan. State which part you have completed at the end of each response.
+Response 1: The Statute-Case Mapping as a single JSON object.
+Response 2: The knowledge_base.pl and helpers.pl modules, each in its own tagged block with a smoke test.
+Response 3-5: The statute modules, each in its own tagged block with a smoke test.
+Response 6: The tests.pl file containing only the module declarations and all fact/2 definitions， with each case's facts wrapped in the specified %% --- CaseID: ... markers.
+Response 7 (and subsequent): The tests.pl file's answer/2 predicate definitions, delivered in batches of 5-7 cases, with each case's facts wrapped in the specified %% --- CaseID: ... markers.
+Final Response: A final JSON manifest of all generated files.
+{
+  "modules": ["knowledge_base.pl", "helpers.pl", "section1.pl", ...],
+  "test_suite": "tests.pl"
+}
+When you have completed all the responses, please append the exact marker at the end:
+<<ALL DONE>>
+
+Here are the statutes files:
+[Section 1
+---------
+§1. Tax imposed
+(a) Married individuals filing joint returns and surviving spouses
+There is hereby imposed on the taxable income of-
+    (1) every married individual (as defined in section 7703) who makes a single return jointly with his spouse, and
+    (2) every surviving spouse (as defined in section 2(a)),
+a tax determined in accordance with the following:
+    (i) 15% of taxable income if the taxable income is not over $36,900;
+    (ii) $5,535, plus 28% of the excess over $36,900 if the taxable income is over $36,900 but not over $89,150;
+    (iii) $20,165, plus 31% of the excess over $89,150 if the taxable income is over $89,150 but not over $140,000;
+    (iv) $35,928.50, plus 36% of the excess over $140,000 if the taxable income is over $140,000 but not over $250,000;
+    (v) $75,528.50, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000.
+(b) Heads of households
+There is hereby imposed on the taxable income of every head of a household (as defined in section 2(b)) a tax determined in accordance with the following:
+    (i) 15% of taxable income if the taxable income is not over $29,600;
+    (ii) $4,440, plus 28% of the excess over $29,600 if the taxable income is over $29,600 but not over $76,400;
+    (iii) $17,544, plus 31% of the excess over $76,400 if the taxable income is over $76,400 but not over $127,500;
+    (iv) $33,385, plus 36% of the excess over $127,500 if the taxable income is over $127,500 but not over $250,000;
+    (v) $77,485, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000.
+(c) Unmarried individuals (other than surviving spouses and heads of households)
+There is hereby imposed on the taxable income of every individual (other than a surviving spouse as defined in section 2(a) or the head of a household as defined in section 2(b)) who is not a married individual (as defined in section 7703) a tax determined in accordance with the following:
+    (i) 15% of taxable income if the taxable income is not over $22,100;
+    (ii) $3,315, plus 28% of the excess over $22,100 if the taxable income is over $22,100 but not over $53,500;
+    (iii) $12,107, plus 31% of the excess over $53,500 if the taxable income is over $53,500 but not over $115,000;
+    (iv) $31,172, plus 36% of the excess over $115,000 if the taxable income is over $115,000 but not over $250,000;
+    (v) $79,772, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000.
+(d) Married individuals filing separate returns
+There is hereby imposed on the taxable income of every married individual (as defined in section 7703) who does not make a single return jointly with his spouse, a tax determined in accordance with the following:
+    (i) 15% of taxable income if the taxable income is not over $18,450;
+    (ii) $2,767.50, plus 28% of the excess over $18,450 if the taxable income is over $18,450 but not over $44,575;
+    (iii) $10,082.50, plus 31% of the excess over $44,575 if the taxable income is over $44,575 but not over $70,000;
+    (iv) $17,964.25, plus 36% of the excess over $70,000 if the taxable income is over $70,000 but not over $125,000;
+    (v) $37,764.25, plus 39.6% of the excess over $125,000 if the taxable income is over $125,000
+
+Section 151
+-----------
+§151. Allowance of deductions for personal exemptions
+(a) Allowance of deductions
+In the case of an individual, the exemptions provided by this section shall be allowed as deductions in computing taxable income.
+(b) Taxpayer and spouse
+An exemption of the exemption amount for the taxpayer; and an additional exemption of the exemption amount for the spouse of the taxpayer if a joint return is not made by the taxpayer and his spouse, and if the spouse, for the calendar year in which the taxable year of the taxpayer begins, has no gross income and is not the dependent of another taxpayer.
+(c) Additional exemption for dependents
+An exemption of the exemption amount for each individual who is a dependent (as defined in section 152) of the taxpayer for the taxable year.
+(d) Exemption amount
+For purposes of this section-
+    (1) In general
+    Except as otherwise provided in this subsection, the term "exemption amount" means $2,000.
+    (2) Exemption amount disallowed in case of certain dependents
+    In the case of an individual with respect to whom a deduction under this section is allowable to another taxpayer for a taxable year beginning in the calendar year in which the individual's taxable year begins, the exemption amount applicable to such individual for such individual's taxable year shall be zero.
+    (3) Phaseout
+        (A) In general
+        In the case of any taxpayer whose adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b), the exemption amount shall be reduced by the applicable percentage.
+        (B) Applicable percentage
+        For purposes of subparagraph (A), the term "applicable percentage" means 2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b). In the case of a married individual filing a separate return, the preceding sentence shall be applied by substituting "$1,250" for "$2,500". In no event shall the applicable percentage exceed 100 percent.
+    (5) Special rules for taxable years 2018 through 2025
+    In the case of a taxable year beginning after December 31, 2017, and before January 1, 2026, the term "exemption amount" means zero.
+
+Section 152
+-----------
+§152. Dependent defined
+(a) In general
+For purposes of this subtitle, the term "dependent" means-
+    (1) a qualifying child, or
+    (2) a qualifying relative.
+(b) Exceptions
+For purposes of this section-
+    (1) Dependents ineligible
+    If an individual is a dependent of a taxpayer for any taxable year of such taxpayer beginning in a calendar year, such individual shall be treated as having no dependents for any taxable year of such individual beginning in such calendar year.
+    (2) Married dependents
+    An individual shall not be treated as a dependent of a taxpayer under subsection (a) if such individual has made a joint return with the individual's spouse for the taxable year beginning in the calendar year in which the taxable year of the taxpayer begins.
+(c) Qualifying child
+For purposes of this section-
+    (1) In general
+    The term "qualifying child" means, with respect to any taxpayer for any taxable year, an individual-
+        (A) who bears a relationship to the taxpayer described in paragraph (2),
+        (B) who has the same principal place of abode as the taxpayer for more than one-half of such taxable year,
+        (C) who meets the age requirements of paragraph (3), and
+        (E) who has not filed a joint return (other than only for a claim of refund) with the individual's spouse for the taxable year beginning in the calendar year in which the taxable year of the taxpayer begins.
+    (2) Relationship
+    For purposes of paragraph (1)(A), an individual bears a relationship to the taxpayer described in this paragraph if such individual is-
+        (A) a child of the taxpayer or a descendant of such a child, or
+        (B) a brother, sister, stepbrother, or stepsister of the taxpayer or a descendant of any such relative.
+    (3) Age requirements
+    For purposes of paragraph (1)(C), an individual meets the requirements of this paragraph if such individual is younger than the taxpayer claiming such individual as a qualifying child and is less than 25 years old at the end of the taxable year.
+(d) Qualifying relative
+For purposes of this section-
+    (1) In general
+    The term "qualifying relative" means, with respect to any taxpayer for any taxable year, an individual-
+        (A) who bears a relationship to the taxpayer described in paragraph (2),
+        (B) who has no income for the calendar year in which such taxable year begins, and
+        (D) who is not a qualifying child of such taxpayer or of any other taxpayer for any taxable year beginning in the calendar year in which such taxable year begins.
+    (2) Relationship
+    For purposes of paragraph (1)(A), an individual bears a relationship to the taxpayer described in this paragraph if the individual is any of the following with respect to the taxpayer:
+        (A) A child or a descendant of a child.
+        (B) A brother, sister, stepbrother, or stepsister.
+        (C) The father or mother, or an ancestor of either.
+        (D) A stepfather or stepmother.
+        (E) A son or daughter of a brother or sister of the taxpayer.
+        (F) A brother or sister of the father or mother of the taxpayer.
+        (G) A son-in-law, daughter-in-law, father-in-law, mother-in-law, brother-in-law, or sister-in-law.
+        (H) An individual (other than an individual who at any time during the taxable year was the spouse, determined without regard to section 7703, of the taxpayer) who, for the taxable year of the taxpayer, has the same principal place of abode as the taxpayer and is a member of the taxpayer's household.
+
+Section 2
+---------
+§2. Definitions and special rules
+(a) Definition of surviving spouse
+    (1) In general
+    For purposes of section 1, the term "surviving spouse" means a taxpayer-
+        (A) whose spouse died during either of the two years immediately preceding the taxable year, and
+        (B) who maintains as his home a household which constitutes for the taxable year the principal place of abode (as a member of such household) of a dependent (i) who (within the meaning of section 152) is a son, stepson, daughter, or stepdaughter of the taxpayer, and (ii) with respect to whom the taxpayer is entitled to a deduction for the taxable year under section 151.
+    For purposes of this paragraph, an individual shall be considered as maintaining a household only if over half of the cost of maintaining the household during the taxable year is furnished by such individual.
+    (2) Limitations
+    Notwithstanding paragraph (1), for purposes of section 1 a taxpayer shall not be considered to be a surviving spouse-
+        (A) if the taxpayer has remarried at any time before the close of the taxable year, or
+        (B) unless, for the taxpayer's taxable year during which his spouse died, a joint return could have been made. A husband and wife may make a single return jointly of income taxes, even though one of the spouses has neither gross income nor deductions, except that no joint return shall be made if either the husband or wife at any time during the taxable year is a nonresident alien.
+(b) Definition of head of household
+    (1) In general
+    An individual shall be considered a head of a household if, and only if, such individual is not married at the close of his taxable year, is not a surviving spouse (as defined in subsection (a)), and either-
+        (A) maintains as his home a household which constitutes for more than one-half of such taxable year the principal place of abode, as a member of such household, of-
+            (i) a qualifying child of the individual (as defined in section 152(c)), but not if such child-
+                (I) is married at the close of the taxpayer's taxable year, and
+                (II) is not a dependent of such individual by reason of section 152(b)(2) or
+            (ii) any other person who is a dependent of the taxpayer, if the taxpayer is entitled to a deduction for the taxable year for such person under section 151, or
+        (B) maintains a household which constitutes for such taxable year the principal place of abode of the father or mother of the taxpayer, if the taxpayer is entitled to a deduction for the taxable year for such father or mother under section 151.
+    For purposes of this paragraph, an individual shall be considered as maintaining a household only if over half of the cost of maintaining the household during the taxable year is furnished by such individual.
+    (2) Determination of status
+    Notwithstanding paragraph (1),
+        (A) an individual who is legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married;
+        (B) a taxpayer shall be considered as not married at the close of his taxable year if at any time during the taxable year his spouse is a nonresident alien; and
+        (C) a taxpayer shall be considered as married at the close of his taxable year if his spouse (other than a spouse described in subparagraph (B)) died during the taxable year.
+    (3) Limitations
+    Notwithstanding paragraph (1), for purposes of this subtitle a taxpayer shall not be considered to be a head of a household-
+        (A) if at any time during the taxable year he is a nonresident alien; or
+        (B) by reason of an individual who would not be a dependent for the taxable year but for subparagraph (H) of section 152(d)(2).
+
+Section 3301
+------------
+§3301. Rate of tax
+There is hereby imposed on every employer (as defined in section 3306(a)) for each calendar year an excise tax, with respect to having individuals in his employ, equal to 6 percent of the total wages (as defined in section 3306(b)) paid by such employer during the calendar year with respect to employment (as defined in section 3306(c)).
+
+Section 3306
+------------
+§3306. Definitions
+(a) Employer
+    (1) In general
+    The term "employer" means, with respect to any calendar year, any person who-
+        (A) during the calendar year or the preceding calendar year paid wages of $1,500 or more, or
+        (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day.
+    For purposes of this paragraph, there shall not be taken into account any wages paid to, or employment of, an employee performing domestic services referred to in paragraph (3).
+    (2) Agricultural labor
+    In the case of agricultural labor, the term "employer" means, with respect to any calendar year, any person who-
+        (A) during the calendar year or the preceding calendar year paid wages of $20,000 or more for agricultural labor, or
+        (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day.
+    (3) Domestic service
+    In the case of domestic service in a private home, local college club, or local chapter of a college fraternity or sorority, the term "employer" means, with respect to any calendar year, any person who during the calendar year or the preceding calendar year paid wages in cash of $1,000 or more for such service.
+    (4) Special rule
+    A person treated as an employer under paragraph (3) shall not be treated as an employer with respect to wages paid for any service other than domestic service referred to in paragraph (3) unless such person is treated as an employer under paragraph (1) or (2) with respect to such other service.
+(b) Wages
+For purposes of this chapter, the term "wages" means all remuneration for employment, including the cash value of all remuneration (including benefits) paid in any medium other than cash; except that such term shall not include-
+    (1) that part of the remuneration which, after remuneration (other than remuneration referred to in the succeeding paragraphs of this subsection) equal to $7,000 with respect to employment has been paid to an individual by an employer during any calendar year, is paid to such individual by such employer during such calendar year;
+    (2) the amount of any payment (including any amount paid by an employer for insurance or annuities, or into a fund, to provide for any such payment) made to, or on behalf of, an employee or any of his dependents under a plan or system established by an employer which makes provision for his employees generally (or for his employees generally and their dependents) or for a class or classes of his employees (or for a class or classes of his employees and their dependents), on account of-
+        (A) sickness or accident disability, or
+        (C) death;
+    (7) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business;
+    (10) any payment or series of payments by an employer to an employee or any of his dependents which is paid-
+        (A) upon or after the termination of an employee's employment relationship because of (i) death, or (ii) retirement for disability, and
+        (B) under a plan established by the employer which makes provision for his employees generally or a class or classes of his employees (or for such employees or class or classes of employees and their dependents),
+    other than any such payment or series of payments which would have been paid if the employee's employment relationship had not been so terminated;
+    (11) remuneration for agricultural labor paid in any medium other than cash;
+    (15) any payment made by an employer to a survivor or the estate of a former employee after the calendar year in which such employee died;
+(c) Employment
+For purposes of this chapter, the term "employment" means any service, of whatever nature,
+    (A) performed by an employee for the person employing him, irrespective of the citizenship or residence of either, within the United States, and
+    (B) performed outside the United States (except in a contiguous country with which the United States has an agreement relating to unemployment compensation) by a citizen of the United States as an employee of an American employer, except-
+    (1) agricultural labor unless-
+        (A) such labor is performed for a person who-
+            (i) during the calendar year or the preceding calendar year paid remuneration in cash of $20,000 or more to individuals employed in agricultural labor (including labor performed by an alien referred to in subparagraph (B)), or
+            (ii) on each of some 10 days during the calendar year or the preceding calendar year, each day being in a different calendar week, employed in agricultural labor (including labor performed by an alien referred to in subparagraph (B)) for some portion of the day (whether or not at the same moment of time) 5 or more individuals; and
+        (B) such labor is not agricultural labor performed by an individual who is an alien admitted to the United States to perform agricultural labor pursuant to sections 214(c) and 101(a)(15)(H) of the Immigration and Nationality Act.
+    (2) domestic service in a private home, local college club, or local chapter of a college fraternity or sorority unless performed for a person who paid cash remuneration of $1,000 or more to individuals employed in such domestic service in the calendar year or the preceding calendar year;
+    (5)
+        (A) service performed by an individual in the employ of his son, daughter, or spouse;
+        (B) service performed by a child under the age of 21 in the employ of his father or mother;
+    (6) service performed in the employ of the United States Government
+    (7) service performed in the employ of a State, or any political subdivision thereof.
+    (10)
+        (A) service performed in the employ of a school, college, or university, if such service is performed
+            (i) by a student who is enrolled and is regularly attending classes at such school, college, or university, or
+            (ii) by the spouse of such a student, or
+        (B) service performed in the employ of a hospital, if such service is performed by a patient of such hospital;
+    (11) service performed in the employ of a foreign government (including service as a consular or other officer or employee or a nondiplomatic representative);
+    (13) service performed as a student nurse in the employ of a hospital or a nurses' training school by an individual who is enrolled and is regularly attending classes in a nurses' training school;
+    (16) service performed in the employ of an international organization;
+    (21) service performed by a person committed to a penal institution.
+
+Section 63
+----------
+§63. Taxable income defined
+(a) In general
+Except as provided in subsection (b), for purposes of this subtitle, the term "taxable income" means gross income minus the deductions allowed by this chapter (other than the standard deduction).
+(b) Individuals who do not itemize their deductions
+In the case of an individual who does not elect to itemize his deductions for the taxable year, for purposes of this subtitle, the term "taxable income" means adjusted gross income, minus-
+    (1) the standard deduction, and
+    (2) the deduction for personal exemptions provided in section 151.
+(c) Standard deduction
+For purposes of this subtitle-
+    (1) In general
+    Except as otherwise provided in this subsection, the term "standard deduction" means the sum of-
+        (A) the basic standard deduction, and
+        (B) the additional standard deduction.
+    (2) Basic standard deduction
+    For purposes of paragraph (1), the basic standard deduction is-
+        (A) 200 percent of the dollar amount in effect under subparagraph (C) for the taxable year in the case of-
+            (i) a joint return, or
+            (ii) a surviving spouse (as defined in section 2(a)),
+        (B) $4,400 in the case of a head of household (as defined in section 2(b)), or
+        (C) $3,000 in any other case.
+    (3) Additional standard deduction for aged and blind
+    For purposes of paragraph (1), the additional standard deduction is the sum of each additional amount to which the taxpayer is entitled under subsection (f).
+    (5) Limitation on basic standard deduction in the case of certain dependents
+    In the case of an individual with respect to whom a deduction under section 151 is allowable to another taxpayer for a taxable year beginning in the calendar year in which the individual's taxable year begins, the basic standard deduction applicable to such individual for such individual's taxable year shall not exceed the greater of-
+        (A) $500, or
+        (B) the sum of $250 and such individual's earned income.
+    (6) Certain individuals, etc., not eligible for standard deduction
+    In the case of-
+        (A) a married individual filing a separate return where either spouse itemizes deductions,
+        (B) a nonresident alien individual, or
+        (D) an estate or trust, common trust fund, or partnership,
+    the standard deduction shall be zero.
+    (7) Special rules for taxable years 2018 through 2025
+    In the case of a taxable year beginning after December 31, 2017, and before January 1, 2026-
+    Paragraph (2) shall be applied-
+        (i) by substituting "$18,000" for "$4,400" in subparagraph (B), and
+        (ii) by substituting "$12,000" for "$3,000" in subparagraph (C).
+(d) Itemized deductions
+For purposes of this subtitle, the term "itemized deductions" means the deductions allowable under this chapter other than-
+    (1) the deductions allowable in arriving at adjusted gross income, and
+    (2) the deduction for personal exemptions provided by section 151.
+(f) Aged or blind additional amounts
+    (1) Additional amounts for the aged
+    The taxpayer shall be entitled to an additional amount of $600-
+        (A) for himself if he has attained age 65 before the close of his taxable year, and
+        (B) for the spouse of the taxpayer if the spouse has attained age 65 before the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).
+    (2) Additional amount for blind
+    The taxpayer shall be entitled to an additional amount of $600-
+        (A) for himself if he is blind at the close of the taxable year, and
+        (B) for the spouse of the taxpayer if the spouse is blind as of the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).
+    For purposes of subparagraph (B), if the spouse dies during the taxable year the determination of whether such spouse is blind shall be made as of the time of such death.
+    (3) Higher amount for certain unmarried individuals
+    In the case of an individual who is not married and is not a surviving spouse, paragraphs (1) and (2) shall be applied by substituting "$750" for "$600".
+(g) Marital status
+For purposes of this section, marital status shall be determined under section 7703.
+
+Section 68
+----------
+§68. Overall limitation on itemized deductions
+(a) General rule
+In the case of an individual whose adjusted gross income exceeds the applicable amount, the amount of the itemized deductions otherwise allowable for the taxable year shall be reduced by the lesser of-
+    (1) 3 percent of the excess of adjusted gross income over the applicable amount, or
+    (2) 80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.
+(b) Applicable amount
+    (1) In general
+    For purposes of this section, the term "applicable amount" means-
+        (A) $300,000 in the case of a joint return or a surviving spouse (as defined in section 2(a)),
+        (B) $275,000 in the case of a head of household (as defined in section 2(b)),
+        (C) $250,000 in the case of an individual who is not married and who is not a surviving spouse or head of household, and
+        (D) 1/2 the amount applicable under subparagraph (A) in the case of a married individual filing a separate return.
+    For purposes of this paragraph, marital status shall be determined under section 7703.
+(f) Section not to apply
+This section shall not apply to any taxable year beginning after December 31, 2017, and before January 1, 2026.
+
+Section 7703
+------------
+§7703. Determination of marital status
+(a) General rule
+    (1) the determination of whether an individual is married shall be made as of the close of his taxable year; except that if his spouse dies during his taxable year such determination shall be made as of the time of such death; and
+    (2) an individual legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married.
+(b) Certain married individuals living apart
+For purposes of those provisions of this title which refer to this subsection, if-
+    (1) an individual who is married (within the meaning of subsection (a)) and who files a separate return maintains as his home a household which constitutes for more than one-half of the taxable year the principal place of abode of a child with respect to whom such individual is entitled to a deduction for the taxable year under section 151,
+    (2) such individual furnishes over one-half of the cost of maintaining such household during the taxable year, and
+    (3) during the last 6 months of the taxable year, such individual's spouse is not a member of such household,
+such individual shall not be considered as married.
+]
+
+Selected Cases:
+[Case ID: s1_d_iv_neg
+Text: % Alice is married under section 7703 for the year 2017. Alice's taxable income for the year 2017 is $28864. Alice files a separate return.
+Question: % Alice has to pay $5683 in taxes for the year 2017 under section 1(d)(iv). Contradiction
+
+Case ID: s3306_c_5_pos
+Text: % Alice has paid $3200 to her father Bob for work done from Feb 1st, 2017 to Sep 2nd, 2017, in Baltimore, Maryland, USA.
+Question: % Section 3306(c)(5) applies to Alice employing Bob for the year 2017. Entailment
+
+Case ID: s1_c_i_neg
+Text: % Alice's taxable income for the year 2017 is $718791. In 2017, Alice is not married, is not a surviving spouse, and is not a head of household.
+Question: % Alice has to pay $265413 in taxes for the year 2017 under section 1(c)(i). Contradiction
+
+Case ID: s1_b_iii_neg
+Text: % Alice is a head of household for the year 2017. Alice's taxable income for the year 2017 is $54775.
+Question: % Alice has to pay $11489 in taxes for the year 2017 under section 1(b)(iii). Contradiction
+
+Case ID: s152_d_2_F_pos
+Text: % Charlie is Bob's father since April 15th, 2014. Alice is Charlie's sister since October 12th, 1992.
+Question: % Alice bears a relationship to Bob under section 152(d)(2)(F). Entailment
+
+Case ID: s1_a_1_iii_neg
+Text: % Alice is married under section 7703 for the year 2017. Alice files a joint return with her spouse for 2017. Alice's and her spouse's taxable income for the year 2017 is $164612.
+Question: % Alice and her spouse have to pay $44789 in taxes for the year 2017 under section 1(a)(iii). Contradiction
+
+Case ID: s3306_b_10_A_neg
+Text: % Alice has employed Bob from Jan 1st, 2011 to Oct 10, 2019. On Oct 10, 2019 Bob retired because he reached age 65. Alice paid Bob $12980 as a retirement bonus.
+Question: % Section 3306(b)(10)(A) applies to the payment of $12980 that Alice made in 2019. Contradiction
+
+Case ID: s63_c_2_B_neg
+Text: % In 2017, Alice was paid $33200. Alice and Bob have been married since Feb 3rd, 2017, and they file a joint return for 2017.
+Question: % Under section 63(c)(2)(B), Alice's basic standard deduction in 2017 is equal to $4400. Contradiction
+
+Case ID: s3306_b_7_neg
+Text: % Alice has been running a typewriter factory since February 1st, 2016. Bob is an employee at the typewriter factory. On October 2nd 2017, Alice has paid Bob $323 in cash for painting her house.
+Question: % Section 3306(b)(7) applies to the payment Alice made to Bob. Contradiction
+
+Case ID: s152_c_1_E_pos
+Text: % Alice has a son, Bob. From September 1st, 2015 to November 3rd, 2019, Alice and Bob lived in the same home. Bob married Charlie on October 23rd, 2018. Bob and Charlie file separate returns.
+Question: % Section 152(c)(1)(E) applies to Bob for the year 2019. Entailment
+
+Case ID: s2_a_2_B_pos
+Text: % Alice and Bob got married on Feb 3rd, 1992. Alice died on July 9th, 2014.
+Question: % Section 2(a)(2)(B) applies to Bob in 2014. Entailment
+
+Case ID: s63_c_3_pos
+Text: % In 2017, Alice was paid $33200. Alice and Bob have been married since Feb 3rd, 2017. Alice is entitled to an additional standard deduction of $600 each for herself and for Bob, under section 63(f)(1)(A) and 63(f)(1)(B), respectively.
+Question: % Under section 63(c)(3), Alice's additional standard deduction in 2017 is equal to $1200. Entailment
+
+Case ID: s3306_a_1_neg
+Text: % Alice has paid $3200 to Bob for domestic service done from Feb 1st, 2017 to Sep 2nd, 2017. Bob has paid $4500 to Alice for work done from Apr 1st, 2017 to Sep 1st, 2018.
+Question: % Alice is an employer under section 3306(a)(1) for the year 2018. Contradiction
+
+Case ID: s7703_b_1_pos
+Text: % Alice and Bob got married on April 5th, 2012. Alice and Bob have a son, Charlie, who was born on September 16th, 2017. Alice and Charlie live in a home maintained by Alice since September 16th, 2017. Alice is entitled to a deduction for Charlie under section 151(c) for the years 2017 to 2019. Alice files a separate return.
+Question: % Section 7703(b)(1) applies to Alice for the year 2018. Entailment
+
+Case ID: s1_c_iv_pos
+Text: % Alice's taxable income for the year 2017 is $210204. In 2017, Alice is not married, is not a surviving spouse, and is not a head of household.
+Question: % Alice has to pay $65445 in taxes for the year 2017 under section 1(c)(iv). Entailment
+
+Case ID: s3306_b_pos
+Text: % Over the year 2018, Alice has paid $2325 in cash to Bob for walking her dog.
+Question: % Section 3306(b) applies to the money paid by Alice to Bob for the year 2018. Entailment
+
+Case ID: s1_a_1_pos
+Text: % Alice is married under section 7703 for the year 2017. Alice files a joint return with her spouse for 2017. Alice's and her husband's taxable income for the year 2017 is $17330.
+Question: % Alice and her husband have to pay $2600 in taxes for the year 2017 under section 1(a). Entailment
+
+Case ID: s68_b_1_A_neg
+Text: % In 2016, Alice's income was $567192. Alice is married for the year 2016 under section 7703. Alice does not file a joint return.
+Question: % Section 68(b)(1)(A) applies to Alice for 2016. Contradiction
+
+Case ID: tax_case_89
+Text: % In 2018, Alice was paid $3200. Alice and Bob have been married since Feb 3rd, 2017. Alice and Bob file separate returns and each take their standard deduction. Bob had no income in 2018. Alice has been blind since March 20, 2016. Alice was enrolled at Johns Hopkins University and attending classes from August 29, 2015 to May 30th, 2019.
+Question: % How much tax does Alice have to pay in 2018? $0
+
+Case ID: tax_case_13
+Text: % Alice's father, Bob, was paid $53249 in remuneration in 2017 for services performed for Johns Hopkins University. Alice was enrolled at Johns Hopkins University and attending classes from August 29, 2015 to May 30th, 2019. While attending classes at Johns Hopkins University, Alice lived at Bob's house, for which Bob furnished all costs. In 2017, Bob takes the standard deduction.
+Question: % How much tax does Bob have to pay in 2017? $8710
+
+Case ID: tax_case_40
+Text: % Alice has paid $3200 to her father Bob for work done from Feb 1st, 2017 to Sep 2nd, 2017, in Baltimore, Maryland, USA. Alice and Charlie got married on April 5th, 2012. Alice and Charlie were legally separated under a decree of divorce on September 16th, 2017. Alice's gross income in 2017 was $756420. Alice takes the standard deduction.
+Question: % How much tax does Alice have to pay in 2017? $279126
+
+Case ID: tax_case_26
+Text: % Alice employed Bob from Jan 1st, 2011 to Oct 10, 2019, paying him $1513 in 2019. On Oct 10, 2019 Bob was diagnosed as disabled and retired. Alice paid Bob $298 because she had to terminate their contract due to Bob's disability. In 2019, Alice's gross income was $567192. In 2019, Alice lived together with Charlie, her father, in a house that she maintains. Charlie had no income in 2019. Alice takes the standard deduction in 2019.
+Question: % How much tax does Alice have to pay in 2019? $196056
+
+Case ID: tax_case_79
+Text: % Alice and Bob have been married since Feb 3rd, 2017. Alice files a joint return with her spouse for 2020. Alice's gross income for the year 2020 is $103272. Bob earned $10 in 2020. Alice and Bob take the standard deduction.
+Question: % How much tax does Bob have to pay in 2020? $17402
+
+Case ID: tax_case_70
+Text: % Alice has a brother, Bob, who was born January 31st, 2014 and has always lived at his parents' place. In 2016, Alice's gross income was $567192. Alice got married on Jan 12, 2016. Her husband had no income in 2016. Alice does not file a joint return. Alice has itemized deductions of $100206.
+Question: % How much tax does Alice have to pay in 2016? $178147
+
+Case ID: tax_case_63
+Text: % Alice and Bob have been married since Feb 3rd, 2017. Alice was born March 2nd, 1950 and Bob was born March 3rd, 1955. Bob's gross income for the year 2019 is $113580. Alice and Bob file jointly in 2019, and take the standard deduction. Alice had no income in 2019.
+Question: % How much tax does Bob have to pay in 2019? $20298
+
+Case ID: tax_case_61
+Text: % Bob, Alice's father, has the same principal place of abode as Alice since 2012, and has had no income since. Alice's gross income for the year 2015 is $102268. Alice takes the standard deduction.
+Question: % How much tax does Alice have to pay in 2015? $25055]

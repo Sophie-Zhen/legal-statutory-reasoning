@@ -1,0 +1,5 @@
+% Stage 2 Generated Query
+% Case: s151_d_1_pos
+% Question: Alice's exemption amount under section 151(d)(1) is equal to $2000. Entailment
+
+answer('s151_d_1_pos', Result) :- (s151_d_1(2000) -> Result = true ; Result = false).

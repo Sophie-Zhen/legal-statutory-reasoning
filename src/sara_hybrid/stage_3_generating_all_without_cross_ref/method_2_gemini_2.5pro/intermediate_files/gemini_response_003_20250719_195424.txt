@@ -1,0 +1,309 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+Right, I will continue with Phase 2, generating the statute modules as planned.
+
+### Phase 2: Prolog Encoding (Statute Modules)
+
+This response contains `section7703.pl`, `section152.pl`, and `section151.pl`.
+
+%% BEGIN_FILE: section7703.pl
+```prolog
+:- module(section7703,
+          [ is_married/3,
+            is_unmarried/3,
+            marital_status_determined_as_of_death/3,
+            is_legally_separated/3,
+            is_considered_unmarried_living_apart/3,
+            maintains_home_for_child_b1/4
+          ]).
+
+:- use_module(section151, [is_entitled_to_exemption_deduction/4]).
+:- use_module(helpers, [get_age_at_year_end/3]).
+
+:- multifile fact/2.
+
+/*
+    §7703. Determination of marital status
+    This module encodes the rules for determining if an individual is considered
+    married for tax purposes.
+*/
+
+% is_married(CaseID, Taxpayer, Year)
+% §7703(a) General rule for being married.
+is_married(CaseID, Taxpayer, Year) :-
+    fact(CaseID, married(Taxpayer, Spouse, _)),
+    fact(CaseID, married(Spouse, Taxpayer, _)),
+    \+ is_unmarried(CaseID, Taxpayer, Year).
+
+% is_unmarried(CaseID, Taxpayer, Year)
+is_unmarried(CaseID, Taxpayer, Year) :-
+    \+ fact(CaseID, married(Taxpayer, _, _)),
+    \+ fact(CaseID, married(_, Taxpayer, _)).
+is_unmarried(CaseID, Taxpayer, Year) :-
+    is_legally_separated(CaseID, Taxpayer, Year).
+is_unmarried(CaseID, Taxpayer, Year) :-
+    is_considered_unmarried_living_apart(CaseID, Taxpayer, Year).
+
+% marital_status_determined_as_of_death(CaseID, Taxpayer, Year)
+% §7703(a)(1) Exception for spouse's death.
+marital_status_determined_as_of_death(CaseID, Taxpayer, Year) :-
+    fact(CaseID, married(Taxpayer, Spouse, _)),
+    fact(CaseID, died(Spouse, date(Year, _, _))).
+
+% is_legally_separated(CaseID, Taxpayer, Year)
+% §7703(a)(2) Legally separated individuals are not considered married.
+is_legally_separated(CaseID, Taxpayer, Year) :-
+    fact(CaseID, married(Taxpayer, Spouse, _)),
+    fact(CaseID, legally_separated(Taxpayer, Spouse, date(SepYear, _, _))),
+    SepYear =< Year.
+is_legally_separated(CaseID, Taxpayer, Year) :-
+    fact(CaseID, married(Taxpayer, Spouse, _)),
+    fact(CaseID, legally_separated(Spouse, Taxpayer, date(SepYear, _, _))),
+    SepYear =< Year.
+
+% is_considered_unmarried_living_apart(CaseID, Taxpayer, Year)
+% §7703(b) Certain married individuals living apart.
+is_considered_unmarried_living_apart(CaseID, Taxpayer, Year) :-
+    fact(CaseID, married(Taxpayer, Spouse, _)),
+    fact(CaseID, files_separate_return(Taxpayer, Year)),
+    maintains_home_for_child_b1(CaseID, Taxpayer, _Child, Year), % Child is existentially quantified
+    furnishes_over_half_cost_of_household(CaseID, Taxpayer, Year),
+    spouse_not_member_of_household_last_6_months(CaseID, Taxpayer, Spouse, Year).
+
+% maintains_home_for_child_b1(CaseID, Taxpayer, Child, Year)
+% §7703(b)(1) Household constitutes principal place of abode for a child.
+maintains_home_for_child_b1(CaseID, Taxpayer, Child, Year) :-
+    is_entitled_to_exemption_deduction(CaseID, Taxpayer, Child, Year),
+    fact(CaseID, maintains_household_for(Taxpayer, Child, Year)). % Simplified household logic
+
+% furnishes_over_half_cost_of_household(CaseID, Taxpayer, Year)
+% §7703(b)(2) Taxpayer furnishes over half the cost of maintaining the household.
+furnishes_over_half_cost_of_household(CaseID, Taxpayer, Year) :-
+    fact(CaseID, furnishes_over_half_cost_of_household(Taxpayer, Year)).
+
+% spouse_not_member_of_household_last_6_months(CaseID, Taxpayer, Spouse, Year)
+% §7703(b)(3) Spouse is not a member of the household for the last 6 months.
+spouse_not_member_of_household_last_6_months(CaseID, Taxpayer, Spouse, Year) :-
+    % This is a complex check of living arrangements. We simplify with a direct fact.
+    fact(CaseID, spouse_not_member_of_household_last_6_months(Taxpayer, Spouse, Year)).
+
+```
+%% END_FILE: section7703.pl
+% SMOKE: ?- [tests], assert(fact(c1, married(a,b,date(1,1,1)))), assert(fact(c1, legally_separated(a,b,date(2017,1,1)))), section7703:is_unmarried(c1, a, 2017).
+%% BEGIN_FILE: section152.pl
+```prolog
+:- module(section152,
+          [ is_dependent/4,
+            is_qualifying_child/4,
+            is_qualifying_relative/4,
+            is_qualifying_child_relationship/3,
+            is_qualifying_relative_relationship/3,
+            passes_qc_joint_return_test/4
+          ]).
+
+:- use_module(section7703, [is_married/3]).
+:- use_module(helpers, [get_age_at_year_end/3]).
+
+:- multifile fact/2.
+
+/*
+    §152. Dependent defined
+    This module defines who qualifies as a "dependent" for tax purposes,
+    distinguishing between a "qualifying child" and a "qualifying relative".
+*/
+
+% is_dependent(CaseID, Taxpayer, PotentialDependent, Year)
+% §152(a) A dependent is a qualifying child or a qualifying relative.
+is_dependent(CaseID, Taxpayer, PotentialDependent, Year) :-
+    (   is_qualifying_child(CaseID, Taxpayer, PotentialDependent, Year)
+    ;   is_qualifying_relative(CaseID, Taxpayer, PotentialDependent, Year)
+    ),
+    \+ dependent_exceptions_apply(CaseID, Taxpayer, PotentialDependent, Year).
+
+% dependent_exceptions_apply(CaseID, Taxpayer, PotentialDependent, Year)
+% §152(b) Exceptions for dependents.
+dependent_exceptions_apply(CaseID, _Taxpayer, PotentialDependent, Year) :-
+    % §152(b)(1) Dependent cannot have their own dependents.
+    fact(CaseID, dependent(PotentialDependent, _OwnDependent, Year)).
+dependent_exceptions_apply(CaseID, _Taxpayer, PotentialDependent, Year) :-
+    % §152(b)(2) Married dependent filing a joint return.
+    fact(CaseID, files_joint_return(PotentialDependent, _Spouse, Year)).
+
+% is_qualifying_child(CaseID, Taxpayer, Individual, Year)
+% §152(c)(1) In general
+is_qualifying_child(CaseID, Taxpayer, Individual, Year) :-
+    is_qualifying_child_relationship(CaseID, Taxpayer, Individual),
+    has_same_principal_abode_more_than_half_year(CaseID, Taxpayer, Individual, Year),
+    meets_qc_age_requirements(CaseID, Taxpayer, Individual, Year),
+    passes_qc_joint_return_test(CaseID, Individual, Taxpayer, Year).
+
+% is_qualifying_child_relationship(CaseID, Taxpayer, Individual)
+% §152(c)(2) Relationship test for qualifying child.
+is_qualifying_child_relationship(CaseID, Taxpayer, Individual) :-
+    fact(CaseID, child_of(Individual, Taxpayer)).
+is_qualifying_child_relationship(CaseID, Taxpayer, Individual) :-
+    fact(CaseID, child_of(Individual, ChildOfTaxpayer)),
+    fact(CaseID, child_of(ChildOfTaxpayer, Taxpayer)). % Descendant
+is_qualifying_child_relationship(CaseID, Taxpayer, Individual) :-
+    fact(CaseID, sibling_of(Individual, Taxpayer)).
+is_qualifying_child_relationship(CaseID, Taxpayer, Individual) :-
+    fact(CaseID, child_of(Individual, SiblingOfTaxpayer)),
+    fact(CaseID, sibling_of(SiblingOfTaxpayer, Taxpayer)). % Descendant of sibling
+
+% has_same_principal_abode_more_than_half_year(CaseID, Taxpayer, Individual, Year)
+% §152(c)(1)(B) Principal place of abode test.
+has_same_principal_abode_more_than_half_year(CaseID, Taxpayer, Individual, Year) :-
+    fact(CaseID, lived_together_more_than_half_year(Individual, Taxpayer, Year)).
+
+% meets_qc_age_requirements(CaseID, Taxpayer, Individual, Year)
+% §152(c)(3) Age requirements for qualifying child.
+meets_qc_age_requirements(CaseID, Taxpayer, Individual, Year) :-
+    fact(CaseID, date_of_birth(Individual, DOB_Ind)),
+    fact(CaseID, date_of_birth(Taxpayer, DOB_Tax)),
+    get_age_at_year_end(DOB_Ind, Year, Age_Ind),
+    get_age_at_year_end(DOB_Tax, Year, Age_Tax),
+    Age_Ind < Age_Tax,
+    Age_Ind < 25.
+
+% passes_qc_joint_return_test(CaseID, Individual, Taxpayer, Year)
+% §152(c)(1)(E) Joint return test.
+passes_qc_joint_return_test(CaseID, Individual, _Taxpayer, Year) :-
+    % Individual has not filed a joint return.
+    \+ fact(CaseID, files_joint_return(Individual, _, Year)).
+passes_qc_joint_return_test(CaseID, Individual, _Taxpayer, Year) :-
+    % Exception: filed only for a claim of refund.
+    fact(CaseID, files_joint_return_for_refund_only(Individual, _, Year)).
+
+% is_qualifying_relative(CaseID, Taxpayer, Individual, Year)
+% §152(d)(1) In general
+is_qualifying_relative(CaseID, Taxpayer, Individual, Year) :-
+    is_qualifying_relative_relationship(CaseID, Taxpayer, Individual),
+    has_no_income(CaseID, Individual, Year),
+    is_not_a_qualifying_child_of_any_taxpayer(CaseID, Individual, Year).
+
+% is_qualifying_relative_relationship(CaseID, Taxpayer, Individual)
+% §152(d)(2) Relationship test for qualifying relative.
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- is_qualifying_child_relationship(CaseID, Taxpayer, Individual). % (A), (B)
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- fact(CaseID, parent_of(Individual, Taxpayer)). % (C)
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- fact(CaseID, parent_of(Ancestor, Taxpayer)), fact(CaseID, parent_of(Individual, Ancestor)). % (C)
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- fact(CaseID, stepparent_of(Individual, Taxpayer)). % (D)
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- fact(CaseID, child_of(Individual, Sibling)), fact(CaseID, sibling_of(Sibling, Taxpayer)). % (E) Nephew/Niece
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- fact(CaseID, parent_of(Parent, Taxpayer)), fact(CaseID, sibling_of(Individual, Parent)). % (F) Uncle/Aunt
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- fact(CaseID, in_law_of(Individual, Taxpayer, _)). % (G)
+is_qualifying_relative_relationship(CaseID, Taxpayer, Individual) :- % (H)
+    fact(CaseID, member_of_household(Individual, Taxpayer, _Year)),
+    \+ is_married(CaseID, Individual, _Year).
+
+% has_no_income(CaseID, Individual, Year)
+% §152(d)(1)(B) Gross income test.
+has_no_income(CaseID, Individual, Year) :-
+    fact(CaseID, gross_income(Individual, Year, Amount)),
+    Amount =:= 0.
+has_no_income(CaseID, Individual, Year) :-
+    \+ fact(CaseID, gross_income(Individual, Year, _)).
+
+% is_not_a_qualifying_child_of_any_taxpayer(CaseID, Individual, Year)
+% §152(d)(1)(D) Not a qualifying child test.
+is_not_a_qualifying_child_of_any_taxpayer(CaseID, Individual, Year) :-
+    \+ is_qualifying_child(CaseID, _AnyTaxpayer, Individual, Year).
+
+```
+%% END_FILE: section152.pl
+% SMOKE: ?- [tests], assert(fact(c1, child_of(b, a))), assert(fact(c1, lived_together_more_than_half_year(b,a,2017))), assert(fact(c1, date_of_birth(a,date(1980,1,1)))), assert(fact(c1, date_of_birth(b,date(2010,1,1)))), section152:is_qualifying_child(c1,a,b,2017).
+%% BEGIN_FILE: section151.pl
+```prolog
+:- module(section151,
+          [ total_personal_exemption_deduction/4,
+            is_entitled_to_exemption_deduction/4,
+            exemption_amount/4
+          ]).
+
+:- use_module(knowledge_base, [exemption_amount_default/2, exemption_phaseout_increment/2]).
+:- use_module(section152, [is_dependent/4]).
+:- use_module(helpers, [tcja_active_general/1]).
+
+:- multifile fact/2.
+
+/*
+    §151. Allowance of deductions for personal exemptions
+*/
+
+% total_personal_exemption_deduction(CaseID, Taxpayer, Year, TotalDeduction)
+% §151(a) Sum of all allowable exemptions.
+total_personal_exemption_deduction(CaseID, Taxpayer, Year, TotalDeduction) :-
+    findall(Exemption,
+            (   is_entitled_to_exemption_deduction(CaseID, Taxpayer, Taxpayer, Year, Exemption)
+            ;   is_entitled_to_exemption_deduction(CaseID, Taxpayer, Spouse, Year, Exemption),
+                fact(CaseID, spouse_of(Taxpayer, Spouse)),
+                is_spouse_exemption_allowed(CaseID, Taxpayer, Spouse, Year)
+            ;   is_entitled_to_exemption_deduction(CaseID, Taxpayer, Dependent, Year, Exemption),
+                is_dependent(CaseID, Taxpayer, Dependent, Year)
+            ),
+            Exemptions),
+    sum_list(Exemptions, TotalDeduction).
+
+% is_entitled_to_exemption_deduction(CaseID, Taxpayer, ForWhom, Year, Exemption)
+% Determines if Taxpayer gets an exemption for ForWhom and calculates its amount.
+is_entitled_to_exemption_deduction(CaseID, Taxpayer, ForWhom, Year, Exemption) :-
+    % §151(b) Taxpayer
+    ForWhom == Taxpayer,
+    exemption_amount(CaseID, Taxpayer, ForWhom, Year, Exemption).
+is_entitled_to_exemption_deduction(CaseID, Taxpayer, ForWhom, Year, Exemption) :-
+    % §151(b) Spouse
+    fact(CaseID, spouse_of(Taxpayer, ForWhom)),
+    is_spouse_exemption_allowed(CaseID, Taxpayer, ForWhom, Year),
+    exemption_amount(CaseID, Taxpayer, ForWhom, Year, Exemption).
+is_entitled_to_exemption_deduction(CaseID, Taxpayer, ForWhom, Year, Exemption) :-
+    % §151(c) Dependent
+    is_dependent(CaseID, Taxpayer, ForWhom, Year),
+    exemption_amount(CaseID, Taxpayer, ForWhom, Year, Exemption).
+
+% is_spouse_exemption_allowed(CaseID, Taxpayer, Spouse, Year)
+% §151(b) Rules for claiming an exemption for a spouse.
+is_spouse_exemption_allowed(CaseID, Taxpayer, Spouse, Year) :-
+    \+ fact(CaseID, files_joint_return(Taxpayer, Spouse, Year)),
+    ( \+ fact(CaseID, gross_income(Spouse, Year, _)) ; fact(CaseID, gross_income(Spouse, Year, 0)) ),
+    \+ is_dependent(CaseID, _AnotherTaxpayer, Spouse, Year).
+
+% exemption_amount(CaseID, Taxpayer, ForWhom, Year, Amount)
+% §151(d) Determines the value of a single exemption.
+exemption_amount(_CaseID, _Taxpayer, ForWhom, Year, 0) :-
+    % §151(d)(2) Disallowed if ForWhom can be claimed by another.
+    tcja_inactive_general(Year),
+    fact(_CaseID, claimed_as_dependent_by(ForWhom, _Other, Year)).
+exemption_amount(CaseID, Taxpayer, ForWhom, Year, Amount) :-
+    % §151(d)(1),(3),(5)
+    tcja_inactive_general(Year),
+    \+ fact(CaseID, claimed_as_dependent_by(ForWhom, _Other, Year)),
+    exemption_amount_default(Year, BaseAmount),
+    phaseout_reduction(CaseID, Taxpayer, Year, Reduction),
+    Amount is max(0, BaseAmount - Reduction).
+exemption_amount(_CaseID, _Taxpayer, _ForWhom, Year, 0) :-
+    % §151(d)(5) TCJA rule
+    tcja_active_general(Year).
+
+% phaseout_reduction(CaseID, Taxpayer, Year, Reduction)
+% §151(d)(3) Phaseout of exemption amount.
+% This is complex and relies on §68 which is not fully modeled.
+% Simplified: no phaseout for now.
+phaseout_reduction(_CaseID, _Taxpayer, _Year, 0).
+% A more complete implementation would look like this:
+/*
+phaseout_reduction(CaseID, Taxpayer, Year, Reduction) :-
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI)),
+    filing_status(CaseID, Taxpayer, Year, FilingStatus),
+    itemized_deduction_limitation_agi_threshold(Year, FilingStatus, Threshold), % Re-using §68 thresholds
+    AGI > Threshold, !,
+    exemption_phaseout_increment(FilingStatus, Increment),
+    ExcessAGI is AGI - Threshold,
+    NumIncrements is ceil(ExcessAGI / Increment),
+    ApplicablePercentage is min(1.0, NumIncrements * 0.02),
+    exemption_amount_default(Year, BaseAmount),
+    Reduction is BaseAmount * ApplicablePercentage.
+phaseout_reduction(_, _, _, 0).
+*/
+```
+%% END_FILE: section151.pl
+% SMOKE: ?- [knowledge_base, section152, section151, helpers, tests], assert(fact(c1, child_of(b,a))), assert(fact(c1, lived_together_more_than_half_year(b,a,2017))), assert(fact(c1, date_of_birth(a,date(1980,1,1)))), assert(fact(c1, date_of_birth(b,date(2010,1,1)))), section151:is_entitled_to_exemption_deduction(c1, a, b, 2017, Amount).

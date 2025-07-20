@@ -1,0 +1,312 @@
+{
+  "overall": {
+    "total_cases": 26,
+    "passed_cases": 12,
+    "success_rate": 46.15384615384615
+  },
+  "true_false_cases": {
+    "total": 18,
+    "passed": 12,
+    "success_rate": 66.66666666666666,
+    "passed_list": [
+      [
+        "s1_d_iv_neg",
+        "true"
+      ],
+      [
+        "s1_c_i_neg",
+        "true"
+      ],
+      [
+        "s1_b_iii_neg",
+        "true"
+      ],
+      [
+        "s1_a_1_iii_neg",
+        "true"
+      ],
+      [
+        "s3306_b_10_A_neg",
+        "true"
+      ],
+      [
+        "s63_c_2_B_neg",
+        "true"
+      ],
+      [
+        "s3306_b_7_neg",
+        "true"
+      ],
+      [
+        "s152_c_1_E_pos",
+        "true"
+      ],
+      [
+        "s2_a_2_B_pos",
+        "true"
+      ],
+      [
+        "s3306_a_1_neg",
+        "true"
+      ],
+      [
+        "s1_a_1_pos",
+        "true"
+      ],
+      [
+        "s68_b_1_A_neg",
+        "true"
+      ]
+    ],
+    "failed_list": [
+      [
+        "s3306_c_5_pos",
+        "true"
+      ],
+      [
+        "s152_d_2_F_pos",
+        "true"
+      ],
+      [
+        "s63_c_3_pos",
+        "true"
+      ],
+      [
+        "s7703_b_1_pos",
+        "true"
+      ],
+      [
+        "s1_c_iv_pos",
+        "true"
+      ],
+      [
+        "s3306_b_pos",
+        "true"
+      ]
+    ]
+  },
+  "tax_cases": {
+    "total": 8,
+    "passed": 0,
+    "success_rate": 0.0,
+    "passed_list": [],
+    "failed_list": [
+      [
+        "tax_case_89",
+        "0"
+      ],
+      [
+        "tax_case_13",
+        "8710"
+      ],
+      [
+        "tax_case_40",
+        "279126"
+      ],
+      [
+        "tax_case_26",
+        "196056"
+      ],
+      [
+        "tax_case_79",
+        "17402"
+      ],
+      [
+        "tax_case_70",
+        "178147"
+      ],
+      [
+        "tax_case_63",
+        "20298"
+      ],
+      [
+        "tax_case_61",
+        "25055"
+      ]
+    ]
+  },
+  "detailed_results": [
+    {
+      "case_id": "s1_d_iv_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_c_5_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_c_i_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_b_iii_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s152_d_2_F_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_a_1_iii_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_b_10_A_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s63_c_2_B_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_b_7_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s152_c_1_E_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s2_a_2_B_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s63_c_3_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_a_1_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s7703_b_1_pos",
+      "success": false,
+      "actual_result": "PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:\nWarning:    Singleton-marked variable appears more than once: _Year\nWarning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:\nWarning:    Singleton-marked variable appears more than once: _Year\nWarning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:\nWarning:    Singleton-marked variable appears more than once: _Year\nERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/tests.pl:9:\nERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined\nWarning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:\nWarning:    Singleton variables: [Year]\nWarning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:\nWarning:    Singleton-marked variable appears more than once: _Year\nWarning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:\nWarning:    Singleton-marked variable appears more than once: _CaseID\nERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:\nERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined\nERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:\nERROR:    Exported procedure section151:exemption_amount/4 is not defined\nWarning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:\nWarning:    Singleton-marked variable appears more than once: _CaseID\nERROR: -g consult(tests), (answer(s7703_b_1_pos, Result) -> (write('RESULT:'), write(Result)) ; write('NO_RESULT')), halt.: section7703:maintains_home_for_child_b1/4: Unknown procedure: section151:is_entitled_to_exemption_deduction/4\nERROR:   However, there are definitions for:\nERROR:         section151:is_entitled_to_exemption_deduction/5",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_c_iv_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_b_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_a_1_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s68_b_1_A_neg",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_89",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_13",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "8710",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_40",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "279126",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_26",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "196056",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_79",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "17402",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_70",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "178147",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_63",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "20298",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_61",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "25055",
+      "approach": "method2_codebase"
+    }
+  ]
+}
