@@ -30,3 +30,9 @@ external/
 
 # Do not track the large models directory
 models/
+
+src/sara_hybrid/llm_translation/
+src/sara_llm_translator/
+requirements.txt
+pyproject.toml
+count_passed_cases.py

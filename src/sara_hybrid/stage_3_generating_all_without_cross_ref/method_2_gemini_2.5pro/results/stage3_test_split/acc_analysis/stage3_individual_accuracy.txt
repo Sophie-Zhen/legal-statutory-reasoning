@@ -1,0 +1,1547 @@
+=== STAGE 3 INDIVIDUAL - ACCURACY ANALYSIS RESULTS ===
+Analysis Date: 2025-07-20T11:28:20.174285
+
+OVERALL PERFORMANCE:
+Total cases: 120
+Passed cases: 25
+Success rate: 20.8%
+
+TRUE/FALSE CASES:
+Total: 100
+Passed: 25
+Success rate: 25.0%
+Passed cases: s152_a_neg(false), s152_c_2_A_neg(false), s152_d_2_G_neg(false), s152_d_2_H_neg(false), s1_c_iii_neg(false), s2_a_1_B_neg(false), s2_b_1_A_i_II_neg(false), s2_b_1_A_i_I_neg(false), s2_b_1_A_i_neg(false), s2_b_1_A_ii_neg(false), s2_b_3_A_neg(false), s3306_a_1_B_neg(false), s3306_a_3_neg(false), s3306_c_11_pos(true), s3306_c_16_pos(true), s3306_c_1_B_pos(true), s3306_c_6_pos(true), s3306_c_7_pos(true), s3306_c_B_pos(true), s63_c_2_A_ii_neg(false), s63_c_6_B_neg(false), s63_f_1_A_neg(false), s68_b_1_C_pos(true), s7703_a_1_neg(false), s7703_b_2_neg(false)
+Failed cases: s151_d_1_neg(N/A), s151_d_1_pos(N/A), s151_d_3_A_neg(N/A), s151_d_3_A_pos(N/A), s151_d_5_neg(N/A), s151_d_5_pos(N/A), s152_a_pos(true), s152_c_2_A_pos(true), s152_d_1_D_neg(N/A), s152_d_1_D_pos(N/A), s152_d_2_A_neg(N/A), s152_d_2_A_pos(true), s152_d_2_C_neg(N/A), s152_d_2_C_pos(true), s152_d_2_G_pos(true), s152_d_2_H_pos(true), s1_a_2_iv_neg(N/A), s1_a_2_iv_pos(N/A), s1_a_2_neg(N/A), s1_a_2_pos(N/A), s1_a_2_v_neg(N/A), s1_a_2_v_pos(true), s1_b_i_neg(N/A), s1_b_i_pos(N/A), s1_b_neg(N/A), s1_b_pos(N/A), s1_c_iii_pos(N/A), s1_c_neg(N/A), s1_c_pos(N/A), s1_d_i_neg(N/A), s1_d_i_pos(N/A), s1_d_ii_neg(N/A), s1_d_ii_pos(N/A), s1_d_neg(N/A), s1_d_pos(N/A), s2_a_1_B_pos(true), s2_b_1_A_i_II_pos(true), s2_b_1_A_i_I_pos(true), s2_b_1_A_i_pos(true), s2_b_1_A_ii_pos(true), s2_b_3_A_pos(true), s3301_neg(N/A), s3301_pos(N/A), s3306_a_1_B_pos(true), s3306_a_3_pos(true), s3306_b_2_C_neg(N/A), s3306_b_2_C_pos(N/A), s3306_c_10_B_neg(N/A), s3306_c_10_B_pos(N/A), s3306_c_11_neg(N/A), s3306_c_16_neg(false), s3306_c_1_B_neg(false), s3306_c_6_neg(false), s3306_c_7_neg(N/A), s3306_c_B_neg(N/A), s63_b_neg(N/A), s63_b_pos(N/A), s63_c_2_A_i_neg(N/A), s63_c_2_A_i_pos(true), s63_c_2_A_ii_pos(true), s63_c_6_B_pos(true), s63_c_6_D_neg(N/A), s63_c_6_D_pos(true), s63_c_7_i_neg(false), s63_c_7_i_pos(true), s63_f_1_A_pos(true), s63_f_2_B_neg(N/A), s63_f_2_B_pos(true), s68_a_2_neg(false), s68_a_2_pos(true), s68_b_1_B_neg(false), s68_b_1_B_pos(N/A), s68_b_1_C_neg(N/A), s7703_a_1_pos(true), s7703_b_2_pos(true)
+
+TAX CASES:
+Total: 20
+Passed: 0
+Success rate: 0.0%
+Failed cases: tax_case_28(N/A), tax_case_30(N/A), tax_case_31(N/A), tax_case_34(N/A), tax_case_43(N/A), tax_case_46(N/A), tax_case_48(N/A), tax_case_49(N/A), tax_case_53(N/A), tax_case_57(N/A), tax_case_68(N/A), tax_case_69(N/A), tax_case_75(N/A), tax_case_77(N/A), tax_case_78(N/A), tax_case_82(N/A), tax_case_85(N/A), tax_case_9(N/A), tax_case_90(N/A), tax_case_93(N/A)
+
+=== DETAILED BREAKDOWN ===
+s151_d_1_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_1_neg.pl:2:
+ERROR:    answer/2: Unknown procedure: exemption_amount/5
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_1_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s151_d_1_neg,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s151_d_1_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_1_pos.pl:2:
+ERROR:    answer/2: Unknown procedure: section151:s151_d_1_exemption_amount/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_1_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s151_d_1_pos,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s151_d_3_A_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_3_A_neg.pl:2:
+ERROR:    answer/2: Unknown procedure: section151_d_3_A/3
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_3_A_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s151_d_3_A_neg,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s151_d_3_A_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_3_A_pos.pl:2:
+ERROR:    answer/2: Unknown procedure: section151:s151_exemption_amount/3
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_3_A_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s151_d_3_A_pos,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s151_d_5_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_5_neg.pl:2:
+ERROR:    answer/2: Unknown procedure: s151_exemption_amount/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_5_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s151_d_5_neg,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s151_d_5_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_5_pos.pl:2:
+ERROR:    answer/2: Unknown procedure: exemption_amount/5
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s151_d_5_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s151_d_5_pos,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s152_a_neg: PASS (actual: false, expected: false)
+s152_a_pos: FAIL (actual: false, expected: true)
+s152_c_2_A_neg: PASS (actual: false, expected: false)
+s152_c_2_A_pos: FAIL (actual: false, expected: true)
+s152_d_1_D_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s152_d_1_D_neg.pl:21:36: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_1_D_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_1_D_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s152_d_1_D_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s152_d_1_D_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s152_d_1_D_pos.pl:24:36: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_1_D_pos.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_1_D_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s152_d_1_D_pos,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s152_d_2_A_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s152_d_2_A_neg.pl:22:36: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_2_A_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_2_A_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s152_d_2_A_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s152_d_2_A_pos: FAIL (actual: false, expected: true)
+s152_d_2_C_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s152_d_2_C_neg.pl:28:36: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_2_C_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s152_d_2_C_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s152_d_2_C_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s152_d_2_C_pos: FAIL (actual: false, expected: true)
+s152_d_2_G_neg: PASS (actual: false, expected: false)
+s152_d_2_G_pos: FAIL (actual: false, expected: true)
+s152_d_2_H_neg: PASS (actual: false, expected: false)
+s152_d_2_H_pos: FAIL (actual: false, expected: true)
+s1_a_2_iv_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_a_2_iv_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_a_2_iv_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_a_2_iv_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_a_2_iv_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_a_2_iv_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_a_2_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_a_2_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_a_2_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_a_2_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_a_2_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_a_2_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_a_2_v_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_a_2_v_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_a_2_v_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_a_2_v_pos: FAIL (actual: false, expected: true)
+s1_b_i_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_b_i_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_b_i_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_b_i_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_b_i_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_b_i_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_b_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_b_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_b_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_b_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_b_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_b_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_c_iii_neg: PASS (actual: false, expected: false)
+s1_c_iii_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_c_iii_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_c_iii_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_c_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_c_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_c_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_c_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_c_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_c_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_d_i_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_d_i_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_d_i_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_d_i_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_d_i_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_d_i_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_d_ii_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_d_ii_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_d_ii_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_d_ii_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_d_ii_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_d_ii_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_d_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_d_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_d_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s1_d_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s1_d_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s1_d_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s2_a_1_B_neg: PASS (actual: false, expected: false)
+s2_a_1_B_pos: FAIL (actual: false, expected: true)
+s2_b_1_A_i_II_neg: PASS (actual: false, expected: false)
+s2_b_1_A_i_II_pos: FAIL (actual: false, expected: true)
+s2_b_1_A_i_I_neg: PASS (actual: false, expected: false)
+s2_b_1_A_i_I_pos: FAIL (actual: false, expected: true)
+s2_b_1_A_i_neg: PASS (actual: false, expected: false)
+s2_b_1_A_i_pos: FAIL (actual: false, expected: true)
+s2_b_1_A_ii_neg: PASS (actual: false, expected: false)
+s2_b_1_A_ii_pos: FAIL (actual: false, expected: true)
+s2_b_3_A_neg: PASS (actual: false, expected: false)
+s2_b_3_A_pos: FAIL (actual: false, expected: true)
+s3301_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3301_neg.pl:2:
+ERROR:    answer/2: Unknown procedure: futa_tax/4
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3301_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3301_neg,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s3301_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3301_pos.pl:2:
+ERROR:    answer/2: Unknown procedure: futa_tax/4
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3301_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3301_pos,_388),write('RESULT: '),write(_388),nl,halt), expected: N/A)
+s3306_a_1_B_neg: PASS (actual: false, expected: false)
+s3306_a_1_B_pos: FAIL (actual: false, expected: true)
+s3306_a_3_neg: PASS (actual: false, expected: false)
+s3306_a_3_pos: FAIL (actual: false, expected: true)
+s3306_b_2_C_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_b_2_C_neg.pl:21:37: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_b_2_C_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_b_2_C_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_b_2_C_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_b_2_C_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_b_2_C_pos.pl:21:37: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_b_2_C_pos.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_b_2_C_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_b_2_C_pos,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_c_10_B_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_c_10_B_neg.pl:21:38: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_10_B_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_10_B_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_c_10_B_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_c_10_B_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_c_10_B_pos.pl:21:38: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_10_B_pos.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_10_B_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_c_10_B_pos,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_c_11_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_c_11_neg.pl:23:36: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_11_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_11_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_c_11_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_c_11_pos: PASS (actual: true, expected: true)
+s3306_c_16_neg: FAIL (actual: true, expected: false)
+s3306_c_16_pos: PASS (actual: true, expected: true)
+s3306_c_1_B_neg: FAIL (actual: true, expected: false)
+s3306_c_1_B_pos: PASS (actual: true, expected: true)
+s3306_c_6_neg: FAIL (actual: true, expected: false)
+s3306_c_6_pos: PASS (actual: true, expected: true)
+s3306_c_7_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_c_7_neg.pl:23:35: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_7_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_7_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_c_7_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_c_7_pos: PASS (actual: true, expected: true)
+s3306_c_B_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s3306_c_B_neg.pl:21:35: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_B_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s3306_c_B_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s3306_c_B_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s3306_c_B_pos: PASS (actual: true, expected: true)
+s63_b_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_b_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s63_b_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s63_b_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_b_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s63_b_pos,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s63_c_2_A_i_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_c_2_A_i_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s63_c_2_A_i_neg,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+s63_c_2_A_i_pos: FAIL (actual: 3000, expected: true)
+s63_c_2_A_ii_neg: PASS (actual: false, expected: false)
+s63_c_2_A_ii_pos: FAIL (actual: false, expected: true)
+s63_c_6_B_neg: PASS (actual: false, expected: false)
+s63_c_6_B_pos: FAIL (actual: false, expected: true)
+s63_c_6_D_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s63_c_6_D_neg.pl:21:35: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_c_6_D_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_c_6_D_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s63_c_6_D_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s63_c_6_D_pos: FAIL (actual: false, expected: true)
+s63_c_7_i_neg: FAIL (actual: 12000, expected: false)
+s63_c_7_i_pos: FAIL (actual: 12000, expected: true)
+s63_f_1_A_neg: PASS (actual: false, expected: false)
+s63_f_1_A_pos: FAIL (actual: false, expected: true)
+s63_f_2_B_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s63_f_2_B_neg.pl:28:35: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_f_2_B_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s63_f_2_B_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s63_f_2_B_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s63_f_2_B_pos: FAIL (actual: false, expected: true)
+s68_a_2_neg: FAIL (actual: _13334, expected: false)
+s68_a_2_pos: FAIL (actual: _13334, expected: true)
+s68_b_1_B_neg: FAIL (actual: 250000, expected: false)
+s68_b_1_B_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s68_b_1_B_pos.pl:21:100: Syntax error: Unexpected end of file
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s68_b_1_B_pos.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s68_b_1_B_pos.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s68_b_1_B_pos,_4116),write('RESULT: '),write(_4116),nl,halt), expected: N/A)
+s68_b_1_C_neg: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/s68_b_1_C_neg.pl:21:35: Syntax error: Unbalanced operator
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s68_b_1_C_neg.pl:2:
+ERROR:    '<meta-call>'/1: Unknown procedure: answer/2
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_s68_b_1_C_neg.pl:2:
+Warning:    Goal (directive) failed: user:(answer(s68_b_1_C_neg,_4242),write('RESULT: '),write(_4242),nl,halt), expected: N/A)
+s68_b_1_C_pos: PASS (actual: true, expected: true)
+s7703_a_1_neg: PASS (actual: false, expected: false)
+s7703_a_1_pos: FAIL (actual: false, expected: true)
+s7703_b_2_neg: PASS (actual: false, expected: false)
+s7703_b_2_pos: FAIL (actual: false, expected: true)
+tax_case_28: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_28.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_28,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_30: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_30.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_30,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_31: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_31.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_31,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_34: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_34.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_34,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_43: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_43.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_43,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_46: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_46.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_46,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_48: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_48.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_48,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_49: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_49.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_49,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_53: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_53.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_53,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_57: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_57.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_57,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_68: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_68.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_68,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_69: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_69.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_69,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_75: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_75.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_75,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_77: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_77.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_77,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_78: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_78.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_78,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_82: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_82.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_82,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_85: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_85.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_85,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_9: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_9.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_9,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_90: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_90.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_90,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)
+tax_case_93: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:11:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/results/stage3_test_split/prolog/temp_tax_case_93.pl:2:
+Warning:    Goal (directive) failed: user:(answer(tax_case_93,_13334),write('RESULT: '),write(_13334),nl,halt), expected: N/A)

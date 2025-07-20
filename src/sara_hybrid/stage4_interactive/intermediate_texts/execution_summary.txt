@@ -1,0 +1,24 @@
+=== EXECUTION SUMMARY ===
+Timestamp: 2025-07-06T13:27:57.910415
+Total Steps: 15
+Steps Completed: 14
+Total Responses: 20
+Generated Files: 13
+
+=== GENERATED FILES ===
+- knowledge_base.pl
+- helpers.pl
+- statute_7703.pl
+- statute_152.pl
+- statute_68.pl
+- statute_151.pl
+- statute_2.pl
+- statute_63.pl
+- statute_1.pl
+- statute_3306.pl
+- statute_3301.pl
+- tests.pl
+- tests.pl
+
+=== RESPONSE LOGS ===
+All individual response logs saved in: intermediate_texts/llm_responses

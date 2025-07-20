@@ -1,0 +1,71 @@
+{
+  "s151_d_5_neg": {
+    "fact_extraction": [
+      {
+        "case_id": "s151_d_5_neg",
+        "prompt": "Convert text to Method 2 semantic Prolog facts using ACTUAL predicates from our codebase.\n\nTEXT: Alice is entitled to an exemption under section 151(b) for the year 2018.\nCASE_ID: s151_d_5_neg\n\nUse only these actual predicates:\n- personal_exemption_deduction/4 - for exemptions\n- tax_imposed/4 - for tax calculations  \n- standard_deduction/4 - for standard deductions\n- filing_status/4 - for filing status\n- exemption_amount/4 - for specific exemption amounts\n\nFormat: fact(CaseID, predicate(...)).\n\nGenerate facts:",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752424367.916726,
+        "raw_response": "```prolog\nfact(s151_d_5_neg, personal_exemption_deduction('alice', 2018, Amount, '151(b)')).\n```",
+        "error": null,
+        "attempt": 1
+      },
+      {
+        "case_id": "s151_d_5_neg",
+        "prompt": "Convert text to Method 2 semantic Prolog facts using ACTUAL predicates from our codebase.\n\nTEXT: Alice is entitled to an exemption under section 151(b) for the year 2018.\nCASE_ID: s151_d_5_neg\n\nUse only these actual predicates:\n- personal_exemption_deduction/4 - for exemptions\n- tax_imposed/4 - for tax calculations  \n- standard_deduction/4 - for standard deductions\n- filing_status/4 - for filing status\n- exemption_amount/4 - for specific exemption amounts\n\nFormat: fact(CaseID, predicate(...)).\n\nGenerate facts:",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752424383.2191381,
+        "raw_response": "```prolog\nfact(s151_d_5_neg, personal_exemption_deduction('Alice', 2018, Amount, '151(b)')).\n```",
+        "error": null,
+        "attempt": 2
+      },
+      {
+        "case_id": "s151_d_5_neg",
+        "prompt": "Convert text to Method 2 semantic Prolog facts using ACTUAL predicates from our codebase.\n\nTEXT: Alice is entitled to an exemption under section 151(b) for the year 2018.\nCASE_ID: s151_d_5_neg\n\nUse only these actual predicates:\n- personal_exemption_deduction/4 - for exemptions\n- tax_imposed/4 - for tax calculations  \n- standard_deduction/4 - for standard deductions\n- filing_status/4 - for filing status\n- exemption_amount/4 - for specific exemption amounts\n\nFormat: fact(CaseID, predicate(...)).\n\nGenerate facts:",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752424399.4095309,
+        "raw_response": "```prolog\nfact(s151_d_5_neg, personal_exemption_deduction(alice, 2018, Amount, alice)).\n```",
+        "error": null,
+        "attempt": 3
+      }
+    ],
+    "query_generation": [
+      {
+        "case_id": "s151_d_5_neg",
+        "prompt": "Convert question to answer/2 predicate using ACTUAL Method 2 predicates.\n\nFACTS: fact(s151_d_5_neg, personal_exemption_deduction(alice, 2018, Amount, alice)).\nQUESTION: The exemption amount of Alice's exemption is equal to $2000 under section 151(d)(5). Contradiction\nCASE_ID: s151_d_5_neg\n\n**STEP 0: CLASSIFY QUESTION TYPE**\n- CALCULATION: \"how much\", \"amount\", \"calculate\" \u2192 seeks numerical result\n- LOGIC: \"entailment\", \"contradiction\", \"true/false\" \u2192 tests statement truth\n\n**STEP 1: GENERATE QUERY BASED ON TYPE**\n\nUse actual predicates:\n- knowledge_base:exemption_amount/2 - for exemption amounts\n- section151:personal_exemption_deduction/4 - for exemption calculations\n- section1:tax_imposed/4 - for tax calculations\n- section63:standard_deduction/4 - for standard deductions\n- helpers:calculate_tax_from_brackets/3 - for tax bracket calculations\n\n**REQUIRED OUTPUT FORMAT:**\n```\nQuestion Type: [CALCULATION or LOGIC]\nReasoning: [Brief explanation]\nQuery: answer(s151_d_5_neg, Result) :- [complete Prolog clause body].\n```\n\nCRITICAL: Generate a complete Prolog rule with a non-empty body after ':-'.\nNEVER generate incomplete rules like 'answer(s151_d_5_neg, Result) :-.'\nFollow the REQUIRED OUTPUT FORMAT exactly.",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752424415.603592,
+        "raw_response": null,
+        "error": "Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.",
+        "question_type": null,
+        "reasoning": null,
+        "type_consistency_check": null,
+        "attempt": 1
+      },
+      {
+        "case_id": "s151_d_5_neg",
+        "prompt": "Convert question to answer/2 predicate using ACTUAL Method 2 predicates.\n\nFACTS: fact(s151_d_5_neg, personal_exemption_deduction(alice, 2018, Amount, alice)).\nQUESTION: The exemption amount of Alice's exemption is equal to $2000 under section 151(d)(5). Contradiction\nCASE_ID: s151_d_5_neg\n\n**STEP 0: CLASSIFY QUESTION TYPE**\n- CALCULATION: \"how much\", \"amount\", \"calculate\" \u2192 seeks numerical result\n- LOGIC: \"entailment\", \"contradiction\", \"true/false\" \u2192 tests statement truth\n\n**STEP 1: GENERATE QUERY BASED ON TYPE**\n\nUse actual predicates:\n- knowledge_base:exemption_amount/2 - for exemption amounts\n- section151:personal_exemption_deduction/4 - for exemption calculations\n- section1:tax_imposed/4 - for tax calculations\n- section63:standard_deduction/4 - for standard deductions\n- helpers:calculate_tax_from_brackets/3 - for tax bracket calculations\n\n**REQUIRED OUTPUT FORMAT:**\n```\nQuestion Type: [CALCULATION or LOGIC]\nReasoning: [Brief explanation]\nQuery: answer(s151_d_5_neg, Result) :- [complete Prolog clause body].\n```\n\nCRITICAL: Generate a complete Prolog rule with a non-empty body after ':-'.\nNEVER generate incomplete rules like 'answer(s151_d_5_neg, Result) :-.'\nFollow the REQUIRED OUTPUT FORMAT exactly.",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752424428.429711,
+        "raw_response": null,
+        "error": "Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.",
+        "question_type": null,
+        "reasoning": null,
+        "type_consistency_check": null,
+        "attempt": 2
+      },
+      {
+        "case_id": "s151_d_5_neg",
+        "prompt": "Convert question to answer/2 predicate using ACTUAL Method 2 predicates.\n\nFACTS: fact(s151_d_5_neg, personal_exemption_deduction(alice, 2018, Amount, alice)).\nQUESTION: The exemption amount of Alice's exemption is equal to $2000 under section 151(d)(5). Contradiction\nCASE_ID: s151_d_5_neg\n\n**STEP 0: CLASSIFY QUESTION TYPE**\n- CALCULATION: \"how much\", \"amount\", \"calculate\" \u2192 seeks numerical result\n- LOGIC: \"entailment\", \"contradiction\", \"true/false\" \u2192 tests statement truth\n\n**STEP 1: GENERATE QUERY BASED ON TYPE**\n\nUse actual predicates:\n- knowledge_base:exemption_amount/2 - for exemption amounts\n- section151:personal_exemption_deduction/4 - for exemption calculations\n- section1:tax_imposed/4 - for tax calculations\n- section63:standard_deduction/4 - for standard deductions\n- helpers:calculate_tax_from_brackets/3 - for tax bracket calculations\n\n**REQUIRED OUTPUT FORMAT:**\n```\nQuestion Type: [CALCULATION or LOGIC]\nReasoning: [Brief explanation]\nQuery: answer(s151_d_5_neg, Result) :- [complete Prolog clause body].\n```\n\nCRITICAL: Generate a complete Prolog rule with a non-empty body after ':-'.\nNEVER generate incomplete rules like 'answer(s151_d_5_neg, Result) :-.'\nFollow the REQUIRED OUTPUT FORMAT exactly.",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752424441.320568,
+        "raw_response": null,
+        "error": "Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.",
+        "question_type": null,
+        "reasoning": null,
+        "type_consistency_check": null,
+        "attempt": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+=== METHOD 2 CODEBASE - ACCURACY ANALYSIS RESULTS ===
+Analysis Date: 2025-07-19T20:12:27.962141
+
+OVERALL PERFORMANCE:
+Total cases: 26
+Passed cases: 12
+Success rate: 46.2%
+
+TRUE/FALSE CASES:
+Total: 18
+Passed: 12
+Success rate: 66.7%
+Passed cases: s1_d_iv_neg(true), s1_c_i_neg(true), s1_b_iii_neg(true), s1_a_1_iii_neg(true), s3306_b_10_A_neg(true), s63_c_2_B_neg(true), s3306_b_7_neg(true), s152_c_1_E_pos(true), s2_a_2_B_pos(true), s3306_a_1_neg(true), s1_a_1_pos(true), s68_b_1_A_neg(true)
+Failed cases: s3306_c_5_pos(true), s152_d_2_F_pos(true), s63_c_3_pos(true), s7703_b_1_pos(true), s1_c_iv_pos(true), s3306_b_pos(true)
+
+TAX CASES:
+Total: 8
+Passed: 0
+Success rate: 0.0%
+Failed cases: tax_case_89(0), tax_case_13(8710), tax_case_40(279126), tax_case_26(196056), tax_case_79(17402), tax_case_70(178147), tax_case_63(20298), tax_case_61(25055)
+
+=== DETAILED BREAKDOWN ===
+s1_d_iv_neg: PASS (actual: true, expected: true)
+s3306_c_5_pos: FAIL (actual: false, expected: true)
+s1_c_i_neg: PASS (actual: true, expected: true)
+s1_b_iii_neg: PASS (actual: true, expected: true)
+s152_d_2_F_pos: FAIL (actual: false, expected: true)
+s1_a_1_iii_neg: PASS (actual: true, expected: true)
+s3306_b_10_A_neg: PASS (actual: true, expected: true)
+s63_c_2_B_neg: PASS (actual: true, expected: true)
+s3306_b_7_neg: PASS (actual: true, expected: true)
+s152_c_1_E_pos: PASS (actual: true, expected: true)
+s2_a_2_B_pos: PASS (actual: true, expected: true)
+s63_c_3_pos: FAIL (actual: false, expected: true)
+s3306_a_1_neg: PASS (actual: true, expected: true)
+s7703_b_1_pos: FAIL (actual: PROLOG_ERROR: Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:124:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:125:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/knowledge_base.pl:126:
+Warning:    Singleton-marked variable appears more than once: _Year
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/tests.pl:9:
+ERROR:    Exported procedure helpers:get_tax_brackets_for_status/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section7703.pl:29:
+Warning:    Singleton variables: [Year]
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section152.pl:99:
+Warning:    Singleton-marked variable appears more than once: _Year
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section151.pl:56:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:is_entitled_to_exemption_deduction/4 is not defined
+ERROR: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section63.pl:10:
+ERROR:    Exported procedure section151:exemption_amount/4 is not defined
+Warning: /Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase/section2.pl:71:
+Warning:    Singleton-marked variable appears more than once: _CaseID
+ERROR: -g consult(tests), (answer(s7703_b_1_pos, Result) -> (write('RESULT:'), write(Result)) ; write('NO_RESULT')), halt.: section7703:maintains_home_for_child_b1/4: Unknown procedure: section151:is_entitled_to_exemption_deduction/4
+ERROR:   However, there are definitions for:
+ERROR:         section151:is_entitled_to_exemption_deduction/5, expected: true)
+s1_c_iv_pos: FAIL (actual: false, expected: true)
+s3306_b_pos: FAIL (actual: false, expected: true)
+s1_a_1_pos: PASS (actual: true, expected: true)
+s68_b_1_A_neg: PASS (actual: true, expected: true)
+tax_case_89: FAIL (actual: NO_RESULT, expected: 0)
+tax_case_13: FAIL (actual: NO_RESULT, expected: 8710)
+tax_case_40: FAIL (actual: NO_RESULT, expected: 279126)
+tax_case_26: FAIL (actual: NO_RESULT, expected: 196056)
+tax_case_79: FAIL (actual: NO_RESULT, expected: 17402)
+tax_case_70: FAIL (actual: NO_RESULT, expected: 178147)
+tax_case_63: FAIL (actual: NO_RESULT, expected: 20298)
+tax_case_61: FAIL (actual: NO_RESULT, expected: 25055)

@@ -1,0 +1,288 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+Understood. Continuing with the generation of the remaining statute modules.
+
+### Phase 2: Prolog Encoding (Statute Modules, Final)
+
+This response contains `section1.pl`, `section3306.pl` and `section3301.pl`.
+
+%% BEGIN_FILE: section1.pl
+```prolog
+:- module(section1,
+          [ tax_liability/4,
+            tax_imposed_by_bracket/5
+          ]).
+
+:- use_module(knowledge_base, [tax_bracket/7]).
+:- use_module(section63, [taxable_income/4]).
+:- use_module(section2, [filing_status/4]).
+:- use_module(helpers, [calculate_tax_from_brackets/3, get_tax_brackets_for_status/4, round_to_nearest_dollar/2]).
+
+:- multifile fact/2.
+
+/*
+    §1. Tax imposed
+    This module calculates the final tax liability based on taxable income and filing status.
+*/
+
+% tax_liability(CaseID, Taxpayer, Year, Tax)
+% This is the primary predicate for calculating the final tax owed.
+tax_liability(CaseID, Taxpayer, Year, FinalTax) :-
+    taxable_income(CaseID, Taxpayer, Year, TI),
+    filing_status(CaseID, Taxpayer, Year, FilingStatus),
+    get_tax_brackets_for_status(Year, FilingStatus, Brackets),
+    calculate_tax_from_brackets(TI, Brackets, RawTax),
+    round_to_nearest_dollar(RawTax, FinalTax).
+
+% tax_imposed_by_bracket(CaseID, Taxpayer, Year, BracketID, ExpectedTax)
+% This predicate is specifically for testing if a given income falls into a specific bracket and yields a specific tax amount.
+% It's used for the contradiction/entailment cases focused on a single tax bracket calculation.
+tax_imposed_by_bracket(CaseID, _Taxpayer, Year, BracketID, ExpectedTax) :-
+    fact(CaseID, taxable_income(TI)),
+    atom_string(BracketID, BracketIDStr),
+    tax_bracket(Year, _FilingStatus, Min, Max, Base, Rate, BracketIDStr),
+    (Max == inf -> TI > Min ; TI > Min, TI =< Max),
+    CalculatedTax is Base + (TI - Min) * Rate,
+    round_to_nearest_dollar(CalculatedTax, RoundedTax),
+    RoundedTax =:= ExpectedTax.
+
+```
+%% END_FILE: section1.pl
+% SMOKE: ?- [knowledge_base, helpers, section7703, section152, section151, section2, section68, section63, section1], assert(fact(c1, adjusted_gross_income(a, 2017, 50000))), section1:tax_liability(c1, a, 2017, Tax).
+%% BEGIN_FILE: section3306.pl
+```prolog
+:- module(section3306,
+          [ is_employer/3,
+            is_employer_a1/3,
+            is_wages/4,
+            is_employment/4,
+            is_wage_exception_b7/2,
+            is_wage_exception_b10/2,
+            is_employment_exception_c5/4
+          ]).
+
+:- use_module(knowledge_base).
+:- use_module(helpers, [get_age_at_year_end/3]).
+
+:- multifile fact/2.
+/*
+    §3306. Definitions (for FUTA tax)
+*/
+
+% is_employer(CaseID, Person, Year)
+is_employer(CaseID, Person, Year) :-
+    is_employer_a1(CaseID, Person, Year);
+    is_employer_a2(CaseID, Person, Year);
+    is_employer_a3(CaseID, Person, Year).
+
+% is_employer_a1(CaseID, Person, Year) - General Rule
+is_employer_a1(CaseID, Person, Year) :-
+    futa_employer_wage_threshold_general(Year, Threshold),
+    (   total_wages_paid_in_year(CaseID, Person, Year, TotalWages), TotalWages >= Threshold
+    ;   total_wages_paid_in_year(CaseID, Person, Year - 1, TotalWages), TotalWages >= Threshold
+    ),
+    \+ wages_paid_for_domestic_service_only(CaseID, Person, Year).
+is_employer_a1(CaseID, Person, Year) :-
+    futa_employer_days_test_general(DayThreshold),
+    (   employed_on_n_days(CaseID, Person, Year, Days), Days >= DayThreshold
+    ;   employed_on_n_days(CaseID, Person, Year - 1, Days), Days >= DayThreshold
+    ),
+    \+ employment_is_domestic_service_only(CaseID, Person, Year).
+
+
+% is_employer_a2(CaseID, Person, Year) - Agricultural Labor
+is_employer_a2(CaseID, Person, Year) :-
+    futa_employer_wage_threshold_ag(Year, Threshold),
+    (   total_wages_paid_for_ag_labor(CaseID, Person, Year, Wages), Wages >= Threshold
+    ;   total_wages_paid_for_ag_labor(CaseID, Person, Year-1, Wages), Wages >= Threshold
+    ).
+is_employer_a2(CaseID, Person, Year) :-
+    futa_employer_days_test_ag(DayThreshold),
+    futa_ag_labor_employee_threshold(EmployeeThreshold),
+    (   employed_ag_labor_on_n_days(CaseID, Person, Year, EmployeeThreshold, Days), Days >= DayThreshold
+    ;   employed_ag_labor_on_n_days(CaseID, Person, Year-1, EmployeeThreshold, Days), Days >= DayThreshold
+    ).
+
+% is_employer_a3(CaseID, Person, Year) - Domestic Service
+is_employer_a3(CaseID, Person, Year) :-
+    futa_employer_wage_threshold_domestic(Year, Threshold),
+    (   total_wages_paid_for_domestic_service(CaseID, Person, Year, Wages), Wages >= Threshold
+    ;   total_wages_paid_for_domestic_service(CaseID, Person, Year-1, Wages), Wages >= Threshold
+    ).
+
+% is_wages(CaseID, Payer, Payee, Year)
+% §3306(b) - Very broad, assuming most remuneration is wages unless an exception applies.
+is_wages(CaseID, Payer, Payee, Year) :-
+    fact(CaseID, paid(Payer, Payee, Year, _, _)),
+    \+ is_wage_exception(CaseID, Payer, Payee, Year).
+
+% is_wage_exception(CaseID, Payer, Payee, Year)
+is_wage_exception(CaseID, Payer, Payee, Year) :-
+    % §3306(b)(1) Remuneration over $7,000
+    futa_wage_base_limit(Year, Limit),
+    fact(CaseID, paid(Payer, Payee, Year, Amount, _)),
+    findall(P, (fact(CaseID, paid(Payer, Payee, Year, P, _)), P < Amount), PriorPayments),
+    sum_list(PriorPayments, TotalPrior),
+    TotalPrior < Limit,
+    TotalPrior + Amount > Limit.
+is_wage_exception(CaseID, _Payer, _Payee, _Year) :-
+    % Simplified logic for other exceptions, e.g. from a plan
+    fact(CaseID, payment_from_sickness_plan(_)).
+is_wage_exception(CaseID, Payer, Payee, Year) :-
+    fact(CaseID, paid(Payer, Payee, Year, _, PaymentID)),
+    is_wage_exception_b7(CaseID, PaymentID).
+is_wage_exception(CaseID, Payer, Payee, Year) :-
+    fact(CaseID, paid(Payer, Payee, Year, _, PaymentID)),
+    is_wage_exception_b10(CaseID, PaymentID).
+
+% is_wage_exception_b7(CaseID, PaymentID)
+% §3306(b)(7) non-cash for service not in employer's trade or business
+is_wage_exception_b7(CaseID, PaymentID) :-
+    fact(CaseID, payment_details(PaymentID, Medium, Service)),
+    Medium \== cash,
+    fact(CaseID, employer_trade_or_business(Employer, Business)),
+    fact(CaseID, service_details(Service, _, Employer, _)),
+    Service \== Business.
+
+% is_wage_exception_b10(CaseID, PaymentID)
+% §3306(b)(10) Termination payments (death, disability)
+is_wage_exception_b10(CaseID, PaymentID) :-
+    fact(CaseID, payment_details(PaymentID, _, Service)),
+    fact(CaseID, service_details(Service, Employee, Employer, _)),
+    fact(CaseID, paid_under_plan(Employer, _)),
+    (   fact(CaseID, employment_terminated_due_to(Employee, Employer, death))
+    ;   fact(CaseID, employment_terminated_due_to(Employee, Employer, disability))
+    ),
+    \+ fact(CaseID, payment_would_have_been_made_anyway(PaymentID)).
+
+% is_employment(CaseID, Employer, Employee, Year)
+% §3306(c) - Broad definition, check for exceptions.
+is_employment(CaseID, Employer, Employee, Year) :-
+    fact(CaseID, service_performed_in_us(Employee, Employer, Year)),
+    \+ is_employment_exception(CaseID, Employer, Employee, Year).
+
+% is_employment_exception(CaseID, Employer, Employee, Year)
+is_employment_exception(CaseID, Employer, Employee, Year) :-
+    is_employment_exception_c5(CaseID, Employee, Employer, Year).
+is_employment_exception(CaseID, Employer, Employee, _Year) :-
+    % Other exceptions are identified by facts
+    (   fact(CaseID, employed_by_us_government(Employee, Employer))
+    ;   fact(CaseID, employed_by_state_government(Employee, Employer))
+    ;   fact(CaseID, student_employee_at_school(Employee, Employer))
+    ;   fact(CaseID, patient_employee_at_hospital(Employee, Employer))
+    ;   fact(CaseID, child_employee_under_21(Employee, Employer))
+    ).
+
+% is_employment_exception_c5(CaseID, Employee, Employer, Year)
+% §3306(c)(5) Service in employ of family
+is_employment_exception_c5(CaseID, Employee, Employer, _Year) :-
+    (   fact(CaseID, child_of(Employer, Employee)) % son, daughter
+    ;   fact(CaseID, spouse_of(Employee, Employer))
+    ).
+is_employment_exception_c5(CaseID, Employee, Employer, Year) :-
+    fact(CaseID, parent_of(Employer, Employee)), % father or mother
+    fact(CaseID, date_of_birth(Employee, DOB)),
+    get_age_at_year_end(DOB, Year, Age),
+    child_age_under_employment_exception(AgeLimit),
+    Age < AgeLimit.
+
+% --- Helper predicates for internal logic ---
+total_wages_paid_in_year(CaseID, Person, Year, TotalWages) :-
+    findall(Amount, (
+        is_wages(CaseID, Person, Payee, Year),
+        fact(CaseID, paid(Person, Payee, Year, Amount, _))
+    ), Wages),
+    sum_list(Wages, TotalWages).
+
+wages_paid_for_domestic_service_only(CaseID, Person, Year) :-
+    forall(fact(CaseID, paid(Person, _, Year, _, _)),
+           fact(CaseID, service_is_domestic(Person, _))).
+
+employment_is_domestic_service_only(CaseID, Person, Year) :-
+    forall(fact(CaseID, employed(Person, _, Year)),
+           fact(CaseID, service_is_domestic(Person, _))).
+
+total_wages_paid_for_ag_labor(CaseID, Person, Year, TotalWages) :-
+    findall(Amount, (
+        fact(CaseID, paid(Person, Payee, Year, Amount, _)),
+        fact(CaseID, service_is_ag_labor(Payee, Person))
+        ), Wages),
+    sum_list(Wages, TotalWages).
+
+total_wages_paid_for_domestic_service(CaseID, Person, Year, TotalWages) :-
+    findall(Amount, (
+        fact(CaseID, paid(Person, Payee, Year, Amount, _)),
+        fact(CaseID, service_is_domestic(Payee, Person))
+        ), Wages),
+    sum_list(Wages, TotalWages).
+
+employed_on_n_days(CaseID, Person, Year, Days) :-
+    findall(date(Year,M,D), fact(CaseID, employed_on_date(Person, _, date(Year,M,D))), Dates),
+    length(Dates, Days).
+
+employed_ag_labor_on_n_days(CaseID, Person, Year, EmployeeThreshold, NumWeeks) :-
+    findall(Week, (
+        fact(CaseID, employed_ag_labor_on_date(Person, _, date(Year,_,_), Week)),
+        findall(E, distinct(E, fact(CaseID, employed_ag_labor_on_date(Person, E, date(Year,_,_), Week))), Employees),
+        length(Employees, NumEmployees),
+        NumEmployees >= EmployeeThreshold
+    ), Weeks),
+    list_to_set(Weeks, UniqueWeeks),
+    length(UniqueWeeks, NumWeeks).
+
+```
+%% END_FILE: section3306.pl
+% SMOKE: ?- [knowledge_base, helpers, section3306, tests], assert(fact(c1, child_of(a,b))), section3306:is_employment_exception_c5(c1, b, a, 2017).
+%% BEGIN_FILE: section3301.pl
+```prolog
+:- module(section3301,
+          [ futa_tax/4
+          ]).
+
+:- use_module(section3306, [is_employer/3, is_wages/4, is_employment/4]).
+:- use_module(knowledge_base, [futa_tax_rate/2, futa_wage_base_limit/2]).
+
+:- multifile fact/2.
+
+/*
+    §3301. Rate of tax
+    Calculates the Federal Unemployment Tax Act (FUTA) excise tax.
+*/
+
+% futa_tax(CaseID, Employer, Year, Tax)
+futa_tax(CaseID, Employer, Year, Tax) :-
+    is_employer(CaseID, Employer, Year), !,
+    futa_tax_rate(Year, Rate),
+    total_taxable_wages(CaseID, Employer, Year, TaxableWages),
+    Tax is TaxableWages * Rate.
+futa_tax(CaseID, Employer, Year, 0) :-
+    \+ is_employer(CaseID, Employer, Year).
+
+% total_taxable_wages(CaseID, Employer, Year, TotalTaxableWages)
+% Sums the taxable wages for all employees, capped at the wage base limit per employee.
+total_taxable_wages(CaseID, Employer, Year, TotalTaxableWages) :-
+    findall(Employee, fact(CaseID, employed(Employer, Employee, Year)), Employees),
+    list_to_set(Employees, UniqueEmployees),
+    futa_wage_base_limit(Year, Limit),
+    sum_employee_wages(CaseID, Employer, Year, UniqueEmployees, Limit, 0, TotalTaxableWages).
+
+sum_employee_wages(_CaseID, _Employer, _Year, [], _Limit, Acc, Acc).
+sum_employee_wages(CaseID, Employer, Year, [Employee|Rest], Limit, Acc, Total) :-
+    is_employment(CaseID, Employer, Employee, Year),
+    findall(Amount, (
+        is_wages(CaseID, Employer, Employee, Year),
+        fact(CaseID, paid(Employer, Employee, Year, Amount, _))
+    ), Payments),
+    sum_list(Payments, TotalPaid),
+    TaxableForEmployee is min(TotalPaid, Limit),
+    NewAcc is Acc + TaxableForEmployee,
+    sum_employee_wages(CaseID, Employer, Year, Rest, Limit, NewAcc, Total).
+sum_employee_wages(CaseID, Employer, Year, [Employee|Rest], Limit, Acc, Total) :-
+    \+ is_employment(CaseID, Employer, Employee, Year),
+    sum_employee_wages(CaseID, Employer, Year, Rest, Limit, Acc, Total).
+
+```
+%% END_FILE: section3301.pl
+% SMOKE: ?- [knowledge_base, section3306, section3301, tests], assert(fact(c1, paid(employer, employee, 2017, 10000, p1))), assert(fact(c1, service_performed_in_us(employee, employer, 2017))), assert(fact(c1, employed(employer, employee, 2017))), section3301:futa_tax(c1, employer, 2017, Tax).

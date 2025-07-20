@@ -1,0 +1,206 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+This is the fifth response, containing the `section151.pl` and `section152.pl` modules.
+
+%% BEGIN_FILE: section151.pl
+:- module(section151,
+    [
+        personal_exemption_deduction/4,
+        is_deduction_for_dependent_allowed/4,
+        is_exemption_for_spouse_allowed/3,
+        is_claimable_as_dependent/3,
+        exemption_amount/2
+    ]).
+
+:- use_module(knowledge_base).
+:- use_module(helpers, [get_fact/3, tcja_active_general/1]).
+:- use_module(section152, [is_dependent/4]).
+
+/** <module> section151
+ *
+ * Encodes §151, which provides for deductions for personal exemptions for
+ * the taxpayer, spouse, and dependents. It also includes phaseout rules
+ * and the TCJA suspension of exemptions.
+ */
+
+% §151(a) Allowance of deductions
+personal_exemption_deduction(_CaseID, _Payer, Year, 0) :-
+    tcja_active_general(Year), !.
+personal_exemption_deduction(CaseID, Payer, Year, Deduction) :-
+    \+ tcja_active_general(Year),
+    calculate_pre_tcja_exemption(CaseID, Payer, Year, Deduction).
+
+% §151(d)(5) Exemption amount is zero for 2018-2025
+exemption_amount(Year, 0) :-
+    tcja_active_general(Year), !.
+exemption_amount(Year, Amount) :-
+    \+ tcja_active_general(Year),
+    exemption_amount(Amount). % From knowledge_base
+
+% Central logic for pre-TCJA exemption calculation
+calculate_pre_tcja_exemption(CaseID, Payer, Year, Deduction) :-
+    % §151(d)(2) check if taxpayer can be claimed by another
+    (   is_claimable_as_dependent(CaseID, Payer, Year)
+    ->  Deduction = 0
+    ;   count_exemptions(CaseID, Payer, Year, ExemptionCount),
+        exemption_amount(Year, BaseAmount),
+        TotalBaseAmount is ExemptionCount * BaseAmount,
+        apply_phaseout(CaseID, Payer, Year, TotalBaseAmount, Deduction)
+    ).
+
+% Count total exemptions for taxpayer, spouse, and dependents
+count_exemptions(CaseID, Payer, Year, Count) :-
+    % §151(b) taxpayer exemption
+    TaxpayerExemption = 1,
+    % §151(b) spouse exemption
+    (   is_exemption_for_spouse_allowed(CaseID, Payer, Year)
+    ->  SpouseExemption = 1
+    ;   SpouseExemption = 0
+    ),
+    % §151(c) dependent exemptions
+    findall(D, is_deduction_for_dependent_allowed(CaseID, Payer, D, Year), Dependents),
+    length(Dependents, DependentCount),
+    Count is TaxpayerExemption + SpouseExemption + DependentCount.
+
+% §151(b) Rules for spouse exemption
+is_exemption_for_spouse_allowed(CaseID, Payer, Year) :-
+    fact(CaseID, spouse(Payer, Spouse)),
+    fact(CaseID, filing_status(Payer, FilingStatus, Year)),
+    FilingStatus \== married_filing_jointly,
+    \+ fact(CaseID, gross_income(Spouse, Year, GI), GI > 0),
+    \+ is_claimable_as_dependent(CaseID, Spouse, Year).
+
+% §151(c) Rules for dependent deduction
+is_deduction_for_dependent_allowed(CaseID, Payer, Dependent, Year) :-
+    is_dependent(CaseID, Payer, Dependent, Year).
+
+% §151(d)(2) Check if a person is claimable as a dependent by *any* other taxpayer
+is_claimable_as_dependent(CaseID, Person, Year) :-
+    fact(CaseID, potential_claimer(Claimer)),
+    Claimer \== Person,
+    is_dependent(CaseID, Claimer, Person, Year).
+
+% §151(d)(3) Phaseout logic
+apply_phaseout(CaseID, Payer, Year, BaseDeduction, FinalDeduction) :-
+    (   fact(CaseID, adjusted_gross_income(Payer, Year, AGI)),
+        fact(CaseID, filing_status(Payer, FilingStatus, Year)),
+        exemption_phaseout_threshold(Year, FilingStatus, Threshold),
+        AGI > Threshold
+    ->  ExcessAGI is AGI - Threshold,
+        exemption_phaseout_step(FilingStatus, Step),
+        ReductionPoints is ceil(ExcessAGI / Step),
+        ApplicablePercentage is min(1.0, (ReductionPoints * 0.02)),
+        ReductionAmount is BaseDeduction * ApplicablePercentage,
+        FinalDeduction is max(0, BaseDeduction - ReductionAmount)
+    ;   FinalDeduction = BaseDeduction
+    ).
+%% END_FILE: section151.pl
+% SMOKE: ?- [knowledge_base, helpers, section152, section151], assertz(fact(c, potential_claimer('Bob'))), assertz(fact(c, relationship('Alice', 'Bob', daughter))), assertz(fact(c, birth_date('Alice', date(2000, 1, 1)))), assertz(fact(c, principal_place_of_abode_more_than_half_year('Alice', home, 2017))), is_claimable_as_dependent(c, 'Alice', 2017).
+
+%% BEGIN_FILE: section152.pl
+:- module(section152,
+    [
+        is_dependent/4,
+        is_qualifying_child/4,
+        is_qualifying_relative/4,
+        relationship_qualifying_relative/4,
+        relationship_qualifying_relative_household_member/4,
+        qualifying_child_joint_return_test/4
+    ]).
+
+:- use_module(helpers, [get_fact/3, get_age_at_year_end/4]).
+:- use_module(library(lists), [member/2]).
+
+/** <module> section152
+ *
+ * Encodes §152, which defines who qualifies as a "dependent", broken
+ * down into "qualifying child" and "qualifying relative".
+ */
+
+% §152(a) Dependent defined
+is_dependent(CaseID, Taxpayer, PotentialDependent, Year) :-
+    \+ is_dependent_exception(CaseID, PotentialDependent, Year),
+    (   is_qualifying_child(CaseID, Taxpayer, PotentialDependent, Year)
+    ;   is_qualifying_relative(CaseID, Taxpayer, PotentialDependent, Year)
+    ).
+
+% §152(b) Exceptions
+is_dependent_exception(CaseID, Person, Year) :-
+    % (1) Dependent cannot have their own dependents
+    fact(CaseID, potential_dependent(Person, DepOfDep)),
+    is_dependent(CaseID, Person, DepOfDep, Year),
+    !.
+is_dependent_exception(CaseID, Person, Year) :-
+    % (2) Married dependents filing jointly
+    fact(CaseID, spouse(Person, Spouse)),
+    fact(CaseID, filing_status(Person, married_filing_jointly, Year)),
+    fact(CaseID, filing_status(Spouse, married_filing_jointly, Year)).
+
+% §152(c) Qualifying child
+is_qualifying_child(CaseID, Taxpayer, PotentialChild, Year) :-
+    relationship_qualifying_child(CaseID, Taxpayer, PotentialChild),
+    abode_test(CaseID, Taxpayer, PotentialChild, Year),
+    age_test(CaseID, Taxpayer, PotentialChild, Year),
+    qualifying_child_joint_return_test(CaseID, PotentialChild, Year).
+
+% §152(c)(2) Relationship test for QC
+relationship_qualifying_child(CaseID, Taxpayer, P) :- fact(CaseID, relationship(P, Taxpayer, R)), member(R, [child, son, daughter, stepchild, stepson, stepdaughter, descendant_of_child, brother, sister, stepbrother, stepsister, descendant_of_sibling]).
+
+% §152(c)(1)(B) Abode test for QC
+abode_test(CaseID, Taxpayer, PotentialChild, Year) :-
+    fact(CaseID, principal_place_of_abode(PotentialChild, Abode, Year)),
+    fact(CaseID, principal_place_of_abode(Taxpayer, Abode, Year)),
+    fact(CaseID, lived_together_more_than_half_year(PotentialChild, Taxpayer, Year)).
+
+% §152(c)(3) Age test for QC
+age_test(CaseID, Taxpayer, PotentialChild, Year) :-
+    get_age_at_year_end(CaseID, PotentialChild, Year, ChildAge),
+    get_age_at_year_end(CaseID, Taxpayer, Year, TaxpayerAge),
+    ChildAge < TaxpayerAge,
+    ChildAge < 25. % Simplified from the statute's complex student/disability rules
+
+% §152(c)(1)(E) Joint return test for QC
+qualifying_child_joint_return_test(CaseID, PotentialChild, Year) :-
+    (   fact(CaseID, spouse(PotentialChild, Spouse))
+    ->  \+ (fact(CaseID, filing_status(PotentialChild, married_filing_jointly, Year)), fact(CaseID, filing_status(Spouse, married_filing_jointly, Year)))
+    ;   true
+    ).
+
+% §152(d) Qualifying relative
+is_qualifying_relative(CaseID, Taxpayer, PotentialRelative, Year) :-
+    relationship_qualifying_relative(CaseID, Taxpayer, PotentialRelative, Year),
+    income_test_qualifying_relative(CaseID, PotentialRelative, Year),
+    not_qualifying_child_test(CaseID, Taxpayer, PotentialRelative, Year).
+
+% §152(d)(2) Relationship test for QR
+relationship_qualifying_relative(CaseID, Taxpayer, P, Year) :-
+    relationship_qualifying_relative_by_blood_or_marriage(CaseID, Taxpayer, P) ;
+    relationship_qualifying_relative_household_member(CaseID, Taxpayer, P, Year).
+
+relationship_qualifying_relative_by_blood_or_marriage(CaseID, Taxpayer, P) :-
+    fact(CaseID, relationship(P, Taxpayer, R)),
+    member(R, [child, descendant_of_child, brother, sister, stepbrother, stepsister,
+               father, mother, ancestor_of_parent, stepfather, stepmother,
+               son_of_sibling, daughter_of_sibling, uncle, aunt,
+               son_in_law, daughter_in_law, father_in_law, mother_in_law,
+               brother_in_law, sister_in_law]).
+
+% §152(d)(2)(H) Household member test
+relationship_qualifying_relative_household_member(CaseID, Taxpayer, P, Year) :-
+    fact(CaseID, principal_place_of_abode(P, Abode, Year)),
+    fact(CaseID, principal_place_of_abode(Taxpayer, Abode, Year)),
+    \+ (fact(CaseID, spouse(P, Taxpayer)); fact(CaseID, spouse(Taxpayer, P))),
+    \+ fact(CaseID, former_spouse(P, Taxpayer)).
+
+% §152(d)(1)(B) Income test for QR
+income_test_qualifying_relative(CaseID, PotentialRelative, Year) :-
+    \+ (fact(CaseID, gross_income(PotentialRelative, Year, GI)), GI > 0).
+
+% §152(d)(1)(D) Not a qualifying child test for QR
+not_qualifying_child_test(CaseID, Taxpayer, PotentialRelative, Year) :-
+    \+ is_qualifying_child(CaseID, Taxpayer, PotentialRelative, Year),
+    \+ (fact(CaseID, potential_claimer(OtherClaimer)), OtherClaimer \== Taxpayer, is_qualifying_child(CaseID, OtherClaimer, PotentialRelative, Year)).
+%% END_FILE: section152.pl
+% SMOKE: ?- [helpers, section152], assertz(fact(c, relationship('Bob', 'Alice', son))), assertz(fact(c, birth_date('Bob', date(2010, 5, 5)))), assertz(fact(c, birth_date('Alice', date(1980, 5, 5)))), assertz(fact(c, principal_place_of_abode('Bob', '123 St', 2017))), assertz(fact(c, principal_place_of_abode('Alice', '123 St', 2017))), assertz(fact(c, lived_together_more_than_half_year('Bob', 'Alice', 2017))), is_qualifying_child(c, 'Alice', 'Bob', 2017).

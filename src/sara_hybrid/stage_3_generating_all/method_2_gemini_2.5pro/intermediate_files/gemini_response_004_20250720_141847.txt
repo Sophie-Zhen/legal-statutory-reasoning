@@ -1,0 +1,179 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+I have completed the previous set of statute modules. I will now continue with Phase 2, generating the next set of statute modules as planned.
+
+**Part 4 of 8: `section151.pl` and `section68.pl`**
+
+%% BEGIN_FILE: section151.pl
+:- module(section151,
+    [
+        personal_exemption_deduction/4,
+        is_entitled_to_deduction/4
+    ]).
+
+:- use_module(knowledge_base, [personal_exemption_amount/2, phaseout_step_amount/2]).
+:- use_module(helpers, [tcja_active_general/1]).
+:- use_module(section152, [is_dependent/4]).
+:- use_module(section68, [applicable_amount/4]).
+:- use_module(library(lists), [sum_list/2]).
+
+% Forward declaration for tests.pl, which will be loaded at runtime.
+:- multifile fact/2.
+
+/**
+ * section151.pl
+ *
+ * Encodes §151: Allowance of deductions for personal exemptions.
+ */
+
+% personal_exemption_deduction/4
+% §151(a) Computes the total personal exemption deduction for a taxpayer.
+personal_exemption_deduction(CaseID, Taxpayer, Year, TotalDeduction) :-
+    % §151(d)(5) - For TCJA years, the exemption amount is zero.
+    tcja_active_general(Year),
+    !,
+    TotalDeduction = 0.
+personal_exemption_deduction(CaseID, Taxpayer, Year, TotalDeduction) :-
+    % Pre-TCJA years
+    \+ tcja_active_general(Year),
+    exemption_amount(CaseID, Taxpayer, Year, ExemptionAmount),
+    % Count exemptions
+    count_exemptions(CaseID, Taxpayer, Year, NumExemptions),
+    TotalDeduction is NumExemptions * ExemptionAmount.
+
+
+% is_entitled_to_deduction/4
+% Checks if a taxpayer is entitled to a deduction for a specific person (dependent).
+% This is used by other sections like §2 and §7703.
+is_entitled_to_deduction(CaseID, Taxpayer, Dependent, Year) :-
+    is_dependent(CaseID, Taxpayer, Dependent, Year),
+    % §151(d)(2) - if the dependent can be claimed by another, their exemption is zero.
+    % This doesn't stop the taxpayer from being "entitled", it just zeroes the amount for the dependent.
+    % The core logic of "is_dependent" is what confers entitlement.
+    true.
+
+
+% count_exemptions/4
+% §151(b), (c) Counts the number of exemptions for a taxpayer.
+count_exemptions(CaseID, Taxpayer, Year, NumExemptions) :-
+    % Taxpayer exemption
+    taxpayer_exemption_count(CaseID, Taxpayer, Year, TaxpayerCount),
+    % Spouse exemption
+    spouse_exemption_count(CaseID, Taxpayer, Year, SpouseCount),
+    % Dependent exemptions
+    dependent_exemption_count(CaseID, Taxpayer, Year, DependentCount),
+    NumExemptions is TaxpayerCount + SpouseCount + DependentCount.
+
+taxpayer_exemption_count(CaseID, Taxpayer, Year, Count) :-
+    % §151(d)(2) - If taxpayer can be claimed as a dependent, their exemption is disallowed.
+    fact(CaseID, is_dependent_of(Taxpayer, _Other, Year)), !, Count = 0.
+taxpayer_exemption_count(_CaseID, _Taxpayer, _Year, 1).
+
+spouse_exemption_count(CaseID, Taxpayer, Year, 1) :-
+    fact(CaseID, married(Taxpayer, Spouse, _)),
+    fact(CaseID, files_separate_return(Taxpayer, Year)),
+    \+ fact(CaseID, gross_income(Spouse, Year, Income)), Income > 0,
+    \+ fact(CaseID, is_dependent_of(Spouse, _Other, Year)).
+spouse_exemption_count(_CaseID, _Taxpayer, _Year, 0).
+
+dependent_exemption_count(CaseID, Taxpayer, Year, Count) :-
+    findall(Dep, is_dependent(CaseID, Taxpayer, Dep, Year), Dependents),
+    length(Dependents, Count).
+
+% exemption_amount/4
+% §151(d) Determines the per-person exemption amount, considering phaseout.
+exemption_amount(CaseID, Taxpayer, Year, FinalAmount) :-
+    personal_exemption_amount(Year, BaseAmount),
+    % §151(d)(3) - Phaseout
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI)),
+    fact(CaseID, filing_status(Taxpayer, Year, FilingStatus)),
+    applicable_amount(CaseID, Taxpayer, Year, PhaseoutThreshold), % From §68(b)
+    AGI > PhaseoutThreshold,
+    !,
+    ExcessAGI is AGI - PhaseoutThreshold,
+    phaseout_step_amount(FilingStatus, StepAmount),
+    ReductionSteps is ceil(ExcessAGI / StepAmount),
+    ApplicablePercentage is min(1.0, ReductionSteps * 0.02),
+    FinalAmount is BaseAmount * (1 - ApplicablePercentage).
+exemption_amount(_CaseID, _Taxpayer, Year, BaseAmount) :-
+    % No phaseout applies
+    personal_exemption_amount(Year, BaseAmount).
+%% END_FILE: section151.pl
+% SMOKE: ?- [tests], personal_exemption_deduction(s7703_b_1_pos, alice, 2018, Deduction).
+
+%% BEGIN_FILE: section68.pl
+:- module(section68,
+    [
+        limitation_on_itemized_deductions/5,
+        applicable_amount/4
+    ]).
+
+:- use_module(helpers, [s68_suspended/1]).
+:- use_module(knowledge_base, [
+    itemized_deduction_phaseout_threshold/3,
+    itemized_deduction_phaseout_percentage/1,
+    itemized_deduction_phaseout_max_reduction/1
+    ]).
+:- use_module(section2, [is_surviving_spouse/3, is_head_of_household/3]).
+:- use_module(section7703, [is_married/4]).
+
+% Forward declaration for tests.pl, which will be loaded at runtime.
+:- multifile fact/2.
+
+/**
+ * section68.pl
+ *
+ * Encodes §68: Overall limitation on itemized deductions.
+ */
+
+% limitation_on_itemized_deductions/5
+% §68(a) Calculates the allowable itemized deductions after limitation.
+limitation_on_itemized_deductions(_CaseID, _Taxpayer, Year, _InitialDeductions, InitialDeductions) :-
+    s68_suspended(Year),
+    !.
+limitation_on_itemized_deductions(CaseID, Taxpayer, Year, InitialDeductions, FinalDeductions) :-
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI)),
+    applicable_amount(CaseID, Taxpayer, Year, ApplicableAmount),
+    AGI > ApplicableAmount,
+    !,
+    ExcessAGI is AGI - ApplicableAmount,
+    % (1) 3 percent of the excess
+    itemized_deduction_phaseout_percentage(Percentage),
+    Reduction1 is ExcessAGI * Percentage,
+    % (2) 80 percent of the amount of the itemized deductions
+    itemized_deduction_phaseout_max_reduction(MaxReductionPercent),
+    Reduction2 is InitialDeductions * MaxReductionPercent,
+    % Reduction is the lesser of the two
+    Reduction is min(Reduction1, Reduction2),
+    FinalDeductions is InitialDeductions - Reduction.
+limitation_on_itemized_deductions(_CaseID, _Taxpayer, _Year, InitialDeductions, InitialDeductions). % AGI not over threshold
+
+
+% applicable_amount/4
+% §68(b) Determines the AGI threshold for the itemized deduction limitation.
+applicable_amount(CaseID, Taxpayer, Year, Threshold) :-
+    determine_filing_status_for_68(CaseID, Taxpayer, Year, FilingStatus),
+    itemized_deduction_phaseout_threshold(Year, FilingStatus, Threshold),
+    !.
+applicable_amount(_CaseID, _Taxpayer, Year, Threshold) :-
+    % Fallback if status determination fails, using 'unmarried' as a safe default.
+    itemized_deduction_phaseout_threshold(Year, unmarried, Threshold).
+
+% Helper to determine filing status for this section's logic.
+% This is separate from the main filing status determination to avoid circular dependencies.
+determine_filing_status_for_68(CaseID, Taxpayer, Year, FilingStatus) :-
+    (   is_surviving_spouse(CaseID, Taxpayer, Year)
+    ->  FilingStatus = surviving_spouse
+    ;   is_head_of_household(CaseID, Taxpayer, Year)
+    ->  FilingStatus = head_of_household
+    ;   is_married(CaseID, Taxpayer, Year, married)
+    ->  (   fact(CaseID, files_joint_return(Taxpayer, _, Year))
+        ->  FilingStatus = married_filing_jointly
+        ;   FilingStatus = married_filing_separately
+        )
+    ;   FilingStatus = unmarried
+    ).
+%% END_FILE: section68.pl
+% SMOKE: ?- [tests], applicable_amount(s68_b_1_A_neg, alice, 2016, Amount).

@@ -1,0 +1,325 @@
+{
+  "approach": "method2_codebase",
+  "results": [
+    {
+      "case_id": "s152_c_1_E_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s152_d_2_F_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_a_1_iii_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_a_1_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_b_iii_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_c_i_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_c_iv_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s1_d_iv_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s2_a_2_B_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_a_1_neg",
+      "success": false,
+      "actual_result": "true",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_b_10_A_neg",
+      "success": false,
+      "actual_result": "true",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_b_7_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_b_pos",
+      "success": false,
+      "actual_result": "false",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s3306_c_5_pos",
+      "success": true,
+      "actual_result": "true",
+      "expected_result": "true",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s63_c_2_B_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s63_c_3_pos",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "N/A",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s68_b_1_A_neg",
+      "success": true,
+      "actual_result": "false",
+      "expected_result": "false",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "s7703_b_1_pos",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "N/A",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_13",
+      "success": true,
+      "actual_result": "8710",
+      "expected_result": "8710.0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_26",
+      "success": true,
+      "actual_result": "196056",
+      "expected_result": "196056.0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_40",
+      "success": false,
+      "actual_result": "NO_RESULT",
+      "expected_result": "N/A",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_61",
+      "success": true,
+      "actual_result": "25055",
+      "expected_result": "25055.0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_63",
+      "success": true,
+      "actual_result": "20298",
+      "expected_result": "20298.0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_70",
+      "success": true,
+      "actual_result": "178147",
+      "expected_result": "178147.0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_79",
+      "success": true,
+      "actual_result": "17402",
+      "expected_result": "17402.0",
+      "approach": "method2_codebase"
+    },
+    {
+      "case_id": "tax_case_89",
+      "success": true,
+      "actual_result": "0",
+      "expected_result": "0.0",
+      "approach": "method2_codebase"
+    }
+  ],
+  "accuracy_report": {
+    "overall": {
+      "total_cases": 26,
+      "passed_cases": 19,
+      "failed_cases": 7,
+      "success_rate": 73.07692307692307
+    },
+    "true_false_cases": {
+      "total": 18,
+      "passed": 12,
+      "failed": 6,
+      "success_rate": 66.66666666666666,
+      "passed_list": [
+        [
+          "s152_c_1_E_pos",
+          "true"
+        ],
+        [
+          "s1_a_1_iii_neg",
+          "false"
+        ],
+        [
+          "s1_a_1_pos",
+          "true"
+        ],
+        [
+          "s1_b_iii_neg",
+          "false"
+        ],
+        [
+          "s1_c_i_neg",
+          "false"
+        ],
+        [
+          "s1_c_iv_pos",
+          "true"
+        ],
+        [
+          "s1_d_iv_neg",
+          "false"
+        ],
+        [
+          "s2_a_2_B_pos",
+          "true"
+        ],
+        [
+          "s3306_b_7_neg",
+          "false"
+        ],
+        [
+          "s3306_c_5_pos",
+          "true"
+        ],
+        [
+          "s63_c_2_B_neg",
+          "false"
+        ],
+        [
+          "s68_b_1_A_neg",
+          "false"
+        ]
+      ],
+      "failed_list": [
+        [
+          "s152_d_2_F_pos",
+          "false"
+        ],
+        [
+          "s3306_a_1_neg",
+          "true"
+        ],
+        [
+          "s3306_b_10_A_neg",
+          "true"
+        ],
+        [
+          "s3306_b_pos",
+          "false"
+        ],
+        [
+          "s63_c_3_pos",
+          "NO_RESULT"
+        ],
+        [
+          "s7703_b_1_pos",
+          "NO_RESULT"
+        ]
+      ]
+    },
+    "tax_cases": {
+      "total": 8,
+      "passed": 7,
+      "failed": 1,
+      "success_rate": 87.5,
+      "passed_list": [
+        [
+          "tax_case_13",
+          "8710"
+        ],
+        [
+          "tax_case_26",
+          "196056"
+        ],
+        [
+          "tax_case_61",
+          "25055"
+        ],
+        [
+          "tax_case_63",
+          "20298"
+        ],
+        [
+          "tax_case_70",
+          "178147"
+        ],
+        [
+          "tax_case_79",
+          "17402"
+        ],
+        [
+          "tax_case_89",
+          "0"
+        ]
+      ],
+      "failed_list": [
+        [
+          "tax_case_40",
+          "NO_RESULT"
+        ]
+      ]
+    },
+    "timestamp": "2025-07-14T21:44:19.704053"
+  },
+  "test_info": {
+    "working_directory": "/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/prolog_codebase",
+    "expected_cases_count": 26,
+    "files_checked": true
+  }
+}

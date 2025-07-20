@@ -1,0 +1,114 @@
+Objective:
+I am an expert in Prolog and U.S. federal tax law. My goal is to generate a modular, extensible, and logically sound Prolog system that encodes U.S. federal tax statutes. The system must correctly evaluate an initial set of test cases provided in a single file, while being architected to handle future, unseen cases on an individual file basis.
+Inputs:
+Statutes: Nine sections of the Internal Revenue Code.
+Statute Dependency Graph: A set of xref/2 facts defining the direct dependencies between statute sections.
+Cases: Twenty-six case-facts, each with a CaseID, narrative facts, and a question.
+Crucial Requirement for Extensibility & Generalization:
+The generated Prolog codebase must serve as a robust, general-purpose logical model.
+Strict Separation of Logic and Data: The system must be structured into four distinct layers:
+knowledge_base.pl: Static, universal constants and thresholds.
+helpers.pl: General-purpose logical and arithmetic helpers.
+Statute Modules (section1.pl, etc.): Generalized predicates encoding the logic of the law.
+tests.pl: The test harness for the initial cases.
+Parameterized and General Statute Logic: Predicates in statute modules MUST NOT embed specific case data. All data must be passed via arguments.
+Dual-Mode Testing Strategy:
+While for these initial 25 training cases you must generate a single combined tests.pl file for efficiency, the structure must be explicitly designed to make extracting any single case straightforward.
+Clearly delineate each case's fact/2 and answer/2 definitions with comments (e.g., % --- Case ID: [CaseID] ---).
+This design must support a future mode where new, unseen cases are provided in individual Prolog files (one per case) without requiring structural changes to the core statute, helper, or knowledge base modules.
+
+Task Breakdown & Machine-Readable Output Format:
+Phase 0: Dependency Analysis Setup
+The system will use a pre-computed dependency graph to resolve cross-references. The following Prolog code is provided as the foundation for this analysis.
+Statute Dependency Facts (xref/2):
+% Defines direct dependencies between statute sections.
+xref(section1, [section2, section7703]).
+xref(section2, [section1, section151, section152]).
+xref(section63, [section2, section7703, section151]).
+xref(section68, [section2, section7703]).
+xref(section151, [section152, section68]).
+xref(section152, [section7703]).
+xref(section3301, [section3306]).
+xref(section3306, []).
+xref(section7703, [section151]).
+
+Transitive Closure Helper (transitive_deps/2):
+% Computes the full dependency closure for a given list of seeds.
+transitive_deps(Seeds, AllDeps) :- trans_deps(Seeds, [], AllDeps).
+trans_deps([], Acc, Acc).
+trans_deps([H|T], Acc, All) :-
+  ( member(H, Acc) -> trans_deps(T, Acc, All)
+  ; (xref(H, Deps) -> true ; Deps = []),
+    append(Deps, T, NewQueue),
+    trans_deps(NewQueue, [H|Acc], All)
+  ).
+
+Phase 1: Pre-computation (Statute-Case Mapping Using Dependency Graph as JSON)
+Before generating Prolog code, provide a structured mapping. For each CaseID:
+- Identify the initial "seed" section(s) from the case question.
+- Use transitive_deps/2 to compute the full set of all relevant statute sections.
+- For this complete set, list the specific statute predicates required and map their arguments (slots) to the case facts.
+Output ONLY a single JSON array of objects in the following format. Do not include any other commentary or text.
+[
+  {
+    "CaseID": "case_id_string",
+    "QuestionType": "entailment | contradiction | how-much-tax",
+    "SeedSections": ["section_name_1", "section_name_2"],
+    "FullDeps": ["dep_1", "dep_2", "dep_3"],
+    "Predicates": [
+      {
+        "Module": "module_name",
+        "Name": "predicate_name",
+        "Arity": 4,
+        "Slots": {
+          "ArgumentName1": "value_or_source_fact",
+          "ArgumentName2": "value_or_source_fact",
+          "OutputArgument": null
+        }
+      }
+    ]
+  }
+]
+
+Phase 2: Prolog Encoding (Guided by SARA & Best Practices)
+Generate Prolog code that strictly adheres to the following specifications:
+File Structure & Modules:
+knowledge_base.pl: Static constants.
+helpers.pl: Logical/arithmetic helpers. Must implement, at minimum: get_age_at_year_end/4, round_to_nearest_dollar/2, tcja_active_general/1, calculate_tax_from_brackets/3.
+Statute Modules: One module per statute. Module imports (use_module) must be correctly derived from the dependency graph.
+tests.pl: The test harness for the initial 25 cases.
+Uniform Query Predicate (answer/2): In tests.pl, define answer(CaseID, Result) with explicitly different logic for the two question types:
+For "entailment" or "contradiction" questions: Result must be true or false.
+For "how-much-tax" questions: Result must be the final calculated numerical answer.
+Explicit Code Quality & Prolog Standards:
+Modules: All files must start with :- module(ModuleName, [ExportList]). and use :- use_module(module_name, ...). for dependencies. Do not use the library() wrapper for local module imports.
+Dynamic Predicates: tests.pl must begin with :- dynamic fact/2..
+Variables: Unused variables must be prefixed with _.
+Run-Ready Code: The final generated code must compile and execute in SWI-Prolog without requiring manual fixes.
+Generate all Prolog code according to the following strict formatting rules:
+File Markers: Every Prolog file's content must be wrapped in unique, parseable tags:
+%% BEGIN_FILE: filename.pl
+... Prolog code ...
+%% END_FILE: filename.pl
+Smoke Tests: After each file block, append a comment with a one-line Prolog smoke test to validate its core functionality.
+% SMOKE: ?- [filename], sample_predicate(arg, Result).
+Case Markers: In tests.pl, each case (facts and answer predicate) must be wrapped in its own parseable block:
+%% --- CaseID: case_id_string BEGIN ---
+fact(case_id_string, ...).
+answer(case_id_string, Result) :- ... .
+%% --- CaseID: case_id_string END ---
+
+Output Generation Plan (Explicit Chunking):
+If the output exceeds the length limit, generate the complete code across multiple responses by following this explicit plan. State which part you have completed at the end of each response.
+Response 1: The Statute-Case Mapping as a single JSON object.
+Response 2: The knowledge_base.pl and helpers.pl modules, each in its own tagged block with a smoke test.
+Response 3-5: The statute modules, each in its own tagged block with a smoke test.
+Response 6: The tests.pl file containing only the module declarations and all fact/2 definitions， with each case's facts wrapped in the specified %% --- CaseID: ... markers.
+Response 7 (and subsequent): The tests.pl file's answer/2 predicate definitions, delivered in batches of 5-7 cases, with each case's facts wrapped in the specified %% --- CaseID: ... markers.
+Final Response: A final JSON manifest of all generated files.
+{
+  "modules": ["knowledge_base.pl", "helpers.pl", "section1.pl", ...],
+  "test_suite": "tests.pl"
+}
+When you have completed all the responses, please append the exact marker at the end:
+<<ALL DONE>>

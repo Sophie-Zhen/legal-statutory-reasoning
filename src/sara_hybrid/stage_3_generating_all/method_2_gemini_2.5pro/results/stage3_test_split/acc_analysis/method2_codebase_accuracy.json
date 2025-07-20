@@ -1,0 +1,133 @@
+{
+  "overall": {
+    "total_cases": 26,
+    "passed_cases": 19,
+    "failed_cases": 7,
+    "success_rate": 73.07692307692307
+  },
+  "true_false_cases": {
+    "total": 18,
+    "passed": 12,
+    "failed": 6,
+    "success_rate": 66.66666666666666,
+    "passed_list": [
+      [
+        "s152_c_1_E_pos",
+        "true"
+      ],
+      [
+        "s1_a_1_iii_neg",
+        "false"
+      ],
+      [
+        "s1_a_1_pos",
+        "true"
+      ],
+      [
+        "s1_b_iii_neg",
+        "false"
+      ],
+      [
+        "s1_c_i_neg",
+        "false"
+      ],
+      [
+        "s1_c_iv_pos",
+        "true"
+      ],
+      [
+        "s1_d_iv_neg",
+        "false"
+      ],
+      [
+        "s2_a_2_B_pos",
+        "true"
+      ],
+      [
+        "s3306_b_7_neg",
+        "false"
+      ],
+      [
+        "s3306_c_5_pos",
+        "true"
+      ],
+      [
+        "s63_c_2_B_neg",
+        "false"
+      ],
+      [
+        "s68_b_1_A_neg",
+        "false"
+      ]
+    ],
+    "failed_list": [
+      [
+        "s152_d_2_F_pos",
+        "false"
+      ],
+      [
+        "s3306_a_1_neg",
+        "true"
+      ],
+      [
+        "s3306_b_10_A_neg",
+        "true"
+      ],
+      [
+        "s3306_b_pos",
+        "false"
+      ],
+      [
+        "s63_c_3_pos",
+        "NO_RESULT"
+      ],
+      [
+        "s7703_b_1_pos",
+        "NO_RESULT"
+      ]
+    ]
+  },
+  "tax_cases": {
+    "total": 8,
+    "passed": 7,
+    "failed": 1,
+    "success_rate": 87.5,
+    "passed_list": [
+      [
+        "tax_case_13",
+        "8710"
+      ],
+      [
+        "tax_case_26",
+        "196056"
+      ],
+      [
+        "tax_case_61",
+        "25055"
+      ],
+      [
+        "tax_case_63",
+        "20298"
+      ],
+      [
+        "tax_case_70",
+        "178147"
+      ],
+      [
+        "tax_case_79",
+        "17402"
+      ],
+      [
+        "tax_case_89",
+        "0"
+      ]
+    ],
+    "failed_list": [
+      [
+        "tax_case_40",
+        "NO_RESULT"
+      ]
+    ]
+  },
+  "timestamp": "2025-07-14T21:44:19.704053"
+}

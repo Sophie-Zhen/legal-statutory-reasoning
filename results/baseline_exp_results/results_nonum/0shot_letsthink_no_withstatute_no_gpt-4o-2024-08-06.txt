@@ -1,0 +1,212 @@
+s151_d_1_neg   GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}}
+s151_d_1_pos   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}}
+s151_d_3_A_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 2, 'unclear': 0}}
+s151_d_3_A_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 2, 'unclear': 0}}
+s151_d_5_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 3, 'unclear': 0}}
+s151_d_5_pos   GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 3, 'unclear': 0}}
+s152_a_neg     GPT Response: Insufficient information.Interpreted as: unclear        Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 0, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 0, 'unclear': 1}}
+s152_a_pos     GPT Response: Entailment. Since Bob satisfies the criteria for being a "qualifying child" under I.R.C. section 152(c)(1), he is considered a dependent of Alice under I.R.C. section 152(a) for the year 2015, assuming no other disqualifying factors are present.Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 0, 'unclear': 1}}
+s152_c_2_A_neg GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 1, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 1, 'Contradiction': 0, 'unclear': 1}}
+s152_c_2_A_pos GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 1, 'Contradiction': 0, 'unclear': 1}}
+s152_d_1_D_neg GPT Response: Neither entailment nor contradiction. The information provided is insufficient to determine whether I.R.C. section 152(d)(1)(D) applies to Bob for the year 2015 because we do not have details about Bob's gross income. Without knowing Bob's income, we cannot assess if it is less than the exemption amount of $4,000, which is necessary to determine if he qualifies as a "qualifying relative" under section 152(d).Interpreted as: unclear        Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 0, 'Contradiction': 3, 'unclear': 1}}
+s152_d_1_D_pos GPT Response: Undetermined. 
+
+The information provided is insufficient to definitively determine whether I.R.C. section 152(d)(1)(D) applies to Bob for the year 2015. While Alice's income is below the exemption amount, we lack details about whether Bob provided over half of her support, her age, her living situation, and whether she qualifies as a qualifying child for Bob or any other taxpayer. These factors are crucial to establish whether Alice is a qualifying relative or a qualifying child, which would affect the applicability of section 152(d)(1)(D).Interpreted as: unclear        Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 1, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 3, 'unclear': 1}}
+s152_d_2_A_neg GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 0, 'unclear': 1}}
+s152_d_2_A_pos GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 2, 'Contradiction': 0, 'unclear': 1}}
+s152_d_2_C_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 0, 'unclear': 1}}
+s152_d_2_C_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 3, 'Contradiction': 0, 'unclear': 1}}
+s152_d_2_G_neg GPT Response: Entailment. The information provided supports the conclusion that Alice bears a relationship to Bob under I.R.C. section 152(d)(2)(G) for the year 2018, assuming all other requirements for being a qualifying relative are also met.Interpreted as: Entailment     Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 0, 'unclear': 0}, 'Contradiction': {'Entailment': 4, 'Contradiction': 0, 'unclear': 1}}
+s152_d_2_G_pos GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 4, 'Contradiction': 0, 'unclear': 1}}
+s152_d_2_H_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 1, 'unclear': 0}, 'Contradiction': {'Entailment': 4, 'Contradiction': 1, 'unclear': 1}}
+s152_d_2_H_pos GPT Response: undetermined based on the information provided. To reach a definitive conclusion, we would need additional details about Alice's gross income for 2018 and whether Bob provided more than half of her support during that year. If both conditions are met, then the hypothesis would be an entailment. If either condition is not met, it would be a contradiction.Interpreted as: unclear        Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 1, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 1, 'unclear': 1}}
+s1_a_2_iv_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 1, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 4, 'unclear': 1}}
+s1_a_2_iv_pos  GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 2, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 4, 'unclear': 1}}
+s1_a_2_neg     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 2, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 5, 'unclear': 1}}
+s1_a_2_pos     GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 3, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 5, 'unclear': 1}}
+s1_a_2_v_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 3, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 6, 'unclear': 1}}
+s1_a_2_v_pos   GPT Response: Contradiction. The calculated tax liability for Alice is $188,698.19, which does not match the hypothesis that she has to pay $220,295 in taxes.Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 6, 'unclear': 1}}
+s1_b_i_neg     GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 7, 'unclear': 1}}
+s1_b_i_pos     GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 5, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 7, 'unclear': 1}}
+s1_b_neg       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 5, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 8, 'unclear': 1}}
+s1_b_pos       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 6, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 8, 'unclear': 1}}
+s1_c_iii_neg   GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 6, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 9, 'unclear': 1}}
+s1_c_iii_pos   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 7, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 9, 'unclear': 1}}
+s1_c_neg       GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 7, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 10, 'unclear': 1}}
+s1_c_pos       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 8, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 10, 'unclear': 1}}
+s1_d_i_neg     GPT Response: Contradiction. The hypothesis that Alice has to pay $17,123 in taxes is incorrect based on the calculated tax liability of $13,060 for the year 2017 under the applicable tax brackets for married individuals filing separately.Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 8, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 11, 'unclear': 1}}
+s1_d_i_pos     GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 9, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 11, 'unclear': 1}}
+s1_d_ii_neg    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 9, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 12, 'unclear': 1}}
+s1_d_ii_pos    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 10, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 12, 'unclear': 1}}
+s1_d_neg       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 10, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 13, 'unclear': 1}}
+s1_d_pos       GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 11, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 13, 'unclear': 1}}
+s2_a_1_B_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 2, 'Contradiction': 11, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 14, 'unclear': 1}}
+s2_a_1_B_pos   GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 11, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 14, 'unclear': 1}}
+s2_b_1_A_i_II_negGPT Response: Contradiction. Without additional information confirming that Charlie is a dependent and lived with Bob for more than half of 2018, we cannot conclude that I.R.C. section 2(b)(1)(A)(i)(II) applies to Bob with Charlie as the qualifying child.Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 1, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 2, 'unclear': 1}}
+s2_b_1_A_i_II_posGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 2, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 2, 'unclear': 1}}
+s2_b_1_A_i_I_negGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 2, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 3, 'unclear': 1}}
+s2_b_1_A_i_I_posGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 3, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 3, 'unclear': 1}}
+s2_b_1_A_i_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 3, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 4, 'unclear': 1}}
+s2_b_1_A_i_pos GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 4, 'unclear': 1}}
+s2_b_1_A_ii_negGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 3, 'Contradiction': 11, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 15, 'unclear': 1}}
+s2_b_1_A_ii_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 11, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 15, 'unclear': 1}}
+s2_b_3_A_neg   GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 5, 'unclear': 1}}
+s2_b_3_A_pos   GPT Response: Entailment. Since Bob was a nonresident alien at any time during the tax year 2018, I.R.C. section 2(b)(3)(A) applies, and he cannot qualify as a head of household for that year.Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 5, 'unclear': 1}}
+s3301_neg      GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 11, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 16, 'unclear': 1}}
+s3301_pos      GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 16, 'unclear': 1}}
+s3306_a_1_B_negGPT Response: Contradiction. Based on the information provided, Alice does not meet the second criterion of employing someone for some portion of a day in 20 different weeks during the year 2017. Without additional information about wages paid, we cannot determine if the first criterion is met. Therefore, the hypothesis that I.R.C. section 3306(a)(1)(B) applies to Alice for the year 2017 is contradicted by the given premise.Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 4, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 6, 'unclear': 1}}
+s3306_a_1_B_posGPT Response: Undetermined. The information provided in the premise is insufficient to definitively determine whether I.R.C. section 3306(a)(1)(B) applies to Alice for the year 2017. We need additional details about the total wages paid to Bob and the number of weeks he was employed to make a conclusive determination.Interpreted as: unclear        Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 4, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 6, 'unclear': 1}}
+s3306_a_3_neg  GPT Response: not determinable based on the information provided. The applicability of I.R.C. section 3306(a)(3) to Alice for the year 2017 requires more details about her agricultural operations, such as the total cash wages paid to all agricultural workers and the number of employees engaged in agricultural labor during the specified period. Without this information, we cannot definitively determine whether the payments to Bob are excluded from FUTA wages under section 3306(a)(3).Interpreted as: unclear        Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 4, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 16, 'unclear': 2}}
+s3306_a_3_pos  GPT Response: Entailment. Since Bob paid Alice more than $1,000 in cash wages for domestic service in a calendar quarter, he meets the threshold for being subject to FUTA taxes for domestic service. Therefore, I.R.C. section 3306(a)(3) applies to Bob for the year 2018.Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 0, 'Contradiction': 16, 'unclear': 2}}
+s3306_b_2_C_negGPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 12, 'unclear': 1}, 'Contradiction': {'Entailment': 1, 'Contradiction': 16, 'unclear': 2}}
+s3306_b_2_C_posGPT Response: Contradiction. The payment Alice made to the life insurance fund for Bob in 2017 does not fall under the exclusion provided by I.R.C. section 3306(b)(2)(C), which is intended for retirement or pension-related contributions.Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 1, 'Contradiction': 16, 'unclear': 2}}
+s3306_c_10_B_negGPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 1, 'Contradiction': 17, 'unclear': 2}}
+s3306_c_10_B_posGPT Response: Entailment. If the services Alice performed at Johns Hopkins Hospital were part of her treatment as a patient, then I.R.C. section 3306(c)(10)(B) would apply, and her services would not be considered "employment" for FUTA purposes. The key factor is whether the services were part of her treatment, and if they were, the hypothesis is correct.Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 1, 'Contradiction': 17, 'unclear': 2}}
+s3306_c_11_neg GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 13, 'unclear': 1}, 'Contradiction': {'Entailment': 2, 'Contradiction': 17, 'unclear': 2}}
+s3306_c_11_pos GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 2, 'Contradiction': 17, 'unclear': 2}}
+s3306_c_16_neg GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 2, 'Contradiction': 18, 'unclear': 2}}
+s3306_c_16_pos GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 2, 'Contradiction': 18, 'unclear': 2}}
+s3306_c_1_B_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 7, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 18, 'unclear': 2}}
+s3306_c_1_B_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 8, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 18, 'unclear': 2}}
+s3306_c_6_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 8, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 19, 'unclear': 2}}
+s3306_c_6_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 9, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 19, 'unclear': 2}}
+s3306_c_7_neg  GPT Response: Contradiction. Without evidence that Alice's employment at Bertha's Mussels involved working for a family member as specified in I.R.C. section 3306(c)(7), it is unlikely that this exemption applies to her situation. Therefore, the hypothesis that this section applies contradicts the information provided in the premise.Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 9, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 20, 'unclear': 2}}
+s3306_c_7_pos  GPT Response: Entailment. Since Alice was employed by the State of Maryland, her employment would be exempt from FUTA taxes under I.R.C. section 3306(c)(7), which applies to services performed for a state government.Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 10, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 20, 'unclear': 2}}
+s3306_c_B_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 10, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 21, 'unclear': 2}}
+s3306_c_B_pos  GPT Response: Entailment. The conditions specified in I.R.C. section 3306(c)(B) are met, as Bob, a U.S. citizen, performed services outside the United States for Alice, an American employer.Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 11, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 21, 'unclear': 2}}
+s63_b_neg      GPT Response: Contradiction. The hypothesis states that Alice's taxable income is $31,400, but the correct calculation shows it is $31,200.Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 11, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 22, 'unclear': 2}}
+s63_b_pos      GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 12, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 3, 'Contradiction': 22, 'unclear': 2}}
+s63_c_2_A_i_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 12, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 22, 'unclear': 2}}
+s63_c_2_A_i_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 13, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 4, 'Contradiction': 22, 'unclear': 2}}
+s63_c_2_A_ii_negGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 13, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 22, 'unclear': 2}}
+s63_c_2_A_ii_posGPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 14, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 22, 'unclear': 2}}
+s63_c_6_B_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 14, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 23, 'unclear': 2}}
+s63_c_6_B_pos  GPT Response: Entailment. The hypothesis is correct in stating that I.R.C. section 63(c)(6)(B) applies to Alice for 2017 because she was a nonresident alien during that year. However, for Alice and Bob to claim the standard deduction, they would need to elect to treat Alice as a resident for tax purposes under I.R.C. section 6013(g) or (h). The applicability of the section is contingent on their election, but the premise that the section is relevant to her situation is accurate.Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 15, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 23, 'unclear': 2}}
+s63_c_6_D_neg  GPT Response: Contradiction. Given the premise that the Walter Brown Family Trust II was considered a business trust from 1973 to 2019, it is likely treated as a corporation for tax purposes. Unless there is specific information indicating a change in its classification after 2019, I.R.C. section 63(c)(6)(D), which pertains to the standard deduction for trusts and estates, would not apply to a business trust. Therefore, the hypothesis that this section applies to the trust for 2021 is contradicted by the premise.Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 4, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 7, 'unclear': 1}}
+s63_c_6_D_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 5, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 7, 'unclear': 1}}
+s63_c_7_i_neg  GPT Response: Contradiction       Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 15, 'Contradiction': 14, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 24, 'unclear': 2}}
+s63_c_7_i_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 15, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 24, 'unclear': 2}}
+s63_f_1_A_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 15, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 25, 'unclear': 2}}
+s63_f_1_A_pos  GPT Response: Entailment          Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 16, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 5, 'Contradiction': 25, 'unclear': 2}}
+s63_f_2_B_neg  GPT Response: Entailment. Since Alice is blind and qualifies for the additional standard deduction under I.R.C. section 63(f)(2)(B) due to her blindness, the presence of Bob as her spouse does not affect her eligibility for this deduction. Therefore, the hypothesis that I.R.C. section 63(f)(2)(B) applies to Alice in 2017 with Bob as the spouse is supported by the premise.Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 16, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 25, 'unclear': 2}}
+s63_f_2_B_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 25, 'unclear': 2}}
+s68_a_2_neg    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 15, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 26, 'unclear': 2}}
+s68_a_2_pos    GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 16, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 26, 'unclear': 2}}
+s68_b_1_B_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 16, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 27, 'unclear': 2}}
+s68_b_1_B_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 17, 'unclear': 1}, 'Contradiction': {'Entailment': 6, 'Contradiction': 27, 'unclear': 2}}
+s68_b_1_C_neg  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Contradiction
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 17, 'Contradiction': 17, 'unclear': 1}, 'Contradiction': {'Entailment': 7, 'Contradiction': 27, 'unclear': 2}}
+s68_b_1_C_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+dollar_groundtruth_vs_response{'Entailment': {'Entailment': 18, 'Contradiction': 17, 'unclear': 1}, 'Contradiction': {'Entailment': 7, 'Contradiction': 27, 'unclear': 2}}
+s7703_a_1_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 5, 'Contradiction': 5, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 8, 'unclear': 1}}
+s7703_a_1_pos  GPT Response: Entailment.         Interpreted as: Entailment     Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 5, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 8, 'unclear': 1}}
+s7703_b_2_neg  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Contradiction
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 5, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 9, 'unclear': 1}}
+s7703_b_2_pos  GPT Response: Contradiction.      Interpreted as: Contradiction  Groundtruth: Entailment
+nodollar_groundtruth_vs_response{'Entailment': {'Entailment': 6, 'Contradiction': 6, 'unclear': 2}, 'Contradiction': {'Entailment': 4, 'Contradiction': 9, 'unclear': 1}}
+FINAL dollar_groundtruth_vs_response:
+                       Response from model         
+                   entail      contrad.   unclear 
+Actual  entail         18         17          1 
+        contrad.        7         27          2 
+FINAL nodollar_groundtruth_vs_response:
+                       Response from model         
+                   entail      contrad.   unclear 
+Actual  entail          6          6          2 
+        contrad.        4          9          1 

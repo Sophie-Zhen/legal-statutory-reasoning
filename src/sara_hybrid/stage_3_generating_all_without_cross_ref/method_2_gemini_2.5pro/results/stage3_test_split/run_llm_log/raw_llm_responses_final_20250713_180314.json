@@ -1,0 +1,65 @@
+{
+  "s151_d_5_pos": {
+    "fact_extraction": [
+      {
+        "case_id": "s151_d_5_pos",
+        "prompt": "Convert text to Method 2 semantic Prolog facts using ACTUAL predicates from our codebase.\n\nTEXT: Alice is entitled to an exemption under section 151(b) for the year 2018.\nCASE_ID: s151_d_5_pos\n\nUse only these actual predicates:\n- personal_exemption_deduction/4 - for exemptions\n- tax_imposed/4 - for tax calculations  \n- standard_deduction/4 - for standard deductions\n- filing_status/4 - for filing status\n- exemption_amount/4 - for specific exemption amounts\n\nFormat: fact(CaseID, predicate(...)).\n\nGenerate facts:",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752426109.479167,
+        "raw_response": "```prolog\nfact(s151_d_5_pos, personal_exemption_deduction(alice, alice, 2018, 's151(b)')).\n```",
+        "error": null,
+        "attempt": 1
+      },
+      {
+        "case_id": "s151_d_5_pos",
+        "prompt": "Convert text to Method 2 semantic Prolog facts using ACTUAL predicates from our codebase.\n\nTEXT: Alice is entitled to an exemption under section 151(b) for the year 2018.\nCASE_ID: s151_d_5_pos\n\nUse only these actual predicates:\n- personal_exemption_deduction/4 - for exemptions\n- tax_imposed/4 - for tax calculations  \n- standard_deduction/4 - for standard deductions\n- filing_status/4 - for filing status\n- exemption_amount/4 - for specific exemption amounts\n\nFormat: fact(CaseID, predicate(...)).\n\nGenerate facts:",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752426124.0174289,
+        "raw_response": "```prolog\nfact(s151_d_5_pos, personal_exemption_deduction(alice, alice, 2018, _)).\n```",
+        "error": null,
+        "attempt": 2
+      },
+      {
+        "case_id": "s151_d_5_pos",
+        "prompt": "Convert text to Method 2 semantic Prolog facts using ACTUAL predicates from our codebase.\n\nTEXT: Alice is entitled to an exemption under section 151(b) for the year 2018.\nCASE_ID: s151_d_5_pos\n\nUse only these actual predicates:\n- personal_exemption_deduction/4 - for exemptions\n- tax_imposed/4 - for tax calculations  \n- standard_deduction/4 - for standard deductions\n- filing_status/4 - for filing status\n- exemption_amount/4 - for specific exemption amounts\n\nFormat: fact(CaseID, predicate(...)).\n\nGenerate facts:",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752426138.662451,
+        "raw_response": "```prolog\nfact(s151_d_5_pos, personal_exemption_deduction(alice, 2018, ExemptionAmount, '151(b)')).\n```",
+        "error": null,
+        "attempt": 3
+      }
+    ],
+    "query_generation": [
+      {
+        "case_id": "s151_d_5_pos",
+        "prompt": "Convert question to answer/2 predicate using ACTUAL Method 2 predicates.\n\nFACTS: fact(s151_d_5_pos, personal_exemption_deduction(alice, 2018, ExemptionAmount, '151(b)')).\nQUESTION: The exemption amount of Alice's exemption is equal to $0 under section 151(d)(5). Entailment\nCASE_ID: s151_d_5_pos\n\n**STEP 0: CLASSIFY QUESTION TYPE**\n- CALCULATION: \"how much\", \"amount\", \"calculate\" \u2192 seeks numerical result\n- LOGIC: \"entailment\", \"contradiction\", \"true/false\" \u2192 tests statement truth\n\n**STEP 1: GENERATE QUERY BASED ON TYPE**\n\nUse actual predicates:\n- knowledge_base:exemption_amount/2 - for exemption amounts\n- section151:personal_exemption_deduction/4 - for exemption calculations\n- section1:tax_imposed/4 - for tax calculations\n- section63:standard_deduction/4 - for standard deductions\n- helpers:calculate_tax_from_brackets/3 - for tax bracket calculations\n\n**REQUIRED OUTPUT FORMAT:**\n```\nQuestion Type: [CALCULATION or LOGIC]\nReasoning: [Brief explanation]\nQuery: answer(s151_d_5_pos, Result) :- [complete Prolog clause body].\n```\n\nCRITICAL: Generate a complete Prolog rule with a non-empty body after ':-'.\nNEVER generate incomplete rules like 'answer(s151_d_5_pos, Result) :-.'\nFollow the REQUIRED OUTPUT FORMAT exactly.",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752426155.369854,
+        "raw_response": "```\nQuestion Type: LOGIC\nReasoning: The user is asking an entailment question: is it true that Alice's exemption amount for 2018 is $0? To answer this, I will query the knowledge base to find the personal exemption deduction for Alice in 2018 and check if the amount is indeed 0. The predicate `section151:personal_exemption_deduction/4` is the correct one to use for this purpose.\nQuery: answer(s151_d_5_pos, Result) :- section151:personal_exemption_deduction(alice, 2018, 0, _).\n```",
+        "error": "Type inconsistency: LOGIC question but no conditional logic or comparisons found",
+        "question_type": "LOGIC",
+        "reasoning": "The user is asking an entailment question: is it true that Alice's exemption amount for 2018 is $0? To answer this, I will query the knowledge base to find the personal exemption deduction for Alice in 2018 and check if the amount is indeed 0. The predicate `section151:personal_exemption_deduction/4` is the correct one to use for this purpose.",
+        "type_consistency_check": {
+          "is_consistent": false,
+          "reason": "LOGIC question but no conditional logic or comparisons found"
+        },
+        "attempt": 1
+      },
+      {
+        "case_id": "s151_d_5_pos",
+        "prompt": "Convert question to answer/2 predicate using ACTUAL Method 2 predicates.\n\nFACTS: fact(s151_d_5_pos, personal_exemption_deduction(alice, 2018, ExemptionAmount, '151(b)')).\nQUESTION: The exemption amount of Alice's exemption is equal to $0 under section 151(d)(5). Entailment\n\n**FEEDBACK FROM PREVIOUS ATTEMPT:**\nPrevious classification: LOGIC\nIssue: LOGIC question but no conditional logic or comparisons found\nPlease reconsider the question type and ensure your query structure matches.\n\nCASE_ID: s151_d_5_pos\n\n**STEP 0: CLASSIFY QUESTION TYPE**\n- CALCULATION: \"how much\", \"amount\", \"calculate\" \u2192 seeks numerical result\n- LOGIC: \"entailment\", \"contradiction\", \"true/false\" \u2192 tests statement truth\n\n**STEP 1: GENERATE QUERY BASED ON TYPE**\n\nUse actual predicates:\n- knowledge_base:exemption_amount/2 - for exemption amounts\n- section151:personal_exemption_deduction/4 - for exemption calculations\n- section1:tax_imposed/4 - for tax calculations\n- section63:standard_deduction/4 - for standard deductions\n- helpers:calculate_tax_from_brackets/3 - for tax bracket calculations\n\n**REQUIRED OUTPUT FORMAT:**\n```\nQuestion Type: [CALCULATION or LOGIC]\nReasoning: [Brief explanation]\nQuery: answer(s151_d_5_pos, Result) :- [complete Prolog clause body].\n```\n\nCRITICAL: Generate a complete Prolog rule with a non-empty body after ':-'.\nNEVER generate incomplete rules like 'answer(s151_d_5_pos, Result) :-.'\nFollow the REQUIRED OUTPUT FORMAT exactly.",
+        "model": "gemini-2.5-pro",
+        "timestamp": 1752426176.0435998,
+        "raw_response": "```\nQuestion Type: LOGIC\nReasoning: The user is asking whether a statement is true (\"entailment\"). The statement is that Alice's exemption amount for 2018 is $0. To answer this, the query must first find the value of Alice's personal exemption deduction for the year 2018 using the `section151:personal_exemption_deduction/4` predicate. Then, it must compare this value to $0. The result is `true` if they are equal and `false` otherwise.\nQuery: answer(s151_d_5_pos, Result) :- (section151:personal_exemption_deduction(alice, 2018, 0, _) -> Result = true ; Result = false).\n```",
+        "error": null,
+        "question_type": "LOGIC",
+        "reasoning": "The user is asking whether a statement is true (\"entailment\"). The statement is that Alice's exemption amount for 2018 is $0. To answer this, the query must first find the value of Alice's personal exemption deduction for the year 2018 using the `section151:personal_exemption_deduction/4` predicate. Then, it must compare this value to $0. The result is `true` if they are equal and `false` otherwise.",
+        "type_consistency_check": {
+          "is_consistent": true,
+          "reason": "Query structure matches question type"
+        },
+        "attempt": 2
+      }
+    ]
+  }
+}

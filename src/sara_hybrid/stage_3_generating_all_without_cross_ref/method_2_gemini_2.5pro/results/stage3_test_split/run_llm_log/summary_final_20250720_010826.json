@@ -1,0 +1,21 @@
+{
+  "total_cases": 120,
+  "successful": 120,
+  "failed": 0,
+  "execution_success": 56,
+  "execution_failed": 64,
+  "start_time": "2025-07-19T20:20:34.676804",
+  "end_time": "2025-07-20T01:08:26.784517",
+  "success_rate": 1.0,
+  "execution_rate": 0.4666666666666667,
+  "cache_stats": {
+    "total_entries": 120,
+    "successful_entries": 120,
+    "failed_entries": 0,
+    "missing_files": 0,
+    "cache_hit_rate": 1.0,
+    "cache_directory": "/Users/sophie/code/2025-mcm-llms-applied-in-law_context/src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/cache/stage3_test_split"
+  },
+  "cached_results": 0,
+  "processed_results": 120
+}

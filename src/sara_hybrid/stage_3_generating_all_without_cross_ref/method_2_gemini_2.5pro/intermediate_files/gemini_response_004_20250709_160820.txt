@@ -1,0 +1,149 @@
+=== USER MESSAGE ===
+yes, continue the generation please.
+
+=== GEMINI RESPONSE ===
+I will now proceed with generating the statute modules as planned.
+
+### **Response 4 of 8: Statute Modules (`section151.pl` and `section68.pl`)**
+
+Here are the Prolog modules for Section 151 (Personal Exemptions) and Section 68 (Itemized Deduction Limitation). These modules are interdependent with others, which is handled by SWI-Prolog's module system.
+
+%% BEGIN_FILE: section151.pl
+```prolog
+:- module(section151,
+          [ personal_exemption_deduction/4,      % personal_exemption_deduction(Taxpayer, CaseID, Year, TotalDeduction)
+            is_entitled_to_deduction_for_dependent/4, % is_entitled_to_deduction_for_dependent(Taxpayer, Dependent, CaseID, Year)
+            exemption_amount/4                       % exemption_amount(Taxpayer, Year, CaseID, Amount) - §151(d) wrapper
+          ]).
+
+:- use_module(tests, [fact/2]).
+:- use_module(helpers, [tcja_active_for_tax_year/1, sum_list/2]).
+:- use_module(knowledge_base, [exemption_amount/2, phaseout_step/3]).
+:- use_module(section152, [is_dependent/4]).
+% NOTE: The dependency on section68 is required for the phaseout calculation.
+% s151 -> s68 -> s2 -> s151 creates a module dependency cycle, which SWI-Prolog handles.
+:- use_module(section68, [applicable_amount/4]).
+
+
+% §151(a) Main predicate to calculate total deduction for personal exemptions.
+personal_exemption_deduction(Taxpayer, CaseID, Year, TotalDeduction) :-
+    % The TCJA rule in §151(d)(5) sets the exemption amount to zero, so this predicate
+    % will correctly return 0 for years 2018-2025.
+    exemption_for_taxpayer(Taxpayer, CaseID, Year, TaxpayerAmount),
+    exemption_for_spouse(Taxpayer, CaseID, Year, SpouseAmount),
+    exemptions_for_dependents(Taxpayer, CaseID, Year, DependentsAmount),
+    TotalDeduction is TaxpayerAmount + SpouseAmount + DependentsAmount.
+
+% §151(c) Wrapper to check eligibility for a dependent deduction.
+% This is used by other sections to check status, without needing the amount.
+is_entitled_to_deduction_for_dependent(Taxpayer, Dependent, CaseID, Year) :-
+    is_dependent(Taxpayer, Dependent, CaseID, Year).
+
+% §151(b) Exemption for taxpayer.
+exemption_for_taxpayer(Taxpayer, CaseID, Year, Amount) :-
+    exemption_amount(Taxpayer, Year, CaseID, Amount).
+
+% §151(b) Exemption for spouse.
+exemption_for_spouse(Taxpayer, CaseID, Year, Amount) :-
+    fact(CaseID, spouse(Taxpayer, Spouse)),
+    \+ fact(CaseID, files_joint_return(Taxpayer, Spouse, Year)),
+    \+ (fact(CaseID, gross_income(Spouse, Year, Inc)), Inc > 0),
+    \+ fact(CaseID, is_dependent_of(Spouse, _, Year)), !,
+    exemption_amount(Taxpayer, Year, CaseID, Amount).
+exemption_for_spouse(_, _, _, 0).
+
+% §151(c) Sum of exemptions for all dependents.
+exemptions_for_dependents(Taxpayer, CaseID, Year, TotalDependentsAmount) :-
+    findall(Dependent, is_dependent(Taxpayer, Dependent, CaseID, Year), Dependents),
+    exemption_amount(Taxpayer, Year, CaseID, AmountPerDependent),
+    length(Dependents, NumDependents),
+    TotalDependentsAmount is NumDependents * AmountPerDependent.
+
+% §151(d) Exemption Amount Calculation (the core logic).
+% This predicate determines the amount for ONE exemption, considering phaseouts.
+% The amount is based on the Taxpayer's AGI, not the individual's.
+exemption_amount(_Taxpayer, Year, _CaseID, 0) :-
+    tcja_active_for_tax_year(Year), !.
+exemption_amount(Taxpayer, Year, CaseID, Amount) :-
+    \+ tcja_active_for_tax_year(Year),
+    % §151(d)(2) Disallowed if individual is a dependent of another.
+    % This check applies when calculating the individual's *own* tax return,
+    % not when they are being claimed as a dependent. For simplicity in this model,
+    % we assume the primary taxpayer is not a dependent of another.
+    % The `exemptions_for_dependents` handles dependents correctly.
+    knowledge_base:exemption_amount(Year, BaseAmount),
+    (   fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI))
+    ->  phaseout_adjusted_amount(Taxpayer, Year, CaseID, AGI, BaseAmount, Amount)
+    ;   Amount = BaseAmount % No AGI, no phaseout.
+    ).
+
+% §151(d)(3) Phaseout logic.
+phaseout_adjusted_amount(Taxpayer, Year, CaseID, AGI, BaseAmount, FinalAmount) :-
+    applicable_amount(Taxpayer, CaseID, Year, Threshold),
+    AGI > Threshold, !,
+    ExcessAGI is AGI - Threshold,
+    % Determine filing status to get correct step amount for phaseout
+    ( fact(CaseID, files_separate_return(Taxpayer, Year)) -> Status = married_filing_separately ; Status = other ),
+    phaseout_step(Year, Status, Step),
+    NumSteps is ceil(ExcessAGI / Step),
+    ApplicablePercentageRaw is 2 * NumSteps,
+    ApplicablePercentage is min(ApplicablePercentageRaw, 100),
+    Reduction is BaseAmount * (ApplicablePercentage / 100),
+    FinalAmount is max(0, BaseAmount - Reduction).
+phaseout_adjusted_amount(_, _, _, _, BaseAmount, BaseAmount). % AGI not over threshold.
+```
+%% END_FILE: section151.pl
+% SMOKE: ?- [tests, helpers, knowledge_base, section7703, section2, section68, section152, section151], personal_exemption_deduction(alice, tax_case_61, 2015, D).
+
+%% BEGIN_FILE: section68.pl
+```prolog
+:- module(section68,
+          [ limited_itemized_deductions/4, % limited_itemized_deductions(Taxpayer, CaseID, Year, FinalDeductions)
+            applicable_amount/4            % applicable_amount(Taxpayer, CaseID, Year, Amount)
+          ]).
+
+:- use_module(tests, [fact/2]).
+:- use_module(helpers, [tcja_active_for_tax_year/1]).
+:- use_module(knowledge_base, [phaseout_threshold/3]).
+% NOTE: The dependency on section2 is required to get the filing status.
+% s68 -> s2 -> s151 -> s68 creates a module dependency cycle, which SWI-Prolog handles.
+:- use_module(section2, [filing_status/4]).
+
+
+% §68(f) This section does not apply to years 2018-2025.
+limited_itemized_deductions(_Taxpayer, CaseID, Year, InitialDeductions) :-
+    tcja_active_for_tax_year(Year), !,
+    (fact(CaseID, itemized_deductions(_Taxpayer, Year, InitialDeductions)) -> true ; InitialDeductions = 0).
+
+% §68(a) General rule for limiting itemized deductions.
+limited_itemized_deductions(Taxpayer, CaseID, Year, FinalDeductions) :-
+    \+ tcja_active_for_tax_year(Year),
+    fact(CaseID, itemized_deductions(Taxpayer, Year, InitialDeductions)),
+    fact(CaseID, adjusted_gross_income(Taxpayer, Year, AGI)),
+    applicable_amount(Taxpayer, CaseID, Year, Threshold),
+    (   AGI > Threshold
+    ->  Excess is AGI - Threshold,
+        Reduction1 is 0.03 * Excess,
+        Reduction2 is 0.80 * InitialDeductions,
+        Reduction is min(Reduction1, Reduction2),
+        FinalDeductions is InitialDeductions - Reduction
+    ;   FinalDeductions = InitialDeductions
+    ).
+limited_itemized_deductions(Taxpayer, CaseID, Year, 0) :-
+    \+ fact(CaseID, itemized_deductions(Taxpayer, Year, _)).
+
+
+% §68(b) Applicable amount.
+% Determines the AGI threshold for the limitation based on filing status.
+applicable_amount(Taxpayer, CaseID, Year, Amount) :-
+    filing_status(Taxpayer, CaseID, Year, Status),
+    (   knowledge_base:phaseout_threshold(Year, Status, Amt)
+    ->  Amount = Amt
+    % Fallback for married_filing_separately which has a calculated threshold
+    ;   Status == married_filing_separately,
+        knowledge_base:phaseout_threshold(Year, married_filing_jointly, JointAmt),
+        Amount is JointAmt / 2
+    ).
+```
+%% END_FILE: section68.pl
+% SMOKE: ?- [tests, helpers, knowledge_base, section7703, section152, section151, section2, section68], limited_itemized_deductions(alice, tax_case_70, 2016, D).

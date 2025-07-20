@@ -1,0 +1,716 @@
+```json
+[
+  {
+    "CaseID": "s1_d_iv_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_1",
+        "Name": "tax_for_filing_status",
+        "Arity": 5,
+        "Slots": {
+          "FilingStatus": "married_filing_separately",
+          "TaxableIncome": 28864,
+          "Year": 2017,
+          "Bracket": "iv",
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s3306_c_5_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section3306"
+    ],
+    "FullDeps": [
+      "section3306"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_3306",
+        "Name": "is_employment_exception_c5",
+        "Arity": 3,
+        "Slots": {
+          "Employer": "alice",
+          "Employee": "bob",
+          "Year": 2017
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s1_c_i_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_1",
+        "Name": "tax_for_filing_status",
+        "Arity": 5,
+        "Slots": {
+          "FilingStatus": "unmarried",
+          "TaxableIncome": 718791,
+          "Year": 2017,
+          "Bracket": "i",
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s1_b_iii_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_1",
+        "Name": "tax_for_filing_status",
+        "Arity": 5,
+        "Slots": {
+          "FilingStatus": "head_of_household",
+          "TaxableIncome": 54775,
+          "Year": 2017,
+          "Bracket": "iii",
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s152_d_2_F_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section152"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_152",
+        "Name": "relationship_d2",
+        "Arity": 3,
+        "Slots": {
+          "Individual": "alice",
+          "Taxpayer": "bob",
+          "RelationshipType": "F"
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s1_a_1_iii_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_1",
+        "Name": "tax_for_filing_status",
+        "Arity": 5,
+        "Slots": {
+          "FilingStatus": "married_filing_jointly",
+          "TaxableIncome": 164612,
+          "Year": 2017,
+          "Bracket": "iii",
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s3306_b_10_A_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section3306"
+    ],
+    "FullDeps": [
+      "section3306"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_3306",
+        "Name": "is_wage_exception_b10",
+        "Arity": 3,
+        "Slots": {
+          "Payment": 12980,
+          "Payer": "alice",
+          "Payee": "bob"
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s63_c_2_B_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section63"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_63",
+        "Name": "basic_standard_deduction",
+        "Arity": 4,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2017,
+          "FilingStatus": "head_of_household",
+          "Deduction": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s3306_b_7_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section3306"
+    ],
+    "FullDeps": [
+      "section3306"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_3306",
+        "Name": "is_wage_exception_b7",
+        "Arity": 3,
+        "Slots": {
+          "Payer": "alice",
+          "Payee": "bob",
+          "Payment": 323
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s152_c_1_E_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section152"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_152",
+        "Name": "qualifying_child_e",
+        "Arity": 3,
+        "Slots": {
+          "Individual": "bob",
+          "Taxpayer": "alice",
+          "Year": 2019
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s2_a_2_B_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section2"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_2",
+        "Name": "surviving_spouse_limitation_b",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "bob",
+          "DeceasedSpouse": "alice",
+          "Year": 2014
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s63_c_3_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section63"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_63",
+        "Name": "additional_standard_deduction",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2017,
+          "Deduction": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s3306_a_1_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section3306"
+    ],
+    "FullDeps": [
+      "section3306"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_3306",
+        "Name": "is_employer_a1",
+        "Arity": 3,
+        "Slots": {
+          "Person": "alice",
+          "Year": 2018,
+          "Employee": "bob"
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s7703_b_1_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section7703"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_7703",
+        "Name": "is_considered_not_married_b1",
+        "Arity": 3,
+        "Slots": {
+          "Individual": "alice",
+          "Child": "charlie",
+          "Year": 2018
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s1_c_iv_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_1",
+        "Name": "tax_for_filing_status",
+        "Arity": 5,
+        "Slots": {
+          "FilingStatus": "unmarried",
+          "TaxableIncome": 210204,
+          "Year": 2017,
+          "Bracket": "iv",
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s3306_b_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section3306"
+    ],
+    "FullDeps": [
+      "section3306"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_3306",
+        "Name": "is_wages",
+        "Arity": 4,
+        "Slots": {
+          "Payer": "alice",
+          "Payee": "bob",
+          "Amount": 2325,
+          "Year": 2018
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s1_a_1_pos",
+    "QuestionType": "entailment",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_1",
+        "Name": "tax_for_filing_status",
+        "Arity": 5,
+        "Slots": {
+          "FilingStatus": "married_filing_jointly",
+          "TaxableIncome": 17330,
+          "Year": 2017,
+          "Bracket": "all",
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "s68_b_1_A_neg",
+    "QuestionType": "contradiction",
+    "SeedSections": [
+      "section68"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "statute_68",
+        "Name": "is_applicable_amount_a",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2016,
+          "FilingStatus": "married_filing_separately"
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_89",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2018,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_13",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "bob",
+          "Year": 2017,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_40",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2017,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_26",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2019,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_79",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "bob",
+          "Year": 2020,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_70",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2016,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_63",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "bob",
+          "Year": 2019,
+          "Tax": null
+        }
+      }
+    ]
+  },
+  {
+    "CaseID": "tax_case_61",
+    "QuestionType": "how-much-tax",
+    "SeedSections": [
+      "section1"
+    ],
+    "FullDeps": [
+      "section1",
+      "section151",
+      "section152",
+      "section2",
+      "section63",
+      "section68",
+      "section7703"
+    ],
+    "Predicates": [
+      {
+        "Module": "helpers",
+        "Name": "total_tax_liability",
+        "Arity": 3,
+        "Slots": {
+          "Taxpayer": "alice",
+          "Year": 2015,
+          "Tax": null
+        }
+      }
+    ]
+  }
+]
+```
