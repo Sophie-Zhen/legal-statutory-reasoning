@@ -1,49 +1,190 @@
-# MCM PRACTICUM
+# Text-to-Symbolic Statutory Reasoning
 
-This is a template for MCM practicums.  Please read these instructions carefully.
+Automating natural language to Prolog conversion for legal statutory reasoning using Large Language Models.
 
-This file is written in
-[markdown](https://guides.github.com/features/mastering-markdown/).  Markdown
-is a suitable format for documents stored in git repositories.
+## Project Overview
 
-## Instructions
+This project explores automated conversion of natural language statutory descriptions into executable Prolog code for legal reasoning. Using the SARA (Statutory Article Representation and Application) dataset from US tax code, we implement and evaluate multiple LLM-based approaches to bridge the gap between human-readable legal text and machine-executable logic.
 
-You *must* do the following:
+**Key Innovation**: A multi-stage pipeline that combines prompt engineering, automated validation, and iterative refinement to achieve high accuracy in statute-to-code translation.
 
-1 - Fork this repo.
+## Research Context
 
-2 - There is no need to rename your fork but if you wish to do so please use
-     the format:
+**Course**: M.Sc. Practicum Project, Dublin City University  
+**Domain**: Natural Language Processing + Legal AI  
+**Dataset**: SARA - US Tax Code statutory reasoning cases  
+**Challenge**: Convert complex legal statutes (natural language) into verifiable Prolog predicates
 
-     2024-mcm-username
+## Technical Approach
 
-replacing `username` with your School of Computing login name.
+### Multi-Stage Pipeline Architecture
 
-For example, if Stephen Blott were to be doing an MCM practicum, he would rename
-his repo as:
+#### **Stage 1: Rule Translation**
+- **Input**: Natural language statutory rules
+- **Process**: GPT-4/Gemini-based translation with structured prompts
+- **Output**: Prolog predicates representing legal rules
+- **Validation**: Syntax checking, predicate verification
 
-     2024-mcm-sblott
+#### **Stage 2: Fact & Query Generation**
+- **Input**: Legal test cases (natural language scenarios)
+- **Process**: Entity extraction → Fact generation → Query formulation
+- **Output**: Prolog facts and queries for case evaluation
+- **Validation**: Execution-based correctness testing
 
+#### **Stage 3: End-to-End Integration**
+- **Hybrid Approach**: Combines LLM translation with symbolic reasoning
+- **Cross-Reference Resolution**: Handles inter-statute dependencies
+- **Iterative Refinement**: Auto-correction based on execution feedback
 
-You should also update the *Project description*.
+#### **Stage 4: Interactive Prompting**
+- **Error Analysis**: Detailed failure case examination
+- **Self-Correction**: LLM-guided debugging and fixes
+- **Provenance Tracking**: Complete audit trail of transformations
 
-3 - This directory has two important sub-directories.
+### Key Techniques
 
-- All of your source code should be placed in the `src` sub-directory.
+- **Prompt Engineering**: Carefully crafted templates with examples and constraints
+- **Executable Validation**: Prolog parse/compile checks + execution testing
+- **Automated Evaluation**: Precision/recall metrics on SARA test cases
+- **Multi-Model Comparison**: GPT-4, GPT-4-mini, Gemini 2.5 Pro evaluation
 
-- All of your documentation should be placed in the `docs` sub-directory.
+## Results & Achievements
 
-4 - There is further important documentation in the `docs` directory.  Read that next.
+### Performance Metrics
+- **Best Accuracy**: 64% on 100-case test set (Stage 2)
+- **Rule Translation**: High syntactic correctness (>90%)
+- **Challenge Areas**: Complex cross-references, edge cases
 
-When you are have followed all of these instructions and are sure that you
-understand what is expected, you may replace the contents of this file with a
-brief description of your project (two or three paragraphs).
+### Key Findings
+- **Staged approach** outperforms end-to-end translation
+- **Validation feedback** crucial for iterative improvement
+- **Model comparison**: GPT-4 vs Gemini trade-offs identified
+- **Error patterns**: Systematic analysis of failure modes
 
-## Additional Resources
+## Technologies & Tools
 
-- Git [cheat sheet](https://gitlab.computing.dcu.ie/sblott/local-gitlab-documentation/blob/master/cheat-sheet.md)
-- Gitlab [CI environment](https://gitlab.computing.dcu.ie/sblott/docker-ci-environment) and it's [available software](https://gitlab.computing.dcu.ie/sblott/docker-ci-environment/blob/master/Dockerfile)
-- Example projects with CI configured:
-   * [Python](https://gitlab.computing.dcu.ie/sblott/test-project-python)
-   * [Java](https://gitlab.computing.dcu.ie/sblott/test-project-java)
-   * [MySql](https://gitlab.computing.dcu.ie/sblott/test-project-mysql)
+**Programming Languages:**
+- Python (primary)
+- Prolog (SWI-Prolog for execution)
+
+**LLM APIs:**
+- OpenAI GPT-4, GPT-4-mini
+- Google Gemini 2.5 Pro
+
+**Key Libraries:**
+- OpenAI API, Google Generative AI
+- subprocess (Prolog integration)
+- JSON, YAML (data handling)
+
+**Development Tools:**
+- Git version control
+- Automated testing frameworks
+- Result logging and analysis
+
+## Project Structure
+
+```
+├── src/
+│   ├── gpt-statutes/           # Direct GPT-4 experiments on SARA
+│   │   └── sara_run/           # Prompt variations and results
+│   ├── query_generation/       # Multi-stage pipeline
+│   │   ├── stage1/            # Rule translation
+│   │   └── stage2/            # Fact/query generation
+│   ├── sara_hybrid/           # Integrated approaches
+│   │   ├── llm_translation/   # Translation methods comparison
+│   │   ├── stage_3_generating_all/  # Full pipeline
+│   │   └── stage4_interactive/      # Interactive debugging
+│   └── sara_llm_translator/   # Generated Prolog code
+├── docs/
+│   ├── documentation/         # Project reports and literature review
+│   └── proposal/             # Initial project proposal
+├── data/                     # SARA dataset and test cases
+├── results/                  # Experimental outputs
+└── logs/                     # Execution logs and traces
+```
+
+## Key Contributions
+
+1. **Reproducible Pipeline**: End-to-end automation from text to validated Prolog
+2. **Comprehensive Validation**: Multi-level checking (syntax → semantics → execution)
+3. **Error Analysis**: Systematic categorization of translation failures
+4. **Model Comparison**: Empirical evaluation of different LLM approaches
+5. **Practical Insights**: Lessons for legal AI and code generation tasks
+
+## Experimental Workflow
+
+### Running the Pipeline
+
+1. **Stage 1 - Rule Translation**:
+   ```bash
+   python src/query_generation/stage1/stage1_test_run.py
+   ```
+
+2. **Stage 2 - Fact/Query Generation**:
+   ```bash
+   python src/query_generation/stage2/stage2_test_run.py
+   ```
+
+3. **Full Integration**:
+   ```bash
+   python src/sara_hybrid/stage_3_generating_all/method_2_gemini_2.5pro/scripts/run_pipeline.py
+   ```
+
+### Validation & Evaluation
+
+- Automated accuracy testing against SARA ground truth
+- Prolog execution verification
+- Error categorization and reporting
+
+## Research Methodology
+
+**Iterative Development Approach:**
+1. **Baseline**: Direct LLM translation (Stage 1)
+2. **Enhancement**: Add fact generation (Stage 2)
+3. **Integration**: Full hybrid system (Stage 3)
+4. **Refinement**: Interactive error correction (Stage 4)
+
+**Evaluation Strategy:**
+- Quantitative: Accuracy on SARA test cases
+- Qualitative: Error analysis and categorization
+- Comparative: Multiple LLM performance analysis
+
+## Academic Context
+
+This project demonstrates:
+- **NLP → Code Generation**: Specialized domain adaptation
+- **Prompt Engineering**: Structured approaches for complex tasks
+- **Validation Frameworks**: Ensuring correctness in AI-generated code
+- **Legal AI**: Practical challenges in statutory reasoning automation
+
+## Future Directions
+
+- **Improved Cross-Reference Handling**: Better resolution of inter-statute dependencies
+- **Fine-Tuning**: Domain-specific model training on legal corpora
+- **Extended Evaluation**: Testing on broader legal domains beyond tax code
+- **Interactive Tools**: User-friendly interfaces for legal professionals
+
+## Documentation
+
+- **Full Technical Report**: `docs/documentation/`
+- **Literature Review**: `docs/documentation/Literature_review_*.pdf`
+- **Project Proposal**: `docs/proposal/`
+
+## Project Outcomes
+
+- Demonstrated feasibility of automated statute-to-code translation
+- Identified key challenges and limitations in current LLM approaches
+- Provided reproducible framework for future legal AI research
+- Achieved competitive accuracy on established benchmark (SARA dataset)
+
+---
+
+**Author**: Songhui Zhen  
+**Institution**: Dublin City University  
+**Program**: M.Sc. Computer Science (Natural Language Processing)  
+**Year**: 2024-2025  
+**Supervisor**: Prof. [Supervisor Name]
+
+## License
+
+This project is for academic research purposes.
