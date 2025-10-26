@@ -166,9 +166,7 @@ This project demonstrates:
 
 ## Documentation
 
-- **Full Technical Report**: `docs/documentation/`
-- **Literature Review**: `docs/documentation/Literature_review_*.pdf`
-- **Project Proposal**: `docs/proposal/`
+Full technical reports and documentation are available in the academic repository.
 
 ## Project Outcomes
 
@@ -179,11 +177,11 @@ This project demonstrates:
 
 ---
 
-**Author**: Songhui Zhen  
+**Authors**: Songhui Zhen, Saw Pu  
 **Institution**: Dublin City University  
 **Program**: M.Sc. Computer Science (Natural Language Processing)  
 **Year**: 2024-2025  
-**Supervisor**: Prof. [Supervisor Name]
+**Supervisors**: Anya Belz, James O'Doherty
 
 ## License
 

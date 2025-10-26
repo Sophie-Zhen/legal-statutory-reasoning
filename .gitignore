@@ -31,6 +31,10 @@ external/
 # Do not track the large models directory
 models/
 
+# Do not track documentation folders with private information
+build/
+docs/
+
 src/sara_hybrid/llm_translation/
 src/sara_llm_translator
 requirements.txt
